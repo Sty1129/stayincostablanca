@@ -11,28 +11,28 @@
  */
 
 export const client = {
-  name: 'Small Business Starter',
-  email: 'hello@example.com',
-  phoneForTel: '555-867-5309',
-  phoneFormatted: '(555) 867-5309',
-  /** Business / contractor license number. Displayed in the header and footer
-   *  as a trust signal. Set to an empty string to hide it. */
-  license: 'Lic# 123456',
+ 
+  name: 'Stay in Costa Blanca',         // Folosit peste tot în site
+  email: 'info.stayincostablanca@gmail.com',
+  phoneForTel: '34-641-477-523',        // Format tehnic: cifre și cratime
+  phoneFormatted: '+34 641 477 523',   // Format afișat pe site
+  license: '',                          // Lăsăm gol dacă nu ai un număr de licență specific încă
   address: {
-    lineOne: '123 Main Street',
-    lineTwo: 'Suite 100',
-    city: 'Denver',
-    state: 'CO',
-    zip: '80206',
-    country: 'US',
-    mapLink: 'https://maps.app.goo.gl/example',
+    lineOne: 'Torrevieja - Orihuela Costa',
+    lineTwo: 'Alicante',             
+    city: 'Torrevieja',
+    state: 'Alicante',
+    zip: '03181',
+    country: 'Spain',
+    mapLink: 'https://www.google.com/maps/search/Torrevieja+Orihuela+Costa', 
   },
   socials: {
-    facebook: 'https://www.facebook.com/',
-    instagram: 'https://www.instagram.com/',
-    google: 'https://www.google.com/maps',
+    facebook:  'https://www.facebook.com/stayincostablanca',   
+    instagram: 'https://www.instagram.com/stayincostablanca',  
+    google:    '',          
   },
-  domain: 'https://www.example.com',
+  domain: 'https://stayincostablanca.com',
+
 } as const;
 
 export type Client = typeof client;
