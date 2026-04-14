@@ -5,7 +5,13 @@ import Footer from '../components/Footer.astro';
 import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { client } from '../data/client'; // Folosim client din data client pentru date
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
+  body, h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif !important;
+  }
+</style>
 const services = [
   {
     title: 'Key Holding & Control 🔑',
