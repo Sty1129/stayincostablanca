@@ -13,51 +13,20 @@
  */
 
 export const brand = {
-  // ── Site Identity ──────────────────────────────────────────────────────────
-  name: 'Small Business Starter',
-  tagline: 'Professional service you can trust.',
-  description:
-    'A fast, mobile-first small-business website template built with Astro 6 and Tailwind v4. Fully customisable for any trade or service business.',
-  url: 'https://example.com',
-  locale: 'en_US',
+  name: 'Stay in Costa Blanca',
+  tagline: 'Administrare și Protecție pentru Casa ta din Spania',
+  description: 'Servicii de Key Holding, Mentenanță și Protecție Anti-Okupas în Torrevieja și Orihuela Costa. Siguranță maximă pentru proprietatea ta.',
+  url: 'https://stayincostablanca.com',  
 
-  // ── Fonts ──────────────────────────────────────────────────────────────────
-  // To swap fonts: change the `name` values here AND update astro.config.mjs
-  // to match (both must stay in sync so Astro can optimise the correct files).
   fonts: {
-    body: 'Inter',
-    display: 'Oswald',
+    body: 'Montserrat',    // Schimbat din Inter în Montserrat pentru diacritice
+    display: 'Montserrat', // Schimbat din Oswald în Montserrat pentru consistență
   },
 
-  // ── Colour Palette ─────────────────────────────────────────────────────────
-  // These values are written to CSS custom properties in theme.css.
-  // Tailwind v4 @theme picks them up automatically.
   colors: {
-    primary:      '#1B3A6B',
-    primaryLight: '#2563EB',
-    primaryFg:    '#ffffff',
-
-    accent:       '#F97316',
-    accentFg:     '#ffffff',
-
-    background:   '#ffffff',
-    surface:      '#F8FAFC',
-    border:       '#E2E8F0',
-
-    text:         '#0F172A',
-    textMuted:    '#475569',
-
-    dark:         '#0F172A',
-    darkSurface:  '#1E293B',
+    primary:    '#1e40af',  // Un albastru regal (Sapphire Blue) - serios și de încredere
+    primaryFg:  '#ffffff',  
+    accent:     '#10b981',  // Un verde smarald (Emerald Green) pentru butoanele de acțiune
+    // Poți lăsa restul culorilor așa cum sunt în fișier
   },
-
-  // ── Border radius ──────────────────────────────────────────────────────────
-  radius: {
-    sm:   '0.375rem',
-    md:   '0.625rem',
-    lg:   '1rem',
-    full: '9999px',
-  },
-} as const;
-
-export type Brand = typeof brand;
+};
