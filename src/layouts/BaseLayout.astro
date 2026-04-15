@@ -29,7 +29,18 @@ const {
 const pageTitle = title === brand.name ? title : `${title} — ${brand.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
 ---
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
+  :root {
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+
+  body, h1, h2, h3, h4, h5, h6, .font-heading, span, p, a {
+    font-family: 'Montserrat', sans-serif !important;
+  }
+</style>
 <html lang={brand.locale.split('_')[0]} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
