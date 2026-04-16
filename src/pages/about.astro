@@ -1,13 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Banner from '../../components/Banner.astro';
-import CTA from '../../components/CTA.astro';
-import { brand } from '../../config/brand';
-import { client } from '../../data/client';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
+import CTA from '../components/CTA.astro';
+import { brand } from '../config/brand';
+import { client } from '../data/client';
 
-// Echipa ta locală (Am lăsat doar ce e relevant pentru Spania)
 const team = [
   { 
     name: 'Stelian', 
@@ -15,8 +14,8 @@ const team = [
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' 
   },
   { 
-    name: 'Parteneri Locali', 
-    role: 'Mentenanță & Tehnic', 
+    name: 'Echipa Locală', 
+    role: 'Mentenanță & Suport', 
     image: 'https://images.unsplash.com/photo-1582213726895-42ac826c5bd1?w=400&q=80' 
   },
 ];
@@ -24,72 +23,49 @@ const team = [
 
 <BaseLayout 
   title="Despre Noi" 
-  description={`Află povestea ${brand.name} — partenerul tău de încredere pentru administrarea proprietăților în Costa Blanca.`}
+  description={`Află povestea ${brand.name} — partenerul tău de încredere în Costa Blanca.`}
 >
   <Header slot="header" />
+  <Banner title="Despre Noi" />
 
-  <Banner title="Povestea Noastră" />
-
-  <section class="py-section font-heading bg-white">
-    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
-      <div class="overflow-hidden rounded-2xl shadow-2xl">
+  <section class="py-16 sm:py-24 font-heading">
+    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl shadow-xl">
         <img
           src="https://images.unsplash.com/photo-1554435493-93422e8220c8?w=800&q=80"
-          alt="Proprietate în Spania"
-          class="size-full object-cover transition-transform duration-700 hover:scale-105"
+          alt="Proprietate monitorizată"
+          class="size-full object-cover"
         />
       </div>
       <div class="space-y-6">
-        <span class="text-topper font-bold uppercase tracking-widest text-accent text-sm">Cine suntem</span>
-        <h2 class="font-heading text-h2 font-bold uppercase text-text leading-tight">Liniștea ta, misiunea noastră</h2>
-        <p class="text-text-muted leading-relaxed text-lg">
-          {brand.name} a luat naștere din dorința de a oferi proprietarilor de case din zona Torrevieja și Orihuela Costa o alternativă sigură și personală la agențiile mari și impersonale.
+        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">Liniștea ta, misiunea noastră</h2>
+        <p class="text-lg text-text-muted leading-relaxed">
+          {brand.name} a fost creat pentru a oferi proprietarilor de case din zona Torrevieja un serviciu de administrare personalizat și extrem de sigur.
         </p>
-        <p class="text-text-muted leading-relaxed text-lg">
-          Știm ce înseamnă să ai o casă la mii de kilometri distanță. De aceea, am construit acest serviciu pe un singur pilon: <strong>Prezența locală continuă</strong>. Suntem vecinii tăi de încredere care au mereu o cheie de rezervă și un ochi pe casa ta.
+        <p class="text-lg text-text-muted leading-relaxed">
+          Suntem aici pentru a ne asigura că locuința ta din Spania este protejată, verificată periodic și pregătită oricând pentru sosirea ta.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="bg-surface py-section font-heading">
+  <section class="bg-surface py-16 sm:py-24 font-heading">
     <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
-        <div class="text-center space-y-3">
-          <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <svg class="size-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+      <h2 class="mb-12 text-center text-3xl font-bold uppercase text-text">Echipa Noastră</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        {team.map((member) => (
+          <div class="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg text-center">
+            <img src={member.image} alt={member.name} class="aspect-square w-full object-cover" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-text uppercase">{member.name}</h3>
+              <p class="text-accent font-medium uppercase text-xs tracking-widest mt-1">{member.role}</p>
+            </div>
           </div>
-          <h3 class="text-xl font-bold uppercase">Siguranță</h3>
-          <p class="text-text-muted">Protocoale stricte de verificare pentru a preveni incidentele.</p>
-        </div>
-        <div class="text-center space-y-3">
-          <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <svg class="size-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          </div>
-          <h3 class="text-xl font-bold uppercase">Transparență</h3>
-          <p class="text-text-muted">Rapoarte foto/video pe WhatsApp după fiecare vizită la proprietate.</p>
-        </div>
-        <div class="text-center space-y-3">
-          <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <svg class="size-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          </div>
-          <h3 class="text-xl font-bold uppercase">Promptitudine</h3>
-          <p class="text-text-muted">Intervenim rapid în cazul alertelor meteo sau urgențelor.</p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="py-section font-heading">
-    <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto mb-16 max-w-2xl text-center">
-        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">Echipa Noastră</h2>
-        <p class="mt-4 text-text-muted">Oamenii care au grijă de casa ta ca de propria lor locuință.</p>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-12">
-        {team.map(({ name, role, image }) => (
-          <div class="w-full max-w-[320px] overflow-hidden rounded-2xl bg-white shadow-xl transition-all hover:shadow-2xl">
-            <div class="aspect-square overflow-hidden">
-              <img
-                src={image
+  <CTA />
+  <Footer slot="footer" />
+</BaseLayout>
