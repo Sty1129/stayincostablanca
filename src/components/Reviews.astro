@@ -13,17 +13,32 @@ interface Props {
 }
 
 const {
-  topper = 'Testimonials',
-  heading = 'What our customers say',
+  topper = 'Opinii Clienți',
+  heading = 'Ce spun proprietarii care au ales liniștea',
   reviews = [
-    { quote: 'They showed up on time, explained everything clearly, and finished the job faster than expected. Best service experience we\'ve had.', name: 'Sarah M.', location: 'Denver, CO', rating: 5 },
-    { quote: 'Honest pricing and top-notch work. I\'ve used them for three different projects now and they never disappoint.', name: 'James R.', location: 'Aurora, CO', rating: 5 },
-    { quote: 'Our emergency call was answered in minutes. They had the problem fixed before dinner. Truly dependable.', name: 'Linda K.', location: 'Lakewood, CO', rating: 5 },
+    { 
+      quote: 'Cea mai mare teamă a noastră era legată de ocupările ilegale cât suntem plecați în România. De când Stelian se ocupă de casă, primim rapoarte video săptămânale și dormim mult mai liniștiți. Recomand!', 
+      name: 'Andrei V.', 
+      location: 'București, RO', 
+      rating: 5 
+    },
+    { 
+      quote: 'După furtuna DANA de anul trecut, am fost panicați. Stelian a mers la proprietate imediat, a verificat terasa și scurgerile și ne-a trimis poze că totul e în regulă. Profesionalism rar întâlnit.', 
+      name: 'Maria G.', 
+      location: 'Cluj-Napoca, RO', 
+      rating: 5 
+    },
+    { 
+      quote: 'Serviciul de pre-arrival este fantastic. Am ajuns la miezul nopții cu copiii și am găsit casa aerisită, răcoroasă și frigiderul plin cu tot ce aveam nevoie pentru micul dejun. 5 stele!', 
+      name: 'Robert D.', 
+      location: 'London, UK', 
+      rating: 5 
+    },
   ],
 } = Astro.props;
 ---
 
-<section class="bg-surface py-section">
+<section class="bg-surface py-section font-heading">
   <div class="mx-auto max-w-site px-4 sm:px-6">
     <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
       <span class="text-topper font-bold uppercase tracking-widest text-accent">{topper}</span>
@@ -32,8 +47,7 @@ const {
 
     <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
       {reviews.map(({ quote, name, location, rating = 5 }) => (
-        <li class="flex flex-col rounded-lg border border-border bg-background p-6 shadow-sm">
-          <!-- Stars -->
+        <li class="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm transition-all hover:shadow-md">
           <div class="mb-4 flex gap-0.5" aria-label={`Rated ${rating} out of 5 stars`}>
             {Array.from({ length: 5 }).map((_, i) => (
               <svg
@@ -47,13 +61,18 @@ const {
             ))}
           </div>
 
-          <blockquote class="flex-1 text-text-muted leading-relaxed">
+          <blockquote class="flex-1 text-text-muted leading-relaxed italic text-lg">
             &ldquo;{quote}&rdquo;
           </blockquote>
 
-          <div class="mt-4 border-t border-border pt-4">
-            <p class="font-semibold text-text">{name}</p>
-            <p class="text-sm text-text-muted">{location}</p>
+          <div class="mt-6 border-t border-border pt-6 flex items-center gap-3">
+            <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+              {name.charAt(0)}
+            </div>
+            <div>
+              <p class="font-bold text-text">{name}</p>
+              <p class="text-sm text-text-muted">{location}</p>
+            </div>
           </div>
         </li>
       ))}
