@@ -3,9 +3,8 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { aboutImage as localAboutImage } from '../config/images';
 
-// Fallback Unsplash URL used until a local image is added to
-// src/assets/images/about/ and registered in src/config/images.ts
-const PLACEHOLDER = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80';
+// Am pus un placeholder care sugerează relaxarea și casa de vacanță
+const PLACEHOLDER = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80';
 
 interface Props {
   topper?: string;
@@ -19,29 +18,28 @@ interface Props {
 }
 
 const {
-  topper = 'Who We Are',
-  heading = 'Trusted by homeowners for over 15 years',
+  topper = 'Partenerul tău local',
+  heading = 'Suntem ochii tăi în Spania, când tu nu poți fi aici',
   body = [
-    'We\'re a locally owned and operated business dedicated to delivering honest, dependable service to our community. Our team of licensed professionals takes pride in every job — big or small.',
-    'From day one, we\'ve built our reputation on doing the work right, showing up on time, and treating every home like our own.',
+    'Știm ce înseamnă să ai o casă la mii de kilometri distanță. Micile defecțiuni, fenomenele meteo extreme sau riscul ocupării ilegale pot deveni surse constante de stres atunci când ești plecat.',
+    'De aceea, am creat un serviciu bazat pe proximitate și încredere totală. Nu suntem o agenție gigant care vede doar un număr de contract, ci o echipă dedicată care îți tratează casa cu aceeași grijă cu care ne-o tratăm pe a noastră.',
   ],
   benefits = [
-    'Background-checked, licensed professionals',
-    'Upfront pricing with no hidden fees',
-    'Satisfaction guaranteed on every project',
+    'Verificări riguroase de siguranță la fiecare 48-72 de ore',
+    'Rapoarte digitale pe WhatsApp (foto/video) după fiecare vizită',
+    'Rețea proprie de instalatori și tehnicieni de încredere',
   ],
-  ctaLabel = 'More About Us',
+  ctaLabel = 'Află mai multe',
   ctaHref = '/about',
   imageSrc = localAboutImage ?? PLACEHOLDER,
-  imageAlt = 'Friendly professional team on a job site',
+  imageAlt = 'Vedere terasă mediteraneană în Costa Blanca',
 } = Astro.props;
 ---
 
-<section class="py-section">
+<section class="py-section bg-white">
   <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
 
-    <!-- Image -->
-    <div class="overflow-hidden rounded-lg shadow-lg">
+    <div class="overflow-hidden rounded-2xl shadow-2xl transition-transform hover:scale-[1.01] duration-500">
       <Image
         src={imageSrc}
         alt={imageAlt}
@@ -53,31 +51,31 @@ const {
       />
     </div>
 
-    <!-- Content -->
     <div class="space-y-5">
       <span class="text-topper font-bold uppercase tracking-widest text-accent">{topper}</span>
-      <h2 class="font-heading text-h2 font-bold uppercase text-text">{heading}</h2>
+      <h2 class="font-heading text-h2 font-bold uppercase text-text leading-tight">{heading}</h2>
 
       {body.map((paragraph) => (
-        <p class="text-text-muted leading-relaxed">{paragraph}</p>
+        <p class="text-text-muted leading-relaxed text-lg">{paragraph}</p>
       ))}
 
-      <!-- Benefits list -->
-      <ul class="space-y-3 pt-2" role="list">
+      <ul class="space-y-4 pt-2" role="list">
         {benefits.map((benefit) => (
           <li class="flex items-start gap-3">
-            <svg class="mt-0.5 size-5 shrink-0 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="text-text">{benefit}</span>
+            <div class="mt-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <span class="text-text font-medium text-lg">{benefit}</span>
           </li>
         ))}
       </ul>
 
-      <div class="pt-2">
+      <div class="pt-4">
         <a
           href={ctaHref}
-          class="inline-flex min-h-[44px] items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-bold text-primary-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          class="inline-flex min-h-[44px] items-center gap-2 rounded-md bg-slate-900 px-8 py-4 text-base font-bold text-white shadow-md transition-all hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {ctaLabel}
           <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
