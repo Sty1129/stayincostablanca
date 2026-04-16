@@ -3,8 +3,8 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { aboutImage as localAboutImage } from '../config/images';
 
-// Am pus un placeholder care sugerează relaxarea și casa de vacanță
-const PLACEHOLDER = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80';
+// Placeholder nou: Se concentrează pe detalii (chei, textură spaniolă)
+const PLACEHOLDER = 'https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?w=900&q=80';
 
 interface Props {
   topper?: string;
@@ -27,20 +27,20 @@ const {
   benefits = [
     'Verificări riguroase de siguranță la fiecare 48-72 de ore',
     'Rapoarte digitale pe WhatsApp (foto/video) după fiecare vizită',
-    'Rețea proprie de instalatori și tehnicieni de încredere',
+    'Serviciu Pre-Arrival: Pregătim casa înainte să vii (curățenie, aerisire, cumpărături de bază)', // Schimbat aici
   ],
   ctaLabel = 'Află mai multe',
   ctaHref = '/about',
   imageSrc = localAboutImage ?? PLACEHOLDER,
-  imageAlt = 'Vedere terasă mediteraneană în Costa Blanca',
+  imageAlt = 'Detalii chei casă vacanță Spania',
 } = Astro.props;
 ---
 
-<section class="py-section bg-white">
+<section class="py-section bg-white font-heading">
   <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
 
     <div class="overflow-hidden rounded-2xl shadow-2xl transition-transform hover:scale-[1.01] duration-500">
-      <Image
+            <Image
         src={imageSrc}
         alt={imageAlt}
         width={700}
