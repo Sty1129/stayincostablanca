@@ -8,38 +8,45 @@ import { client } from '../../data/client';
 
 <BaseLayout 
   title="Mesaj Trimis" 
-  description={`Mulțumim pentru mesaj! Echipa ${brand.name} te va contacta în cel mai scurt timp.`}
+  description="Mulțumim pentru mesaj! Te vom contacta în cel mai scurt timp."
 >
   <Header slot="header" />
 
-  <section class="flex min-h-[70vh] items-center justify-center px-4 font-heading">
-    <div class="mx-auto max-w-2xl text-center">
-      <div class="mx-auto mb-8 flex size-20 items-center justify-center rounded-full bg-accent/10 text-accent transition-transform hover:scale-110 duration-500">
-        <svg class="size-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <section class="py-24 sm:py-32 flex min-h-[60vh] items-center justify-center font-heading">
+    <div class="mx-auto max-w-2xl px-4 text-center sm:px-6">
+      
+      <div class="mx-auto mb-8 flex size-20 items-center justify-center rounded-full bg-green-100 text-green-600">
+        <svg class="size-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
         </svg>
       </div>
 
-      <h1 class="font-heading text-h1 font-bold uppercase text-text leading-tight">
+      <h1 class="font-heading text-h2 font-bold uppercase text-text leading-tight">
         Mesaj Trimis cu Succes!
       </h1>
       
       <p class="mt-6 text-lg text-text-muted leading-relaxed">
-        Mulțumim pentru încredere. Am primit solicitarea ta, iar <strong>Stelian</strong> te va contacta în cel mai scurt timp (de obicei în mai puțin de 24 de ore) pentru a discuta despre proprietatea ta.
+        Mulțumim pentru încredere. Am primit solicitarea ta, iar <strong>Stelian</strong> te va contacta în cel mai scurt timp pentru a discuta despre proprietatea ta.
       </p>
 
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
           href="/"
-          class="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95 sm:w-auto"
+          class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-10 py-3 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95"
         >
           Înapoi la Acasă
         </a>
         
         <a
-          href={`https://wa.me/${client.phoneForTel.replace(/-/g, '')}`}
+          href={`https://wa.me/${client.phoneForTel}`}
           target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md border-2 border-border bg-white px-8 py-3 text-base font-bold text-text transition-all hover:bg-surface active:scale-95 sm:w-auto"
+          class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border-2 border-border px-8 py-3 text-base font-bold text-text transition-colors hover:bg-surface"
         >
-          <svg class="size-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245
+          Scrie-ne pe WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
