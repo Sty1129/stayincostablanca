@@ -1,17 +1,67 @@
-<div class="rounded-2xl border-2 border-dashed border-border p-8 text-center bg-surface/50">
-  <div class="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-    <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  </div>
-  <h3 class="text-xl font-bold text-text">Trimite-ne un email direct</h3>
-  <p class="mt-2 text-text-muted mb-6">
-    Preferi metoda clasică? Apasă pe butonul de mai jos și scrie-ne detaliile despre proprietatea ta.
-  </p>
-  <a
-    href={`mailto:${client.email}?subject=Cerere%20Oferta%20-%20Stay%20in%20Costa%20Blanca`}
-    class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-10 py-4 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95"
-  >
-    Scrie-mi un Email
-  </a>
-</div>
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Banner from '../../components/Banner.astro';
+import { brand } from '../../config/brand';
+import { client } from '../../data/client'; // ACEASTA ERA LINIA CARE LIPSEA
+---
+
+<BaseLayout 
+  title="Contact" 
+  description={`Ia legătura cu echipa ${brand.name}. Cere o ofertă pentru administrarea proprietății tale.`}
+>
+  <Header slot="header" />
+
+  <Banner title="Contactează-ne" />
+
+  <section class="py-section font-heading">
+    <div class="mx-auto grid max-w-site grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-14">
+
+      <div class="lg:col-span-3">
+        <h2 class="font-heading text-h2 font-bold uppercase text-text">Trimite-ne un mesaj</h2>
+        <p class="mt-2 mb-8 text-text-muted">
+          Suntem aici să te ajutăm cu administrarea proprietății tale. Alege metoda cea mai simplă pentru tine.
+        </p>
+
+        <div class="rounded-2xl border-2 border-dashed border-border p-8 text-center bg-surface/50">
+          <div class="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 0-2-2H5a2 2 0 0-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-text">Contact direct prin Email</h3>
+          <p class="mt-2 text-text-muted mb-6">
+            Apasă pe butonul de mai jos și scrie-ne detaliile despre casa ta. Îți vom răspunde în maxim 24h.
+          </p>
+          <a
+            href={`mailto:${client.email}?subject=Cerere%20Oferta%20-%20Stay%20in%20Costa%20Blanca`}
+            class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-10 py-4 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95"
+          >
+            Trimite Email
+          </a>
+        </div>
+      </div>
+
+      <aside class="space-y-8 lg:col-span-2">
+        <div>
+          <h3 class="font-heading text-lg font-bold text-text uppercase tracking-wide">Sună-ne / WhatsApp</h3>
+          <a href={`tel:${client.phoneForTel}`} class="mt-1 block text-primary font-bold text-xl transition-colors hover:text-accent">
+            {client.phoneFormatted}
+          </a>
+        </div>
+
+        <div>
+          <h3 class="font-heading text-lg font-bold text-text uppercase tracking-wide">Program</h3>
+          <p class="mt-1 text-text-muted">
+            Luni – Vineri: 09:00 – 18:00<br />
+            <span class="font-bold text-accent italic">Suport 24/7 disponibil pentru clienți</span>
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
