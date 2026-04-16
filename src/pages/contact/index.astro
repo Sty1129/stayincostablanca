@@ -1,138 +1,17 @@
----
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Banner from '../../components/Banner.astro';
-import { brand } from '../../config/brand';
-import { client } from '../../data/client';
----
-
-<BaseLayout 
-  title="Contact" 
-  description={`Ia legătura cu echipa ${brand.name}. Cere o ofertă gratuită pentru administrarea proprietății tale din Costa Blanca.`}
->
-  <Header slot="header" />
-
-  <Banner title="Contactează-ne" />
-
-  <section class="py-section font-heading">
-    <div class="mx-auto grid max-w-site grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-14">
-
-      <div class="lg:col-span-3">
-        <h2 class="font-heading text-h2 font-bold uppercase text-text">Trimite-ne un mesaj</h2>
-        <p class="mt-2 mb-8 text-text-muted">
-          Completează formularul de mai jos și îți vom răspunde în cel mai scurt timp posibil (de obicei în mai puțin de 24 de ore).
-        </p>
-
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          action="/contact/success"
-          class="flex flex-col gap-5"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="hidden" aria-hidden="true">
-            <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
-          </p>
-
-          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <label class="flex flex-col gap-1.5">
-              <span class="text-sm font-medium text-text">Nume Complet <span class="text-accent" aria-hidden="true">*</span></span>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Ex: Ion Popescu"
-                class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-            </label>
-
-            <label class="flex flex-col gap-1.5">
-              <span class="text-sm font-medium text-text">Email <span class="text-accent" aria-hidden="true">*</span></span>
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="email@exemplu.ro"
-                class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-            </label>
-          </div>
-
-          <label class="flex flex-col gap-1.5">
-            <span class="text-sm font-medium text-text">Telefon (WhatsApp)</span>
-            <input
-              type="tel"
-              name="phone"
-              inputmode="tel"
-              placeholder="+40 7xx xxx xxx"
-              class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-            />
-          </label>
-
-          <label class="flex flex-col gap-1.5">
-            <span class="text-sm font-medium text-text">Mesaj <span class="text-accent" aria-hidden="true">*</span></span>
-            <textarea
-              name="message"
-              rows="5"
-              required
-              placeholder="Spune-ne câteva detalii despre proprietatea ta și serviciile de care ești interesat..."
-              class="min-h-[120px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-y"
-            ></textarea>
-          </label>
-
-          <button
-            type="submit"
-            class="mt-2 inline-flex min-h-[44px] cursor-pointer items-center justify-center self-start rounded-md bg-primary px-10 py-4 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95"
-          >
-            Trimite Mesajul
-          </button>
-        </form>
-      </div>
-
-      <aside class="space-y-8 lg:col-span-2">
-        <div>
-          <h3 class="font-heading text-lg font-bold text-text uppercase tracking-wide">Sună-ne</h3>
-          <a href={`tel:${client.phoneForTel}`} class="mt-1 block text-primary font-bold text-xl transition-colors hover:text-accent">
-            {client.phoneFormatted}
-          </a>
-        </div>
-
-        <div>
-          <h3 class="font-heading text-lg font-bold text-text uppercase tracking-wide">Email</h3>
-          <a href={`mailto:${client.email}`} class="mt-1 block text-primary font-medium transition-colors hover:text-accent">
-            {client.email}
-          </a>
-        </div>
-
-        <div>
-          <h3 class="font-heading text-lg font-bold text-text uppercase tracking-wide">Locație</h3>
-          <a
-            href={client.address.mapLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-1 block text-text-muted transition-colors hover:text-text leading-relaxed"
-          >
-            {client.address.lineOne}<br />
-            {client.address.lineTwo && <>{client.address.lineTwo}<br /></>}
-            {client.address.city}, {client.address.state} {client.address.zip}
-          </a>
-        </div>
-
-        <div class="rounded-xl bg-surface p-6 border border-border">
-          <h3 class="font-heading text-lg font-bold text-text uppercase tracking-wide">Program de Lucru</h3>
-          <p class="mt-2 text-text-muted text-sm leading-relaxed">
-            Luni – Vineri: 09:00 – 18:00<br />
-            Sâmbătă: 10:00 – 14:00<br />
-            Duminică: Închis<br />
-            <span class="mt-3 block font-bold text-accent">Suport 24/7 pentru Urgențe (Okupas / Mentenanță)</span>
-          </p>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <Footer slot="footer" />
-</BaseLayout>
+<div class="rounded-2xl border-2 border-dashed border-border p-8 text-center bg-surface/50">
+  <div class="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+    <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  </div>
+  <h3 class="text-xl font-bold text-text">Trimite-ne un email direct</h3>
+  <p class="mt-2 text-text-muted mb-6">
+    Preferi metoda clasică? Apasă pe butonul de mai jos și scrie-ne detaliile despre proprietatea ta.
+  </p>
+  <a
+    href={`mailto:${client.email}?subject=Cerere%20Oferta%20-%20Stay%20in%20Costa%20Blanca`}
+    class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-10 py-4 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95"
+  >
+    Scrie-mi un Email
+  </a>
+</div>
