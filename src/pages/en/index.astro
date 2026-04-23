@@ -1,22 +1,25 @@
-
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import TrustBar from '../components/TrustBar.astro';
-import Services from '../components/Services.astro';
-import About from '../components/About.astro';
-import Reviews from '../components/Reviews.astro';
-import Gallery from '../components/Gallery.astro';
-import CTA from '../components/CTA.astro';
-import { brand } from '../config/brand';
-import { client } from '../data/client';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import Services from '../../components/Services.astro';
+import About from '../../components/About.astro';
+import Reviews from '../../components/Reviews.astro';
+import Gallery from '../../components/Gallery.astro';
+import CTA from '../../components/CTA.astro';
+import { brand } from '../../config/brand';
+import { client } from '../../data/client';
+
+// Traducere pentru SEO (Titlu și Descriere în Engleză)
+const title = "Stay in Costa Blanca | Professional Property Management";
+const description = "Premium property management, cleaning, and maintenance services in Costa Blanca. We look after your home so you don't have to.";
 ---
 
 <BaseLayout
-  title={brand.name}
-  description={brand.description}
+  title={title}
+  description={description}
   schema={{
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
