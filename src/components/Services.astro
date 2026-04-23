@@ -1,5 +1,5 @@
 ---
-/* Componenta de Servicii - Versiunea Corectată & Completă (RO/EN) */
+/* Componenta de Servicii - Versiunea 100% Curată (RO/EN) */
 const currentLang = Astro.currentLocale || 'ro';
 
 const translations = {
@@ -15,32 +15,26 @@ const translations = {
     waPearl: "Salut! Vreau pachetul PEARL",
     waSapphire: "Salut! Vreau pachetul SAPPHIRE",
     waEmerald: "Salut! Vreau pachetul EMERALD",
-    // Tabel
-    tableTitle: "Comparație Servicii",
-    keyHolding: "Păstrare Chei Securizată",
-    visits: "Vizite de control",
-    antiOkupas: "Protecție Anti-Okupas",
-    // Detalii Pachete
-    pearl: [
+    pearlFeatures: [
       "Păstrare chei 24/7 (Key Holding)",
-      "1 vizită lunară de control interior/exterior",
-      "Verificare după furtuni sau ploi torențiale",
-      "Raport foto/video detaliat pe WhatsApp",
-      "Colectare corespondență și facturi"
+      "1 vizită lunară (interior/exterior)",
+      "Verificare post-furtună/ploi",
+      "Raport foto/video pe WhatsApp",
+      "Colectare corespondență & facturi"
     ],
-    sapphire: [
-      "2 vizite lunare (control amănunțit)",
-      "Management facturi și taxe (Suma/Ibi)",
-      "Reprezentare la ședințele Comunității",
-      "Gestiune echipe mentenanță (grădină, piscină)",
-      "Aerisire și verificare instalații apă/gaz"
+    sapphireFeatures: [
+      "2 vizite lunare detaliate",
+      "Management facturi (Suma/Ibi)",
+      "Reprezentare la Comunitate",
+      "Gestiune echipe mentenanță",
+      "Aerisire & verificare instalații"
     ],
-    emerald: [
-      "🛡️ Protocol Anti-Okupas (vizite la 48h)",
-      "Digital Twin (Scanare 360° a casei)",
-      "Concierge (Pregătire casă înainte de sosire)",
-      "Asistență tehnică prioritară 4h",
-      "Gestiune completă a închirierilor (la cerere)"
+    emeraldFeatures: [
+      "🛡️ Protocol Anti-Okupas (vizite 48h)",
+      "Digital Twin (Scanare 360°)",
+      "Concierge (Pregătire sosire)",
+      "Asistență prioritară 4h",
+      "Gestiune închirieri (la cerere)"
     ]
   },
   en: {
@@ -55,37 +49,30 @@ const translations = {
     waPearl: "Hi! I'm interested in the PEARL package",
     waSapphire: "Hi! I'm interested in the SAPPHIRE package",
     waEmerald: "Hi! I'm interested in the EMERALD package",
-    // Table
-    tableTitle: "Service Comparison",
-    keyHolding: "Secure Key Holding",
-    visits: "Property Inspections",
-    antiOkupas: "Anti-Squatter Protection",
-    // Package Details
-    pearl: [
+    pearlFeatures: [
       "24/7 Secure Key Holding",
-      "1 Monthly interior/exterior inspection",
-      "Post-storm & heavy rain verification",
-      "Detailed photo/video WhatsApp report",
+      "1 Monthly inspection",
+      "Post-storm/rain verification",
+      "Photo/video WhatsApp report",
       "Mail & utility bill collection"
     ],
-    sapphire: [
+    sapphireFeatures: [
       "2 Detailed monthly visits",
       "Bill & tax management (Suma/Ibi)",
-      "Community of Owners meeting attendance",
-      "Maintenance team management (pool/garden)",
-      "Property airing & water/gas check"
+      "Community meeting attendance",
+      "Maintenance team management",
+      "Property airing & utility check"
     ],
-    emerald: [
+    emeraldFeatures: [
       "🛡️ Anti-Squatter Protocol (48h visits)",
       "Digital Twin (360° Property Scanning)",
-      "Concierge (Pre-arrival home prep)",
+      "Concierge (Pre-arrival prep)",
       "4h Priority technical support",
       "Full rental management (on request)"
     ]
   }
 };
 
-// Fallback de siguranță: dacă currentLang nu e 'ro' sau 'en', folosim 'ro'
 const t = translations[currentLang] || translations.ro;
 ---
 
@@ -101,18 +88,18 @@ const t = translations[currentLang] || translations.ro;
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       
-      <div class="flex flex-col h-full bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300">
+      <div class="flex flex-col h-full bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm">
         <div class="mb-6">
-          <h3 class="text-2xl font-black text-slate-800">PEARL 🐚</h3>
-          <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mt-1 text-topper">Basic Care</p>
+          <h3 class="text-2xl font-black text-slate-800 text-left">PEARL 🐚</h3>
+          <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mt-1">Basic Care</p>
         </div>
-        <div class="mb-8 font-black text-4xl text-slate-900">350€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-600 border-t border-slate-200 pt-6">
-          {t.pearl.map((item) => (
+        <div class="mb-8 font-black text-4xl text-slate-900 text-left">350€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
+        <ul class="space-y-4 mb-10 flex-grow text-slate-600 border-t border-slate-200 pt-6 text-left">
+          {t.pearlFeatures.map(item => (
             <li class="flex items-start gap-2">
-              <span class="text-blue-600 mt-1">✓</span>
+              <span class="text-blue-600 font-bold">✓</span>
               <span>{item}</span>
             </li>
           ))}
@@ -122,22 +109,20 @@ const t = translations[currentLang] || translations.ro;
         </a>
       </div>
 
-      <div class="flex flex-col h-full bg-white p-8 rounded-[2rem] border-4 border-blue-600 shadow-2xl relative md:-translate-y-4 hover:scale-[1.02] transition-all duration-300">
+      <div class="flex flex-col h-full bg-white p-8 rounded-[2rem] border-4 border-blue-600 shadow-2xl relative md:-translate-y-4">
         <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
           {t.mostPopular}
         </div>
         <div class="mb-6 pt-4">
-          <h3 class="text-2xl font-black text-blue-600">SAPPHIRE 💙</h3>
-          <p class="text-blue-400 text-sm font-bold uppercase tracking-widest mt-1 text-topper">Standard Plus</p>
+          <h3 class="text-2xl font-black text-blue-600 text-left">SAPPHIRE 💙</h3>
+          <p class="text-blue-400 text-sm font-bold uppercase tracking-widest mt-1">Standard Plus</p>
         </div>
-        <div class="mb-8 font-black text-4xl text-slate-900">650€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-700 border-t border-blue-100 pt-6 font-medium">
-          <li class="flex items-center gap-2 font-bold text-blue-600 uppercase text-xs mb-4">
-            {t.everythingIn} Pearl +
-          </li>
-          {t.sapphire.map((item) => (
+        <div class="mb-8 font-black text-4xl text-slate-900 text-left">650€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
+        <ul class="space-y-4 mb-10 flex-grow text-slate-700 border-t border-blue-100 pt-6 text-left">
+          <li class="font-bold text-blue-600 text-xs uppercase mb-2">{t.everythingIn} Pearl +</li>
+          {t.sapphireFeatures.map(item => (
             <li class="flex items-start gap-2">
-              <span class="text-blue-600 mt-1">✓</span>
+              <span class="text-blue-600 font-bold">✓</span>
               <span>{item}</span>
             </li>
           ))}
@@ -147,6 +132,26 @@ const t = translations[currentLang] || translations.ro;
         </a>
       </div>
 
-      <div class="flex flex-col h-full bg-slate-900 p-8 rounded-[2rem] border border-emerald-500 shadow-sm hover:shadow-xl transition-all duration-300">
+      <div class="flex flex-col h-full bg-slate-900 p-8 rounded-[2rem] border border-emerald-500 shadow-xl">
         <div class="mb-6">
-          <h3 class="text-2xl font-black text
+          <h3 class="text-2xl font-black text-emerald-400 text-left">EMERALD 💚</h3>
+          <p class="text-emerald-600 text-sm font-bold uppercase tracking-widest mt-1">VIP Security</p>
+        </div>
+        <div class="mb-8 font-black text-4xl text-white text-left">1500€<span class="text-lg text-slate-500 font-normal">{t.perYear}</span></div>
+        <ul class="space-y-4 mb-10 flex-grow text-slate-300 border-t border-slate-800 pt-6 text-left">
+          <li class="font-bold text-emerald-400 text-xs uppercase mb-2">{t.everythingIn} Sapphire +</li>
+          {t.emeraldFeatures.map((item, index) => (
+            <li class={`flex items-start gap-2 ${index === 0 ? 'text-white font-bold' : ''}`}>
+              <span class="text-emerald-500 font-bold">{index === 0 ? '🛡️' : '✓'}</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a href={`https://wa.me/34641477523?text=${encodeURIComponent(t.waEmerald)}`} class="block text-center py-4 bg-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-600 transition shadow-lg uppercase text-sm">
+          {t.ctaEmerald}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
