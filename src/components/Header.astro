@@ -2,11 +2,9 @@
 import { brand } from '../config/brand';
 import { client } from '../data/client';
 
-// 1. Logica de detectare a limbii îmbunătățită
+// 1. Logica de detectare a limbii
 const url = new URL(Astro.request.url);
 const pathname = url.pathname;
-
-// Verificăm strict dacă URL-ul începe cu /en
 const isEn = pathname.startsWith('/en/') || pathname === '/en';
 const currentLang = isEn ? 'en' : 'ro';
 const base = isEn ? '/en' : '';
@@ -19,7 +17,8 @@ const translations = {
     reviews: 'Recenzii',
     blog: 'Blog',
     contact: 'Contact',
-    cta: 'Cere Ofertă'
+    cta: 'Cere Ofertă',
+    waMessage: 'Salut Stelian! Vreau o ofertă pentru administrarea casei mele.'
   },
   en: {
     home: 'Home',
@@ -28,11 +27,15 @@ const translations = {
     reviews: 'Reviews',
     blog: 'Blog',
     contact: 'Contact',
-    cta: 'Get a Quote'
+    cta: 'Get a Quote',
+    waMessage: 'Hi Stelian! I would like to get a quote for my property management.'
   }
 };
 
 const t = translations[currentLang];
+
+// Link-ul de WhatsApp cu mesaj tradus
+const waLink = `https://wa.me/${client.phoneForTel.replace(/-/g, '')}?text=${encodeURIComponent(t.waMessage)}`;
 
 const nav = [
   { label: t.home,     href: isEn ? '/en/' : '/' },
@@ -53,7 +56,6 @@ const nav = [
 
     <nav class="hidden items-center gap-1 lg:flex">
       {nav.map(({ label, href }) => {
-        // Logica de Active Page
         const isActive = pathname === href || (href !== '/' && href !== '/en/' && pathname.startsWith(href));
         return (
           <a
@@ -71,24 +73,8 @@ const nav = [
 
     <div class="hidden items-center gap-6 lg:flex">
       <div class="flex items-center bg-slate-100 p-1 rounded-full border border-slate-200">
-        <a 
-          href="/" 
-          class:list={[
-            "px-4 py-1.5 rounded-full text-[10px] font-black transition-all duration-300",
-            !isEn ? "bg-blue-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-800"
-          ]}
-        >
-          RO
-        </a>
-        <a 
-          href="/en/" 
-          class:list={[
-            "px-4 py-1.5 rounded-full text-[10px] font-black transition-all duration-300",
-            isEn ? "bg-blue-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-800"
-          ]}
-        >
-          EN
-        </a>
+        <a href="/" class:list={["px-4 py-1.5 rounded-full text-[10px] font-black transition-all", !isEn ? "bg-blue-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-800"]}>RO</a>
+        <a href="/en/" class:list={["px-4 py-1.5 rounded-full text-[10px] font-black transition-all", isEn ? "bg-blue-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-800"]}>EN</a>
       </div>
 
       <a href={`tel:${client.phoneForTel}`} class="text-sm font-bold text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-2">
@@ -96,7 +82,7 @@ const nav = [
         {client.phoneFormatted}
       </a>
       
-      <a href={isEn ? "/en/contact" : "/contact"} class="inline-flex h-10 items-center rounded-lg bg-slate-900 px-6 text-xs font-black uppercase text-white shadow-xl hover:bg-blue-600 transition-all duration-300">
+      <a href={waLink} target="_blank" class="inline-flex h-10 items-center rounded-lg bg-slate-900 px-6 text-xs font-black uppercase text-white shadow-xl hover:bg-blue-600 transition-all">
         {t.cta}
       </a>
     </div>
@@ -109,7 +95,6 @@ const nav = [
 
       <button id="menu-toggle" class="p-2 text-slate-900 bg-slate-50 rounded-lg">
         <svg id="menu-icon-open" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2.5"/></svg>
-        <svg id="menu-icon-close" class="hidden size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5"/></svg>
       </button>
     </div>
   </div>
@@ -117,28 +102,11 @@ const nav = [
   <div id="mobile-menu" class="hidden border-t border-slate-100 bg-white px-4 pb-12 pt-6 lg:hidden shadow-2xl">
     <nav class="flex flex-col gap-2">
       {nav.map(({ label, href }) => (
-        <a href={href} class="rounded-xl px-4 py-4 text-lg font-black text-slate-900 hover:bg-blue-50 hover:text-blue-600 transition-colors border border-transparent hover:border-blue-100">{label}</a>
+        <a href={href} class="rounded-xl px-4 py-4 text-lg font-black text-slate-900 hover:bg-blue-50 hover:text-blue-600 transition-colors">{label}</a>
       ))}
-      <a href={isEn ? "/en/contact" : "/contact"} class="mt-6 block w-full text-center rounded-2xl bg-blue-600 py-5 text-base font-black uppercase text-white shadow-lg">
+      <a href={waLink} target="_blank" class="mt-6 block w-full text-center rounded-2xl bg-blue-600 py-5 text-base font-black uppercase text-white shadow-lg">
         {t.cta}
       </a>
     </nav>
   </div>
 </header>
-
-<script is:inline>
-  (function() {
-    const btn = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    const iconOpen = document.getElementById('menu-icon-open');
-    const iconClose = document.getElementById('menu-icon-close');
-
-    if (!btn || !menu || !iconOpen || !iconClose) return;
-
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      iconOpen.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
-    });
-  })();
-</script>
