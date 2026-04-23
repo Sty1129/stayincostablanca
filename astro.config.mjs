@@ -5,8 +5,18 @@ import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
-  site: 'https://www.example.com',
+  site: 'https://www.stayincostablanca.com', // Am actualizat placeholder-ul
   output: 'static',
+
+  // --- CONFIGURARE I18N START ---
+  i18n: {
+    defaultLocale: 'ro',
+    locales: ['ro', 'en'],
+    routing: {
+      prefixDefaultLocale: false, // Româna rămâne pe site.com, Engleza merge pe site.com/en/
+    },
+  },
+  // --- CONFIGURARE I18N END ---
 
   integrations: [sitemap(), robotsTxt()],
 
