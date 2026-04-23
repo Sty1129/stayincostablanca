@@ -1,101 +1,68 @@
 ---
-/* Componenta de Servicii - Versiunea Corectă și Solidă */
+/* Componenta de Servicii - Versiunea Multilingvă RO/EN */
+const currentLang = Astro.currentLocale || 'ro';
+
+const translations = {
+  ro: {
+    title: "Pachete de Administrare",
+    subtitle: "Alege nivelul de protecție potrivit pentru investiția ta.",
+    perYear: "/an",
+    mostPopular: "Cel mai popular",
+    everythingIn: "Tot din",
+    ctaPearl: "Solicită Pearl",
+    ctaSapphire: "Alege Sapphire",
+    ctaEmerald: "Rezervă Emerald",
+    waPearl: "Salut! Vreau pachetul PEARL",
+    waSapphire: "Salut! Vreau pachetul SAPPHIRE",
+    waEmerald: "Salut! Vreau pachetul EMERALD",
+    // Table
+    tableTitle: "Servicii Incluse",
+    keyHolding: "Păstrare Chei Securizată",
+    visits: "Vizite periodice control",
+    antiOkupas: "Protocol Anti-Okupas",
+    visit1: "1 / lună",
+    visit2: "2 / lună",
+    visitVIP: "La 48-72h",
+    // Pearl features
+    pearl: ["Păstrare chei 24/7", "1 vizită lunară de control", "Raport foto/video WhatsApp", "Verificare post-furtună"],
+    // Sapphire features
+    sapphire: ["2 vizite lunare detaliate", "Management facturi & taxe", "Contact Comunitate Vecini", "Gestiune Mentenanță"],
+    // Emerald features
+    emerald: ["Protocol Anti-Okupas", "Digital Twin (Scanare 360°)", "Concierge Pre-Arrival", "Suport Prioritar 4h"]
+  },
+  en: {
+    title: "Management Packages",
+    subtitle: "Choose the right level of protection for your investment.",
+    perYear: "/year",
+    mostPopular: "Most Popular",
+    everythingIn: "Everything in",
+    ctaPearl: "Request Pearl",
+    ctaSapphire: "Choose Sapphire",
+    ctaEmerald: "Book Emerald",
+    waPearl: "Hi! I'm interested in the PEARL package",
+    waSapphire: "Hi! I'm interested in the SAPPHIRE package",
+    waEmerald: "Hi! I'm interested in the EMERALD package",
+    // Table
+    tableTitle: "Included Services",
+    keyHolding: "Secure Key Holding",
+    visits: "Periodic Inspections",
+    antiOkupas: "Anti-Squatter Protocol",
+    visit1: "1 / month",
+    visit2: "2 / month",
+    visitVIP: "Every 48-72h",
+    // Pearl features
+    pearl: ["24/7 Key Holding", "1 Monthly Inspection", "WhatsApp Photo/Video Report", "Post-Storm Check"],
+    // Sapphire features
+    sapphire: ["2 Detailed Monthly Visits", "Utility & Tax Management", "Community Liaison", "Maintenance Management"],
+    // Emerald features
+    emerald: ["Anti-Squatter (Okupas) Protocol", "Digital Twin (360° Scan)", "Pre-Arrival Concierge", "4h Priority Support"]
+  }
+};
+
+const t = translations[currentLang] || translations.ro;
 ---
 <section id="services" class="py-24 bg-white font-heading overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <div class="text-center mb-20">
-      <h2 class="text-4xl font-black text-slate-900 sm:text-5xl uppercase tracking-tight">
-        Pachete de Administrare
-      </h2>
-      <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
-        Alege nivelul de protecție potrivit pentru investiția ta.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-      
-      <div class="flex flex-col h-full bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300">
-        <div class="mb-6">
-          <h3 class="text-2xl font-black text-slate-800">PEARL 🐚</h3>
-          <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mt-1">Basic Care</p>
-        </div>
-        <div class="mb-8 font-black text-4xl text-slate-900">350€<span class="text-lg text-slate-400 font-normal">/an</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-600 border-t border-slate-200 pt-6">
-          <li class="flex items-center gap-2">✓ Păstrare chei 24/7</li>
-          <li class="flex items-center gap-2">✓ 1 vizită lunară de control</li>
-          <li class="flex items-center gap-2">✓ Raport foto/video WhatsApp</li>
-          <li class="flex items-center gap-2">✓ Verificare post-furtună</li>
-        </ul>
-        <a href="https://wa.me/34641477523?text=Salut!%20Vreau%20pachetul%20PEARL" class="block text-center py-4 border-2 border-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white transition">Solicită Pearl</a>
-      </div>
-
-      <div class="flex flex-col h-full bg-white p-8 rounded-[2rem] border-4 border-blue-600 shadow-2xl relative md:-translate-y-4 hover:scale-[1.02] transition-all duration-300">
-        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Cel mai popular</div>
-        <div class="mb-6 pt-4">
-          <h3 class="text-2xl font-black text-blue-600">SAPPHIRE 💙</h3>
-          <p class="text-blue-400 text-sm font-bold uppercase tracking-widest mt-1">Standard Plus</p>
-        </div>
-        <div class="mb-8 font-black text-4xl text-slate-900">650€<span class="text-lg text-slate-400 font-normal">/an</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-700 border-t border-blue-100 pt-6 font-medium">
-          <li class="flex items-center gap-2 font-bold text-blue-600">Tot din Pearl +</li>
-          <li class="flex items-center gap-2">✓ 2 vizite lunare detaliate</li>
-          <li class="flex items-center gap-2">✓ Management facturi & taxe</li>
-          <li class="flex items-center gap-2">✓ Contact Comunitate Vecini</li>
-          <li class="flex items-center gap-2">✓ Gestiune Mentenanță</li>
-        </ul>
-        <a href="https://wa.me/34641477523?text=Salut!%20Vreau%20pachetul%20SAPPHIRE" class="block text-center py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg">Alege Sapphire</a>
-      </div>
-
-      <div class="flex flex-col h-full bg-slate-900 p-8 rounded-[2rem] border border-emerald-500 shadow-sm hover:shadow-xl transition-all duration-300">
-        <div class="mb-6">
-          <h3 class="text-2xl font-black text-emerald-400">EMERALD 💚</h3>
-          <p class="text-emerald-600 text-sm font-bold uppercase tracking-widest mt-1">VIP Security</p>
-        </div>
-        <div class="mb-8 font-black text-4xl text-white">1500€<span class="text-lg text-slate-500 font-normal">/an</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-400 border-t border-slate-800 pt-6">
-          <li class="flex items-center gap-2 font-bold text-emerald-400">Tot din Sapphire +</li>
-          <li class="flex items-center gap-2 text-white italic font-bold">🛡️ Protocol Anti-Okupas</li>
-          <li class="flex items-center gap-2">✓ Digital Twin (Scanare 360°)</li>
-          <li class="flex items-center gap-2">✓ Concierge Pre-Arrival</li>
-          <li class="flex items-center gap-2">✓ Suport Prioritar 4h</li>
-        </ul>
-        <a href="https://wa.me/34641477523?text=Salut!%20Vreau%20pachetul%20EMERALD" class="block text-center py-4 bg-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-600 transition shadow-lg">Rezervă Emerald</a>
-      </div>
-    </div>
-
-    <div class="hidden md:block mt-20 overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
-      <table class="w-full text-left bg-white">
-        <thead class="bg-slate-50">
-          <tr class="text-[10px] font-black uppercase tracking-widest text-slate-500 border-b border-slate-200">
-            <th class="p-6">Servicii Incluse</th>
-            <th class="p-6 text-center">Pearl</th>
-            <th class="p-6 text-center text-blue-600">Sapphire</th>
-            <th class="p-6 text-center text-emerald-600">Emerald</th>
-          </tr>
-        </thead>
-        <tbody class="text-sm text-slate-600 italic">
-          <tr class="border-b border-slate-100">
-            <td class="p-6 font-bold text-slate-900">Păstrare Chei Securizată</td>
-            <td class="p-6 text-center">✔</td>
-            <td class="p-6 text-center font-bold">✔</td>
-            <td class="p-6 text-center">✔</td>
-          </tr>
-          <tr class="border-b border-slate-100">
-            <td class="p-6 font-bold text-slate-900">Vizite periodice control</td>
-            <td class="p-6 text-center text-xs">1 / lună</td>
-            <td class="p-6 text-center font-bold text-blue-600">2 / lună</td>
-            <td class="p-6 text-center font-bold text-emerald-600">La 48-72h</td>
-          </tr>
-          <tr class="border-b border-slate-100">
-            <td class="p-6 font-bold text-slate-900">Protocol Anti-Okupas</td>
-            <td class="p-6 text-center text-slate-300">✘</td>
-            <td class="p-6 text-center text-slate-300">✘</td>
-            <td class="p-6 text-center font-black text-emerald-600">✔ (VIP)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-</section>
+      <h2 class="text-4xl font-black text-slate-900 sm:text-5xl uppercase tracking
