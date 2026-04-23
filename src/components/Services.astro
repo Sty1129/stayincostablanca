@@ -1,11 +1,11 @@
 ---
-/* Componenta de Servicii - Versiunea Multilingvă RO/EN */
+/* Componenta de Servicii - Versiunea Corectată & Completă (RO/EN) */
 const currentLang = Astro.currentLocale || 'ro';
 
 const translations = {
   ro: {
     title: "Pachete de Administrare",
-    subtitle: "Alege nivelul de protecție potrivit pentru investiția ta.",
+    subtitle: "Soluții profesionale pentru liniștea ta în Costa Blanca.",
     perYear: "/an",
     mostPopular: "Cel mai popular",
     everythingIn: "Tot din",
@@ -15,24 +15,37 @@ const translations = {
     waPearl: "Salut! Vreau pachetul PEARL",
     waSapphire: "Salut! Vreau pachetul SAPPHIRE",
     waEmerald: "Salut! Vreau pachetul EMERALD",
-    // Table
-    tableTitle: "Servicii Incluse",
+    // Tabel
+    tableTitle: "Comparație Servicii",
     keyHolding: "Păstrare Chei Securizată",
-    visits: "Vizite periodice control",
-    antiOkupas: "Protocol Anti-Okupas",
-    visit1: "1 / lună",
-    visit2: "2 / lună",
-    visitVIP: "La 48-72h",
-    // Pearl features
-    pearl: ["Păstrare chei 24/7", "1 vizită lunară de control", "Raport foto/video WhatsApp", "Verificare post-furtună"],
-    // Sapphire features
-    sapphire: ["2 vizite lunare detaliate", "Management facturi & taxe", "Contact Comunitate Vecini", "Gestiune Mentenanță"],
-    // Emerald features
-    emerald: ["Protocol Anti-Okupas", "Digital Twin (Scanare 360°)", "Concierge Pre-Arrival", "Suport Prioritar 4h"]
+    visits: "Vizite de control",
+    antiOkupas: "Protecție Anti-Okupas",
+    // Detalii Pachete
+    pearl: [
+      "Păstrare chei 24/7 (Key Holding)",
+      "1 vizită lunară de control interior/exterior",
+      "Verificare după furtuni sau ploi torențiale",
+      "Raport foto/video detaliat pe WhatsApp",
+      "Colectare corespondență și facturi"
+    ],
+    sapphire: [
+      "2 vizite lunare (control amănunțit)",
+      "Management facturi și taxe (Suma/Ibi)",
+      "Reprezentare la ședințele Comunității",
+      "Gestiune echipe mentenanță (grădină, piscină)",
+      "Aerisire și verificare instalații apă/gaz"
+    ],
+    emerald: [
+      "🛡️ Protocol Anti-Okupas (vizite la 48h)",
+      "Digital Twin (Scanare 360° a casei)",
+      "Concierge (Pregătire casă înainte de sosire)",
+      "Asistență tehnică prioritară 4h",
+      "Gestiune completă a închirierilor (la cerere)"
+    ]
   },
   en: {
     title: "Management Packages",
-    subtitle: "Choose the right level of protection for your investment.",
+    subtitle: "Professional solutions for your peace of mind in Costa Blanca.",
     perYear: "/year",
     mostPopular: "Most Popular",
     everythingIn: "Everything in",
@@ -43,26 +56,97 @@ const translations = {
     waSapphire: "Hi! I'm interested in the SAPPHIRE package",
     waEmerald: "Hi! I'm interested in the EMERALD package",
     // Table
-    tableTitle: "Included Services",
+    tableTitle: "Service Comparison",
     keyHolding: "Secure Key Holding",
-    visits: "Periodic Inspections",
-    antiOkupas: "Anti-Squatter Protocol",
-    visit1: "1 / month",
-    visit2: "2 / month",
-    visitVIP: "Every 48-72h",
-    // Pearl features
-    pearl: ["24/7 Key Holding", "1 Monthly Inspection", "WhatsApp Photo/Video Report", "Post-Storm Check"],
-    // Sapphire features
-    sapphire: ["2 Detailed Monthly Visits", "Utility & Tax Management", "Community Liaison", "Maintenance Management"],
-    // Emerald features
-    emerald: ["Anti-Squatter (Okupas) Protocol", "Digital Twin (360° Scan)", "Pre-Arrival Concierge", "4h Priority Support"]
+    visits: "Property Inspections",
+    antiOkupas: "Anti-Squatter Protection",
+    // Package Details
+    pearl: [
+      "24/7 Secure Key Holding",
+      "1 Monthly interior/exterior inspection",
+      "Post-storm & heavy rain verification",
+      "Detailed photo/video WhatsApp report",
+      "Mail & utility bill collection"
+    ],
+    sapphire: [
+      "2 Detailed monthly visits",
+      "Bill & tax management (Suma/Ibi)",
+      "Community of Owners meeting attendance",
+      "Maintenance team management (pool/garden)",
+      "Property airing & water/gas check"
+    ],
+    emerald: [
+      "🛡️ Anti-Squatter Protocol (48h visits)",
+      "Digital Twin (360° Property Scanning)",
+      "Concierge (Pre-arrival home prep)",
+      "4h Priority technical support",
+      "Full rental management (on request)"
+    ]
   }
 };
 
+// Fallback de siguranță: dacă currentLang nu e 'ro' sau 'en', folosim 'ro'
 const t = translations[currentLang] || translations.ro;
 ---
+
 <section id="services" class="py-24 bg-white font-heading overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <div class="text-center mb-20">
-      <h2 class="text-4xl font-black text-slate-900 sm:text-5xl uppercase tracking
+      <h2 class="text-4xl font-black text-slate-900 sm:text-5xl uppercase tracking-tight">
+        {t.title}
+      </h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
+        {t.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+      
+      <div class="flex flex-col h-full bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300">
+        <div class="mb-6">
+          <h3 class="text-2xl font-black text-slate-800">PEARL 🐚</h3>
+          <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mt-1 text-topper">Basic Care</p>
+        </div>
+        <div class="mb-8 font-black text-4xl text-slate-900">350€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
+        <ul class="space-y-4 mb-10 flex-grow text-slate-600 border-t border-slate-200 pt-6">
+          {t.pearl.map((item) => (
+            <li class="flex items-start gap-2">
+              <span class="text-blue-600 mt-1">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a href={`https://wa.me/34641477523?text=${encodeURIComponent(t.waPearl)}`} class="block text-center py-4 border-2 border-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white transition uppercase text-sm">
+          {t.ctaPearl}
+        </a>
+      </div>
+
+      <div class="flex flex-col h-full bg-white p-8 rounded-[2rem] border-4 border-blue-600 shadow-2xl relative md:-translate-y-4 hover:scale-[1.02] transition-all duration-300">
+        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+          {t.mostPopular}
+        </div>
+        <div class="mb-6 pt-4">
+          <h3 class="text-2xl font-black text-blue-600">SAPPHIRE 💙</h3>
+          <p class="text-blue-400 text-sm font-bold uppercase tracking-widest mt-1 text-topper">Standard Plus</p>
+        </div>
+        <div class="mb-8 font-black text-4xl text-slate-900">650€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
+        <ul class="space-y-4 mb-10 flex-grow text-slate-700 border-t border-blue-100 pt-6 font-medium">
+          <li class="flex items-center gap-2 font-bold text-blue-600 uppercase text-xs mb-4">
+            {t.everythingIn} Pearl +
+          </li>
+          {t.sapphire.map((item) => (
+            <li class="flex items-start gap-2">
+              <span class="text-blue-600 mt-1">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a href={`https://wa.me/34641477523?text=${encodeURIComponent(t.waSapphire)}`} class="block text-center py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg uppercase text-sm">
+          {t.ctaSapphire}
+        </a>
+      </div>
+
+      <div class="flex flex-col h-full bg-slate-900 p-8 rounded-[2rem] border border-emerald-500 shadow-sm hover:shadow-xl transition-all duration-300">
+        <div class="mb-6">
+          <h3 class="text-2xl font-black text
