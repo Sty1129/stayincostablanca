@@ -5,15 +5,15 @@ import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
-  site: 'https://www.stayincostablanca.com', // Am actualizat placeholder-ul
+  site: 'https://www.stayincostablanca.com', 
   output: 'static',
 
   // --- CONFIGURARE I18N START ---
   i18n: {
     defaultLocale: 'ro',
-    locales: ['ro', 'en'],
+    locales: ['ro', 'en', 'es'],
     routing: {
-      prefixDefaultLocale: false, // Româna rămâne pe site.com, Engleza merge pe site.com/en/
+      prefixDefaultLocale: false, // Româna: site.com | Engleza: site.com/en/ | Spaniola: site.com/es/
     },
   },
   // --- CONFIGURARE I18N END ---
