@@ -1,377 +1,172 @@
 ---
-const pageTitle = "Stay in Costa Blanca";
-const phone = "+34 624 110 656";
-const siteUrl = "https://www.stayincostablanca.com";
-const whatsAppUrl = "https://wa.me/34624110656?text=Hi%2C%20I%20would%20like%20a%20free%20property%20assessment%20for%20my%20property%20in%20Costa%20Blanca.";
-const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=190x190&data=${encodeURIComponent(siteUrl)}`;
+// src/pages/links.astro
+const pageTitle = "Stay in Costa Blanca | Links";
+const newPhone = "+34 624110656";
+const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20need%20more%20information%20about%20your%20property%20services.`;
 ---
 
-<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{pageTitle}</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    
+    <!-- Open Graph / Previzualizare elegantă când trimiți linkul pe WhatsApp -->
+    <meta property="og:title" content="Stay in Costa Blanca | Premium Links" />
+    <meta property="og:description" content="Scientific & high-tech property management in Orihuela Costa & Torrevieja." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.stayincostablanca.com/links" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-color: #0f172a; /* Slate / Dark Corporate Deep Navy */
+        --accent-color: #10b8a5; /* Teal / Emerald Green */
+        --text-color: #f8fafc;
+        --card-bg: #1e293b;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
 
-  <style is:global>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+      .container {
+        width: 100%;
+        max-width: 480px; /* Dimensiune optimă pentru ecranul de telefon */
+        padding: 40px 20px;
+        box-sizing: border-box;
+        text-align: center;
+      }
 
-    body {
-      min-height: 100vh;
-      font-family: "DM Sans", sans-serif;
-      color: #0D2D52;
-      background:
-        linear-gradient(rgba(248,245,239,.82), rgba(248,245,239,.82)),
-        url("/assets/images/gallery/property-management-costa-blanca.webp");
-      background-size: cover;
-      background-position: center;
-      padding: 22px 12px;
-    }
+      .logo-placeholder {
+        width: 96px;
+        height: 96px;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 24px;
+        box-shadow: 0 4px 14px rgba(16, 184, 165, 0.3);
+      }
 
-    .page {
-      max-width: 460px;
-      margin: 0 auto;
-    }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 8px 0;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
 
-    .card {
-      background: rgba(255,255,255,.92);
-      border: 2px solid #C8A05A;
-      border-radius: 30px;
-      padding: 24px 16px 0;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(13,45,82,.22);
-    }
+      .tagline {
+        font-size: 14px;
+        color: #94a3b8;
+        margin: 0 0 32px 0;
+        line-height: 1.5;
+      }
 
-    .logo {
-  width: 280px;
-  max-width: 90%;
-  height: auto;
-  display: block;
-  margin: 0 auto 14px;
-}
+      .links-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
 
-    .brand {
-      text-align: center;
-      margin-bottom: 10px;
-    }
+      .link-card {
+        background-color: var(--card-bg);
+        border: 1px solid #334155;
+        padding: 16px 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.15s ease-in-out;
+        display: block;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        -webkit-tap-highlight-color: transparent; /* Elimină fundalul albastru nativ la atingere pe Android/iOS */
+      }
 
-    .brand-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 34px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      line-height: .95;
-      color: #0D2D52;
-    }
+      /* Efect vizual subtil la trecerea mouse-ului (desktop) */
+      @media (hover: hover) {
+        .link-card:hover {
+          transform: translateY(-2px);
+          border-color: var(--accent-color);
+          background-color: #24334d;
+        }
+      }
 
-    .brand-sub {
-      margin-top: 8px;
-      color: #B9862F;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
+      /* Feedback tactil instant pe mobil când apeși fizic cu degetul pe buton */
+      .link-card:active {
+        transform: scale(0.98);
+        border-color: var(--accent-color);
+        background-color: #1a2436;
+      }
 
-    .stars {
-      text-align: center;
-      color: #C8A05A;
-      font-size: 20px;
-      letter-spacing: 8px;
-      margin: 12px 0;
-    }
+      .link-card span {
+        display: block;
+        font-size: 12px;
+        color: #94a3b8;
+        font-weight: 400;
+        margin-top: 4px;
+      }
 
-    .hero {
-      border: 1.5px solid #C8A05A;
-      border-radius: 22px;
-      text-align: center;
-      padding: 18px 12px;
-      margin-bottom: 16px;
-      background: rgba(248,245,239,.72);
-    }
+      .whatsapp-btn {
+        background-color: #25d366 !important;
+        color: #fff !important;
+        border: none !important;
+        margin-top: 12px;
+      }
 
-    .hero h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 31px;
-      line-height: 1;
-      margin-bottom: 10px;
-      color: #0D2D52;
-    }
+      @media (hover: hover) {
+        .whatsapp-btn:hover {
+          background-color: #128c7e !important;
+        }
+      }
 
-    .hero p {
-      font-size: 15px;
-      line-height: 1.35;
-      margin-bottom: 10px;
-    }
+      .whatsapp-btn:active {
+        background-color: #0e7064 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- LOGO text stilizat din branding-ul tău -->
+      <div class="logo-placeholder">SCB</div>
+      
+      <h1>Stay in Costa Blanca</h1>
+      <!-- Text corectat: natural, curat și cu semnul exclamării -->
+      <p class="tagline">Your property. Professionally cared for!<br/>Scientific & high-tech property management</p>
+      
+      <div class="links-wrapper">
+        <a href="/request-inspection" class="link-card">
+          📋 Request a property inspection
+          <span>Book your digital control checkup</span>
+        </a>
 
-    .phone {
-      font-size: 21px;
-      font-weight: 800;
-    }
+        <a href="/services" class="link-card">
+          🛡️ Our management packages
+          <span>Standard, optimum & prestige details</span>
+        </a>
 
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
+        <a href="/emergency" class="link-card">
+          🚨 Emergency & key services
+          <span>On-demand call-out protocols</span>
+        </a>
 
-    .link {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 14px 14px;
-      text-decoration: none;
-      color: #0D2D52;
-      background: #fff;
-      border-radius: 16px;
-      border: 1px solid rgba(13,45,82,.10);
-      box-shadow: 0 8px 20px rgba(13,45,82,.10);
-    }
-
-    .link.primary {
-      background: linear-gradient(135deg, #D9AA4A, #C89135);
-      color: #0D2D52;
-    }
-
-    .icon {
-      width: 42px;
-      font-size: 28px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .link-content {
-      flex: 1;
-    }
-
-    .link-title {
-      font-size: 14px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-    }
-
-    .link-sub {
-      margin-top: 3px;
-      font-size: 13px;
-      color: #B9862F;
-      font-weight: 600;
-    }
-
-    .primary .link-sub {
-      color: rgba(13,45,82,.78);
-    }
-
-    .arrow {
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .trust {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(200,160,90,.45);
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(255,255,255,.72);
-    }
-
-    .trust div {
-      text-align: center;
-      padding: 10px 4px;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      border-right: 1px solid rgba(200,160,90,.35);
-    }
-
-    .trust div:last-child {
-      border-right: 0;
-    }
-
-    .trust span {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
-
-    .qr {
-      margin: 18px 0;
-      display: grid;
-      grid-template-columns: 135px 1fr;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .qr-box {
-      background: #fff;
-      border: 2px solid #C8A05A;
-      border-radius: 16px;
-      padding: 9px;
-    }
-
-    .qr-box img {
-      width: 100%;
-      display: block;
-    }
-
-    .qr-text {
-      text-align: center;
-    }
-
-    .scan {
-      font-family: "Cormorant Garamond", serif;
-      color: #B9862F;
-      font-size: 27px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .qr-title {
-      font-size: 20px;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 10px;
-    }
-
-    .site-pill {
-      display: inline-block;
-      background: #0D2D52;
-      color: #fff;
-      border-radius: 999px;
-      padding: 8px 13px;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .footer {
-      margin: 0 -16px;
-      background: #0D2D52;
-      color: #fff;
-      text-align: center;
-      padding: 18px 12px 20px;
-      border-top: 2px solid #C8A05A;
-    }
-
-    .footer-main {
-      font-family: "Cormorant Garamond", serif;
-      color: #C8A05A;
-      font-size: 26px;
-      font-weight: 700;
-    }
-
-    .footer-sub {
-      margin-top: 3px;
-      font-size: 15px;
-      letter-spacing: .04em;
-    }
-
-    @media (max-width: 420px) {
-      .brand-title { font-size: 30px; }
-      .hero h1 { font-size: 28px; }
-      .qr { grid-template-columns: 120px 1fr; }
-      .trust div { font-size: 9px; }
-    }
-  </style>
-</head>
-
-<body>
-  <main class="page">
-    <section class="card">
-
-<img class="logo" src="https://www.stayincostablanca.com/sicb.png" alt="Stay in Costa Blanca logo" />
-
-<div class="brand">
-        <div class="brand-title">STAY IN<br />COSTA BLANCA</div>
-        <div class="brand-sub">Property Management</div>
+        <!-- BUTONUL DE WHATSAPP: adăugat target="_blank" pentru deschidere separată -->
+        <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer" class="link-card whatsapp-btn">
+          💬 Chat live on WhatsApp
+          <span>Direct line: {newPhone}</span>
+        </a>
       </div>
-
-      <div class="stars">★★★★★</div>
-
-      <div class="hero">
-        <h1>Your Property.<br />Professionally Cared For.</h1>
-        <p>Premium Property Management<br />in Orihuela Costa &amp; Torrevieja</p>
-        <div class="phone">📞 {phone}</div>
-      </div>
-
-      <nav class="links">
-        <a class="link primary" href={whatsAppUrl} target="_blank" rel="noopener">
-          <div class="icon">💬</div>
-          <div class="link-content">
-            <div class="link-title">Free Property Assessment</div>
-            <div class="link-sub">Get expert advice in WhatsApp</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-
-        <a class="link" href="/services">
-          <div class="icon">🏠</div>
-          <div class="link-content">
-            <div class="link-title">Property Management Packages</div>
-            <div class="link-sub">Compare Standard, Optimum &amp; Prestige</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-
-        <a class="link" href="/request-inspection">
-          <div class="icon">📋</div>
-          <div class="link-content">
-            <div class="link-title">Book an Inspection</div>
-            <div class="link-sub">Request a digital property check</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-
-        <a class="link" href="/emergency">
-          <div class="icon">🔑</div>
-          <div class="link-content">
-            <div class="link-title">Key Holding & Emergency Support</div>
-            <div class="link-sub">Fast local assistance when you need it</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-
-        <a class="link" href={siteUrl}>
-          <div class="icon">🌐</div>
-          <div class="link-content">
-            <div class="link-title">Visit Our Website</div>
-            <div class="link-sub">Explore all services & owner resources</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-      </nav>
-
-      <section class="trust">
-        <div><span>🛡️</span>Fully<br />Insured</div>
-        <div><span>📱</span>Digital<br />Reports</div>
-        <div><span>📍</span>Local<br />Team</div>
-        <div><span>⏱️</span>Rapid<br />Response</div>
-      </section>
-
-      <section class="qr">
-        <div class="qr-box">
-          <img src={qrUrl} alt="QR code for Stay in Costa Blanca website" />
-        </div>
-
-        <div class="qr-text">
-          <div class="scan">Scan me!</div>
-          <div class="qr-title">Scan & discover<br />how we protect your property</div>
-          <a class="site-pill" href={siteUrl}>🌐 stayincostablanca.com</a>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="footer-main">More time for you.</div>
-        <div class="footer-sub">We take care of the rest.</div>
-      </footer>
-
-    </section>
-  </main>
-</body>
+    </div>
+  </body>
 </html>
