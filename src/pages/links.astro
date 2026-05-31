@@ -1,7 +1,9 @@
 ---
 const pageTitle = "Stay in Costa Blanca";
 const phone = "+34 624 110 656";
+const siteUrl = "https://www.stayincostablanca.com";
 const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20need%20more%20information%20about%20your%20property%20services.`;
+const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(siteUrl)}`;
 ---
 
 <html lang="en">
@@ -9,26 +11,23 @@ const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20need%20more%20info
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --grad-a: #0f4c75;
-        --grad-b: #1b6ca8;
-        --grad-c: #0d7377;
-        --grad-d: #14a085;
-        --card-bg: rgba(255,255,255,0.12);
-        --card-border: rgba(255,255,255,0.28);
-        --card-hover-bg: rgba(255,255,255,0.22);
         --text: #ffffff;
-        --text-muted: rgba(255,255,255,0.72);
-        --wa-green: #25d366;
+        --muted: rgba(255,255,255,0.74);
+        --card: rgba(255,255,255,0.16);
+        --card-border: rgba(255,255,255,0.34);
+        --card-hover: rgba(255,255,255,0.26);
+        --wa: #25d366;
+        --blue: #0f4c75;
       }
-
-      html { scroll-behavior: smooth; }
 
       body {
         min-height: 100vh;
@@ -36,321 +35,253 @@ const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20need%20more%20info
         color: var(--text);
         display: flex;
         justify-content: center;
-        align-items: flex-start;
-        padding: 0 0 60px;
         background:
-          radial-gradient(ellipse at 20% 0%, rgba(20,160,133,0.55) 0%, transparent 55%),
-          radial-gradient(ellipse at 80% 10%, rgba(11,76,117,0.7) 0%, transparent 55%),
-          radial-gradient(ellipse at 50% 80%, rgba(27,108,168,0.5) 0%, transparent 60%),
-          linear-gradient(160deg, #0f4c75 0%, #1b6ca8 35%, #0d7377 65%, #14a085 100%);
+          radial-gradient(circle at top left, rgba(20,160,133,0.55), transparent 34%),
+          radial-gradient(circle at top right, rgba(15,76,117,0.78), transparent 38%),
+          linear-gradient(160deg, #0f4c75 0%, #1b6ca8 38%, #0d7377 72%, #14a085 100%);
         background-attachment: fixed;
+        padding: 32px 14px;
       }
 
       .page {
         width: 100%;
-        max-width: 480px;
-        padding: 52px 20px 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        max-width: 460px;
       }
 
-      /* ── HEADER ── */
+      .tap-card {
+        width: 100%;
+        padding: 26px 18px 22px;
+        border: 1.5px solid rgba(255,255,255,0.38);
+        border-radius: 28px;
+        background: rgba(255,255,255,0.13);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+      }
+
       .header {
         text-align: center;
-        margin-bottom: 36px;
-        animation: fadeUp 0.5s ease both;
+        margin-bottom: 22px;
       }
 
       .logo-wrap {
-        width: 96px;
-        height: 96px;
-        border-radius: 50%;
-        border: 2px solid rgba(255,255,255,0.4);
-        background: rgba(255,255,255,0.15);
-        backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 18px;
-        overflow: hidden;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        width: 118px;
+        height: 118px;
+        border-radius: 30px;
+        margin: 0 auto 16px;
+        padding: 10px;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(255,255,255,0.75);
+        box-shadow: 0 14px 38px rgba(0,0,0,0.22);
       }
 
       .logo-wrap img {
-        width: 88px;
-        height: 88px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
-        border-radius: 50%;
+        display: block;
+      }
+
+      .brand-box {
+        border: 1px solid rgba(255,255,255,0.34);
+        background: rgba(255,255,255,0.10);
+        border-radius: 22px;
+        padding: 16px 14px;
       }
 
       .brand-name {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 26px;
+        font-size: 31px;
         font-weight: 600;
-        letter-spacing: 0.02em;
-        margin-bottom: 5px;
-        text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+        line-height: 1.05;
+        margin-bottom: 6px;
       }
 
       .brand-sub {
         font-size: 11px;
-        font-weight: 400;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.75);
-        margin-bottom: 8px;
+        color: rgba(255,255,255,0.78);
+        margin-bottom: 10px;
       }
 
       .brand-desc {
         font-size: 13px;
-        color: rgba(255,255,255,0.72);
-        font-weight: 300;
-        line-height: 1.6;
+        line-height: 1.55;
+        color: var(--muted);
       }
 
-      /* ── LINKS ── */
       .links {
-        width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 12px;
+        margin-top: 20px;
       }
 
       .link-card {
-        width: 100%;
         display: flex;
         align-items: center;
-        gap: 14px;
-        padding: 15px 18px;
-        background: var(--card-bg);
-        border: 1.5px solid var(--card-border);
-        border-radius: 14px;
-        text-decoration: none;
+        gap: 13px;
+        width: 100%;
+        padding: 15px 16px;
         color: var(--text);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-        animation: fadeUp 0.5s ease both;
-        cursor: pointer;
+        text-decoration: none;
+        border-radius: 18px;
+        border: 1.4px solid var(--card-border);
+        background: var(--card);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        transition: 0.2s ease;
       }
 
-      .link-card:hover, .link-card:active {
-        background: var(--card-hover-bg);
-        border-color: rgba(255,255,255,0.55);
+      .link-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+        background: var(--card-hover);
+        border-color: rgba(255,255,255,0.62);
       }
 
-      .link-card:nth-child(1) { animation-delay: 0.12s; }
-      .link-card:nth-child(2) { animation-delay: 0.20s; }
-      .link-card:nth-child(3) { animation-delay: 0.28s; }
-      .link-card:nth-child(4) { animation-delay: 0.36s; }
+      .wa-card {
+        background: rgba(37,211,102,0.20);
+        border-color: rgba(37,211,102,0.58);
+      }
 
       .link-emoji {
-        font-size: 22px;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.16);
+        font-size: 19px;
         flex-shrink: 0;
-        width: 36px;
-        text-align: center;
       }
 
       .link-text { flex: 1; }
-      .link-title { font-size: 15px; font-weight: 500; line-height: 1.3; }
-      .link-hint { font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 300; margin-top: 2px; }
+      .link-title { font-size: 15px; font-weight: 600; }
+      .link-hint { font-size: 12px; margin-top: 3px; color: rgba(255,255,255,0.68); }
+      .link-arrow { font-size: 23px; color: rgba(255,255,255,0.58); }
 
-      .link-arrow {
-        font-size: 20px;
-        color: rgba(255,255,255,0.5);
-        transition: transform 0.2s, color 0.2s;
-        flex-shrink: 0;
-      }
-      .link-card:hover .link-arrow { transform: translateX(3px); color: rgba(255,255,255,0.9); }
-
-      /* WhatsApp accent */
-      .wa-card {
-        background: rgba(37,211,102,0.18);
-        border-color: rgba(37,211,102,0.45);
-      }
-      .wa-card:hover {
-        background: rgba(37,211,102,0.28);
-        border-color: rgba(37,211,102,0.7);
-      }
-
-      /* ── QR SECTION ── */
       .qr-section {
-        margin-top: 32px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        animation: fadeUp 0.5s 0.44s ease both;
+        margin-top: 24px;
+        text-align: center;
       }
 
       .qr-label {
         font-size: 11px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.65);
-        margin-bottom: 14px;
-        font-weight: 400;
+        color: rgba(255,255,255,0.72);
+        margin-bottom: 12px;
       }
 
       .qr-frame {
-        background: rgba(255,255,255,0.14);
-        border: 1.5px solid rgba(255,255,255,0.3);
-        border-radius: 18px;
-        padding: 20px;
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         align-items: center;
-        gap: 12px;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        gap: 10px;
+        padding: 14px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.94);
+        border: 1px solid rgba(255,255,255,0.75);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.18);
       }
 
-      .qr-inner {
-        background: #fff;
-        border-radius: 10px;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      #qr-placeholder {
-        width: 150px;
-        height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255,255,255,0.5);
-        font-size: 12px;
+      .qr-frame img {
+        width: 180px;
+        height: 180px;
+        display: block;
       }
 
       .qr-url {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 14px;
-        color: rgba(255,255,255,0.85);
-        letter-spacing: 0.04em;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 600;
       }
 
-      /* ── FOOTER ── */
       .footer {
-        margin-top: 32px;
+        margin-top: 18px;
         text-align: center;
         font-size: 11px;
-        color: rgba(255,255,255,0.45);
-        font-weight: 300;
-        animation: fadeUp 0.5s 0.55s ease both;
-      }
-
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(16px); }
-        to   { opacity: 1; transform: translateY(0); }
+        color: rgba(255,255,255,0.56);
       }
 
       @media (max-width: 420px) {
-        .page { padding: 40px 16px 40px; }
-        .brand-name { font-size: 22px; }
+        body { padding: 20px 12px; }
+        .tap-card { border-radius: 24px; padding: 22px 14px; }
+        .brand-name { font-size: 27px; }
       }
     </style>
   </head>
+
   <body>
-    <div class="page">
+    <main class="page">
+      <div class="tap-card">
 
-      <header class="header">
-        <div class="logo-wrap">
-          <img src="../assets/images/gallery/SICB logo.webp" alt="Stay in Costa Blanca logo" />
-        </div>
-        <div class="brand-name">Stay in Costa Blanca</div>
-        <div class="brand-sub">Property Management</div>
-        <p class="brand-desc">High-tech &amp; scientific property care<br/>Orihuela Costa &amp; Torrevieja</p>
-      </header>
-
-      <nav class="links" aria-label="Quick links">
-
-        <a href="/request-inspection" class="link-card">
-          <div class="link-emoji">📋</div>
-          <div class="link-text">
-            <div class="link-title">Request a Property Inspection</div>
-            <div class="link-hint">Book your digital control checkup</div>
+        <header class="header">
+          <div class="logo-wrap">
+            <img src="/assets/images/gallery/SICB logo.webp" alt="Stay in Costa Blanca logo" />
           </div>
-          <span class="link-arrow" aria-hidden="true">›</span>
-        </a>
 
-        <a href="/services" class="link-card">
-          <div class="link-emoji">🛡️</div>
-          <div class="link-text">
-            <div class="link-title">Our Management Packages</div>
-            <div class="link-hint">Standard, Optimum &amp; Prestige plans</div>
+          <div class="brand-box">
+            <div class="brand-name">Stay in Costa Blanca</div>
+            <div class="brand-sub">Property Management</div>
+            <p class="brand-desc">
+              High-tech &amp; scientific property care<br />
+              Orihuela Costa &amp; Torrevieja
+            </p>
           </div>
-          <span class="link-arrow" aria-hidden="true">›</span>
-        </a>
+        </header>
 
-        <a href="/emergency" class="link-card">
-          <div class="link-emoji">🔑</div>
-          <div class="link-text">
-            <div class="link-title">Emergency &amp; Key Services</div>
-            <div class="link-hint">On-demand call-out protocols</div>
+        <nav class="links" aria-label="Quick links">
+          <a href={whatsAppUrl} target="_blank" rel="noopener" class="link-card wa-card">
+            <div class="link-emoji">💬</div>
+            <div class="link-text">
+              <div class="link-title">Chat Live on WhatsApp</div>
+              <div class="link-hint">{phone}</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </a>
+
+          <a href="/request-inspection" class="link-card">
+            <div class="link-emoji">📋</div>
+            <div class="link-text">
+              <div class="link-title">Request a Property Inspection</div>
+              <div class="link-hint">Book your digital control checkup</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </a>
+
+          <a href="/services" class="link-card">
+            <div class="link-emoji">🛡️</div>
+            <div class="link-text">
+              <div class="link-title">Our Management Packages</div>
+              <div class="link-hint">Standard, Optimum &amp; Prestige plans</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </a>
+
+          <a href="/emergency" class="link-card">
+            <div class="link-emoji">🔑</div>
+            <div class="link-text">
+              <div class="link-title">Emergency &amp; Key Services</div>
+              <div class="link-hint">On-demand call-out protocols</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </a>
+        </nav>
+
+        <section class="qr-section" aria-label="QR code for website">
+          <p class="qr-label">Scan to visit our website</p>
+          <div class="qr-frame">
+            <img src={qrUrl} alt="QR code for Stay in Costa Blanca website" />
+            <div class="qr-url">stayincostablanca.com</div>
           </div>
-          <span class="link-arrow" aria-hidden="true">›</span>
-        </a>
+        </section>
 
-        <a href="https://wa.me/34624110656?text=Hi,%20I%20need%20more%20information%20about%20your%20property%20services." target="_blank" rel="noopener" class="link-card wa-card">
-          <div class="link-emoji">💬</div>
-          <div class="link-text">
-            <div class="link-title">Chat Live on WhatsApp</div>
-            <div class="link-hint">+34 624 110 656</div>
-          </div>
-          <span class="link-arrow" aria-hidden="true">›</span>
-        </a>
+        <footer class="footer">
+          © 2026 Stay in Costa Blanca · Costa Blanca, España
+        </footer>
 
-      </nav>
-
-      <section class="qr-section" aria-label="QR code for website">
-        <p class="qr-label">Scan to visit our website</p>
-        <div class="qr-frame">
-          <div class="qr-inner">
-            <div id="qr-placeholder"></div>
-          </div>
-          <div class="qr-url">stayincostablanca.com</div>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <p>© 2025 Stay in Costa Blanca &nbsp;·&nbsp; Costa Blanca, España</p>
-      </footer>
-
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script>
-      (function() {
-        function initQR() {
-          var placeholder = document.getElementById('qr-placeholder');
-          if (!placeholder || typeof QRCode === 'undefined') {
-            setTimeout(initQR, 100);
-            return;
-          }
-          placeholder.innerHTML = '';
-          placeholder.style.width = 'auto';
-          placeholder.style.height = 'auto';
-          new QRCode(placeholder, {
-            text: 'https://www.stayincostablanca.com',
-            width: 150,
-            height: 150,
-            colorDark: '#0f4c75',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-          });
-        }
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initQR);
-        } else {
-          initQR();
-        }
-      })();
-    </script>
-
+      </div>
+    </main>
   </body>
 </html>
