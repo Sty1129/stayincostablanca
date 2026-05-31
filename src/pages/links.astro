@@ -1,0 +1,148 @@
+---
+// src/pages/links.astro
+const pageTitle = "Stay in Costa Blanca | Links";
+const newPhone = "+34 624110656";
+const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20need%20more%20information%20about%20your%20property%20services.`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <style>
+      :root {
+        --bg-color: #0f172a; /* Slate/Dark Corporate Deep Navy */
+        --accent-color: #10b8a5; /* Teal / Emerald Green */
+        --text-color: #f8fafc;
+        --card-bg: #1e293b;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 480px; /* Dimensiune optimă de ecran telefon */
+        padding: 40px 20px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .logo-placeholder {
+        width: 96px;
+        height: 96px;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 24px;
+        box-shadow: 0 4px 14px rgba(16, 184, 165, 0.3);
+      }
+
+      h1 {
+        font-size: 22px;
+        margin: 0 0 8px 0;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .tagline {
+        font-size: 14px;
+        color: #94a3b8;
+        margin: 0 0 32px 0;
+        line-height: 1.5;
+      }
+
+      .links-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .link-card {
+        background-color: var(--card-bg);
+        border: 1px solid #334155;
+        padding: 16px 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.2s ease-in-out;
+        display: block;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .link-card:hover, .link-card:active {
+        transform: translateY(-2px);
+        border-color: var(--accent-color);
+        background-color: #24334d;
+      }
+
+      .link-card span {
+        display: block;
+        font-size: 12px;
+        color: #94a3b8;
+        font-weight: 400;
+        margin-top: 4px;
+      }
+
+      .whatsapp-btn {
+        background-color: #25d366 !important;
+        color: #fff !important;
+        border: none !important;
+        margin-top: 12px;
+      }
+
+      .whatsapp-btn:hover, .whatsapp-btn:active {
+        background-color: #128c7e !important;
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- LOGO: Înlocuiește textul SCB cu un tag <img> dacă vrei ulterior -->
+      <div class="logo-placeholder">SCB</div>
+      
+      <h1>Stay in Costa Blanca</h1>
+      <p class="tagline">High-Tech & Scientific Property Management<br/>Orihuela Costa & Torrevieja</p>
+      
+      <div class="links-wrapper">
+        <a href="/request-inspection" class="link-card">
+          📋 Request a Property Inspection
+          <span>Book your digital control checkup</span>
+        </a>
+
+        <a href="/services" class="link-card">
+          🛡️ Our Management Packages
+          <span>Standard, Optimum & Prestige details</span>
+        </a>
+
+        <a href="/emergency" class="link-card">
+          🚨 Emergency & Key Services
+          <span>On-demand call-out protocols</span>
+        </a>
+
+        <!-- BUTONUL DIRECT DE WHATSAPP -->
+        <a href={whatsAppUrl} target="_blank" class="link-card whatsapp-btn">
+          💬 Chat Live on WhatsApp
+          <span>Direct Line: {newPhone}</span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
