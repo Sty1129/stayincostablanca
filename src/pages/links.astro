@@ -2,8 +2,8 @@
 const pageTitle = "Stay in Costa Blanca";
 const phone = "+34 624 110 656";
 const siteUrl = "https://www.stayincostablanca.com";
-const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20need%20more%20information%20about%20your%20property%20services.`;
-const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(siteUrl)}`;
+const whatsAppUrl = `https://wa.me/34624110656?text=Hi,%20I%20would%20like%20a%20free%20property%20assessment%20for%20my%20property%20in%20Costa%20Blanca.`;
+const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=190x190&data=${encodeURIComponent(siteUrl)}`;
 ---
 
 <html lang="en">
@@ -14,33 +14,32 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --text: #ffffff;
-        --muted: rgba(255,255,255,0.74);
-        --card: rgba(255,255,255,0.16);
-        --card-border: rgba(255,255,255,0.34);
-        --card-hover: rgba(255,255,255,0.26);
-        --wa: #25d366;
-        --blue: #0f4c75;
+        --navy: #0D2D52;
+        --navy-2: #123A66;
+        --gold: #C8A05A;
+        --ivory: #F8F5EF;
+        --sand: #EDE5D8;
+        --white: #ffffff;
+        --muted: rgba(13,45,82,0.68);
       }
 
       body {
         min-height: 100vh;
         font-family: 'DM Sans', sans-serif;
-        color: var(--text);
+        color: var(--navy);
         display: flex;
         justify-content: center;
+        padding: 28px 14px;
         background:
-          radial-gradient(circle at top left, rgba(20,160,133,0.55), transparent 34%),
-          radial-gradient(circle at top right, rgba(15,76,117,0.78), transparent 38%),
-          linear-gradient(160deg, #0f4c75 0%, #1b6ca8 38%, #0d7377 72%, #14a085 100%);
-        background-attachment: fixed;
-        padding: 32px 14px;
+          radial-gradient(circle at top left, rgba(200,160,90,0.30), transparent 34%),
+          radial-gradient(circle at top right, rgba(13,45,82,0.22), transparent 38%),
+          linear-gradient(160deg, var(--ivory) 0%, var(--sand) 100%);
       }
 
       .page {
@@ -48,15 +47,15 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
         max-width: 460px;
       }
 
-      .tap-card {
+      .card {
         width: 100%;
-        padding: 26px 18px 22px;
-        border: 1.5px solid rgba(255,255,255,0.38);
-        border-radius: 28px;
-        background: rgba(255,255,255,0.13);
+        padding: 28px 18px 24px;
+        border-radius: 30px;
+        background: rgba(255,255,255,0.74);
+        border: 1.5px solid rgba(200,160,90,0.42);
+        box-shadow: 0 24px 70px rgba(13,45,82,0.18);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
-        box-shadow: 0 24px 70px rgba(0,0,0,0.22);
       }
 
       .header {
@@ -65,50 +64,52 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
       }
 
       .logo-wrap {
-        width: 118px;
-        height: 118px;
-        border-radius: 30px;
-        margin: 0 auto 16px;
-        padding: 10px;
-        background: rgba(255,255,255,0.92);
-        border: 1px solid rgba(255,255,255,0.75);
-        box-shadow: 0 14px 38px rgba(0,0,0,0.22);
+        width: 148px;
+        margin: 0 auto 14px;
       }
 
       .logo-wrap img {
         width: 100%;
-        height: 100%;
-        object-fit: contain;
+        height: auto;
         display: block;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(13,45,82,0.16));
       }
 
-      .brand-box {
-        border: 1px solid rgba(255,255,255,0.34);
-        background: rgba(255,255,255,0.10);
-        border-radius: 22px;
-        padding: 16px 14px;
+      .stars {
+        color: var(--gold);
+        font-size: 18px;
+        letter-spacing: 4px;
+        margin-bottom: 12px;
       }
 
-      .brand-name {
+      .hero-box {
+        border: 1.4px solid rgba(200,160,90,0.46);
+        border-radius: 24px;
+        padding: 18px 14px;
+        background: rgba(248,245,239,0.72);
+      }
+
+      .hero-title {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 31px;
-        font-weight: 600;
-        line-height: 1.05;
-        margin-bottom: 6px;
+        font-size: 33px;
+        font-weight: 700;
+        line-height: 0.98;
+        margin-bottom: 10px;
+        color: var(--navy);
       }
 
-      .brand-sub {
-        font-size: 11px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.78);
+      .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--muted);
         margin-bottom: 10px;
       }
 
-      .brand-desc {
-        font-size: 13px;
-        line-height: 1.55;
-        color: var(--muted);
+      .phone {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
       }
 
       .links {
@@ -124,41 +125,84 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
         gap: 13px;
         width: 100%;
         padding: 15px 16px;
-        color: var(--text);
+        color: var(--navy);
         text-decoration: none;
         border-radius: 18px;
-        border: 1.4px solid var(--card-border);
-        background: var(--card);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        border: 1.3px solid rgba(13,45,82,0.13);
+        background: rgba(255,255,255,0.82);
+        box-shadow: 0 8px 22px rgba(13,45,82,0.08);
         transition: 0.2s ease;
       }
 
       .link-card:hover {
         transform: translateY(-2px);
-        background: var(--card-hover);
-        border-color: rgba(255,255,255,0.62);
+        border-color: rgba(200,160,90,0.7);
+        box-shadow: 0 12px 30px rgba(13,45,82,0.13);
       }
 
-      .wa-card {
-        background: rgba(37,211,102,0.20);
-        border-color: rgba(37,211,102,0.58);
+      .primary-cta {
+        background: var(--gold);
+        color: var(--navy);
+        border-color: rgba(13,45,82,0.12);
+        box-shadow: 0 12px 30px rgba(200,160,90,0.32);
+      }
+
+      .primary-cta .link-hint {
+        color: rgba(13,45,82,0.76);
       }
 
       .link-emoji {
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
         display: grid;
         place-items: center;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.16);
+        border-radius: 13px;
+        background: rgba(13,45,82,0.08);
         font-size: 19px;
         flex-shrink: 0;
       }
 
+      .primary-cta .link-emoji {
+        background: rgba(255,255,255,0.34);
+      }
+
       .link-text { flex: 1; }
-      .link-title { font-size: 15px; font-weight: 600; }
-      .link-hint { font-size: 12px; margin-top: 3px; color: rgba(255,255,255,0.68); }
-      .link-arrow { font-size: 23px; color: rgba(255,255,255,0.58); }
+
+      .link-title {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .link-hint {
+        font-size: 12px;
+        margin-top: 3px;
+        color: var(--muted);
+      }
+
+      .link-arrow {
+        font-size: 23px;
+        color: rgba(13,45,82,0.45);
+      }
+
+      .trust {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .trust-item {
+        border-radius: 15px;
+        padding: 10px 8px;
+        text-align: center;
+        background: rgba(13,45,82,0.06);
+        border: 1px solid rgba(13,45,82,0.08);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--navy);
+      }
 
       .qr-section {
         margin-top: 24px;
@@ -166,10 +210,9 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
       }
 
       .qr-label {
-        font-size: 11px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.72);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--navy);
         margin-bottom: 12px;
       }
 
@@ -179,64 +222,88 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
         align-items: center;
         gap: 10px;
         padding: 14px;
-        border-radius: 22px;
-        background: rgba(255,255,255,0.94);
-        border: 1px solid rgba(255,255,255,0.75);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+        border-radius: 24px;
+        background: var(--white);
+        border: 1px solid rgba(200,160,90,0.42);
+        box-shadow: 0 16px 38px rgba(13,45,82,0.13);
       }
 
       .qr-frame img {
-        width: 180px;
-        height: 180px;
+        width: 190px;
+        height: 190px;
         display: block;
       }
 
       .qr-url {
-        color: var(--blue);
+        color: var(--navy);
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 800;
       }
 
       .footer {
-        margin-top: 18px;
+        margin-top: 20px;
         text-align: center;
-        font-size: 11px;
-        color: rgba(255,255,255,0.56);
+      }
+
+      .footer-main {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .footer-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 3px;
       }
 
       @media (max-width: 420px) {
-        body { padding: 20px 12px; }
-        .tap-card { border-radius: 24px; padding: 22px 14px; }
-        .brand-name { font-size: 27px; }
+        body { padding: 18px 10px; }
+        .card { border-radius: 26px; padding: 22px 14px; }
+        .logo-wrap { width: 132px; }
+        .hero-title { font-size: 29px; }
+        .trust { grid-template-columns: 1fr 1fr; }
       }
     </style>
   </head>
 
   <body>
     <main class="page">
-      <div class="tap-card">
+      <div class="card">
 
         <header class="header">
           <div class="logo-wrap">
-            <img src="/assets/images/gallery/SICB logo.webp" alt="Stay in Costa Blanca logo" />
+            <img src="/sicb.png" alt="Stay in Costa Blanca logo" />
           </div>
 
-          <div class="brand-box">
-            <div class="brand-name">Stay in Costa Blanca</div>
-            <div class="brand-sub">Property Management</div>
-            <p class="brand-desc">
-              High-tech &amp; scientific property care<br />
-              Orihuela Costa &amp; Torrevieja
+          <div class="stars">★★★★★</div>
+
+          <div class="hero-box">
+            <h1 class="hero-title">Your Property.<br />Professionally Cared For.</h1>
+            <p class="hero-subtitle">
+              Premium Property Management<br />
+              in Orihuela Costa &amp; Torrevieja
             </p>
+            <div class="phone">📞 {phone}</div>
           </div>
         </header>
 
         <nav class="links" aria-label="Quick links">
-          <a href={whatsAppUrl} target="_blank" rel="noopener" class="link-card wa-card">
+          <a href={whatsAppUrl} target="_blank" rel="noopener" class="link-card primary-cta">
             <div class="link-emoji">💬</div>
             <div class="link-text">
-              <div class="link-title">Chat Live on WhatsApp</div>
-              <div class="link-hint">{phone}</div>
+              <div class="link-title">Free Property Assessment</div>
+              <div class="link-hint">Get expert advice in WhatsApp</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </a>
+
+          <a href="/services" class="link-card">
+            <div class="link-emoji">🏠</div>
+            <div class="link-text">
+              <div class="link-title">Property Management Packages</div>
+              <div class="link-hint">Compare Standard, Optimum &amp; Prestige</div>
             </div>
             <span class="link-arrow">›</span>
           </a>
@@ -244,17 +311,8 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
           <a href="/request-inspection" class="link-card">
             <div class="link-emoji">📋</div>
             <div class="link-text">
-              <div class="link-title">Request a Property Inspection</div>
-              <div class="link-hint">Book your digital control checkup</div>
-            </div>
-            <span class="link-arrow">›</span>
-          </a>
-
-          <a href="/services" class="link-card">
-            <div class="link-emoji">🛡️</div>
-            <div class="link-text">
-              <div class="link-title">Our Management Packages</div>
-              <div class="link-hint">Standard, Optimum &amp; Prestige plans</div>
+              <div class="link-title">Book an Inspection</div>
+              <div class="link-hint">Request a digital property check</div>
             </div>
             <span class="link-arrow">›</span>
           </a>
@@ -262,15 +320,31 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
           <a href="/emergency" class="link-card">
             <div class="link-emoji">🔑</div>
             <div class="link-text">
-              <div class="link-title">Emergency &amp; Key Services</div>
-              <div class="link-hint">On-demand call-out protocols</div>
+              <div class="link-title">Key Holding & Emergency Support</div>
+              <div class="link-hint">Fast local assistance when you need it</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </a>
+
+          <a href={siteUrl} class="link-card">
+            <div class="link-emoji">🌐</div>
+            <div class="link-text">
+              <div class="link-title">Visit Our Website</div>
+              <div class="link-hint">Explore all services & owner resources</div>
             </div>
             <span class="link-arrow">›</span>
           </a>
         </nav>
 
+        <section class="trust" aria-label="Trust points">
+          <div class="trust-item">🛡️ Fully Insured</div>
+          <div class="trust-item">📱 Digital Reports</div>
+          <div class="trust-item">📍 Local Team</div>
+          <div class="trust-item">⏰ Rapid Response</div>
+        </section>
+
         <section class="qr-section" aria-label="QR code for website">
-          <p class="qr-label">Scan to visit our website</p>
+          <p class="qr-label">Scan & discover how we protect your property</p>
           <div class="qr-frame">
             <img src={qrUrl} alt="QR code for Stay in Costa Blanca website" />
             <div class="qr-url">stayincostablanca.com</div>
@@ -278,7 +352,8 @@ const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${e
         </section>
 
         <footer class="footer">
-          © 2026 Stay in Costa Blanca · Costa Blanca, España
+          <div class="footer-main">More time for you.</div>
+          <div class="footer-sub">We take care of the rest.</div>
         </footer>
 
       </div>
