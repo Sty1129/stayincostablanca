@@ -1,106 +1,141 @@
 ---
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 import Header from '../components/Header.astro';
+
 import Footer from '../components/Footer.astro';
+
 import Banner from '../components/Banner.astro';
+
 import CTA from '../components/CTA.astro';
+
 import { brand } from '../config/brand';
+
 import { client } from '../data/client';
 
-const director = { 
-  name: 'Stelian', 
-  role: 'Managing Director & Property Specialist', 
-  image: '/about-me.png' 
-};
+
+
+const team = [
+
+  { 
+
+    name: 'Stelian', 
+
+    role: 'Fondator & Key Manager', 
+
+    image: '/stelian.webp' // AICI e modificarea: va trage poza din folderul public
+
+  },
+
+  { 
+
+    name: 'Echipa Locală', 
+
+    role: 'Mentenanță & Suport', 
+
+    image: 'https://images.unsplash.com/photo-1582213726895-42ac826c5bd1?w=400&q=80' 
+
+  },
+
+];
+
 ---
 
+
+
 <BaseLayout 
+
   title="Despre Noi" 
+
   description={`Află povestea ${brand.name} — partenerul tău de încredere în Costa Blanca.`}
+
 >
+
   <Header slot="header" />
+
   <Banner title="Despre Noi" />
 
-  {/* SECȚIUNEA 1 (SUS): Vila cu palmier & Introducere */}
+
+
   <section class="py-16 sm:py-24 font-heading">
+
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
+
       <div class="overflow-hidden rounded-2xl shadow-xl">
+
         <img
-          src="/casa-cu-palmier.jpg"
-          alt="Vilă mediteraneană în Costa Blanca"
+
+          src="https://images.unsplash.com/photo-1554435493-93422e8220c8?w=800&q=80"
+
+          alt="Proprietate monitorizată"
+
           class="size-full object-cover"
+
         />
+
       </div>
+
       <div class="space-y-6">
-        <p class="text-accent font-bold uppercase tracking-wider text-sm">
-          More time for you. We take care of the rest.
-        </p>
-        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">
-          Liniștea ta, misiunea noastră
-        </h2>
+
+        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">Liniștea ta, misiunea noastră</h2>
+
         <p class="text-lg text-text-muted leading-relaxed">
-          {brand.name} s-a născut dintr-o convingere simplă: proprietatea ta din Spania merită aceeași grijă pe care i-ai acorda-o tu însuți, dacă ai fi aici în fiecare zi.
+
+          {brand.name} a fost creat pentru a oferi proprietarilor de case din zona Torrevieja un serviciu de administrare personalizat și extrem de sigur.
+
         </p>
+
+        <p class="text-lg text-text-muted leading-relaxed">
+
+          Suntem aici pentru a ne asigura că locuința ta din Spania este protejată, verificată periodic și pregătită oricând pentru sosirea ta.
+
+        </p>
+
       </div>
+
     </div>
+
   </section>
 
-  {/* SECȚIUNEA 2 (MIJLOC): Fondatorul la birou & Experiența juridică/guvernamentală */}
+
+
   <section class="bg-surface py-16 sm:py-24 font-heading">
+
     <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 items-center">
-        <div class="h-full min-h-[380px]">
-          <img 
-            src={director.image} 
-            alt={director.name} 
-            class="h-full w-full object-cover object-center" 
-          />
-        </div>
-        <div class="p-8 sm:p-10 space-y-4">
-          <div>
-            <h3 class="text-2xl font-bold text-text uppercase">{director.name}</h3>
-            <p class="text-accent font-semibold uppercase text-xs tracking-widest mt-1">
-              {director.role}
-            </p>
+
+      <h2 class="mb-12 text-center text-3xl font-bold uppercase text-text">Echipa Noastră</h2>
+
+      <div class="flex flex-wrap justify-center gap-8">
+
+        {team.map((member) => (
+
+          <div class="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg text-center">
+
+            <img src={member.image} alt={member.name} class="aspect-square w-full object-cover" />
+
+            <div class="p-6">
+
+              <h3 class="text-xl font-bold text-text uppercase">{member.name}</h3>
+
+              <p class="text-accent font-medium uppercase text-xs tracking-widest mt-1">{member.role}</p>
+
+            </div>
+
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">
-            În spatele acestui serviciu se află o experiență solidă în domeniul juridic și în administrația publică la nivel guvernamental, completată de o preocupare constantă pentru dezvoltarea durabilă.
-          </p>
-          <p class="text-text-muted text-sm leading-relaxed">
-            Nu pentru că administrarea corectă a unei proprietăți ar avea nevoie de titluri, ci pentru că această experiență ne-a format rigoarea, atenția la detalii și capacitatea de a înțelege complexitatea documentelor, a reglementărilor și a responsabilităților care vin odată cu deținerea unei proprietăți în Spania.
-          </p>
-          <p class="text-text-muted text-sm leading-relaxed">
-            La {brand.name}, combinăm această rigoare cu tehnologia, transparența și o abordare orientată spre sustenabilitate. Fiecare proprietate este tratată individual, cu servicii de protecție, monitorizare, mentenanță și asistență administrativă adaptate nevoilor proprietarului.
-          </p>
-        </div>
+
+        ))}
+
       </div>
+
     </div>
+
   </section>
 
-  {/* SECȚIUNEA 3 (JOS): Partenerul tău local cu casele înșiruite */}
-  <section class="py-16 sm:py-24 font-heading">
-    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
-      <div class="space-y-6 order-2 lg:order-1">
-        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">
-          Partenerul tău local în Costa Blanca
-        </h2>
-        <p class="text-lg text-text-muted leading-relaxed">
-          De la documente și obligații administrative până la verificarea și întreținerea curentă a locuinței, ne ocupăm de lucrurile care necesită prezență locală, atenție și încredere.
-        </p>
-        <p class="text-lg text-text-muted leading-relaxed">
-          Astfel, chiar și atunci când ești la sute sau mii de kilometri distanță, proprietatea ta rămâne în mâini bune.
-        </p>
-      </div>
-      <div class="overflow-hidden rounded-2xl shadow-xl order-1 lg:order-2">
-        <img
-          src="/pexels-olivers-34467237.jpg"
-          alt="Cartier mediteranean în Costa Blanca"
-          class="size-full object-cover"
-        />
-      </div>
-    </div>
-  </section>
+
 
   <CTA />
+
   <Footer slot="footer" />
+
 </BaseLayout>
