@@ -4,11 +4,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { brand } from '../config/brand';
 
-// Importul direct al imaginilor din folderul public
-import palmhouseImg from '../../public/palmhouse.jpg';
-import aboutmeImg from '../../public/aboutme.png';
-import localImg from '../../public/local.png';
-
 const whatsappNumber = "34624110656";
 const whatsappMessage = encodeURIComponent("Bună ziua! Doresc mai multe informații despre serviciile de administrare.");
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
@@ -30,7 +25,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
       <div class="overflow-hidden rounded-2xl shadow-xl">
         <img
-          src={palmhouseImg.src}
+          src="/palmhouse.jpg"
           alt="Vilă mediteraneană în Costa Blanca"
           class="size-full object-cover"
           loading="eager"
@@ -66,7 +61,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       <div class="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 items-center">
         <div class="h-full min-h-[400px]">
           <img 
-            src={aboutmeImg.src} 
+            src="/aboutme.png" 
             alt="Stelian Matei - Managing Director & Property Specialist" 
             class="h-full w-full object-cover object-center" 
           />
@@ -146,7 +141,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
       <div class="overflow-hidden rounded-2xl shadow-xl order-1 lg:order-2">
         <img
-          src={localImg.src}
+          src="/local.png"
           alt="Case mediteraneene în Costa Blanca"
           class="size-full object-cover"
         />
