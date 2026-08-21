@@ -2,8 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Banner from '../components/Banner.astro';
 import { brand } from '../config/brand';
+
+// Importul direct al imaginilor din folderul public
+import palmhouseImg from '../../public/palmhouse.jpg';
+import aboutmeImg from '../../public/aboutme.png';
+import localImg from '../../public/local.png';
 
 const whatsappNumber = "34624110656";
 const whatsappMessage = encodeURIComponent("Bună ziua! Doresc mai multe informații despre serviciile de administrare.");
@@ -15,16 +19,21 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   description={`Află povestea ${brand.name} — partenerul tău de încredere în Costa Blanca.`}
 >
   <Header slot="header" />
-  <Banner title="Despre Noi" />
+
+  {/* Banner Curat pe Verde — fără breadcrumbs */}
+  <div class="bg-emerald-900 py-12 text-center text-white">
+    <h1 class="text-3xl font-bold uppercase tracking-wider sm:text-4xl">Despre Noi</h1>
+  </div>
 
   {/* SECȚIUNEA 1: Vila cu palmier & Textul "Despre noi" */}
   <section class="py-16 sm:py-24 font-heading">
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
       <div class="overflow-hidden rounded-2xl shadow-xl">
         <img
-          src="./palmhouse.jpg"
+          src={palmhouseImg.src}
           alt="Vilă mediteraneană în Costa Blanca"
           class="size-full object-cover"
+          loading="eager"
         />
       </div>
       <div class="space-y-6">
@@ -57,7 +66,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       <div class="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 items-center">
         <div class="h-full min-h-[400px]">
           <img 
-            src="/aboutme.png" 
+            src={aboutmeImg.src} 
             alt="Stelian Matei - Managing Director & Property Specialist" 
             class="h-full w-full object-cover object-center" 
           />
@@ -84,7 +93,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     </div>
   </section>
 
-  {/* SECȚIUNEA 3: Partenerul tău local (Stil CTA integrat, buline boldate & fără duplicare) */}
+  {/* SECȚIUNEA 3: Partenerul tău local */}
   <section class="py-16 sm:py-24 font-heading">
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
       <div class="space-y-6 order-2 lg:order-1">
@@ -101,7 +110,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           De aceea, am creat un serviciu bazat pe proximitate și încredere totală. Nu suntem o agenție gigant, ci o echipă dedicată care îți tratează casa cu aceeași grijă cu care ne-o tratăm pe a noastră.
         </p>
 
-        {/* Lista cu buline verzi și BOLD pe tot textul */}
         <ul class="space-y-3 pt-2">
           <li class="flex items-start gap-3">
             <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">✓</span>
@@ -113,7 +121,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           </li>
           <li class="flex items-start gap-3">
             <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">✓</span>
-            <span class="text-text font-bold font-heading">Serviciu Pre-Arrival: Pregătim casa înainte să vii *</span>
+            <span class="text-text font-bold">Serviciu Pre-Arrival: Pregătim casa înainte să vii *</span>
           </li>
         </ul>
         
@@ -121,7 +129,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           * Disponibil în funcție de pachetul contractat.
         </p>
 
-        {/* Buton CTA cu stilul, fontul și dimensiunea mari specifice CTA-ului */}
         <div class="pt-4">
           <a
             href={whatsappUrl}
@@ -139,7 +146,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
       <div class="overflow-hidden rounded-2xl shadow-xl order-1 lg:order-2">
         <img
-          src="/local.png"
+          src={localImg.src}
           alt="Case mediteraneene în Costa Blanca"
           class="size-full object-cover"
         />
