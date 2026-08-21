@@ -21,13 +21,13 @@ const director = {
   <Header slot="header" />
   <Banner title="Despre Noi" />
 
-  {/* Secțiunea 1: Prezentare Generală & Slogan */}
+  {/* SECȚIUNEA 1 (SUS): Vila cu palmier & Introducere */}
   <section class="py-16 sm:py-24 font-heading">
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
       <div class="overflow-hidden rounded-2xl shadow-xl">
         <img
-          src="/pexels-olivers-34467237.jpg"
-          alt="Partenerul tău local în Costa Blanca"
+          src="/casa-cu-palmier.jpg"
+          alt="Vilă mediteraneană în Costa Blanca"
           class="size-full object-cover"
         />
       </div>
@@ -41,18 +41,15 @@ const director = {
         <p class="text-lg text-text-muted leading-relaxed">
           {brand.name} s-a născut dintr-o convingere simplă: proprietatea ta din Spania merită aceeași grijă pe care i-ai acorda-o tu însuți, dacă ai fi aici în fiecare zi.
         </p>
-        <p class="text-lg text-text-muted leading-relaxed">
-          De la documente și obligații administrative până la verificarea și întreținerea curentă a locuinței, ne ocupăm de lucrurile care necesită prezență locală, atenție și încredere. Astfel, chiar și atunci când ești la sute sau mii de kilometri distanță, proprietatea ta rămâne în mâini bune.
-        </p>
       </div>
     </div>
   </section>
 
-  {/* Secțiunea 2: Fondator & Experiență */}
+  {/* SECȚIUNEA 2 (MIJLOC): Fondatorul la birou & Experiența juridică/guvernamentală */}
   <section class="bg-surface py-16 sm:py-24 font-heading">
     <div class="mx-auto max-w-site px-4 sm:px-6">
       <div class="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 items-center">
-        <div class="h-full min-h-[350px]">
+        <div class="h-full min-h-[380px]">
           <img 
             src={director.image} 
             alt={director.name} 
@@ -76,6 +73,30 @@ const director = {
             La {brand.name}, combinăm această rigoare cu tehnologia, transparența și o abordare orientată spre sustenabilitate. Fiecare proprietate este tratată individual, cu servicii de protecție, monitorizare, mentenanță și asistență administrativă adaptate nevoilor proprietarului.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  {/* SECȚIUNEA 3 (JOS): Partenerul tău local cu casele înșiruite */}
+  <section class="py-16 sm:py-24 font-heading">
+    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
+      <div class="space-y-6 order-2 lg:order-1">
+        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">
+          Partenerul tău local în Costa Blanca
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed">
+          De la documente și obligații administrative până la verificarea și întreținerea curentă a locuinței, ne ocupăm de lucrurile care necesită prezență locală, atenție și încredere.
+        </p>
+        <p class="text-lg text-text-muted leading-relaxed">
+          Astfel, chiar și atunci când ești la sute sau mii de kilometri distanță, proprietatea ta rămâne în mâini bune.
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-xl order-1 lg:order-2">
+        <img
+          src="/pexels-olivers-34467237.jpg"
+          alt="Cartier mediteranean în Costa Blanca"
+          class="size-full object-cover"
+        />
       </div>
     </div>
   </section>
