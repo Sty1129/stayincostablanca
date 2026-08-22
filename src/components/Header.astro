@@ -43,18 +43,18 @@ const languages = [
 <header class="sticky top-0 z-50 w-full border-b border-emerald-100 bg-white/95 backdrop-blur-sm font-heading">
   <div class="mx-auto flex max-w-site items-center justify-between px-3 py-2.5 sm:px-6">
     
-    {/* Logo Orizontal Stil Modern (Pictogramă + Text pe un singur rând) */}
-    <a href={currentLang === 'en' ? '/en/' : (currentLang === 'es' ? '/es/' : '/')} class="flex items-center gap-2.5 transition-opacity hover:opacity-90 shrink-0">
-      <img src="/sicb.png" alt="Stay in Costa Blanca Logo" class="h-10 sm:h-12 w-auto object-contain" />
-      <div class="flex flex-col justify-center leading-none">
-        <span class="text-sm sm:text-base font-black tracking-wider text-emerald-950 uppercase">
-          STAY IN
-        </span>
-        <span class="text-[10px] sm:text-xs font-bold tracking-widest text-emerald-700 uppercase mt-0.5">
-          COSTA BLANCA
-        </span>
-      </div>
-    </a>
+    {/* Logo Orizontal Stil Premium - O singură culoare, font Serif subțire */}
+<a href={isEn ? '/en/' : (isEs ? '/es/' : '/')} class="flex items-center gap-3 transition-opacity hover:opacity-90 shrink-0">
+  <img src="/sicb.png" alt="Stay in Costa Blanca Logo" class="h-10 sm:h-12 w-auto object-contain" />
+  <div class="flex flex-col justify-center leading-tight font-serif">
+    <span class="text-xs sm:text-sm font-medium tracking-widest text-slate-900 uppercase">
+      STAY IN
+    </span>
+    <span class="text-[11px] sm:text-xs font-medium tracking-widest text-slate-900 uppercase">
+      COSTA BLANCA
+    </span>
+  </div>
+</a>
 
     {/* Navigare Desktop */}
     <nav class="hidden items-center gap-1 lg:flex">
