@@ -1,24 +1,20 @@
 ---
 import { brand } from '../config/brand';
 
-// 1. Detectare limbă & Selector extins (EN, ES, FR, DE, RO)
+// Detectare limbă (EN, RO, ES)
 const url = new URL(Astro.request.url);
 const pathname = url.pathname;
 
 let currentLang = 'ro';
-if (pathname.startsWith('/en')) currentLang = 'en';
-else if (pathname.startsWith('/es')) currentLang = 'es';
-else if (pathname.startsWith('/fr')) currentLang = 'fr';
-else if (pathname.startsWith('/de')) currentLang = 'de';
+if (pathname.startsWith('/en/') || pathname === '/en') currentLang = 'en';
+else if (pathname.startsWith('/es/') || pathname === '/es') currentLang = 'es';
 
-const base = currentLang === 'en' ? '/en' : (currentLang === 'ro' ? '' : `/${currentLang}`);
+const base = currentLang === 'ro' ? '' : `/${currentLang}`;
 
 const translations = {
   ro: { home: 'Acasă', about: 'Despre noi', services: 'Servicii', reviews: 'Recenzii', blog: 'Blog', contact: 'Contact', cta: 'Cere Ofertă' },
   en: { home: 'Home', about: 'About Us', services: 'Services', reviews: 'Reviews', blog: 'Blog', contact: 'Contact', cta: 'Get a Quote' },
-  es: { home: 'Inicio', about: 'Sobre nosotros', services: 'Servicios', reviews: 'Reseñas', blog: 'Blog', contact: 'Contacto', cta: 'Pedir Oferta' },
-  fr: { home: 'Accueil', about: 'À propos', services: 'Services', reviews: 'Avis', blog: 'Blog', contact: 'Contact', cta: 'Obtenir un devis' },
-  de: { home: 'Startseite', about: 'Über uns', services: 'Leistungen', reviews: 'Bewertungen', blog: 'Blog', contact: 'Kontakt', cta: 'Angebot anfordern' }
+  es: { home: 'Inicio', about: 'Sobre nosotros', services: 'Servicios', reviews: 'Reseñas', blog: 'Blog', contact: 'Contacto', cta: 'Pedir Oferta' }
 };
 
 const t = translations[currentLang] || translations.ro;
@@ -29,7 +25,7 @@ const waMessage = encodeURIComponent("Bună ziua! Doresc mai multe informații d
 const waLink = `https://wa.me/${phoneForTel}?text=${waMessage}`;
 
 const nav = [
-  { label: t.home,     href: currentLang === 'en' ? '/en/' : (currentLang === 'ro' ? '/' : `/${currentLang}/`) },
+  { label: t.home,     href: currentLang === 'en' ? '/en/' : (currentLang === 'es' ? '/es/' : '/') },
   { label: t.about,    href: `${base}/about` },
   { label: t.services, href: `${base}/services` },
   { label: t.reviews,  href: `${base}/reviews` },
@@ -39,28 +35,26 @@ const nav = [
 
 const languages = [
   { code: 'en', label: 'EN', href: '/en/' },
-  { code: 'es', label: 'ES', href: '/es/' },
-  { code: 'fr', label: 'FR', href: '/fr/' },
-  { code: 'de', label: 'DE', href: '/de/' },
-  { code: 'ro', label: 'RO', href: '/' }
+  { code: 'ro', label: 'RO', href: '/' },
+  { code: 'es', label: 'ES', href: '/es/' }
 ];
 ---
 
 <header class="sticky top-0 z-50 w-full border-b border-emerald-100 bg-white/95 backdrop-blur-sm font-heading">
   <div class="mx-auto flex max-w-site items-center justify-between px-4 py-2 sm:px-6">
     
-    {/* Logo + Nume Brand */}
-    <a href={currentLang === 'en' ? '/en/' : (currentLang === 'ro' ? '/' : `/${currentLang}/`)} class="flex items-center gap-3 transition-opacity hover:opacity-90">
-      <img src="/SICB logo.webp" alt="Stay in Costa Blanca Logo" class="h-12 w-auto object-contain" />
-      <span class="font-heading text-lg font-black uppercase tracking-tight text-emerald-950 hidden sm:inline-block">
+    {/* Logo Transparent + Nume Brand */}
+    <a href={currentLang === 'en' ? '/en/' : (currentLang === 'es' ? '/es/' : '/')} class="flex items-center gap-3 transition-opacity hover:opacity-90">
+      <img src="/sicb.png" alt="Stay in Costa Blanca Logo" class="h-10 sm:h-12 w-auto object-contain" />
+      <span class="font-heading text-base sm:text-lg font-black uppercase tracking-tight text-emerald-950 hidden sm:inline-block">
         {brand.name}
       </span>
     </a>
 
     {/* Navigare Desktop */}
-    <nav class="hidden items-center gap-1 xl:flex">
+    <nav class="hidden items-center gap-1 lg:flex">
       {nav.map(({ label, href }) => {
-        const isActive = pathname === href || (href !== '/' && href !== '/en/' && pathname.startsWith(href));
+        const isActive = pathname === href || (href !== '/' && href !== '/en/' && href !== '/es/' && pathname.startsWith(href));
         return (
           <a
             href={href}
@@ -75,15 +69,15 @@ const languages = [
       })}
     </nav>
 
-    {/* Limbi + Telefon + CTA Desktop */}
+    {/* Selector Limbi (EN, RO, ES) + Telefon + CTA Desktop */}
     <div class="hidden items-center gap-4 lg:flex">
-      {/* Selector Limbi EN, ES, FR, DE, RO */}
+      {/* Selector limbi aerisit */}
       <div class="flex items-center bg-slate-100 p-1 rounded-full border border-slate-200">
         {languages.map((lang) => (
           <a
             href={lang.href}
             class:list={[
-              "px-2.5 py-1 rounded-full text-[10px] font-black transition-all",
+              "px-3 py-1 rounded-full text-xs font-black transition-all",
               currentLang === lang.code ? "bg-emerald-700 text-white shadow-md" : "text-slate-600 hover:text-emerald-800"
             ]}
           >
@@ -117,7 +111,7 @@ const languages = [
           <a
             href={lang.href}
             class:list={[
-              "px-2 py-0.5 rounded-full text-[9px] font-black",
+              "px-2 py-0.5 rounded-full text-[10px] font-black",
               currentLang === lang.code ? "bg-emerald-700 text-white shadow-sm" : "text-slate-600"
             ]}
           >
