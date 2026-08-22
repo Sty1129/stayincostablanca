@@ -9,6 +9,8 @@ let currentLang = 'ro';
 if (pathname.startsWith('/en/') || pathname === '/en') currentLang = 'en';
 else if (pathname.startsWith('/es/') || pathname === '/es') currentLang = 'es';
 
+const isEn = currentLang === 'en';
+const isEs = currentLang === 'es';
 const base = currentLang === 'ro' ? '' : `/${currentLang}`;
 
 const translations = {
@@ -25,7 +27,7 @@ const waMessage = encodeURIComponent("Bună ziua! Doresc mai multe informații d
 const waLink = `https://wa.me/${phoneForTel}?text=${waMessage}`;
 
 const nav = [
-  { label: t.home,     href: currentLang === 'en' ? '/en/' : (currentLang === 'es' ? '/es/' : '/') },
+  { label: t.home,     href: isEn ? '/en/' : (isEs ? '/es/' : '/') },
   { label: t.about,    href: `${base}/about` },
   { label: t.services, href: `${base}/services` },
   { label: t.reviews,  href: `${base}/reviews` },
@@ -43,18 +45,18 @@ const languages = [
 <header class="sticky top-0 z-50 w-full border-b border-emerald-100 bg-white/95 backdrop-blur-sm font-heading">
   <div class="mx-auto flex max-w-site items-center justify-between px-3 py-2.5 sm:px-6">
     
-    {/* Logo Orizontal Stil Premium - O singură culoare, font Serif subțire */}
-<a href={isEn ? '/en/' : (isEs ? '/es/' : '/')} class="flex items-center gap-3 transition-opacity hover:opacity-90 shrink-0">
-  <img src="/sicb.png" alt="Stay in Costa Blanca Logo" class="h-10 sm:h-12 w-auto object-contain" />
-  <div class="flex flex-col justify-center leading-tight font-serif">
-    <span class="text-xs sm:text-sm font-medium tracking-widest text-slate-900 uppercase">
-      STAY IN
-    </span>
-    <span class="text-[11px] sm:text-xs font-medium tracking-widest text-slate-900 uppercase">
-      COSTA BLANCA
-    </span>
-  </div>
-</a>
+    {/* Logo Transparent + Text Stil Premium Subțire */}
+    <a href={isEn ? '/en/' : (isEs ? '/es/' : '/')} class="flex items-center gap-3 transition-opacity hover:opacity-90 shrink-0">
+      <img src="/sicb.png" alt="Stay in Costa Blanca Logo" class="h-10 sm:h-12 w-auto object-contain" />
+      <div class="flex flex-col justify-center leading-tight font-serif">
+        <span class="text-xs sm:text-sm font-medium tracking-widest text-slate-900 uppercase">
+          STAY IN
+        </span>
+        <span class="text-[11px] sm:text-xs font-medium tracking-widest text-slate-900 uppercase">
+          COSTA BLANCA
+        </span>
+      </div>
+    </a>
 
     {/* Navigare Desktop */}
     <nav class="hidden items-center gap-1 lg:flex">
@@ -74,7 +76,7 @@ const languages = [
       })}
     </nav>
 
-    {/* Selector Limbi + Telefon + CTA */}
+    {/* Selector Limbi (EN, RO, ES) + Telefon + CTA */}
     <div class="hidden items-center gap-3 lg:flex shrink-0">
       <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-200">
         {languages.map((lang) => (
