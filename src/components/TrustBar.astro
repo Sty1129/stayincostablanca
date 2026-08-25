@@ -8,12 +8,26 @@ interface Props {
   items?: TrustItem[];
 }
 
-const { items = [
-  { value: '24/7', label: 'Suport WhatsApp' },
-  { value: '100%', label: 'Rapoarte foto-video' },
-  { value: 'PRO',  label: 'Protocol Anti-Okupas' },
-  { value: 'LOCAL', label: 'Torrevieja & Orihuela Costa' },
-] } = Astro.props;
+const currentLang = Astro.currentLocale || 'ro';
+
+const defaultItemsByLang: Record<string, TrustItem[]> = {
+  ro: [
+    { value: 'RAPORT', label: 'Digital documentat' },
+    { value: 'PREVENȚIE', label: 'Verificări periodice' },
+    { value: 'LOCAL', label: 'Coordonare & asistență' },
+    { value: 'ZONĂ', label: 'Orihuela Costa & Torrevieja' },
+  ],
+  en: [
+    { value: 'REPORT', label: 'Digital documentation' },
+    { value: 'PREVENTION', label: 'Periodic checks' },
+    { value: 'LOCAL', label: 'On-site coordination' },
+    { value: 'AREA', label: 'Orihuela Costa & Torrevieja' },
+  ]
+};
+
+const defaultItems = defaultItemsByLang[currentLang] || defaultItemsByLang.ro;
+
+const { items = defaultItems } = Astro.props;
 ---
 
 <section class="border-y border-border bg-surface" aria-label="Semnale de încredere">
@@ -21,11 +35,11 @@ const { items = [
     <ul class="flex flex-nowrap md:flex-wrap items-center justify-between gap-6 sm:gap-8 lg:justify-center lg:gap-16" role="list">
       {items.map(({ label, value }) => (
         <li class="flex shrink-0 items-center gap-2.5 text-sm sm:text-base">
-          <svg class="size-5 shrink-0 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="size-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
           <span class="font-heading font-semibold text-text whitespace-nowrap">
-            {value && <span class="text-primary">{value} </span>}
+            {value && <span class="text-emerald-700 font-bold">{value}: </span>}
             {label}
           </span>
         </li>
@@ -35,7 +49,6 @@ const { items = [
 </section>
 
 <style>
-  /* Adăugăm asta pentru ca pe mobil să se poată da scroll lateral dacă sunt prea multe elemente */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
