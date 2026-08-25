@@ -1,1 +1,63 @@
 
+---
+// src/components/Risks.astro
+
+const risks = [
+  {
+    title: "UMIDITATE & MUCEGAI",
+    description: "Schimbările pot evolua înainte să devină evidente la prima vedere."
+  },
+  {
+    title: "APĂ & SCURGERI",
+    description: "O variație neobișnuită poate fi primul indiciu al unei probleme."
+  },
+  {
+    title: "AER CONDIȚIONAT",
+    description: "Verificările funcționale periodice pot evidenția schimbări care necesită atenție."
+  },
+  {
+    title: "VREME SEVERĂ",
+    description: "Ploile abundente, vântul și furtunile pot afecta terasele, drenajul sau exteriorul proprietății."
+  },
+  {
+    title: "CORESPONDENȚĂ & ADMINISTRAȚIE",
+    description: "Documentele importante nu trebuie să aștepte până la următoarea vizită a proprietarului în Spania."
+  },
+  {
+    title: "INTERVENȚII LOCALE",
+    description: "Dacă apare o problemă, este important să existe cineva care cunoaște deja proprietatea."
+  }
+];
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-background font-heading border-b border-border">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    
+    <!-- Titlu & Intro -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text tracking-tight uppercase">
+        O proprietate nelocuită se poate schimba fără să observi.
+      </h2>
+      <p class="mt-4 text-sm sm:text-base text-text-muted leading-relaxed">
+        O scurgere minoră, umiditatea persistentă, o problemă la aerul condiționat sau efectele unei furtuni pot rămâne neobservate săptămâni întregi atunci când proprietarul este departe.
+      </p>
+    </div>
+
+    <!-- cele 6 carduri -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {risks.map((risk) => (
+        <div class="bg-surface p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-emerald-800 tracking-wide mb-2">
+              {risk.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              {risk.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
