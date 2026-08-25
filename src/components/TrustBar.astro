@@ -8,37 +8,25 @@ interface Props {
   items?: TrustItem[];
 }
 
-const currentLang = Astro.currentLocale || 'ro';
-
-const defaultItemsByLang: Record<string, TrustItem[]> = {
-  ro: [
-    { value: 'RAPORT', label: 'Digital documentat' },
-    { value: 'PREVENȚIE', label: 'Verificări periodice' },
-    { value: 'LOCAL', label: 'Coordonare & asistență' },
-    { value: 'ZONĂ', label: 'Orihuela Costa & Torrevieja' },
-  ],
-  en: [
-    { value: 'REPORT', label: 'Digital documentation' },
-    { value: 'PREVENTION', label: 'Periodic checks' },
-    { value: 'LOCAL', label: 'On-site coordination' },
-    { value: 'AREA', label: 'Orihuela Costa & Torrevieja' },
-  ]
-};
-
-const defaultItems = defaultItemsByLang[currentLang] || defaultItemsByLang.ro;
+const defaultItems: TrustItem[] = [
+  { value: 'RAPORT', label: 'Digital documentat' },
+  { value: 'PREVENȚIE', label: 'Verificări periodice' },
+  { value: 'LOCAL', label: 'Coordonare & asistență' },
+  { value: 'ZONĂ', label: 'Orihuela Costa & Torrevieja' },
+];
 
 const { items = defaultItems } = Astro.props;
 ---
 
 <section class="border-y border-border bg-surface" aria-label="Semnale de încredere">
-  <div class="mx-auto max-w-site overflow-x-auto px-4 py-5 sm:px-6 sm:py-6 no-scrollbar">
-    <ul class="flex flex-nowrap md:flex-wrap items-center justify-between gap-6 sm:gap-8 lg:justify-center lg:gap-16" role="list">
+  <div class="mx-auto max-w-site px-4 py-4 sm:px-6 no-scrollbar overflow-x-auto">
+    <ul class="flex items-center justify-between gap-4 md:gap-6 lg:justify-around text-xs sm:text-sm min-w-max lg:min-w-0" role="list">
       {items.map(({ label, value }) => (
-        <li class="flex shrink-0 items-center gap-2.5 text-sm sm:text-base">
-          <svg class="size-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <li class="flex shrink-0 items-center gap-2">
+          <svg class="size-4 sm:size-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
-          <span class="font-heading font-semibold text-text whitespace-nowrap">
+          <span class="font-heading font-medium text-text whitespace-nowrap">
             {value && <span class="text-emerald-700 font-bold">{value}: </span>}
             {label}
           </span>
