@@ -4,26 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import TrustBar from '../components/TrustBar.astro';
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import TrustBar from '../components/TrustBar.astro';
-import Risks from '../components/Risks.astro'; // <--- Import nou
-// ... restul importurilor
----
-
-<BaseLayout ...>
-  <Header slot="header" />
-
-  <Hero />
-  <TrustBar />
-  <Risks /> <!-- <--- Secțiunea nouă adăugată aici -->
-  
-  <!-- ... restul componentelor -->
-  <Footer slot="footer" />
-</BaseLayout>
+import Risks from '../components/Risks.astro';
 import Services from '../components/Services.astro';
 import About from '../components/About.astro';
 import Reviews from '../components/Reviews.astro';
@@ -57,6 +38,7 @@ import { client } from '../data/client';
 
   <Hero />
   <TrustBar />
+  <Risks />
   <Services />
   <About />
   <Reviews />
