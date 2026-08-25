@@ -4,77 +4,149 @@
 const risks = [
   {
     title: "UMIDITATE & MUCEGAI",
-    description: "Schimbările pot evolua înainte să devină evidente la prima vedere.",
-    // Iconiță: Droplet / Humidity
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2.25c-5.25 6-7.5 9.75-7.5 13.5a7.5 7.5 0 0015 0c0-3.75-2.25-7.5-7.5-13.5z" />`
+    description:
+      "Schimbările pot evolua înainte să devină evidente la prima vedere.",
+    // Humidity / droplets
+    icon: `
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M12 3.25c-2.1 2.65-4.25 5.3-4.25 8a4.25 4.25 0 108.5 0c0-2.7-2.15-5.35-4.25-8z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M5.5 12.75c-1.25 1.55-2.25 2.9-2.25 4.3a2.25 2.25 0 004.5 0c0-1.4-1-2.75-2.25-4.3z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M18.5 13.75c-1.1 1.35-1.9 2.45-1.9 3.65a1.9 1.9 0 003.8 0c0-1.2-.8-2.3-1.9-3.65z" />
+    `
   },
+
   {
     title: "APĂ & SCURGERI",
-    description: "O variație neobișnuită poate fi primul indiciu al unei probleme.",
-    // Iconiță: Faucet / Water tap
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 13.5V6a2 2 0 012-2h4a2 2 0 012 2v2.5M6 13.5h10M6 13.5a2.5 2.5 0 002.5 2.5h1.25M16 13.5a2.5 2.5 0 01-2.5 2.5h-1.25M9.75 16v3.75m4.5-3.75v3.75" />`
+    description:
+      "O variație neobișnuită poate fi primul indiciu al unei probleme.",
+    // Faucet + droplet
+    icon: `
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M7 10V7.75A2.75 2.75 0 019.75 5H13" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M11 5V3.5M8.75 3.5h4.5" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M7 10h9.5a2.5 2.5 0 012.5 2.5V14h-4v-1H9v2.25H5V12a2 2 0 012-2z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M17 17.25c-1.15 1.45-1.75 2.35-1.75 3.15a1.75 1.75 0 003.5 0c0-.8-.6-1.7-1.75-3.15z" />
+    `
   },
+
   {
     title: "AER CONDIȚIONAT",
-    description: "Verificările funcționale periodice pot evidenția schimbări care necesită atenție.",
-    // Iconiță: Airflow / Wind waves
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 9h12.75a2.25 2.25 0 000-4.5H12M3.75 15h16.5a2.25 2.25 0 010 4.5H15M3.75 12h11.25a2.25 2.25 0 000-4.5H9" />`
+    description:
+      "Verificările funcționale periodice pot evidenția schimbări care necesită atenție.",
+    // AC unit + airflow
+    icon: `
+      <rect x="3.5" y="4.5" width="17" height="7.5" rx="2"
+        stroke-width="1.6" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M7 8.25h10M8 12.25c0 1.1-.7 1.75-1.75 2.5-.95.7-1.5 1.4-1.5 2.5M12 12.25c0 1.15-.75 1.85-1.75 2.6-.95.7-1.5 1.4-1.5 2.65M16 12.25c0 1.1-.7 1.75-1.75 2.5-.95.7-1.5 1.4-1.5 2.5" />
+    `
   },
+
   {
     title: "VREME SEVERĂ",
-    description: "Ploile abundente, vântul și furtunile pot afecta terasele, drenajul sau exteriorul proprietății.",
-    // Iconiță: Storm cloud / Rain
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 00.4-7.478 5.25 5.25 0 00-10.22-1.9A4.502 4.502 0 002.25 15zM8.25 19.5l-1.5 3M12 19.5l-1.5 3M15.75 19.5l-1.5 3" />`
+    description:
+      "Ploile abundente, vântul și furtunile pot afecta terasele, drenajul sau exteriorul proprietății.",
+    // Storm cloud + rain + wind
+    icon: `
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M6.5 15.5h10.75a3.25 3.25 0 00.3-6.49A5.2 5.2 0 007.4 7.8 3.75 3.75 0 006.5 15.5z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M8 18l-1 2M12 18l-1 2M16 18l-1 2" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M18.5 5.25h2M17.5 7.25h3" />
+    `
   },
+
   {
     title: "CORESPONDENȚĂ & ADMINISTRAȚIE",
-    description: "Documentele importante nu trebuie să aștepte până la următoarea vizită a proprietarului în Spania.",
-    // Iconiță: Envelope / Letter
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />`
+    description:
+      "Documentele importante nu trebuie să aștepte până la următoarea vizită a proprietarului în Spania.",
+    // Envelope + document
+    icon: `
+      <rect x="3.5" y="7" width="13.5" height="10" rx="2"
+        stroke-width="1.6" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M4.25 8l5.55 4.2a1.5 1.5 0 001.8 0L16.5 8" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M14.5 4h4a2 2 0 012 2v9.5M16.5 7h2M16.5 10h2" />
+    `
   },
+
   {
     title: "INTERVENȚII LOCALE",
-    description: "Dacă apare o problemă, este important să existe cineva care cunoaște deja proprietatea.",
-    // Iconiță: Key / Property Access
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 11-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H3.75V19.5L9.682 13.57a1.5 1.5 0 00.43-1.563A6 6 0 0121.75 8.25z" />`
+    description:
+      "Dacă apare o problemă, este important să existe cineva care cunoaște deja proprietatea.",
+    // House + key
+    icon: `
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M3.5 11L12 4l8.5 7" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M5.5 10v9h8" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M9 19v-5h4" />
+      <circle cx="17.25" cy="15.75" r="2.25" stroke-width="1.6" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+        d="M18.85 17.35L21 19.5M20 18.5l1-1M19 17.5l1-1" />
+    `
   }
 ];
 ---
 
 <section class="py-12 sm:py-16 md:py-20 bg-background font-heading border-b border-border">
   <div class="mx-auto max-w-site px-4 sm:px-6">
-    
+
     <!-- Titlu & Intro -->
     <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text tracking-tight uppercase">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text tracking-tight uppercase"
+      >
         O proprietate nelocuită se poate schimba fără să observi.
       </h2>
+
       <p class="mt-4 text-sm sm:text-base text-text-muted leading-relaxed">
-        O scurgere minoră, umiditatea persistentă, o problemă la aerul condiționat sau efectele unei furtuni pot rămâne neobservate săptămâni întregi atunci când proprietarul este departe.
+        O scurgere minoră, umiditatea persistentă, o problemă la aerul
+        condiționat sau efectele unei furtuni pot rămâne neobservate săptămâni
+        întregi atunci când proprietarul este departe.
       </p>
     </div>
 
-    <!-- Cele 6 carduri cu iconițe line-art -->
+    <!-- Cele 6 carduri -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {risks.map((risk) => (
-        <div class="bg-surface p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-          <div>
-            <div class="mb-4 inline-flex items-center justify-center size-11 rounded-lg bg-emerald-50/70 border border-emerald-100">
-              <svg 
-                class="size-6 text-emerald-600" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-                Fragment set:html={risk.icon}
-              />
-            </div>
-            <h3 class="text-base sm:text-lg font-bold text-emerald-900 tracking-wide mb-2">
-              {risk.title}
-            </h3>
-            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
-              {risk.description}
-            </p>
+        <div
+          class="bg-surface p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow duration-300"
+        >
+          <!-- Icon -->
+          <div
+            class="mb-5 inline-flex items-center justify-center size-12 rounded-full bg-[#F2EFE9]"
+          >
+            <svg
+              class="size-7 text-[#5B9EB5]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <Fragment set:html={risk.icon} />
+            </svg>
           </div>
+
+          <!-- Title -->
+          <h3
+            class="text-base sm:text-lg font-bold text-[#0E3846] tracking-wide mb-2"
+          >
+            {risk.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+            {risk.description}
+          </p>
         </div>
       ))}
     </div>
