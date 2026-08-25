@@ -1,31 +1,42 @@
-
 ---
 // src/components/Risks.astro
 
 const risks = [
   {
     title: "UMIDITATE & MUCEGAI",
-    description: "Schimbările pot evolua înainte să devină evidente la prima vedere."
+    description: "Schimbările pot evolua înainte să devină evidente la prima vedere.",
+    // Iconiță: Droplet / Humidity
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2.25c-5.25 6-7.5 9.75-7.5 13.5a7.5 7.5 0 0015 0c0-3.75-2.25-7.5-7.5-13.5z" />`
   },
   {
     title: "APĂ & SCURGERI",
-    description: "O variație neobișnuită poate fi primul indiciu al unei probleme."
+    description: "O variație neobișnuită poate fi primul indiciu al unei probleme.",
+    // Iconiță: Faucet / Water tap
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 13.5V6a2 2 0 012-2h4a2 2 0 012 2v2.5M6 13.5h10M6 13.5a2.5 2.5 0 002.5 2.5h1.25M16 13.5a2.5 2.5 0 01-2.5 2.5h-1.25M9.75 16v3.75m4.5-3.75v3.75" />`
   },
   {
     title: "AER CONDIȚIONAT",
-    description: "Verificările funcționale periodice pot evidenția schimbări care necesită atenție."
+    description: "Verificările funcționale periodice pot evidenția schimbări care necesită atenție.",
+    // Iconiță: Airflow / Wind waves
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 9h12.75a2.25 2.25 0 000-4.5H12M3.75 15h16.5a2.25 2.25 0 010 4.5H15M3.75 12h11.25a2.25 2.25 0 000-4.5H9" />`
   },
   {
     title: "VREME SEVERĂ",
-    description: "Ploile abundente, vântul și furtunile pot afecta terasele, drenajul sau exteriorul proprietății."
+    description: "Ploile abundente, vântul și furtunile pot afecta terasele, drenajul sau exteriorul proprietății.",
+    // Iconiță: Storm cloud / Rain
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 00.4-7.478 5.25 5.25 0 00-10.22-1.9A4.502 4.502 0 002.25 15zM8.25 19.5l-1.5 3M12 19.5l-1.5 3M15.75 19.5l-1.5 3" />`
   },
   {
     title: "CORESPONDENȚĂ & ADMINISTRAȚIE",
-    description: "Documentele importante nu trebuie să aștepte până la următoarea vizită a proprietarului în Spania."
+    description: "Documentele importante nu trebuie să aștepte până la următoarea vizită a proprietarului în Spania.",
+    // Iconiță: Envelope / Letter
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />`
   },
   {
     title: "INTERVENȚII LOCALE",
-    description: "Dacă apare o problemă, este important să existe cineva care cunoaște deja proprietatea."
+    description: "Dacă apare o problemă, este important să existe cineva care cunoaște deja proprietatea.",
+    // Iconiță: Key / Property Access
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 11-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H3.75V19.5L9.682 13.57a1.5 1.5 0 00.43-1.563A6 6 0 0121.75 8.25z" />`
   }
 ];
 ---
@@ -43,12 +54,21 @@ const risks = [
       </p>
     </div>
 
-    <!-- cele 6 carduri -->
+    <!-- Cele 6 carduri cu iconițe line-art -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {risks.map((risk) => (
         <div class="bg-surface p-6 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
           <div>
-            <h3 class="text-base sm:text-lg font-bold text-emerald-800 tracking-wide mb-2">
+            <div class="mb-4 inline-flex items-center justify-center size-11 rounded-lg bg-emerald-50/70 border border-emerald-100">
+              <svg 
+                class="size-6 text-emerald-600" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                Fragment set:html={risk.icon}
+              />
+            </div>
+            <h3 class="text-base sm:text-lg font-bold text-emerald-900 tracking-wide mb-2">
               {risk.title}
             </h3>
             <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
