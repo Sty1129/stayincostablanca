@@ -1,157 +1,272 @@
 ---
-/* Componenta de Servicii - Versiunea 100% Curată (RO/EN) */
-const currentLang = Astro.currentLocale || 'ro';
-
-const translations = {
-  ro: {
-    title: "Pachete de Administrare",
-    subtitle: "Soluții profesionale pentru liniștea ta în Costa Blanca.",
-    perYear: "/an",
-    mostPopular: "Cel mai popular",
-    everythingIn: "Tot din",
-    ctaPearl: "Solicită Pearl",
-    ctaSapphire: "Alege Sapphire",
-    ctaEmerald: "Rezervă Emerald",
-    waPearl: "Salut! Vreau pachetul PEARL",
-    waSapphire: "Salut! Vreau pachetul SAPPHIRE",
-    waEmerald: "Salut! Vreau pachetul EMERALD",
-    pearlFeatures: [
-      "Păstrare chei 24/7 (Key Holding)",
-      "1 vizită lunară (interior/exterior)",
-      "Verificare post-furtună/ploi",
-      "Raport foto/video pe WhatsApp",
-      "Colectare corespondență & facturi"
-    ],
-    sapphireFeatures: [
-      "2 vizite lunare detaliate",
-      "Management facturi (Suma/Ibi)",
-      "Reprezentare la Comunitate",
-      "Gestiune echipe mentenanță",
-      "Aerisire & verificare instalații"
-    ],
-    emeraldFeatures: [
-      "🛡️ Protocol Anti-Okupas (vizite 48h)",
-      "Digital Twin (Scanare 360°)",
-      "Concierge (Pregătire sosire)",
-      "Asistență prioritară 4h",
-      "Gestiune închirieri (la cerere)"
-    ]
-  },
-  en: {
-    title: "Management Packages",
-    subtitle: "Professional solutions for your peace of mind in Costa Blanca.",
-    perYear: "/year",
-    mostPopular: "Most Popular",
-    everythingIn: "Everything in",
-    ctaPearl: "Request Pearl",
-    ctaSapphire: "Choose Sapphire",
-    ctaEmerald: "Book Emerald",
-    waPearl: "Hi! I'm interested in the PEARL package",
-    waSapphire: "Hi! I'm interested in the SAPPHIRE package",
-    waEmerald: "Hi! I'm interested in the EMERALD package",
-    pearlFeatures: [
-      "24/7 Secure Key Holding",
-      "1 Monthly inspection",
-      "Post-storm/rain verification",
-      "Photo/video WhatsApp report",
-      "Mail & utility bill collection"
-    ],
-    sapphireFeatures: [
-      "2 Detailed monthly visits",
-      "Bill & tax management (Suma/Ibi)",
-      "Community meeting attendance",
-      "Maintenance team management",
-      "Property airing & utility check"
-    ],
-    emeraldFeatures: [
-      "🛡️ Anti-Squatter Protocol (48h visits)",
-      "Digital Twin (360° Property Scanning)",
-      "Concierge (Pre-arrival prep)",
-      "4h Priority technical support",
-      "Full rental management (on request)"
-    ]
-  }
-};
-
-const t = translations[currentLang] || translations.ro;
+// src/components/Services.astro
 ---
 
-<section id="services" class="py-24 bg-white font-heading overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="pachete" class="py-16 sm:py-20 bg-slate-50 font-heading border-b border-border">
+  <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="text-center mb-20">
-      <h2 class="text-4xl font-black text-slate-900 sm:text-5xl uppercase tracking-tight">
-        {t.title}
+    <!-- Titlu & Subtitlu -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text uppercase tracking-tight">
+        Alege nivelul de protecție potrivit proprietății tale
       </h2>
-      <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
-        {t.subtitle}
+      <p class="mt-3 text-sm sm:text-base text-text-muted">
+        De la monitorizare esențială până la administrare locală extinsă.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Cele 3 carduri (ECO-BASIC, ECO-SMART, ECO-PREMIUM) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
       
-      <div class="flex flex-col h-full bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-        <div class="mb-6">
-          <h3 class="text-2xl font-black text-slate-800 text-left">PEARL 🐚</h3>
-          <p class="text-slate-500 text-sm font-bold uppercase tracking-widest mt-1">Basic Care</p>
-        </div>
-        <div class="mb-8 font-black text-4xl text-slate-900 text-left">350€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-600 border-t border-slate-200 pt-6 text-left">
-          {t.pearlFeatures.map(item => (
+      <!-- 1. ECO-BASIC (WATCH) -->
+      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+        <div>
+          <!-- Header Card -->
+          <div class="mb-4">
+            <h3 class="text-2xl font-bold text-text">ECO-BASIC</h3>
+            <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest mt-0.5">WATCH</p>
+            <p class="text-sm font-semibold text-text-muted mt-2">Supravegherea esențială a proprietății</p>
+          </div>
+
+          <p class="text-xs sm:text-sm text-text-muted mb-6 leading-relaxed">
+            Pentru proprietarii care doresc o verificare regulată și documentată a locuinței atunci când sunt plecați.
+          </p>
+
+          <!-- Beneficii -->
+          <ul class="space-y-3 text-xs sm:text-sm text-text mb-8 border-t border-border pt-6">
             <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold">✓</span>
-              <span>{item}</span>
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>12 vizite documentate / an</span>
             </li>
-          ))}
-        </ul>
-        <a href={`https://wa.me/34641477523?text=${encodeURIComponent(t.waPearl)}`} class="block text-center py-4 border-2 border-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white transition uppercase text-sm">
-          {t.ctaPearl}
-        </a>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Păstrarea securizată a cheilor</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Verificarea accesului și instalațiilor esențiale</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Verificare funcțională de bază a aerului condiționat</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Verificare vizuală pentru umezeală și infiltrații</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Înregistrarea contoarelor și verificarea corespondenței</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Raport digital cu fotografii după fiecare vizită</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>1 verificare după vreme severă / an</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Zona de Preț (La Final) & CTA -->
+        <div>
+          <div class="border-t border-border pt-4 mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-bold text-text">649 €</span>
+              <span class="text-xs text-text-muted font-medium">/ an</span>
+            </div>
+            <p class="text-[11px] text-text-muted mt-0.5">TVA inclus &middot; Plată anuală</p>
+          </div>
+
+          <a 
+            href="/contact" 
+            class="block text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-sm uppercase tracking-wider"
+          >
+            SOLICITĂ EVALUAREA PROPRIETĂȚII
+          </a>
+          <a href="/services" class="block text-center text-xs text-text-muted hover:text-emerald-700 mt-3 underline">
+            VEZI TOT CE INCLUDE ECO-BASIC
+          </a>
+        </div>
       </div>
 
-      <div class="flex flex-col h-full bg-white p-8 rounded-[2rem] border-4 border-blue-600 shadow-2xl relative md:-translate-y-4">
-        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
-          {t.mostPopular}
+      <!-- 2. ECO-SMART (PREVENT) - EVIDENȚIAT CENTRAL -->
+      <div class="bg-surface p-6 sm:p-8 rounded-2xl border-2 border-emerald-600 shadow-xl flex flex-col justify-between relative transform lg:-translate-y-2">
+        
+        <!-- Badge -->
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap shadow-md">
+          RECOMANDAT PROPRIETARILOR CARE LOCUIESC ÎN STRĂINĂTATE
         </div>
-        <div class="mb-6 pt-4">
-          <h3 class="text-2xl font-black text-blue-600 text-left">SAPPHIRE 💙</h3>
-          <p class="text-blue-400 text-sm font-bold uppercase tracking-widest mt-1">Standard Plus</p>
-        </div>
-        <div class="mb-8 font-black text-4xl text-slate-900 text-left">650€<span class="text-lg text-slate-400 font-normal">{t.perYear}</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-700 border-t border-blue-100 pt-6 text-left">
-          <li class="font-bold text-blue-600 text-xs uppercase mb-2">{t.everythingIn} Pearl +</li>
-          {t.sapphireFeatures.map(item => (
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold">✓</span>
-              <span>{item}</span>
+
+        <div>
+          <!-- Header Card -->
+          <div class="mb-4 pt-2">
+            <h3 class="text-2xl font-bold text-emerald-900">ECO-SMART</h3>
+            <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest mt-0.5">PREVENT</p>
+            <p class="text-sm font-semibold text-emerald-800 mt-2">Prevenție activă, nu doar verificare</p>
+          </div>
+
+          <p class="text-xs sm:text-sm text-text-muted mb-6 leading-relaxed">
+            Pentru proprietarii care vor să monitorizeze evoluția proprietății și să identifice din timp schimbările care necesită atenție.
+          </p>
+
+          <!-- Beneficii -->
+          <ul class="space-y-3 text-xs sm:text-sm text-text mb-8 border-t border-emerald-100 pt-6">
+            <li class="flex items-start gap-2 font-semibold text-emerald-950">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>24 de vizite / an (12 preventive + 12 ventilație)</span>
             </li>
-          ))}
-        </ul>
-        <a href={`https://wa.me/34641477523?text=${encodeURIComponent(t.waSapphire)}`} class="block text-center py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg uppercase text-sm">
-          {t.ctaSapphire}
-        </a>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Monitorizarea temperaturii și umidității</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Ventilație activă asistată</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Monitorizare preventivă a aerului condiționat</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Analiza consumului de apă și energie</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Verificări administrative periodice</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Raport digital după fiecare vizită</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Zona de Preț (La Final) & CTA -->
+        <div>
+          <div class="border-t border-border pt-4 mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-bold text-text">125 €</span>
+              <span class="text-xs text-text-muted font-medium">/ lună</span>
+            </div>
+            <p class="text-[11px] text-text-muted mt-0.5">TVA inclus &middot; Contract servicii 12 luni</p>
+            <p class="text-xs text-emerald-700 font-bold mt-1.5">
+              Alternativ: 1.425 € / an <span class="font-normal text-text-muted">(Economisești 5%)</span>
+            </p>
+          </div>
+
+          <a 
+            href="/contact" 
+            class="block text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm transition shadow-md uppercase tracking-wider"
+          >
+            ALEGE ECO-SMART
+          </a>
+          <a href="/services" class="block text-center text-xs text-text-muted hover:text-emerald-700 mt-3 underline">
+            VEZI TOT CE INCLUDE ECO-SMART
+          </a>
+        </div>
       </div>
 
-      <div class="flex flex-col h-full bg-slate-900 p-8 rounded-[2rem] border border-emerald-500 shadow-xl">
-        <div class="mb-6">
-          <h3 class="text-2xl font-black text-emerald-400 text-left">EMERALD 💚</h3>
-          <p class="text-emerald-600 text-sm font-bold uppercase tracking-widest mt-1">VIP Security</p>
-        </div>
-        <div class="mb-8 font-black text-4xl text-white text-left">1500€<span class="text-lg text-slate-500 font-normal">{t.perYear}</span></div>
-        <ul class="space-y-4 mb-10 flex-grow text-slate-300 border-t border-slate-800 pt-6 text-left">
-          <li class="font-bold text-emerald-400 text-xs uppercase mb-2">{t.everythingIn} Sapphire +</li>
-          {t.emeraldFeatures.map((item, index) => (
-            <li class={`flex items-start gap-2 ${index === 0 ? 'text-white font-bold' : ''}`}>
-              <span class="text-emerald-500 font-bold">{index === 0 ? '🛡️' : '✓'}</span>
-              <span>{item}</span>
+      <!-- 3. ECO-PREMIUM (MANAGE) -->
+      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+        <div>
+          <!-- Header Card -->
+          <div class="mb-4">
+            <h3 class="text-2xl font-bold text-text">ECO-PREMIUM</h3>
+            <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest mt-0.5">MANAGE</p>
+            <p class="text-sm font-semibold text-text-muted mt-2">Proprietatea ta administrată local</p>
+          </div>
+
+          <p class="text-xs sm:text-sm text-text-muted mb-6 leading-relaxed">
+            Pentru proprietarii care vor mai mult decât monitorizare și doresc să reducă administrarea proprietății de la distanță.
+          </p>
+
+          <!-- Beneficii -->
+          <ul class="space-y-3 text-xs sm:text-sm text-text mb-8 border-t border-border pt-6">
+            <li class="flex items-start gap-2 font-medium">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Tot ce include ECO-SMART</span>
             </li>
-          ))}
-        </ul>
-        <a href={`https://wa.me/34641477523?text=${encodeURIComponent(t.waEmerald)}`} class="block text-center py-4 bg-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-600 transition shadow-lg uppercase text-sm">
-          {t.ctaEmerald}
-        </a>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>4 evaluări extinse ale proprietății / an</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Monitorizare administrativă lunară</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Analiză lunară a consumului de apă și energie</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>4 verificări după vreme severă / an</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>2 accesuri și coordonări cu tehnicieni / an</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>2 pregătiri ale proprietății înainte de sosire / an</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Coordonare prioritară a incidentelor</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Property Health Report anual</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Zona de Preț (La Final) & CTA -->
+        <div>
+          <div class="border-t border-border pt-4 mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-bold text-text">185 €</span>
+              <span class="text-xs text-text-muted font-medium">/ lună</span>
+            </div>
+            <p class="text-[11px] text-text-muted mt-0.5">TVA inclus &middot; Contract servicii 12 luni</p>
+            <p class="text-xs text-emerald-700 font-bold mt-1.5">
+              Alternativ: 2.099 € / an <span class="font-normal text-text-muted">(Economisești peste 5%)</span>
+            </p>
+          </div>
+
+          <a 
+            href="/contact" 
+            class="block text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-sm uppercase tracking-wider"
+          >
+            ALEGE ECO-PREMIUM
+          </a>
+          <a href="/services" class="block text-center text-xs text-text-muted hover:text-emerald-700 mt-3 underline">
+            VEZI TOT CE INCLUDE ECO-PREMIUM
+          </a>
+        </div>
       </div>
 
     </div>
+
+    <!-- Link Secundar către Pagina de Servicii Detaliată -->
+    <div class="mt-14 text-center border-t border-border pt-8 max-w-2xl mx-auto">
+      <p class="text-sm sm:text-base font-semibold text-text">Nu ești sigur ce plan ți se potrivește?</p>
+      <p class="text-xs sm:text-sm text-text-muted mt-1 mb-4">
+        Compară toate serviciile, frecvențele și beneficiile incluse în fiecare plan.
+      </p>
+      <a 
+        href="/services" 
+        class="inline-block border border-slate-300 hover:border-emerald-600 bg-white hover:bg-emerald-50 text-text hover:text-emerald-700 font-bold px-6 py-2.5 rounded-lg text-xs sm:text-sm transition shadow-sm uppercase tracking-wider"
+      >
+        COMPARĂ PACHETELE ȘI SERVICIILE
+      </a>
+      <p class="text-[11px] text-text-muted mt-3 italic">
+        * Servicii suplimentare (Add-ons) disponibile la cerere.
+      </p>
+    </div>
+
   </div>
 </section>
