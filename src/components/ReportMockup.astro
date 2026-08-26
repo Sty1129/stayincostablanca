@@ -1,1 +1,104 @@
 
+---
+// src/components/ReportMockup.astro
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-background font-heading border-b border-border">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      
+      <!-- Coloană Stânga: Text explicativ -->
+      <div>
+        <span class="inline-block rounded-md bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 border border-emerald-200/60 mb-4">
+          Trasabilitate & Istoric Digital
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text tracking-tight uppercase mb-4">
+          Fiecare vizită lasă o urmă digitală.
+        </h2>
+        <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-6">
+          Primești un raport documentat, fotografii și observații relevante, iar noi putem compara starea proprietății în timp.
+        </p>
+        <ul class="space-y-3 text-xs sm:text-sm text-text">
+          <li class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span>Rapoarte digitale accesibile rapid de pe telefon sau laptop</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span>Istoric vizual și măsurători comparative ale proprietății</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span>Identificarea timpurie a abaterilor de la starea inițială</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Coloană Dreapta: Mock-up Property Visit Report -->
+      <div class="bg-surface p-6 sm:p-7 rounded-2xl border border-border shadow-lg font-sans">
+        <!-- Antet Raport -->
+        <div class="border-b border-border pb-3 mb-4 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-emerald-900 text-sm uppercase tracking-wider">
+              RAPORT VIZITĂ PROPRIETATE
+            </h3>
+            <p class="text-[11px] text-text-muted">Ref: CB-VISIT-2026</p>
+          </div>
+          <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded border border-emerald-200 uppercase">
+            Completat
+          </span>
+        </div>
+
+        <!-- Lista Verificări -->
+        <div class="space-y-2.5 text-xs sm:text-sm mb-5">
+          <div class="flex justify-between border-b border-slate-100 pb-1.5">
+            <span class="text-text-muted">Acces & securitate</span>
+            <span class="font-bold text-emerald-600">OK</span>
+          </div>
+          <div class="flex justify-between border-b border-slate-100 pb-1.5">
+            <span class="text-text-muted">Apă</span>
+            <span class="font-bold text-emerald-600">OK</span>
+          </div>
+          <div class="flex justify-between border-b border-slate-100 pb-1.5">
+            <span class="text-text-muted">Electricitate</span>
+            <span class="font-bold text-emerald-600">OK</span>
+          </div>
+          <div class="flex justify-between border-b border-slate-100 pb-1.5">
+            <span class="text-text-muted">Aer condiționat</span>
+            <span class="font-bold text-emerald-600">OK</span>
+          </div>
+          <div class="flex justify-between border-b border-slate-100 pb-1.5">
+            <span class="text-text-muted">Climat interior</span>
+            <span class="font-bold text-amber-600">ATENȚIE</span>
+          </div>
+          <div class="flex justify-between border-b border-slate-100 pb-1.5">
+            <span class="text-text-muted">Exterior</span>
+            <span class="font-bold text-emerald-600">OK</span>
+          </div>
+        </div>
+
+        <!-- Măsurători & Detalii -->
+        <div class="bg-slate-50 p-3.5 rounded-xl text-xs space-y-2 mb-4 border border-border">
+          <div class="flex justify-between">
+            <span class="font-semibold text-text">Umiditate relativă:</span>
+            <span class="text-text-muted">Înainte: 63% | După: 55%</span>
+          </div>
+          <div class="flex justify-between border-t border-slate-200/60 pt-1.5">
+            <span class="font-semibold text-text">Contor apă:</span>
+            <span class="text-text-muted">Fără variații neobișnuite</span>
+          </div>
+          <div class="flex justify-between border-t border-slate-200/60 pt-1.5">
+            <span class="font-semibold text-text">Fotografii atașate:</span>
+            <span class="text-text-muted font-bold">8 poze</span>
+          </div>
+        </div>
+
+        <!-- Recomandare finală -->
+        <div class="text-xs text-text-muted bg-amber-50/80 border-l-3 border-amber-500 p-3 rounded-r-lg">
+          <strong class="text-amber-900">Recomandare:</strong> Monitorizare la următoarea vizită.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
