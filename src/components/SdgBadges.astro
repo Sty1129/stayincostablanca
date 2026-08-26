@@ -1,0 +1,152 @@
+---
+interface Props {
+  ids?: Array<6 | 7 | 11 | 12 | 13 | 17>;
+  digital?: boolean;
+  compact?: boolean;
+}
+
+const {
+  ids = [],
+  digital = false,
+  compact = true
+} = Astro.props;
+
+const sdgs = {
+  6: {
+    number: "6",
+    short: "APĂ",
+    title: "SDG 6 — Apă curată și sanitație",
+    color: "#26BDE2",
+    href: "/sustenabilitate#sdg6",
+  },
+
+  7: {
+    number: "7",
+    short: "ENERGIE",
+    title: "SDG 7 — Energie curată și la prețuri accesibile",
+    color: "#FCC30B",
+    textColor: "#17343C",
+    href: "/sustenabilitate#sdg7",
+  },
+
+  11: {
+    number: "11",
+    short: "REZILIENȚĂ",
+    title: "SDG 11 — Orașe și comunități durabile",
+    color: "#FD9D24",
+    href: "/sustenabilitate#sdg11",
+  },
+
+  12: {
+    number: "12",
+    short: "CONSUM",
+    title: "SDG 12 — Consum și producție responsabile",
+    color: "#BF8B2E",
+    href: "/sustenabilitate#sdg12",
+  },
+
+  13: {
+    number: "13",
+    short: "CLIMĂ",
+    title: "SDG 13 — Acțiune climatică",
+    color: "#3F7E44",
+    href: "/sustenabilitate#sdg13",
+  },
+
+  17: {
+    number: "17",
+    short: "PARTENERIATE",
+    title: "SDG 17 — Parteneriate pentru obiective",
+    color: "#19486A",
+    href: "/sustenabilitate#sdg17",
+  },
+};
+---
+
+<div
+  class:list={[
+    "flex flex-wrap items-center",
+    compact ? "gap-1.5" : "gap-2"
+  ]}
+>
+  {ids.map((id) => {
+    const sdg = sdgs[id];
+
+    return (
+      <a
+        href={sdg.href}
+        title={sdg.title}
+        aria-label={sdg.title}
+        class:list={[
+          "group inline-flex items-center justify-center",
+          "font-bold shadow-sm transition-all duration-200",
+          "hover:-translate-y-0.5 hover:shadow-md",
+          "focus:outline-none focus:ring-2 focus:ring-[#0E3846] focus:ring-offset-2",
+          compact
+            ? "w-8 h-8 rounded-md text-[11px]"
+            : "min-w-[44px] h-11 px-2 rounded-lg text-xs"
+        ]}
+        style={`
+          background:${sdg.color};
+          color:${sdg.textColor || "#FFFFFF"};
+        `}
+      >
+        {compact ? (
+          <span>{sdg.number}</span>
+        ) : (
+          <span class="flex flex-col items-center leading-none">
+            <span class="text-[9px] opacity-90">SDG</span>
+            <span class="text-base">{sdg.number}</span>
+          </span>
+        )}
+      </a>
+    );
+  })}
+
+
+  {digital && (
+    <a
+      href="/sustenabilitate#digitalizare"
+      title="Digitalizare & trasabilitate"
+      aria-label="Digitalizare și trasabilitate"
+      class:list={[
+        "group inline-flex items-center justify-center",
+        "border border-[#A8C9D3]",
+        "bg-[#EAF4F6]",
+        "text-[#0E3846]",
+        "font-bold shadow-sm",
+        "transition-all duration-200",
+        "hover:-translate-y-0.5 hover:shadow-md hover:bg-[#DCECF1]",
+        "focus:outline-none focus:ring-2 focus:ring-[#0E3846] focus:ring-offset-2",
+        compact
+          ? "w-8 h-8 rounded-md"
+          : "h-11 px-3 rounded-lg gap-2"
+      ]}
+    >
+      <!-- Digital / data icon -->
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        class={compact ? "w-4 h-4" : "w-5 h-5"}
+        aria-hidden="true"
+      >
+        <rect
+          x="4"
+          y="4"
+          width="16"
+          height="16"
+          rx="2"
+          stroke-width="1.7"
+        />
+        <path
+          d="M8 9h8M8 13h5M8 17h8"
+          stroke-linecap="round"
+          stroke-width="1.7"
+        />
+      </svg>
+
+      {!compact && <span>DIGITAL</span>}
+    </a>
+  )}
+</div>
