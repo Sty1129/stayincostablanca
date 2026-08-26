@@ -1,5 +1,56 @@
 ---
 // src/components/SustainabilityIntro.astro
+
+const mainAreas = [
+  {
+    title: "APĂ",
+    description:
+      "Monitorizarea consumului și identificarea variațiilor neobișnuite pot ajuta la detectarea timpurie a situațiilor care necesită atenție.",
+    icons: [
+      {
+        src: "/odd-6-ro.png",
+        alt: "ODD 6 — Apă curată și sanitație",
+        href: "/sustenabilitate#sdg6",
+      },
+    ],
+  },
+
+  {
+    title: "ENERGIE",
+    description:
+      "Urmărirea consumului și verificările funcționale ne ajută să observăm evoluția utilizării energiei în proprietate.",
+    icons: [
+      {
+        src: "/odd-7-ro.png",
+        alt: "ODD 7 — Energie curată și la prețuri accesibile",
+        href: "/sustenabilitate#sdg7",
+      },
+    ],
+  },
+
+  {
+    title: "PROPRIETATE & REZILIENȚĂ",
+    description:
+      "Prevenția, întreținerea responsabilă și verificările după vreme severă contribuie la protejarea proprietății și a resurselor sale.",
+    icons: [
+      {
+        src: "/odd-11-ro.png",
+        alt: "ODD 11 — Orașe și comunități durabile",
+        href: "/sustenabilitate#sdg11",
+      },
+      {
+        src: "/odd-12-ro.png",
+        alt: "ODD 12 — Consum și producție responsabile",
+        href: "/sustenabilitate#sdg12",
+      },
+      {
+        src: "/odd-13-ro.png",
+        alt: "ODD 13 — Acțiune climatică",
+        href: "/sustenabilitate#sdg13",
+      },
+    ],
+  },
+];
 ---
 
 <section
@@ -8,7 +59,10 @@
 >
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Titlu -->
+    <!-- =====================================================
+         TITLU
+    ====================================================== -->
+
     <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
 
       <p
@@ -58,165 +112,119 @@
     </div>
 
 
-    <!-- Cele 3 direcții principale -->
+    <!-- =====================================================
+         CELE 3 DIRECȚII PRINCIPALE
+    ====================================================== -->
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <!-- APĂ -->
-      <article
-        class="
-          bg-[#F7FAFA]
-          border
-          border-[#D1E0E5]
-          rounded-2xl
-          p-6
-          sm:p-7
-        "
-      >
-        <div
+      {mainAreas.map((area) => (
+
+        <article
           class="
-            w-14
-            h-14
-            rounded-full
-            bg-[#EAF4F6]
+            bg-[#F7FAFA]
+            border
+            border-[#D1E0E5]
+            rounded-2xl
+            p-6
+            sm:p-7
             flex
-            items-center
-            justify-center
-            text-[#0E3846]
-            font-bold
-            text-lg
-            mb-5
+            flex-col
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:shadow-[0_12px_30px_rgba(14,56,70,0.10)]
           "
         >
-          6
-        </div>
 
-        <h3 class="text-xl font-bold text-[#0E3846]">
-          APĂ
-        </h3>
+          <!-- ICONIȚE ODD OFICIALE -->
+          <div
+            class:list={[
+              "flex items-start mb-6",
+              area.icons.length === 1
+                ? "justify-start"
+                : "justify-start gap-3"
+            ]}
+          >
 
-        <p class="mt-3 text-base text-[#405963] leading-7">
-          Monitorizarea consumului și identificarea variațiilor neobișnuite
-          pot ajuta la detectarea timpurie a situațiilor care necesită atenție.
-        </p>
+            {area.icons.map((icon) => (
 
-        <p
-          class="
-            mt-5
-            text-sm
-            font-bold
-            text-[#5B9EB5]
-          "
-        >
-          SDG 6 · Clean Water and Sanitation
-        </p>
-      </article>
+              <a
+                href={icon.href}
+                title={icon.alt}
+                aria-label={icon.alt}
+                class="
+                  block
+                  rounded-lg
+                  overflow-hidden
+                  transition
+                  duration-200
+                  hover:-translate-y-1
+                  hover:shadow-lg
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-[#0E3846]
+                  focus:ring-offset-2
+                "
+              >
 
+                <img
+                  src={icon.src}
+                  alt={icon.alt}
+                  loading="lazy"
+                  class:list={[
+                    "block object-contain",
+                    area.icons.length === 1
+                      ? "w-[124px] h-[124px]"
+                      : "w-[82px] h-[82px] sm:w-[88px] sm:h-[88px]"
+                  ]}
+                />
 
-      <!-- ENERGIE -->
-      <article
-        class="
-          bg-[#F7FAFA]
-          border
-          border-[#D1E0E5]
-          rounded-2xl
-          p-6
-          sm:p-7
-        "
-      >
-        <div
-          class="
-            w-14
-            h-14
-            rounded-full
-            bg-[#EAF4F6]
-            flex
-            items-center
-            justify-center
-            text-[#0E3846]
-            font-bold
-            text-lg
-            mb-5
-          "
-        >
-          7
-        </div>
+              </a>
 
-        <h3 class="text-xl font-bold text-[#0E3846]">
-          ENERGIE
-        </h3>
+            ))}
 
-        <p class="mt-3 text-base text-[#405963] leading-7">
-          Urmărirea consumului și verificările funcționale ne ajută să
-          observăm evoluția utilizării energiei în proprietate.
-        </p>
-
-        <p
-          class="
-            mt-5
-            text-sm
-            font-bold
-            text-[#5B9EB5]
-          "
-        >
-          SDG 7 · Affordable and Clean Energy
-        </p>
-      </article>
+          </div>
 
 
-      <!-- PROPRIETATE & REZILIENȚĂ -->
-      <article
-        class="
-          bg-[#F7FAFA]
-          border
-          border-[#D1E0E5]
-          rounded-2xl
-          p-6
-          sm:p-7
-        "
-      >
-        <div
-          class="
-            w-14
-            h-14
-            rounded-full
-            bg-[#EAF4F6]
-            flex
-            items-center
-            justify-center
-            text-[#0E3846]
-            font-bold
-            text-sm
-            mb-5
-          "
-        >
-          11·12·13
-        </div>
+          <!-- TITLU -->
+          <h3
+            class="
+              text-xl
+              sm:text-[22px]
+              font-bold
+              text-[#0E3846]
+              leading-tight
+            "
+          >
+            {area.title}
+          </h3>
 
-        <h3 class="text-xl font-bold text-[#0E3846]">
-          PROPRIETATE &amp; REZILIENȚĂ
-        </h3>
 
-        <p class="mt-3 text-base text-[#405963] leading-7">
-          Prevenția, întreținerea responsabilă și verificările după vreme
-          severă contribuie la protejarea proprietății și a resurselor sale.
-        </p>
+          <!-- DESCRIERE -->
+          <p
+            class="
+              mt-3
+              text-base
+              sm:text-[17px]
+              text-[#405963]
+              leading-7
+            "
+          >
+            {area.description}
+          </p>
 
-        <p
-          class="
-            mt-5
-            text-sm
-            font-bold
-            text-[#5B9EB5]
-          "
-        >
-          SDG 11 · SDG 12 · SDG 13
-        </p>
-      </article>
+        </article>
+
+      ))}
 
     </div>
 
 
-    <!-- Dimensiuni transversale -->
+    <!-- =====================================================
+         DIMENSIUNI TRANSVERSALE
+    ====================================================== -->
+
     <div
       class="
         mt-7
@@ -227,80 +235,267 @@
       "
     >
 
-      <!-- Digitalizare -->
+
+      <!-- ===================================================
+           DIGITALIZARE
+      ==================================================== -->
+
       <div
         class="
-          rounded-xl
+          rounded-2xl
           bg-[#0E3846]
           px-6
-          py-6
+          sm:px-7
+          py-7
+          border
+          border-[#245463]
         "
       >
-        <p
-          class="
-            text-sm
-            font-bold
-            uppercase
-            tracking-[0.12em]
-            text-[#A9D1DD]
-          "
-        >
-          DIMENSIUNE TRANSVERSALĂ
-        </p>
 
-        <h3 class="mt-2 text-xl font-bold text-white">
-          Digitalizare
-        </h3>
+        <div class="flex items-start gap-5">
 
-        <p class="mt-2 text-base text-[#DCECEF] leading-7">
-          Documentăm vizitele, datele și observațiile pentru a crea un istoric
-          digital comparabil al proprietății.
-        </p>
+          <!-- Icon propriu pentru digitalizare -->
+          <div
+            class="
+              shrink-0
+              w-16
+              h-16
+              rounded-xl
+              bg-[#174B5B]
+              border
+              border-[#347082]
+              flex
+              items-center
+              justify-center
+              text-[#DCECEF]
+            "
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="w-8 h-8"
+              aria-hidden="true"
+            >
+              <rect
+                x="4"
+                y="3"
+                width="16"
+                height="18"
+                rx="2"
+                stroke-width="1.6"
+              />
+
+              <path
+                d="M8 8h8M8 12h8M8 16h5"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+
+              <circle
+                cx="17"
+                cy="16"
+                r="1.5"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+
+          </div>
+
+
+          <div>
+
+            <p
+              class="
+                text-xs
+                sm:text-sm
+                font-bold
+                uppercase
+                tracking-[0.12em]
+                text-[#A9D1DD]
+              "
+            >
+              DIMENSIUNE TRANSVERSALĂ
+            </p>
+
+            <h3
+              class="
+                mt-2
+                text-xl
+                sm:text-[22px]
+                font-bold
+                text-white
+              "
+            >
+              Digitalizare
+            </h3>
+
+            <p
+              class="
+                mt-2
+                text-base
+                sm:text-[17px]
+                text-[#DCECEF]
+                leading-7
+              "
+            >
+              Documentăm vizitele, datele și observațiile pentru a crea
+              un istoric digital comparabil al proprietății.
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
 
 
-      <!-- Parteneriate -->
+      <!-- ===================================================
+           PARTENERIATE — ODD 17
+      ==================================================== -->
+
       <div
         class="
-          rounded-xl
+          rounded-2xl
           bg-[#0E3846]
           px-6
-          py-6
+          sm:px-7
+          py-7
+          border
+          border-[#245463]
         "
       >
-        <p
-          class="
-            text-sm
-            font-bold
-            uppercase
-            tracking-[0.12em]
-            text-[#A9D1DD]
-          "
-        >
-          DIMENSIUNE TRANSVERSALĂ
-        </p>
 
-        <h3 class="mt-2 text-xl font-bold text-white">
-          Parteneriate
-        </h3>
+        <div class="flex items-start gap-5">
 
-        <p class="mt-2 text-base text-[#DCECEF] leading-7">
-          Colaborarea cu proprietari, tehnicieni, furnizori și alți actori
-          locali transformă monitorizarea într-o acțiune coordonată.
-        </p>
+          <a
+            href="/sustenabilitate#sdg17"
+            title="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+            aria-label="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+            class="
+              shrink-0
+              block
+              rounded-lg
+              overflow-hidden
+              transition
+              duration-200
+              hover:-translate-y-1
+              hover:shadow-lg
+              focus:outline-none
+              focus:ring-2
+              focus:ring-[#F3C76B]
+              focus:ring-offset-2
+              focus:ring-offset-[#0E3846]
+            "
+          >
 
-        <p class="mt-3 text-sm font-bold text-[#F3C76B]">
-          SDG 17 · Partnerships for the Goals
-        </p>
+            <img
+              src="/odd-17-ro.png"
+              alt="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+              loading="lazy"
+              class="
+                block
+                w-[100px]
+                h-[100px]
+                object-contain
+              "
+            />
+
+          </a>
+
+
+          <div>
+
+            <p
+              class="
+                text-xs
+                sm:text-sm
+                font-bold
+                uppercase
+                tracking-[0.12em]
+                text-[#A9D1DD]
+              "
+            >
+              DIMENSIUNE TRANSVERSALĂ
+            </p>
+
+            <h3
+              class="
+                mt-2
+                text-xl
+                sm:text-[22px]
+                font-bold
+                text-white
+              "
+            >
+              Parteneriate
+            </h3>
+
+            <p
+              class="
+                mt-2
+                text-base
+                sm:text-[17px]
+                text-[#DCECEF]
+                leading-7
+              "
+            >
+              Colaborarea cu proprietari, tehnicieni, furnizori și alți actori
+              locali transformă monitorizarea într-o acțiune coordonată.
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
 
     </div>
 
 
-    <!-- CTA -->
-    <div class="mt-9 text-center">
+    <!-- =====================================================
+         NOTĂ SCURTĂ
+    ====================================================== -->
 
-      <p class="text-base sm:text-lg text-[#405963] leading-7">
+    <div
+      class="
+        mt-8
+        max-w-4xl
+        mx-auto
+        text-center
+      "
+    >
+      <p
+        class="
+          text-sm
+          sm:text-base
+          text-[#607983]
+          leading-7
+        "
+      >
+        Obiectivele de Dezvoltare Durabilă indică domeniile în care activitatea
+        noastră poate contribui la o administrare mai responsabilă a
+        proprietății.
+      </p>
+    </div>
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <div class="mt-8 text-center">
+
+      <p
+        class="
+          text-base
+          sm:text-lg
+          text-[#405963]
+          leading-7
+        "
+      >
         Vrei să afli cum pot contribui aceste principii la administrarea
         proprietății tale?
       </p>
@@ -308,7 +503,10 @@
       <a
         href="/sustenabilitate"
         class="
-          inline-block
+          inline-flex
+          items-center
+          justify-center
+          gap-2
           mt-5
           border-2
           border-[#0E3846]
@@ -326,7 +524,9 @@
           tracking-wide
         "
       >
-        DESCOPERĂ ABORDAREA NOASTRĂ →
+        DESCOPERĂ ABORDAREA NOASTRĂ
+
+        <span aria-hidden="true">→</span>
       </a>
 
     </div>
