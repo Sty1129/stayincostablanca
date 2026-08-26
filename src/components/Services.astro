@@ -2,270 +2,664 @@
 // src/components/Services.astro
 ---
 
-<section id="pachete" class="py-16 sm:py-20 bg-slate-50 font-heading border-b border-border">
+<section
+  id="pachete"
+  class="py-16 sm:py-20 md:py-24 bg-slate-50 font-heading border-b border-border"
+>
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-    
+
     <!-- Titlu & Subtitlu -->
-    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text uppercase tracking-tight">
+    <div class="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
+      <h2
+        class="text-[28px] sm:text-4xl lg:text-[42px] font-bold text-[#0E3846] uppercase tracking-tight leading-tight"
+      >
         Alege nivelul de protecție potrivit proprietății tale
       </h2>
-      <p class="mt-3 text-sm sm:text-base text-text-muted">
+
+      <p
+        class="mt-5 text-base sm:text-lg text-[#405963] leading-7 sm:leading-8"
+      >
         De la monitorizare esențială până la administrare locală extinsă.
       </p>
     </div>
 
-    <!-- Cele 3 carduri (ECO-BASIC, ECO-SMART, ECO-PREMIUM) -->
+
+    <!-- Cele 3 carduri -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-      
-      <!-- 1. ECO-BASIC (WATCH) -->
-      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+
+
+      <!-- =====================================================
+           ECO-BASIC
+      ====================================================== -->
+      <div
+        class="
+          bg-white
+          p-6 sm:p-8
+          rounded-2xl
+          border border-[#CCD9DE]
+          shadow-[0_3px_10px_rgba(14,56,70,0.07)]
+          flex flex-col justify-between
+        "
+      >
         <div>
-          <!-- Header Card -->
-          <div class="mb-4">
-            <h3 class="text-2xl font-bold text-text">ECO-BASIC</h3>
-            <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest mt-0.5">WATCH</p>
-            <p class="text-sm font-semibold text-text-muted mt-2">Supravegherea esențială a proprietății</p>
+
+          <!-- Header -->
+          <div class="mb-5">
+            <h3 class="text-2xl sm:text-[28px] font-bold text-[#0E3846]">
+              ECO-BASIC
+            </h3>
+
+            <p
+              class="text-sm font-bold text-[#5B9EB5] uppercase tracking-[0.15em] mt-1"
+            >
+              WATCH
+            </p>
+
+            <p
+              class="text-base sm:text-[17px] font-semibold text-[#284650] mt-3 leading-snug"
+            >
+              Supravegherea esențială a proprietății
+            </p>
           </div>
 
-          <p class="text-xs sm:text-sm text-text-muted mb-6 leading-relaxed">
-            Pentru proprietarii care doresc o verificare regulată și documentată a locuinței atunci când sunt plecați.
+          <!-- Descriere -->
+          <p
+            class="text-base sm:text-[17px] text-[#405963] mb-7 leading-7"
+          >
+            Pentru proprietarii care doresc o verificare regulată și
+            documentată a locuinței atunci când sunt plecați.
           </p>
 
           <!-- Beneficii -->
-          <ul class="space-y-3 text-xs sm:text-sm text-text mb-8 border-t border-border pt-6">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+          <ul
+            class="
+              space-y-3.5
+              text-base
+              text-[#243F49]
+              leading-6
+              mb-8
+              border-t
+              border-[#D8E1E5]
+              pt-6
+            "
+          >
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>12 vizite documentate / an</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Păstrarea securizată a cheilor</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Verificarea accesului și instalațiilor esențiale</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Verificare funcțională de bază a aerului condiționat</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Verificare vizuală pentru umezeală și infiltrații</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Înregistrarea contoarelor și verificarea corespondenței</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Raport digital cu fotografii după fiecare vizită</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>1 verificare după vreme severă / an</span>
             </li>
           </ul>
+
         </div>
 
-        <!-- Zona de Preț (La Final) & CTA -->
+
+        <!-- Preț & CTA -->
         <div>
-          <div class="border-t border-border pt-4 mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-3xl font-bold text-text">649 €</span>
-              <span class="text-xs text-text-muted font-medium">/ an</span>
+
+          <div class="border-t border-[#D8E1E5] pt-5 mb-6">
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-bold text-[#0E3846]">
+                649 €
+              </span>
+
+              <span class="text-base text-[#405963] font-medium">
+                / an
+              </span>
             </div>
-            <p class="text-[11px] text-text-muted mt-0.5">TVA inclus &middot; Plată anuală</p>
+
+            <p class="text-sm text-[#405963] mt-1.5 font-medium">
+              TVA inclus · Plată anuală
+            </p>
           </div>
 
-          <a 
-            href="/contact" 
-            class="block text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-sm uppercase tracking-wider"
+
+          <!-- CTA principal -->
+          <a
+            href="/contact"
+            class="
+              block
+              w-full
+              text-center
+              bg-[#0E3846]
+              hover:bg-[#092A34]
+              text-white
+              font-bold
+              py-3.5
+              px-5
+              rounded-xl
+              text-sm sm:text-base
+              transition
+              shadow-sm
+              uppercase
+              tracking-wide
+            "
           >
             SOLICITĂ EVALUAREA PROPRIETĂȚII
           </a>
-          <a href="/services" class="block text-center text-xs text-text-muted hover:text-emerald-700 mt-3 underline">
-            VEZI TOT CE INCLUDE ECO-BASIC
+
+
+          <!-- CTA secundar -->
+          <a
+            href="/services#eco-basic"
+            class="
+              block
+              w-full
+              text-center
+              mt-3
+              border-2
+              border-[#0E3846]
+              hover:bg-[#F2EFE9]
+              text-[#0E3846]
+              font-bold
+              py-3
+              px-5
+              rounded-xl
+              text-sm sm:text-base
+              transition
+              uppercase
+              tracking-wide
+            "
+          >
+            VEZI TOT CE INCLUDE ECO-BASIC →
           </a>
+
         </div>
       </div>
 
-      <!-- 2. ECO-SMART (PREVENT) - EVIDENȚIAT CENTRAL -->
-      <div class="bg-surface p-6 sm:p-8 rounded-2xl border-2 border-emerald-600 shadow-xl flex flex-col justify-between relative transform lg:-translate-y-2">
-        
+
+
+      <!-- =====================================================
+           ECO-SMART
+      ====================================================== -->
+      <div
+        class="
+          bg-white
+          p-6 sm:p-8
+          rounded-2xl
+          border-2 border-[#5B9EB5]
+          shadow-[0_10px_30px_rgba(14,56,70,0.14)]
+          flex flex-col justify-between
+          relative
+          lg:-translate-y-2
+        "
+      >
+
         <!-- Badge -->
-        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap shadow-md">
+        <div
+          class="
+            absolute
+            -top-4
+            left-1/2
+            -translate-x-1/2
+            bg-[#0E3846]
+            text-white
+            px-5
+            py-2
+            rounded-full
+            text-xs sm:text-[13px]
+            font-bold
+            uppercase
+            tracking-[0.08em]
+            whitespace-nowrap
+            shadow-md
+          "
+        >
           RECOMANDAT PROPRIETARILOR CARE LOCUIESC ÎN STRĂINĂTATE
         </div>
 
+
         <div>
-          <!-- Header Card -->
-          <div class="mb-4 pt-2">
-            <h3 class="text-2xl font-bold text-emerald-900">ECO-SMART</h3>
-            <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest mt-0.5">PREVENT</p>
-            <p class="text-sm font-semibold text-emerald-800 mt-2">Prevenție activă, nu doar verificare</p>
+
+          <!-- Header -->
+          <div class="mb-5 pt-4">
+            <h3 class="text-2xl sm:text-[28px] font-bold text-[#0E3846]">
+              ECO-SMART
+            </h3>
+
+            <p
+              class="text-sm font-bold text-[#5B9EB5] uppercase tracking-[0.15em] mt-1"
+            >
+              PREVENT
+            </p>
+
+            <p
+              class="text-base sm:text-[17px] font-semibold text-[#284650] mt-3 leading-snug"
+            >
+              Prevenție activă, nu doar verificare
+            </p>
           </div>
 
-          <p class="text-xs sm:text-sm text-text-muted mb-6 leading-relaxed">
-            Pentru proprietarii care vor să monitorizeze evoluția proprietății și să identifice din timp schimbările care necesită atenție.
+          <!-- Descriere -->
+          <p
+            class="text-base sm:text-[17px] text-[#405963] mb-7 leading-7"
+          >
+            Pentru proprietarii care vor să monitorizeze evoluția proprietății
+            și să identifice din timp schimbările care necesită atenție.
           </p>
 
           <!-- Beneficii -->
-          <ul class="space-y-3 text-xs sm:text-sm text-text mb-8 border-t border-emerald-100 pt-6">
-            <li class="flex items-start gap-2 font-semibold text-emerald-950">
-              <span class="text-emerald-600 font-bold">✓</span>
+          <ul
+            class="
+              space-y-3.5
+              text-base
+              text-[#243F49]
+              leading-6
+              mb-8
+              border-t
+              border-[#C9E0E6]
+              pt-6
+            "
+          >
+            <li class="flex items-start gap-3 font-semibold text-[#0E3846]">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>24 de vizite / an (12 preventive + 12 ventilație)</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Monitorizarea temperaturii și umidității</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Ventilație activă asistată</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Monitorizare preventivă a aerului condiționat</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Analiza consumului de apă și energie</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Verificări administrative periodice</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
               <span>Raport digital după fiecare vizită</span>
             </li>
           </ul>
+
         </div>
 
-        <!-- Zona de Preț (La Final) & CTA -->
+
+        <!-- Preț & CTA -->
         <div>
-          <div class="border-t border-border pt-4 mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-3xl font-bold text-text">125 €</span>
-              <span class="text-xs text-text-muted font-medium">/ lună</span>
+
+          <div class="border-t border-[#D8E1E5] pt-5 mb-6">
+
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-bold text-[#0E3846]">
+                125 €
+              </span>
+
+              <span class="text-base text-[#405963] font-medium">
+                / lună
+              </span>
             </div>
-            <p class="text-[11px] text-text-muted mt-0.5">TVA inclus &middot; Contract servicii 12 luni</p>
-            <p class="text-xs text-emerald-700 font-bold mt-1.5">
-              Alternativ: 1.425 € / an <span class="font-normal text-text-muted">(Economisești 5%)</span>
+
+            <p class="text-sm text-[#405963] mt-1.5 font-medium">
+              TVA inclus · Contract servicii 12 luni
             </p>
+
+            <p
+              class="text-base text-[#0E3846] font-bold mt-3 leading-6"
+            >
+              1.425 € / an
+              <span class="font-medium text-[#405963]">
+                · economisești 5%
+              </span>
+            </p>
+
           </div>
 
-          <a 
-            href="/contact" 
-            class="block text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm transition shadow-md uppercase tracking-wider"
+
+          <!-- CTA principal -->
+          <a
+            href="/contact"
+            class="
+              block
+              w-full
+              text-center
+              bg-[#5B9EB5]
+              hover:bg-[#478BA3]
+              text-white
+              font-bold
+              py-3.5
+              px-5
+              rounded-xl
+              text-sm sm:text-base
+              transition
+              shadow-md
+              uppercase
+              tracking-wide
+            "
           >
-            ALEGE ECO-SMART
+            SOLICITĂ EVALUAREA PROPRIETĂȚII
           </a>
-          <a href="/services" class="block text-center text-xs text-text-muted hover:text-emerald-700 mt-3 underline">
-            VEZI TOT CE INCLUDE ECO-SMART
+
+
+          <!-- CTA secundar -->
+          <a
+            href="/services#eco-smart"
+            class="
+              block
+              w-full
+              text-center
+              mt-3
+              border-2
+              border-[#5B9EB5]
+              hover:bg-[#EAF4F6]
+              text-[#0E3846]
+              font-bold
+              py-3
+              px-5
+              rounded-xl
+              text-sm sm:text-base
+              transition
+              uppercase
+              tracking-wide
+            "
+          >
+            VEZI TOT CE INCLUDE ECO-SMART →
           </a>
+
         </div>
       </div>
 
-      <!-- 3. ECO-PREMIUM (MANAGE) -->
-      <div class="bg-surface p-6 sm:p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+
+
+      <!-- =====================================================
+           ECO-PREMIUM
+      ====================================================== -->
+      <div
+        class="
+          bg-white
+          p-6 sm:p-8
+          rounded-2xl
+          border border-[#CCD9DE]
+          shadow-[0_3px_10px_rgba(14,56,70,0.07)]
+          flex flex-col justify-between
+        "
+      >
+
         <div>
-          <!-- Header Card -->
-          <div class="mb-4">
-            <h3 class="text-2xl font-bold text-text">ECO-PREMIUM</h3>
-            <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest mt-0.5">MANAGE</p>
-            <p class="text-sm font-semibold text-text-muted mt-2">Proprietatea ta administrată local</p>
-          </div>
 
-          <p class="text-xs sm:text-sm text-text-muted mb-6 leading-relaxed">
-            Pentru proprietarii care vor mai mult decât monitorizare și doresc să reducă administrarea proprietății de la distanță.
-          </p>
+          <!-- Header -->
+          <div class="mb-5">
+            <h3 class="text-2xl sm:text-[28px] font-bold text-[#0E3846]">
+              ECO-PREMIUM
+            </h3>
 
-          <!-- Beneficii -->
-          <ul class="space-y-3 text-xs sm:text-sm text-text mb-8 border-t border-border pt-6">
-            <li class="flex items-start gap-2 font-medium">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>Tot ce include ECO-SMART</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>4 evaluări extinse ale proprietății / an</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>Monitorizare administrativă lunară</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>Analiză lunară a consumului de apă și energie</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>4 verificări după vreme severă / an</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>2 accesuri și coordonări cu tehnicieni / an</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>2 pregătiri ale proprietății înainte de sosire / an</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>Coordonare prioritară a incidentelor</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-600 font-bold">✓</span>
-              <span>Property Health Report anual</span>
-            </li>
-          </ul>
-        </div>
+            <p
+              class="text-sm font-bold text-[#5B9EB5] uppercase tracking-[0.15em] mt-1"
+            >
+              MANAGE
+            </p>
 
-        <!-- Zona de Preț (La Final) & CTA -->
-        <div>
-          <div class="border-t border-border pt-4 mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-3xl font-bold text-text">185 €</span>
-              <span class="text-xs text-text-muted font-medium">/ lună</span>
-            </div>
-            <p class="text-[11px] text-text-muted mt-0.5">TVA inclus &middot; Contract servicii 12 luni</p>
-            <p class="text-xs text-emerald-700 font-bold mt-1.5">
-              Alternativ: 2.099 € / an <span class="font-normal text-text-muted">(Economisești peste 5%)</span>
+            <p
+              class="text-base sm:text-[17px] font-semibold text-[#284650] mt-3 leading-snug"
+            >
+              Proprietatea ta administrată local
             </p>
           </div>
 
-          <a 
-            href="/contact" 
-            class="block text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-sm uppercase tracking-wider"
+          <!-- Descriere -->
+          <p
+            class="text-base sm:text-[17px] text-[#405963] mb-7 leading-7"
           >
-            ALEGE ECO-PREMIUM
+            Pentru proprietarii care vor mai mult decât monitorizare și doresc
+            să reducă administrarea proprietății de la distanță.
+          </p>
+
+
+          <!-- Beneficii -->
+          <ul
+            class="
+              space-y-3.5
+              text-base
+              text-[#243F49]
+              leading-6
+              mb-8
+              border-t
+              border-[#D8E1E5]
+              pt-6
+            "
+          >
+            <li class="flex items-start gap-3 font-semibold text-[#0E3846]">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>Tot ce include ECO-SMART</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>4 evaluări extinse ale proprietății / an</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>Monitorizare administrativă lunară</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>Analiză lunară a consumului de apă și energie</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>4 verificări după vreme severă / an</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>2 accesuri și coordonări cu tehnicieni / an</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>2 pregătiri ale proprietății înainte de sosire / an</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>Coordonare prioritară a incidentelor</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
+              <span>Property Health Report anual</span>
+            </li>
+          </ul>
+
+        </div>
+
+
+        <!-- Preț & CTA -->
+        <div>
+
+          <div class="border-t border-[#D8E1E5] pt-5 mb-6">
+
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-bold text-[#0E3846]">
+                185 €
+              </span>
+
+              <span class="text-base text-[#405963] font-medium">
+                / lună
+              </span>
+            </div>
+
+            <p class="text-sm text-[#405963] mt-1.5 font-medium">
+              TVA inclus · Contract servicii 12 luni
+            </p>
+
+            <p
+              class="text-base text-[#0E3846] font-bold mt-3 leading-6"
+            >
+              2.099 € / an
+              <span class="font-medium text-[#405963]">
+                · economisești peste 5%
+              </span>
+            </p>
+
+          </div>
+
+
+          <!-- CTA principal -->
+          <a
+            href="/contact"
+            class="
+              block
+              w-full
+              text-center
+              bg-[#0E3846]
+              hover:bg-[#092A34]
+              text-white
+              font-bold
+              py-3.5
+              px-5
+              rounded-xl
+              text-sm sm:text-base
+              transition
+              shadow-sm
+              uppercase
+              tracking-wide
+            "
+          >
+            SOLICITĂ EVALUAREA PROPRIETĂȚII
           </a>
-          <a href="/services" class="block text-center text-xs text-text-muted hover:text-emerald-700 mt-3 underline">
-            VEZI TOT CE INCLUDE ECO-PREMIUM
+
+
+          <!-- CTA secundar -->
+          <a
+            href="/services#eco-premium"
+            class="
+              block
+              w-full
+              text-center
+              mt-3
+              border-2
+              border-[#0E3846]
+              hover:bg-[#F2EFE9]
+              text-[#0E3846]
+              font-bold
+              py-3
+              px-5
+              rounded-xl
+              text-sm sm:text-base
+              transition
+              uppercase
+              tracking-wide
+            "
+          >
+            VEZI TOT CE INCLUDE ECO-PREMIUM →
           </a>
+
         </div>
       </div>
 
     </div>
 
-    <!-- Link Secundar către Pagina de Servicii Detaliată -->
-    <div class="mt-14 text-center border-t border-border pt-8 max-w-2xl mx-auto">
-      <p class="text-sm sm:text-base font-semibold text-text">Nu ești sigur ce plan ți se potrivește?</p>
-      <p class="text-xs sm:text-sm text-text-muted mt-1 mb-4">
-        Compară toate serviciile, frecvențele și beneficiile incluse în fiecare plan.
-      </p>
-      <a 
-        href="/services" 
-        class="inline-block border border-slate-300 hover:border-emerald-600 bg-white hover:bg-emerald-50 text-text hover:text-emerald-700 font-bold px-6 py-2.5 rounded-lg text-xs sm:text-sm transition shadow-sm uppercase tracking-wider"
+
+
+    <!-- =====================================================
+         COMPARAȚIE COMPLETĂ
+    ====================================================== -->
+    <div
+      class="
+        mt-16 sm:mt-20
+        text-center
+        border-t
+        border-[#CCD9DE]
+        pt-10
+        max-w-3xl
+        mx-auto
+      "
+    >
+      <h3
+        class="text-xl sm:text-2xl font-bold text-[#0E3846]"
       >
-        COMPARĂ PACHETELE ȘI SERVICIILE
-      </a>
-      <p class="text-[11px] text-text-muted mt-3 italic">
-        * Servicii suplimentare (Add-ons) disponibile la cerere.
+        Nu ești sigur ce plan ți se potrivește?
+      </h3>
+
+      <p
+        class="text-base sm:text-lg text-[#405963] mt-3 mb-6 leading-7"
+      >
+        Compară toate serviciile, frecvențele și beneficiile incluse în
+        fiecare plan.
       </p>
+
+      <a
+        href="/services#comparatie"
+        class="
+          inline-block
+          bg-white
+          border-2
+          border-[#0E3846]
+          hover:bg-[#0E3846]
+          text-[#0E3846]
+          hover:text-white
+          font-bold
+          px-7
+          py-3.5
+          rounded-xl
+          text-sm sm:text-base
+          transition
+          shadow-sm
+          uppercase
+          tracking-wide
+        "
+      >
+        COMPARĂ PACHETELE ȘI SERVICIILE →
+      </a>
+
+      <p
+        class="text-sm text-[#526B74] mt-4"
+      >
+        Servicii suplimentare disponibile la cerere.
+      </p>
+
     </div>
 
   </div>
