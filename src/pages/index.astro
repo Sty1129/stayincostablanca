@@ -1,15 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
 import Hero from '../components/Hero.astro';
 import TrustBar from '../components/TrustBar.astro';
 import Risks from '../components/Risks.astro';
+
+import Method from '../components/Method.astro';
+import ReportMockup from '../components/ReportMockup.astro';
+import SustainabilityIntro from '../components/SustainabilityIntro.astro';
+
 import Services from '../components/Services.astro';
 import About from '../components/About.astro';
-import Reviews from '../components/Reviews.astro';
 import Gallery from '../components/Gallery.astro';
 import CTA from '../components/CTA.astro';
+
 import { brand } from '../config/brand';
 import { client } from '../data/client';
 ---
@@ -34,16 +41,39 @@ import { client } from '../data/client';
     url: client.domain,
   }}
 >
+  <!-- HEADER -->
   <Header slot="header" />
 
+  <!-- 1. HERO -->
   <Hero />
+
+  <!-- 2. TRUST / CREDIBILITATE -->
   <TrustBar />
+
+  <!-- 3. RISCURILE UNEI PROPRIETĂȚI NELOCUITE -->
   <Risks />
+
+  <!-- 4. CUM LUCRĂM -->
+  <Method />
+
+  <!-- 5. EXEMPLU RAPORT DIGITAL -->
+  <ReportMockup />
+
+  <!-- 6. SUSTENABILITATE -->
+  <SustainabilityIntro />
+
+  <!-- 7. PACHETE + OFERTA DE ONBOARDING -->
   <Services />
+
+  <!-- 8. PARTENERUL TĂU LOCAL / DESPRE NOI -->
   <About />
-  <Reviews />
+
+  <!-- 9. GALERIE -->
   <Gallery />
+
+  <!-- 10. CTA FINAL -->
   <CTA />
 
+  <!-- FOOTER -->
   <Footer slot="footer" />
 </BaseLayout>
