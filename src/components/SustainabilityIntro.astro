@@ -59,12 +59,8 @@ const mainAreas = [
 >
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- =====================================================
-         TITLU
-    ====================================================== -->
-
+    <!-- TITLU -->
     <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
-
       <p
         class="
           text-sm
@@ -108,26 +104,20 @@ const mainAreas = [
         resurse, a preveni risipa și a contribui la menținerea proprietății
         într-o stare bună pe termen lung.
       </p>
-
     </div>
 
-
-    <!-- =====================================================
-         CELE 3 DIRECȚII PRINCIPALE
-    ====================================================== -->
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- CELE 3 DIRECȚII PRINCIPALE -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
 
       {mainAreas.map((area) => (
-
         <article
           class="
             bg-[#F7FAFA]
             border
             border-[#D1E0E5]
             rounded-2xl
-            p-6
-            sm:p-7
+            p-7
+            h-full
             flex
             flex-col
             transition-all
@@ -136,19 +126,16 @@ const mainAreas = [
             hover:shadow-[0_12px_30px_rgba(14,56,70,0.10)]
           "
         >
-
-          <!-- ICONIȚE ODD OFICIALE -->
+          <!-- ZONA ICONIȚE CU ÎNĂLȚIME FIXĂ -->
           <div
             class:list={[
-              "flex items-start mb-6",
+              "mb-6 min-h-[88px] flex items-start",
               area.icons.length === 1
                 ? "justify-start"
-                : "justify-start gap-3"
+                : "justify-start gap-3 flex-wrap"
             ]}
           >
-
             {area.icons.map((icon) => (
-
               <a
                 href={icon.href}
                 title={icon.alt}
@@ -167,27 +154,22 @@ const mainAreas = [
                   focus:ring-offset-2
                 "
               >
-
                 <img
                   src={icon.src}
                   alt={icon.alt}
                   loading="lazy"
-                  class:list={[
-                    "block object-contain",
-                    area.icons.length === 1
-                      ? "w-[124px] h-[124px]"
-                      : "w-[82px] h-[82px] sm:w-[88px] sm:h-[88px]"
-                  ]}
+                  class="
+                    block
+                    w-[88px]
+                    h-[88px]
+                    object-contain
+                  "
                 />
-
               </a>
-
             ))}
-
           </div>
 
-
-          <!-- TITLU -->
+          <!-- TITLU CU ÎNĂLȚIME CONTROLATĂ -->
           <h3
             class="
               text-xl
@@ -195,11 +177,11 @@ const mainAreas = [
               font-bold
               text-[#0E3846]
               leading-tight
+              min-h-[56px]
             "
           >
             {area.title}
           </h3>
-
 
           <!-- DESCRIERE -->
           <p
@@ -208,38 +190,20 @@ const mainAreas = [
               text-base
               sm:text-[17px]
               text-[#405963]
-              leading-7
+              leading-8
             "
           >
             {area.description}
           </p>
-
         </article>
-
       ))}
 
     </div>
 
+    <!-- DIMENSIUNI TRANSVERSALE -->
+    <div class="mt-7 grid grid-cols-1 md:grid-cols-2 gap-5">
 
-    <!-- =====================================================
-         DIMENSIUNI TRANSVERSALE
-    ====================================================== -->
-
-    <div
-      class="
-        mt-7
-        grid
-        grid-cols-1
-        md:grid-cols-2
-        gap-5
-      "
-    >
-
-
-      <!-- ===================================================
-           DIGITALIZARE
-      ==================================================== -->
-
+      <!-- DIGITALIZARE -->
       <div
         class="
           rounded-2xl
@@ -251,10 +215,7 @@ const mainAreas = [
           border-[#245463]
         "
       >
-
         <div class="flex items-start gap-5">
-
-          <!-- Icon propriu pentru digitalizare -->
           <div
             class="
               shrink-0
@@ -270,7 +231,6 @@ const mainAreas = [
               text-[#DCECEF]
             "
           >
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -286,13 +246,11 @@ const mainAreas = [
                 rx="2"
                 stroke-width="1.6"
               />
-
               <path
                 d="M8 8h8M8 12h8M8 16h5"
                 stroke-width="1.6"
                 stroke-linecap="round"
               />
-
               <circle
                 cx="17"
                 cy="16"
@@ -301,12 +259,9 @@ const mainAreas = [
                 stroke="none"
               />
             </svg>
-
           </div>
 
-
           <div>
-
             <p
               class="
                 text-xs
@@ -344,18 +299,11 @@ const mainAreas = [
               Documentăm vizitele, datele și observațiile pentru a crea
               un istoric digital comparabil al proprietății.
             </p>
-
           </div>
-
         </div>
-
       </div>
 
-
-      <!-- ===================================================
-           PARTENERIATE — ODD 17
-      ==================================================== -->
-
+      <!-- PARTENERIATE -->
       <div
         class="
           rounded-2xl
@@ -367,9 +315,7 @@ const mainAreas = [
           border-[#245463]
         "
       >
-
         <div class="flex items-start gap-5">
-
           <a
             href="/sustenabilitate#sdg17"
             title="ODD 17 — Parteneriate pentru realizarea obiectivelor"
@@ -390,24 +336,20 @@ const mainAreas = [
               focus:ring-offset-[#0E3846]
             "
           >
-
             <img
               src="/odd-17-ro.png"
               alt="ODD 17 — Parteneriate pentru realizarea obiectivelor"
               loading="lazy"
               class="
                 block
-                w-[100px]
-                h-[100px]
+                w-[88px]
+                h-[88px]
                 object-contain
               "
             />
-
           </a>
 
-
           <div>
-
             <p
               class="
                 text-xs
@@ -445,28 +387,14 @@ const mainAreas = [
               Colaborarea cu proprietari, tehnicieni, furnizori și alți actori
               locali transformă monitorizarea într-o acțiune coordonată.
             </p>
-
           </div>
-
         </div>
-
       </div>
 
     </div>
 
-
-    <!-- =====================================================
-         NOTĂ SCURTĂ
-    ====================================================== -->
-
-    <div
-      class="
-        mt-8
-        max-w-4xl
-        mx-auto
-        text-center
-      "
-    >
+    <!-- NOTĂ SCURTĂ -->
+    <div class="mt-8 max-w-4xl mx-auto text-center">
       <p
         class="
           text-sm
@@ -481,13 +409,8 @@ const mainAreas = [
       </p>
     </div>
 
-
-    <!-- =====================================================
-         CTA
-    ====================================================== -->
-
+    <!-- CTA -->
     <div class="mt-8 text-center">
-
       <p
         class="
           text-base
@@ -525,10 +448,8 @@ const mainAreas = [
         "
       >
         DESCOPERĂ ABORDAREA NOASTRĂ
-
         <span aria-hidden="true">→</span>
       </a>
-
     </div>
 
   </div>
