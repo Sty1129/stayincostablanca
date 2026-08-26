@@ -3,146 +3,916 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { brand } from '../config/brand';
-
-const whatsappNumber = "34624110656";
-const whatsappMessage = encodeURIComponent("Bună ziua! Doresc mai multe informații despre serviciile de administrare.");
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 ---
 
-<BaseLayout 
-  title="Povestea noastra" 
-  description={`Află povestea ${brand.name} — partenerul tău de încredere în Costa Blanca.`}
+<BaseLayout
+  title={`Despre noi | ${brand.name}`}
+  description="Cunoaște filosofia Stay in Costa Blanca și abordarea bazată pe prezență locală, rigoare, prevenție și administrare responsabilă a proprietăților."
 >
   <Header slot="header" />
 
-   {/* SECȚIUNEA 1: Vila cu palmier & Textul "Despre noi" */}
-  <section class="py-16 sm:py-24 font-heading">
-    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
-      <div class="overflow-hidden rounded-2xl shadow-xl min-h-[400px] h-full">
-        <img
-          src="/palmhouse.jpg"
-          alt="Vilă mediteraneană în Costa Blanca"
-          class="size-full object-cover"
-          loading="eager"
-        />
-      </div>
-      <div class="space-y-6">
-        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">Povestea noastra</h2>
-        <p class="text-lg text-text-muted leading-relaxed">
-          {brand.name} s-a născut dintr-o convingere simplă: proprietatea ta din Spania merită aceeași grijă pe care i-ai acorda-o tu însuți, dacă ai fi aici în fiecare zi.
-        </p>
-        <p class="text-base text-text-muted leading-relaxed">
-          În spatele acestui serviciu se află o experiență solidă în domeniul juridic și în administrația publică la nivel guvernamental, completată de o preocupare constantă pentru dezvoltarea durabilă. Nu pentru că administrarea corectă a unei proprietăți ar avea nevoie de titluri, ci pentru că această experiență ne-a format rigoarea, atenția la detalii și capacitatea de a înțelege complexitatea documentelor, a reglementărilor și a responsabilităților care vin odată cu deținerea unei proprietăți în Spania.
-        </p>
-        <p class="text-base text-text-muted leading-relaxed">
-          La {brand.name}, combinăm această rigoare cu tehnologia, transparența și o abordare orientată spre sustenabilitate. Fiecare proprietate este tratată individual, cu servicii de protecție, monitorizare, mentenanță și asistență administrativă adaptate nevoilor proprietarului.
-        </p>
-        <p class="text-base text-text-muted leading-relaxed">
-          De la documente și obligații administrative până la verificarea și întreținerea curentă a locuinței, ne ocupăm de lucrurile care necesită prezență locală, atenție și încredere.
-        </p>
-        <p class="text-base text-text-muted leading-relaxed font-semibold">
-          Astfel, chiar și atunci când ești la sute sau mii de kilometri distanță, proprietatea ta rămâne în mâini bune.
-        </p>
-        <p class="text-emerald-700 font-bold tracking-wide text-lg pt-2">
-          More time for you. We take care of the rest.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  {/* SECȚIUNEA 2: Despre mine (Stelian Matei) */}
-  <section class="bg-surface py-16 sm:py-24 font-heading">
-    <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 items-center">
-        <div class="h-full min-h-[400px]">
-          <img 
-            src="/aboutme.png" 
-            alt="Stelian Matei - Managing Director & Property Specialist" 
-            class="h-full w-full object-cover object-center" 
-          />
-        </div>
-        <div class="p-8 sm:p-10 space-y-4">
-          <h2 class="text-2xl font-bold text-text uppercase">Despre mine</h2>
-          <div>
-            <h3 class="text-xl font-bold text-emerald-800 uppercase">Stelian Matei</h3>
-            <p class="text-emerald-600 font-semibold uppercase text-xs tracking-widest mt-1">
-              Managing Director & Property Specialist
+  <!-- =========================================================
+       1. INTRO / POVESTEA
+  ========================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+      border-b
+      border-[#D8E1E5]
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          gap-10
+          lg:gap-16
+          items-center
+        "
+      >
+
+        <!-- TEXT -->
+        <div class="order-1">
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+              mb-3
+            "
+          >
+            DESPRE STAY IN COSTA BLANCA
+          </p>
+
+
+          <h1
+            class="
+              text-[34px]
+              sm:text-[42px]
+              lg:text-[50px]
+              font-bold
+              text-[#0E3846]
+              tracking-tight
+              leading-[1.1]
+            "
+          >
+            Administrarea unei proprietăți începe cu încrederea.
+          </h1>
+
+
+          <p
+            class="
+              mt-6
+              text-[18px]
+              sm:text-xl
+              font-semibold
+              text-[#294A55]
+              leading-8
+            "
+          >
+            Stay in Costa Blanca a pornit de la o realitate simplă:
+            atunci când nu locuiești permanent lângă proprietatea ta,
+            ai nevoie de cineva local în care să poți avea încredere.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Nu doar pentru a păstra o cheie sau pentru a deschide o ușă,
+            ci pentru a observa ce se schimbă, a documenta starea
+            proprietății și a putea acționa atunci când apare o situație
+            care necesită atenție.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            De aici a apărut ideea unei administrări locale bazate pe
+            prevenție, documentare și continuitate — nu pe vizite izolate
+            și simple confirmări că „totul pare în regulă”.
+          </p>
+
+
+          <!-- BRAND LINE -->
+          <div
+            class="
+              mt-7
+              pt-5
+              border-t
+              border-[#D4E1E5]
+            "
+          >
+            <p
+              class="
+                text-sm
+                sm:text-base
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              More time for you.
+              <span class="text-[#D99B26]">
+                We take care of the rest.
+              </span>
             </p>
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">
-            Sunt Stelian Matei, Managing Director & Property Specialist la Stay in Costa Blanca. Experiența mea profesională reunește peste 15 ani în domeniul juridic și administrația publică, activitate în cercetare în domeniul protecției mediului și expertiză în dezvoltare durabilă.
-          </p>
-          <p class="text-text-muted text-sm leading-relaxed">
-            Am adus aceste experiențe împreună într-un domeniu în care rigoarea, încrederea și atenția la detalii fac o diferență reală: administrarea proprietăților.
-          </p>
-          <p class="text-text-muted text-sm leading-relaxed">
-            Pentru mine, property management înseamnă mai mult decât verificări și mentenanță. Înseamnă să fiu omul de încredere al proprietarului aici, în Costa Blanca, atunci când el nu poate fi prezent.
-          </p>
+
         </div>
-      </div>
-    </div>
-  </section>
 
-  {/* SECȚIUNEA 3: Partenerul tău local */}
-  <section class="py-16 sm:py-24 font-heading">
-    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
-      <div class="space-y-6 order-2 lg:order-1">
-        <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-          Partenerul tău local
-        </span>
-        <h2 class="text-3xl font-bold uppercase text-text sm:text-4xl">
-          SUNTEM OCHII TĂI ÎN SPANIA, CÂND TU NU POȚI FI AICI
-        </h2>
-        <p class="text-lg text-text-muted leading-relaxed">
-          Știm ce înseamnă să ai o casă la mii de kilometri distanță. Micile defecțiuni, fenomenele meteo extreme sau riscul ocupării ilegale pot deveni surse constante de stres atunci când ești plecat.
-        </p>
-        <p class="text-lg text-text-muted leading-relaxed">
-          De aceea, am creat un serviciu bazat pe proximitate și încredere totală. Nu suntem o agenție gigant, ci o echipă dedicată care îți tratează casa cu aceeași grijă cu care ne-o tratăm pe a noastră.
-        </p>
 
-        <ul class="space-y-3 pt-2">
-          <li class="flex items-start gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">✓</span>
-            <span class="text-text font-bold">Verificări riguroase de siguranță la fiecare 48-72 de ore *</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">✓</span>
-            <span class="text-text font-bold">Rapoarte digitale pe WhatsApp (foto/video) după fiecare vizită *</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">✓</span>
-            <span class="text-text font-bold">Serviciu Pre-Arrival: Pregătim casa înainte să vii *</span>
-          </li>
-        </ul>
-        
-        <p class="text-xs text-text-muted italic pt-1">
-          * Disponibil în funcție de pachetul contractat.
-        </p>
+        <!-- FOTO PROPRIETATE -->
+        <div class="order-2">
 
-        <div class="pt-4">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 rounded-xl bg-emerald-600 px-8 py-4 text-white text-lg font-bold tracking-wider uppercase shadow-xl transition-all duration-300 hover:bg-emerald-700 hover:scale-[1.02]"
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+              border
+              border-[#D1E0E5]
+              shadow-[0_18px_40px_rgba(14,56,70,0.14)]
+            "
           >
-            <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-            </svg>
-            SOLICITĂ OFERTĂ PE WHATSAPP
-          </a>
-        </div>
-      </div>
+            <img
+              src="/palmhouse.jpg"
+              alt="Proprietate mediteraneană în Costa Blanca"
+              loading="eager"
+              class="
+                block
+                w-full
+                aspect-[4/3]
+                object-cover
+              "
+            />
+          </div>
 
-      <div class="overflow-hidden rounded-2xl shadow-xl order-1 lg:order-2 min-h-[400px] h-full">
-        <img
-          src="/local.png"
-          alt="Case mediteraneene în Costa Blanca"
-          class="size-full object-cover"
-        />
+        </div>
+
       </div>
     </div>
   </section>
+
+
+
+  <!-- =========================================================
+       2. CINE ESTE STELIAN
+  ========================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+      border-b
+      border-[#D8E1E5]
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[0.9fr_1.1fr]
+          gap-10
+          lg:gap-16
+          items-start
+        "
+      >
+
+        <!-- FOTO -->
+        <div>
+
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+              border
+              border-[#D1E0E5]
+              shadow-[0_18px_40px_rgba(14,56,70,0.14)]
+            "
+          >
+            <img
+              src="/aboutme.png"
+              alt="Stelian Matei"
+              loading="lazy"
+              class="
+                block
+                w-full
+                aspect-[4/3]
+                object-cover
+                object-center
+              "
+            />
+          </div>
+
+
+          <!-- IDENTIFICARE -->
+          <div
+            class="
+              relative
+              -mt-5
+              mx-4
+              bg-white
+              rounded-xl
+              border
+              border-[#D4E1E5]
+              shadow-[0_8px_24px_rgba(14,56,70,0.10)]
+              px-5
+              py-4
+            "
+          >
+
+            <p
+              class="
+                text-xl
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              Stelian Matei
+            </p>
+
+            <p
+              class="
+                mt-1
+                text-sm
+                font-semibold
+                text-[#526B74]
+              "
+            >
+              Director General & Specialist în Administrarea Proprietăților
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- TEXT -->
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+              mb-3
+            "
+          >
+            CINE SE AFLĂ ÎN SPATELE BRANDULUI
+          </p>
+
+
+          <h2
+            class="
+              text-[30px]
+              sm:text-4xl
+              lg:text-[42px]
+              font-bold
+              text-[#0E3846]
+              tracking-tight
+              leading-[1.15]
+            "
+          >
+            Experiențe diferite, reunite într-un singur mod de lucru.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+              text-base
+              sm:text-[18px]
+              text-[#294A55]
+              leading-8
+              font-medium
+            "
+          >
+            Sunt Stelian Matei, fondatorul Stay in Costa Blanca.
+            Parcursul meu profesional nu a început în property management,
+            iar tocmai acest lucru definește modul în care lucrez astăzi.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Experiența mea reunește peste 15 ani în domeniul juridic și
+            administrația publică, activitate în cercetare în domeniul
+            protecției mediului și expertiză în dezvoltare durabilă.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Aceste domenii m-au învățat să lucrez cu proceduri, documente,
+            responsabilități clare, observații verificabile și decizii bazate
+            pe informații — principii pe care le aplic acum administrării
+            proprietăților.
+          </p>
+
+
+          <!-- CREDENTIAL CARDS -->
+          <div
+            class="
+              mt-7
+              grid
+              grid-cols-1
+              sm:grid-cols-3
+              gap-3
+            "
+          >
+
+            <!-- JURIDIC -->
+            <div
+              class="
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                p-4
+              "
+            >
+              <div
+                class="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-[#E4F1F4]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#0E3846]
+                  mb-3
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h4"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="font-bold text-[#0E3846]">
+                Juridic
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-[#607983]
+                  leading-6
+                "
+              >
+                Rigoare, documentare și responsabilitate.
+              </p>
+            </div>
+
+
+            <!-- CERCETARE -->
+            <div
+              class="
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                p-4
+              "
+            >
+              <div
+                class="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-[#E4F1F4]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#0E3846]
+                  mb-3
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 3h6M10 3v6l-5 9a2 2 0 001.8 3h10.4a2 2 0 001.8-3l-5-9V3"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 15h8"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="font-bold text-[#0E3846]">
+                Cercetare
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-[#607983]
+                  leading-6
+                "
+              >
+                Observație, comparație și analiză.
+              </p>
+            </div>
+
+
+            <!-- SUSTENABILITATE -->
+            <div
+              class="
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                p-4
+              "
+            >
+              <div
+                class="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-[#FFF2D8]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#A86C00]
+                  mb-3
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 4C12 4 6 7 5 14c4 1 8 0 11-3M5 20c1-6 5-10 11-13"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="font-bold text-[#0E3846]">
+                Dezvoltare durabilă
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-[#607983]
+                  leading-6
+                "
+              >
+                Resurse, prevenție și gândire pe termen lung.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================
+       3. FILOZOFIA / A DOUA FOTOGRAFIE
+  ========================================================== -->
+
+  <section
+    class="
+      bg-[#0E3846]
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          gap-10
+          lg:gap-16
+          items-center
+        "
+      >
+
+        <!-- TEXT -->
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#F3C76B]
+              mb-3
+            "
+          >
+            MODUL NOSTRU DE LUCRU
+          </p>
+
+
+          <h2
+            class="
+              text-[30px]
+              sm:text-4xl
+              lg:text-[42px]
+              font-bold
+              text-white
+              tracking-tight
+              leading-[1.15]
+            "
+          >
+            O proprietate nu este o listă de bife.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+              text-[18px]
+              sm:text-xl
+              font-semibold
+              text-[#E4EFF1]
+              leading-8
+            "
+          >
+            Este un sistem care se schimbă în timp.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#C6DBDF]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Umiditatea, consumul de apă și energie, accesul, instalațiile,
+            climatizarea sau starea exteriorului nu trebuie privite doar
+            în momentul unei vizite.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#C6DBDF]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Valoarea apare atunci când observațiile pot fi comparate în timp.
+            De aceea documentăm, păstrăm istoricul și urmărim schimbările
+            relevante ale proprietății.
+          </p>
+
+
+          <!-- PROCES -->
+          <div
+            class="
+              mt-7
+              flex
+              flex-wrap
+              gap-2
+            "
+          >
+            {[
+              'MĂSURĂM',
+              'COMPARĂM',
+              'DOCUMENTĂM',
+              'DETECTĂM',
+              'ACȚIONĂM'
+            ].map((item, index) => (
+              <span
+                class:list={[
+                  "rounded-lg",
+                  "px-3",
+                  "py-2",
+                  "text-xs",
+                  "sm:text-[13px]",
+                  "font-bold",
+                  "tracking-[0.06em]",
+                  index === 4
+                    ? "bg-[#D99B26] text-[#0E3846]"
+                    : "bg-[#174C5C] text-white border border-[#316878]"
+                ]}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             A DOUA POZĂ CU TINE
+        ================================================== -->
+
+        <div>
+
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+              border
+              border-white/10
+              shadow-[0_20px_45px_rgba(0,0,0,0.25)]
+              bg-[#174C5C]
+            "
+          >
+
+            <!--
+              AICI PUI A DOUA FOTOGRAFIE CU TINE.
+
+              Recomandare:
+              public/stelian-property.jpg
+
+              Ideal:
+              - în exterior
+              - lângă o proprietate
+              - eventual cu tabletă / chei
+              - naturală, nu fotografie de studio
+            -->
+
+            <img
+              src="/stelian-property.jpg"
+              alt="Stelian Matei în Costa Blanca"
+              loading="lazy"
+              class="
+                block
+                w-full
+                aspect-[4/3]
+                object-cover
+                object-center
+              "
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================
+       4. CE ÎNSEAMNĂ PENTRU CLIENT
+  ========================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+      border-b
+      border-[#D8E1E5]
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-4xl
+        px-4
+        sm:px-6
+        text-center
+      "
+    >
+
+      <p
+        class="
+          text-sm
+          font-bold
+          uppercase
+          tracking-[0.16em]
+          text-[#D99B26]
+          mb-3
+        "
+      >
+        CE ÎNSEAMNĂ ASTA PENTRU TINE
+      </p>
+
+
+      <h2
+        class="
+          text-[30px]
+          sm:text-4xl
+          lg:text-[42px]
+          font-bold
+          text-[#0E3846]
+          tracking-tight
+          leading-[1.15]
+        "
+      >
+        Să știi ce se întâmplă cu proprietatea ta, chiar dacă nu ești aici.
+      </h2>
+
+
+      <p
+        class="
+          mt-5
+          max-w-3xl
+          mx-auto
+          text-base
+          sm:text-lg
+          text-[#526B74]
+          leading-7
+          sm:leading-8
+        "
+      >
+        Rolul nostru este să fim prezenți local, să documentăm ceea ce
+        observăm și să îți oferim informația necesară pentru ca deciziile
+        privind proprietatea să nu fie luate în orb.
+      </p>
+
+
+      <div
+        class="
+          mt-9
+          flex
+          flex-col
+          sm:flex-row
+          justify-center
+          gap-3
+        "
+      >
+
+        <a
+          href="/contact"
+          class="
+            inline-flex
+            min-h-[52px]
+            items-center
+            justify-center
+            rounded-xl
+            bg-[#0E3846]
+            px-7
+            py-3.5
+            text-sm
+            sm:text-[15px]
+            font-bold
+            text-white
+            uppercase
+            tracking-[0.05em]
+            transition-all
+            hover:bg-[#164D5D]
+            hover:-translate-y-0.5
+          "
+        >
+          SOLICITĂ EVALUAREA PROPRIETĂȚII
+        </a>
+
+
+        <a
+          href="/services"
+          class="
+            inline-flex
+            min-h-[52px]
+            items-center
+            justify-center
+            rounded-xl
+            border-2
+            border-[#0E3846]
+            bg-white
+            px-7
+            py-3.5
+            text-sm
+            sm:text-[15px]
+            font-bold
+            text-[#0E3846]
+            uppercase
+            tracking-[0.05em]
+            transition-all
+            hover:bg-[#EAF4F6]
+          "
+        >
+          VEZI SERVICIILE ȘI PREȚURILE
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
 
   <Footer slot="footer" />
+
 </BaseLayout>
