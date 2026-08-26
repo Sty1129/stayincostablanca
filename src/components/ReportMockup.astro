@@ -1,413 +1,1471 @@
 ---
 // src/components/ReportMockup.astro
 //
-// Logo recomandat:
-// public/images/sicb-logo.png
+// Folosește logo-ul existent din:
+// public/sicb.png
 ---
 
-<section
-  id="raport-digital"
-  class="py-14 sm:py-16 md:py-20 bg-white font-heading border-b border-[#D8E1E5]"
->
-  <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+<section id="raport-digital" class="report-section">
+  <div class="report-container">
 
-      <!-- =====================================================
-           COLOANA STÂNGA: TEXT
-      ====================================================== -->
-      <div>
+    <!-- =====================================================
+         TEXT / EXPLICAȚIE
+    ====================================================== -->
+    <div class="intro">
 
-        <p
-          class="
-            text-sm
-            font-bold
-            uppercase
-            tracking-[0.16em]
-            text-[#D99B26]
-            mb-3
-          "
-        >
-          RAPORTARE DIGITALĂ
-        </p>
+      <span class="eyebrow">Raportare digitală</span>
 
-        <h2
-          class="
-            text-[28px]
-            sm:text-4xl
-            lg:text-[42px]
-            font-bold
-            text-[#0E3846]
-            tracking-tight
-            uppercase
-            leading-[1.15]
-            mb-4
-          "
-        >
-          Fiecare vizită lasă o urmă digitală.
-        </h2>
+      <h2>Fiecare vizită lasă o urmă digitală.</h2>
 
-        <p
-          class="
-            text-base
-            sm:text-lg
-            text-[#405963]
-            leading-7
-            sm:leading-8
-            mb-7
-          "
-        >
-          Primești un raport documentat, fotografii și observații relevante,
-          iar noi putem compara starea proprietății în timp.
-        </p>
+      <p class="intro-copy">
+        Nu primești doar o confirmare că totul este în regulă.
+        Primești un raport structurat, cu status pentru zonele verificate,
+        fotografii, valori relevante și recomandări clare.
+      </p>
 
-        <ul class="space-y-4 text-base sm:text-[17px] text-[#294650]">
-          <li class="flex items-start gap-3">
-            <span
-              class="
-                mt-0.5
-                flex
-                h-7
-                w-7
-                shrink-0
-                items-center
-                justify-center
-                rounded-full
-                bg-[#EAF4F6]
-                text-[#0E3846]
-                font-bold
-              "
-            >
-              ✓
-            </span>
-            <span class="leading-7">
-              Rapoarte digitale clare, ușor de urmărit de pe telefon sau laptop
-            </span>
-          </li>
+      <ul class="intro-points">
 
-          <li class="flex items-start gap-3">
-            <span
-              class="
-                mt-0.5
-                flex
-                h-7
-                w-7
-                shrink-0
-                items-center
-                justify-center
-                rounded-full
-                bg-[#EAF4F6]
-                text-[#0E3846]
-                font-bold
-              "
-            >
-              ✓
-            </span>
-            <span class="leading-7">
-              Istoric vizual și comparații între vizite, nu doar observații izolate
-            </span>
-          </li>
+        <li>
+          <span class="dot"></span>
+          <span>
+            Verificare punct cu punct: acces, utilități, climat și exterior
+          </span>
+        </li>
 
-          <li class="flex items-start gap-3">
-            <span
-              class="
-                mt-0.5
-                flex
-                h-7
-                w-7
-                shrink-0
-                items-center
-                justify-center
-                rounded-full
-                bg-[#EAF4F6]
-                text-[#0E3846]
-                font-bold
-              "
-            >
-              ✓
-            </span>
-            <span class="leading-7">
-              Evidențierea situațiilor care necesită monitorizare sau acțiune
-            </span>
-          </li>
-        </ul>
+        <li>
+          <span class="dot"></span>
+          <span>
+            Fotografii documentate la fiecare vizită
+          </span>
+        </li>
 
-      </div>
+        <li>
+          <span class="dot"></span>
+          <span>
+            Valori și observații comparabile în timp
+          </span>
+        </li>
+
+        <li>
+          <span class="dot"></span>
+          <span>
+            Recomandări clare atunci când ceva necesită atenție
+          </span>
+        </li>
+
+      </ul>
+
+    </div>
 
 
-      <!-- =====================================================
-           COLOANA DREAPTA: MOCK-UP RAPORT
-      ====================================================== -->
-      <div
-        class="
-          relative
-          bg-[#F7FAFA]
-          p-6
-          sm:p-7
-          rounded-2xl
-          border
-          border-[#CBDADF]
-          shadow-[0_14px_35px_rgba(14,56,70,0.12)]
-          font-sans
-          overflow-hidden
-        "
-      >
+    <!-- =====================================================
+         RAPORT
+    ====================================================== -->
+    <div class="card-wrap">
 
-        <!-- Bară de accent -->
-        <div class="absolute left-0 top-6 bottom-6 w-1.5 rounded-full bg-gradient-to-b from-[#5B9EB5] to-[#D99B26]"></div>
+      <div class="report-card">
 
-        <!-- Antet raport -->
-        <div
-          class="
-            border-b
-            border-[#D8E1E5]
-            pb-4
-            mb-5
-            flex
-            justify-between
-            items-start
-            gap-3
-          "
-        >
-          <div class="flex items-start gap-3">
+        <!-- =================================================
+             HEADER RAPORT
+        ================================================== -->
+        <div class="card-head">
+
+          <div class="report-identification">
+
+            <!-- LOGO REAL -->
             <img
-              src="/images/sicb-logo.png"
+              src="/sicb.png"
               alt="Stay in Costa Blanca"
-              class="h-10 w-10 object-contain shrink-0 mt-0.5"
+              class="report-logo"
             />
 
-            <div>
-              <h3
-                class="
-                  font-bold
-                  text-[#0E3846]
-                  text-sm
-                  sm:text-[15px]
-                  uppercase
-                  tracking-[0.12em]
-                  leading-tight
-                "
-              >
+            <div class="id">
+              <span class="mono-label">
                 Raport vizită proprietate
-              </h3>
+              </span>
 
-              <p class="text-xs sm:text-[13px] text-[#5A737C] mt-1">
-                Apartament · Orihuela Costa · 14 august 2026
-              </p>
+              <h3>Apartament · Orihuela Costa</h3>
+
+              <span class="meta">
+                14 august 2026 · 10:42
+              </span>
             </div>
+
           </div>
 
-          <span
-            class="
-              text-[10px]
-              sm:text-[11px]
-              bg-[#EAF4F6]
-              text-[#0E3846]
-              font-bold
-              px-2.5
-              py-1
-              rounded
-              border
-              border-[#C7DCE3]
-              uppercase
-              whitespace-nowrap
-            "
-          >
-            Completat
+          <span class="badge-overall">
+            1 DE MONITORIZAT
           </span>
-        </div>
-
-
-        <!-- Lista verificări -->
-        <div class="space-y-2.5 text-sm sm:text-[15px] mb-5">
-
-          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
-            <span class="text-[#4A646E]">Acces &amp; securitate</span>
-            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
-          </div>
-
-          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
-            <span class="text-[#4A646E]">Apă</span>
-            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
-          </div>
-
-          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
-            <span class="text-[#4A646E]">Electricitate</span>
-            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
-          </div>
-
-          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
-            <span class="text-[#4A646E]">Aer condiționat</span>
-            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
-          </div>
-
-          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
-            <span class="text-[#4A646E]">Climat interior</span>
-            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#FFF4DC] text-[#8B5B12] border border-[#EDD6A4]">ATENȚIE</span>
-          </div>
-
-          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
-            <span class="text-[#4A646E]">Exterior</span>
-            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
-          </div>
 
         </div>
 
 
-        <!-- Umiditate + contor apă -->
-        <div class="bg-white p-4 rounded-xl border border-[#D8E1E5] mb-4">
-          <p class="text-[11px] font-bold text-[#5A737C] uppercase tracking-[0.12em] mb-3">
+        <!-- =================================================
+             CHECKLIST
+        ================================================== -->
+        <div class="checklist">
+
+          <div class="row">
+            <span class="label">Acces &amp; securitate</span>
+            <span class="status ok">OK</span>
+          </div>
+
+          <div class="row">
+            <span class="label">Apă</span>
+            <span class="status ok">OK</span>
+          </div>
+
+          <div class="row">
+            <span class="label">Electricitate</span>
+            <span class="status ok">OK</span>
+          </div>
+
+          <div class="row">
+            <span class="label">Aer condiționat</span>
+            <span class="status ok">OK</span>
+          </div>
+
+          <div class="row">
+            <span class="label">Climat interior</span>
+            <span class="status warn">ATENȚIE</span>
+          </div>
+
+          <div class="row">
+            <span class="label">Exterior</span>
+            <span class="status ok">OK</span>
+          </div>
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <!-- =================================================
+             UMIDITATE
+        ================================================== -->
+        <div class="humidity">
+
+          <div class="block-label">
             Umiditate relativă
-          </p>
+          </div>
 
-          <div class="flex items-end gap-6">
-            <div class="flex flex-col items-center gap-1.5">
-              <span class="text-xs font-bold text-[#0E3846]">63%</span>
-              <div class="w-6 h-16 bg-[#F6F8F9] rounded-md overflow-hidden flex items-end border border-[#D8E1E5]">
-                <div class="w-full bg-[#D99B26] rounded-t-sm" style="height:63%"></div>
+          <div class="humidity-bars">
+
+            <div class="hbar before">
+
+              <span class="val">63%</span>
+
+              <div class="track">
+                <div class="fill"></div>
               </div>
-              <span class="text-[10px] text-[#5A737C]">înainte</span>
+
+              <span class="tag">
+                înainte
+              </span>
+
             </div>
 
-            <div class="flex flex-col items-center gap-1.5">
-              <span class="text-xs font-bold text-[#0E3846]">55%</span>
-              <div class="w-6 h-16 bg-[#F6F8F9] rounded-md overflow-hidden flex items-end border border-[#D8E1E5]">
-                <div class="w-full bg-[#5B9EB5] rounded-t-sm" style="height:55%"></div>
-              </div>
-              <span class="text-[10px] text-[#5A737C]">după ventilație</span>
-            </div>
 
-            <span class="text-xs sm:text-sm font-bold text-[#0E3846] pb-7">
+            <div class="humidity-arrow">
               ↓ 8%
-            </span>
-          </div>
-
-          <div class="flex justify-between border-t border-[#E1E8EB] pt-3 mt-4 text-sm gap-3">
-            <span class="font-semibold text-[#0E3846]">Contor apă:</span>
-            <span class="text-[#5A737C] text-right">Fără variații neobișnuite</span>
-          </div>
-        </div>
-
-
-        <!-- Fotografii atașate -->
-        <div class="mb-4">
-          <p class="text-[11px] font-bold text-[#5A737C] uppercase tracking-[0.12em] mb-2.5">
-            Fotografii atașate
-          </p>
-
-          <div class="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
-
-            <!-- thumb 1 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#EDE7DD]">
-                <div class="absolute inset-x-0 top-0 h-[38%] bg-[#BBD9E6]"></div>
-                <div class="absolute left-[14%] top-[18%] w-[58%] h-[34%] bg-white rounded-sm shadow-sm"></div>
-                <div class="absolute left-[10%] bottom-[14%] w-[72%] h-[26%] bg-[#DCC5A0] rounded-sm"></div>
-              </div>
             </div>
 
-            <!-- thumb 2 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#EFEDE7]">
-                <div class="absolute inset-x-0 top-0 h-[32%] bg-[#D9E9F0]"></div>
-                <div class="absolute right-[14%] top-[20%] w-[34%] h-[44%] bg-[#A0B7C0] rounded-sm"></div>
-                <div class="absolute left-[12%] bottom-[14%] w-[62%] h-[20%] bg-[#CDBA97] rounded-sm"></div>
-              </div>
-            </div>
 
-            <!-- thumb 3 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#ECEBE6]">
-                <div class="absolute left-[10%] top-[14%] w-[80%] h-[52%] bg-[#F7F7F5] rounded-sm border border-[#E1E1DE]"></div>
-                <div class="absolute left-[17%] top-[21%] w-[26%] h-[22%] bg-[#C4D9E2] rounded-sm"></div>
-                <div class="absolute left-[50%] top-[21%] w-[23%] h-[22%] bg-[#D4E6EC] rounded-sm"></div>
-                <div class="absolute left-[18%] bottom-[18%] w-[52%] h-[8%] bg-[#B8A07D] rounded-sm"></div>
-              </div>
-            </div>
+            <div class="hbar after">
 
-            <!-- thumb 4 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#E8E4DC]">
-                <div class="absolute inset-x-0 top-0 h-[36%] bg-[#AFD3E1]"></div>
-                <div class="absolute left-[10%] top-[38%] w-[78%] h-[18%] bg-white rounded-sm"></div>
-                <div class="absolute left-[16%] bottom-[12%] w-[64%] h-[22%] bg-[#B8905B] rounded-sm"></div>
-              </div>
-            </div>
+              <span class="val">55%</span>
 
-            <!-- thumb 5 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#EEF2F3]">
-                <div class="absolute left-[18%] top-[12%] w-[20%] h-[58%] bg-[#9BB1B9] rounded-sm"></div>
-                <div class="absolute left-[44%] top-[20%] w-[30%] h-[38%] bg-[#D9E4E8] rounded-sm border border-[#BCCED4]"></div>
-                <div class="absolute left-[12%] bottom-[10%] w-[70%] h-[14%] bg-[#C6B89F] rounded-sm"></div>
+              <div class="track">
+                <div class="fill"></div>
               </div>
-            </div>
 
-            <!-- thumb 6 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#EBE7DE]">
-                <div class="absolute left-[10%] top-[10%] w-[80%] h-[20%] bg-[#D4E7EE] rounded-sm"></div>
-                <div class="absolute left-[18%] top-[38%] w-[22%] h-[22%] bg-[#F7F7F7] rounded-sm border border-[#E1E1E1]"></div>
-                <div class="absolute left-[48%] top-[38%] w-[24%] h-[22%] bg-[#B7D3DD] rounded-sm"></div>
-                <div class="absolute inset-x-[16%] bottom-[12%] h-[12%] bg-[#B69A73] rounded-sm"></div>
-              </div>
-            </div>
+              <span class="tag">
+                după ventilație
+              </span>
 
-            <!-- thumb 7 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#EEF1F1]">
-                <div class="absolute inset-x-0 top-0 h-[34%] bg-[#C2DCE6]"></div>
-                <div class="absolute left-[15%] top-[36%] w-[66%] h-[16%] bg-white rounded-sm"></div>
-                <div class="absolute left-[22%] bottom-[12%] w-[48%] h-[22%] bg-[#94A8AF] rounded-sm"></div>
-              </div>
-            </div>
-
-            <!-- thumb 8 -->
-            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
-              <div class="h-full w-full relative bg-[#EFEDE9]">
-                <div class="absolute left-[12%] top-[14%] w-[76%] h-[24%] bg-[#DCEBF1] rounded-sm"></div>
-                <div class="absolute left-[14%] top-[44%] w-[24%] h-[20%] bg-[#F7F7F5] rounded-sm border border-[#E1E1DE]"></div>
-                <div class="absolute left-[46%] top-[44%] w-[32%] h-[20%] bg-[#A8C3CF] rounded-sm"></div>
-                <div class="absolute left-[16%] bottom-[12%] w-[60%] h-[12%] bg-[#C7AE89] rounded-sm"></div>
-              </div>
             </div>
 
           </div>
 
-          <p class="text-[11px] text-[#5A737C] mt-2">8 fotografii</p>
         </div>
 
 
-        <!-- Recomandare -->
-        <div class="text-sm text-[#5A737C] bg-[#FFF8E9] border-l-4 border-[#D99B26] p-3.5 rounded-r-lg mb-4 leading-6">
-          <strong class="text-[#6B4A08]">Recomandare:</strong>
-          Monitorizare la următoarea vizită.
-        </div>
+        <!-- =================================================
+             CONTOR
+        ================================================== -->
+        <div class="meter-row">
 
+          <span class="meter-icon">
 
-        <!-- Footer raport -->
-        <div
-          class="
-            flex
-            justify-between
-            items-center
-            border-t
-            border-[#D8E1E5]
-            pt-3
-            text-[11px]
-            text-[#5A737C]
-            gap-3
-          "
-        >
-          <span class="flex items-center gap-1.5 font-bold text-[#0E3846]">
-            <img src="/images/sicb-logo.png" alt="" class="h-4 w-4 object-contain" />
-            Stay in Costa Blanca
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.7"
+                d="M12 3.5c-2.7 3.5-5 6.3-5 9.2a5 5 0 0010 0c0-2.9-2.3-5.7-5-9.2z"
+              />
+            </svg>
+
           </span>
 
-          <span>raport digital</span>
+          <span class="meter-text">
+
+            <b>Contor apă</b>
+
+            <span>
+              Fără variații neobișnuite
+            </span>
+
+          </span>
+
+        </div>
+
+
+        <!-- =================================================
+             FOTOGRAFII
+        ================================================== -->
+        <div class="photos">
+
+          <div class="block-label">
+            Fotografii atașate
+          </div>
+
+
+          <div class="photo-grid">
+
+            <!-- Living room -->
+            <div class="photo-thumb living">
+              <span class="window"></span>
+              <span class="sofa"></span>
+            </div>
+
+            <!-- Kitchen -->
+            <div class="photo-thumb kitchen">
+              <span class="cabinet"></span>
+              <span class="counter"></span>
+            </div>
+
+            <!-- Bathroom -->
+            <div class="photo-thumb bathroom">
+              <span class="mirror"></span>
+              <span class="basin"></span>
+            </div>
+
+            <!-- Terrace -->
+            <div class="photo-thumb terrace">
+              <span class="sky"></span>
+              <span class="wall"></span>
+              <span class="floor"></span>
+            </div>
+
+            <!-- Meter -->
+            <div class="photo-thumb meter">
+              <span class="meterbox"></span>
+              <span class="meterdisplay"></span>
+            </div>
+
+            <!-- AC -->
+            <div class="photo-thumb ac">
+              <span class="acunit"></span>
+              <span class="acwall"></span>
+            </div>
+
+            <!-- Entrance -->
+            <div class="photo-thumb entrance">
+              <span class="door"></span>
+              <span class="entrywall"></span>
+            </div>
+
+            <!-- Exterior -->
+            <div class="photo-thumb exterior">
+              <span class="extsky"></span>
+              <span class="building"></span>
+              <span class="ground"></span>
+            </div>
+
+          </div>
+
+
+          <div class="photos-count">
+            8 fotografii
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RECOMANDARE
+        ================================================== -->
+        <div class="recommendation">
+
+          <span class="dot-icon"></span>
+
+          <p>
+            <b>Recomandare:</b>
+            monitorizare la următoarea vizită.
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER RAPORT
+        ================================================== -->
+        <div class="card-foot">
+
+          <span class="brand">
+
+            <img
+              src="/sicb.png"
+              alt=""
+              class="footer-logo"
+            />
+
+            Stay in Costa Blanca
+
+          </span>
+
+          <span class="stamp">
+            raport digital
+          </span>
+
         </div>
 
       </div>
 
     </div>
+
   </div>
 </section>
+
+
+<style>
+
+  /* =========================================================
+     BRAND
+  ========================================================= */
+
+  .report-section {
+    --dark-ocean: #0E3846;
+    --med-blue: #5B9EB5;
+    --gold: #D99B26;
+
+    --ok: #5EB984;
+    --ok-bg: rgba(94,185,132,.13);
+    --ok-border: rgba(94,185,132,.34);
+
+    --warn: #D99B26;
+    --warn-bg: rgba(217,155,38,.14);
+    --warn-border: rgba(217,155,38,.38);
+
+    --paper: #F7F5EF;
+    --paper-2: #F2EFE9;
+
+    --ink: #17343C;
+    --ink-soft: #536A71;
+
+    --line: rgba(14,56,70,.13);
+
+    background:
+      radial-gradient(
+        ellipse 900px 500px at 15% -10%,
+        rgba(91,158,181,.28),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 700px 500px at 90% 110%,
+        rgba(217,155,38,.10),
+        transparent 60%
+      ),
+      linear-gradient(
+        160deg,
+        #081E25 0%,
+        #0E3846 62%,
+        #164B5A 100%
+      );
+
+    padding: 72px 20px;
+
+    font-family: inherit;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+
+  .report-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: .86fr 1.14fr;
+    gap: 64px;
+
+    align-items: center;
+  }
+
+
+  /* =========================================================
+     INTRO
+  ========================================================= */
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+
+  .eyebrow {
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    color: #F3C76B;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+
+  .eyebrow::before {
+    content: '';
+
+    width: 25px;
+    height: 2px;
+
+    background: #D99B26;
+
+    display: inline-block;
+  }
+
+
+  .intro h2 {
+    font-size: clamp(30px, 3.4vw, 42px);
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    margin: 0;
+
+    color: #fff;
+
+    letter-spacing: -.015em;
+  }
+
+
+  .intro-copy {
+    font-size: 17px;
+    line-height: 1.75;
+
+    color: #D2E2E5;
+
+    margin: 0;
+
+    max-width: 42ch;
+  }
+
+
+  .intro-points {
+    list-style: none;
+
+    padding: 0;
+    margin: 7px 0 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+  }
+
+
+  .intro-points li {
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+    font-size: 16px;
+
+    color: #DCE9EB;
+
+    line-height: 1.6;
+  }
+
+
+  .intro-points .dot {
+    flex: none;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #D99B26;
+
+    margin-top: 9px;
+  }
+
+
+  /* =========================================================
+     CARD WRAPPER
+  ========================================================= */
+
+  .card-wrap {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    perspective: 1400px;
+  }
+
+
+  .card-wrap::before {
+    content: '';
+
+    position: absolute;
+
+    width: 86%;
+    height: 90%;
+
+    top: 6%;
+
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(217,155,38,.22),
+        transparent 70%
+      );
+
+    filter: blur(30px);
+
+    z-index: 0;
+  }
+
+
+  /* =========================================================
+     REPORT CARD
+  ========================================================= */
+
+  .report-card {
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+    max-width: 430px;
+
+    background: var(--paper);
+
+    border-radius: 20px;
+
+    padding: 26px 24px 22px;
+
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,.55),
+      0 10px 24px -12px rgba(0,0,0,.4),
+      0 0 0 1px rgba(255,255,255,.06);
+
+    transform: rotate(1deg);
+
+    color: var(--ink);
+  }
+
+
+  .report-card::before {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    top: 22px;
+    bottom: 22px;
+
+    width: 5px;
+
+    border-radius: 0 4px 4px 0;
+
+    background:
+      linear-gradient(
+        180deg,
+        var(--med-blue),
+        var(--gold)
+      );
+  }
+
+
+  /* =========================================================
+     HEADER
+  ========================================================= */
+
+  .card-head {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+
+    border-bottom: 1px solid var(--line);
+  }
+
+
+  .report-identification {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    min-width: 0;
+  }
+
+
+  .report-logo {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    flex: none;
+  }
+
+
+  .id {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+  }
+
+
+  .mono-label {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    color: var(--ink-soft);
+  }
+
+
+  .card-head h3 {
+    font-size: 16px;
+
+    margin: 0;
+
+    font-weight: 700;
+
+    color: var(--ink);
+  }
+
+
+  .meta {
+    font-size: 12px;
+
+    color: var(--ink-soft);
+
+    margin-top: 2px;
+  }
+
+
+  .badge-overall {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    padding: 6px 9px;
+
+    border-radius: 100px;
+
+    background: var(--warn-bg);
+
+    color: #80570D;
+
+    border: 1px solid var(--warn-border);
+
+    white-space: nowrap;
+  }
+
+
+  /* =========================================================
+     CHECKLIST
+  ========================================================= */
+
+  .checklist {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    margin-bottom: 16px;
+  }
+
+
+  .row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 8px 4px;
+  }
+
+
+  .row .label {
+    font-size: 13.5px;
+
+    color: var(--ink);
+
+    font-weight: 500;
+  }
+
+
+  .status {
+    font-size: 10.5px;
+
+    font-weight: 700;
+
+    letter-spacing: .03em;
+
+    padding: 3px 9px;
+
+    border-radius: 100px;
+  }
+
+
+  .status.ok {
+    background: var(--ok-bg);
+
+    color: #23653F;
+
+    border: 1px solid var(--ok-border);
+  }
+
+
+  .status.warn {
+    background: var(--warn-bg);
+
+    color: #80570D;
+
+    border: 1px solid var(--warn-border);
+  }
+
+
+  .divider {
+    height: 1px;
+
+    background: var(--line);
+
+    margin: 14px 0;
+  }
+
+
+  .block-label {
+    font-size: 10.5px;
+
+    font-weight: 700;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+
+    color: var(--ink-soft);
+
+    margin-bottom: 9px;
+  }
+
+
+  /* =========================================================
+     HUMIDITY
+  ========================================================= */
+
+  .humidity {
+    margin-bottom: 16px;
+  }
+
+
+  .humidity-bars {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 18px;
+  }
+
+
+  .hbar {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+  }
+
+
+  .hbar .track {
+    width: 26px;
+    height: 64px;
+
+    background: var(--paper-2);
+
+    border-radius: 6px;
+
+    display: flex;
+    align-items: flex-end;
+
+    overflow: hidden;
+  }
+
+
+  .hbar .fill {
+    width: 100%;
+
+    border-radius: 6px 6px 0 0;
+  }
+
+
+  .hbar.before .fill {
+    height: 63%;
+
+    background:
+      linear-gradient(
+        180deg,
+        #E5B04B,
+        var(--gold)
+      );
+  }
+
+
+  .hbar.after .fill {
+    height: 55%;
+
+    background:
+      linear-gradient(
+        180deg,
+        #82BFD1,
+        var(--med-blue)
+      );
+  }
+
+
+  .hbar .val {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: var(--ink);
+  }
+
+
+  .hbar .tag {
+    font-size: 10.5px;
+
+    color: var(--ink-soft);
+  }
+
+
+  .humidity-arrow {
+    color: #3B839A;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    padding-bottom: 20px;
+  }
+
+
+  /* =========================================================
+     METER
+  ========================================================= */
+
+  .meter-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+  }
+
+
+  .meter-icon {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 8px;
+
+    background: #E4EFF2;
+
+    color: var(--dark-ocean);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: none;
+  }
+
+
+  .meter-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+
+  .meter-text {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+  }
+
+
+  .meter-text b {
+    font-size: 13px;
+
+    font-weight: 700;
+  }
+
+
+  .meter-text span {
+    font-size: 11.5px;
+
+    color: var(--ink-soft);
+  }
+
+
+  /* =========================================================
+     PHOTO THUMBNAILS
+  ========================================================= */
+
+  .photos {
+    margin-bottom: 16px;
+  }
+
+
+  .photo-grid {
+    display: grid;
+
+    grid-template-columns: repeat(8, 1fr);
+
+    gap: 5px;
+  }
+
+
+  .photo-thumb {
+    position: relative;
+
+    aspect-ratio: 1;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+
+    background: #D8E1E2;
+
+    border: 1px solid rgba(14,56,70,.13);
+
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,.25);
+  }
+
+
+  /* Living */
+  .living {
+    background: #ECE8DF;
+  }
+
+  .living .window {
+    position: absolute;
+
+    left: 12%;
+    top: 10%;
+
+    width: 50%;
+    height: 38%;
+
+    background: #A9CEDB;
+
+    border: 2px solid #F7F5EF;
+  }
+
+  .living .sofa {
+    position: absolute;
+
+    left: 16%;
+    bottom: 14%;
+
+    width: 68%;
+    height: 28%;
+
+    background: #B99C77;
+
+    border-radius: 4px;
+  }
+
+
+  /* Kitchen */
+  .kitchen {
+    background: #E6E5DF;
+  }
+
+  .kitchen .cabinet {
+    position: absolute;
+
+    left: 9%;
+    top: 12%;
+
+    width: 82%;
+    height: 26%;
+
+    background: #D2DFE2;
+  }
+
+  .kitchen .counter {
+    position: absolute;
+
+    left: 8%;
+    bottom: 18%;
+
+    width: 84%;
+    height: 23%;
+
+    background: #9EAAA7;
+
+    border-top: 4px solid #5D7378;
+  }
+
+
+  /* Bathroom */
+  .bathroom {
+    background: #E7E9E6;
+  }
+
+  .bathroom .mirror {
+    position: absolute;
+
+    left: 18%;
+    top: 10%;
+
+    width: 58%;
+    height: 38%;
+
+    background: #B5D0D8;
+
+    border: 2px solid white;
+  }
+
+  .bathroom .basin {
+    position: absolute;
+
+    left: 26%;
+    bottom: 16%;
+
+    width: 50%;
+    height: 25%;
+
+    background: #F5F3EE;
+
+    border-radius: 50% 50% 4px 4px;
+  }
+
+
+  /* Terrace */
+  .terrace {
+    background: #C4DCE4;
+  }
+
+  .terrace .sky {
+    position: absolute;
+
+    inset: 0 0 55% 0;
+
+    background:
+      linear-gradient(
+        #8FC5D8,
+        #CAE1E8
+      );
+  }
+
+  .terrace .wall {
+    position: absolute;
+
+    inset: 45% 0 28% 0;
+
+    background: #EEE9DF;
+  }
+
+  .terrace .floor {
+    position: absolute;
+
+    inset: 72% 0 0 0;
+
+    background: #C0A77E;
+  }
+
+
+  /* Meter */
+  .meter {
+    background: #D9DDDC;
+  }
+
+  .meter .meterbox {
+    position: absolute;
+
+    left: 17%;
+    top: 10%;
+
+    width: 66%;
+    height: 75%;
+
+    background: #F2F1EB;
+
+    border: 2px solid #7B898B;
+
+    border-radius: 3px;
+  }
+
+  .meter .meterdisplay {
+    position: absolute;
+
+    left: 30%;
+    top: 30%;
+
+    width: 40%;
+    height: 22%;
+
+    background: #A9C7CB;
+
+    border-radius: 2px;
+  }
+
+
+  /* AC */
+  .ac {
+    background: #DEDCD5;
+  }
+
+  .ac .acwall {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      linear-gradient(
+        135deg,
+        #ECE8DF,
+        #D9D5CB
+      );
+  }
+
+  .ac .acunit {
+    position: absolute;
+
+    left: 14%;
+    top: 18%;
+
+    width: 72%;
+    height: 27%;
+
+    background: #F8F7F2;
+
+    border: 1px solid #ADB8BA;
+
+    border-radius: 4px;
+
+    z-index: 2;
+  }
+
+
+  /* Entrance */
+  .entrance {
+    background: #DCD8CF;
+  }
+
+  .entrance .entrywall {
+    position: absolute;
+
+    inset: 0;
+
+    background: #E8E1D5;
+  }
+
+  .entrance .door {
+    position: absolute;
+
+    left: 28%;
+    top: 10%;
+
+    width: 45%;
+    height: 80%;
+
+    background: #5D777D;
+
+    border: 3px solid #314D54;
+
+    z-index: 2;
+  }
+
+
+  /* Exterior */
+  .exterior {
+    background: #BDD8E1;
+  }
+
+  .exterior .extsky {
+    position: absolute;
+
+    inset: 0 0 52% 0;
+
+    background: #8FC6D8;
+  }
+
+  .exterior .building {
+    position: absolute;
+
+    left: 10%;
+    top: 37%;
+
+    width: 76%;
+    height: 38%;
+
+    background: #F1EDE3;
+
+    border-top: 5px solid #A58A64;
+  }
+
+  .exterior .ground {
+    position: absolute;
+
+    inset: 75% 0 0 0;
+
+    background: #B1A47E;
+  }
+
+
+  .photos-count {
+    font-size: 11px;
+
+    color: var(--ink-soft);
+
+    margin-top: 7px;
+  }
+
+
+  /* =========================================================
+     RECOMMENDATION
+  ========================================================= */
+
+  .recommendation {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(14,56,70,.05),
+        rgba(217,155,38,.10)
+      );
+
+    border: 1px solid rgba(14,56,70,.14);
+
+    border-radius: 12px;
+
+    padding: 12px 14px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: flex-start;
+  }
+
+
+  .dot-icon {
+    flex: none;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: var(--dark-ocean);
+
+    margin-top: 2px;
+
+    position: relative;
+  }
+
+
+  .dot-icon::after {
+    content: '!';
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+  }
+
+
+  .recommendation p {
+    margin: 0;
+
+    font-size: 12.5px;
+
+    line-height: 1.5;
+
+    color: var(--ink);
+  }
+
+
+  .recommendation b {
+    font-weight: 700;
+  }
+
+
+  /* =========================================================
+     FOOTER
+  ========================================================= */
+
+  .card-foot {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 16px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid var(--line);
+  }
+
+
+  .brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-weight: 700;
+
+    font-size: 11px;
+
+    color: var(--dark-ocean);
+  }
+
+
+  .footer-logo {
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+  }
+
+
+  .stamp {
+    font-size: 10px;
+
+    color: var(--ink-soft);
+  }
+
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+
+  @media (max-width: 900px) {
+
+    .report-section {
+      padding: 60px 18px;
+    }
+
+    .report-container {
+      grid-template-columns: 1fr;
+
+      gap: 44px;
+    }
+
+    .intro {
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .intro-copy {
+      max-width: 46ch;
+    }
+
+    .intro-points {
+      max-width: 620px;
+
+      align-items: flex-start;
+
+      text-align: left;
+    }
+
+    .report-card {
+      transform: rotate(.4deg);
+    }
+
+  }
+
+
+  @media (max-width: 520px) {
+
+    .report-card {
+      padding: 22px 18px 19px;
+    }
+
+    .report-logo {
+      width: 34px;
+      height: 34px;
+    }
+
+    .badge-overall {
+      font-size: 8.5px;
+
+      padding: 5px 7px;
+    }
+
+    .photo-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+  }
+
+</style>
