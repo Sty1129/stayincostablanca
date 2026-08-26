@@ -1,1 +1,371 @@
 
+---
+// src/components/LaunchOffer.astro
+
+// IMPORTANT:
+// Înlocuiește data de mai jos cu data REALĂ a promoției.
+// După expirare, secțiunea trebuie eliminată sau transformată
+// în prezentarea standard a onboarding-ului de 99 €.
+
+const offerDeadline = "31 octombrie 2026";
+---
+
+<section
+  id="oferta-lansare"
+  class="py-14 sm:py-16 md:py-20 bg-white font-heading border-b border-[#D8E1E5]"
+>
+  <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div
+      class="
+        relative
+        overflow-hidden
+        rounded-2xl
+        border
+        border-[#C9DDE3]
+        bg-[#F7FAFA]
+        shadow-[0_6px_24px_rgba(14,56,70,0.08)]
+      "
+    >
+
+      <!-- Accent superior -->
+      <div class="h-1.5 w-full bg-[#D99B26]"></div>
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[1.45fr_0.75fr]
+          gap-0
+        "
+      >
+
+        <!-- =====================================================
+             LEFT: EXPLICAȚIE
+        ====================================================== -->
+        <div class="p-7 sm:p-9 lg:p-11">
+
+          <!-- Eyebrow -->
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+              mb-3
+            "
+          >
+            OFERTĂ DE LANSARE
+          </p>
+
+          <!-- Titlu -->
+          <h2
+            class="
+              text-[28px]
+              sm:text-3xl
+              lg:text-[38px]
+              font-bold
+              text-[#0E3846]
+              leading-tight
+              tracking-tight
+            "
+          >
+            Începem prin a cunoaște proprietatea ta.
+          </h2>
+
+          <!-- Intro -->
+          <p
+            class="
+              mt-5
+              text-base
+              sm:text-lg
+              text-[#405963]
+              leading-7
+              sm:leading-8
+              max-w-2xl
+            "
+          >
+            Fiecare colaborare începe cu un
+            <strong class="text-[#0E3846]">
+              Property Onboarding &amp; Baseline Assessment
+            </strong>.
+            Documentăm accesul, elementele tehnice esențiale și starea inițială
+            a proprietății, astfel încât monitorizarea ulterioară să pornească
+            de la o bază clară și documentată.
+          </p>
+
+
+          <!-- Ce include -->
+          <div class="mt-7">
+
+            <p
+              class="
+                text-base
+                sm:text-lg
+                font-bold
+                text-[#0E3846]
+                mb-4
+              "
+            >
+              Evaluarea inițială include:
+            </p>
+
+            <div
+              class="
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                gap-x-8
+                gap-y-3
+                text-base
+                text-[#294650]
+              "
+            >
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Înregistrarea proprietății și a accesului</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Fotografii inițiale de referință</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Citiri inițiale ale contoarelor</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Identificarea punctelor tehnice esențiale</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Access Route Mapping</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Configurarea informațiilor de urgență</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Temperatură și umiditate inițială</span>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                <span>Registrul securizat al cheilor și accesului</span>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- CTA -->
+          <div class="mt-8">
+            <a
+              href="/contact"
+              class="
+                inline-block
+                w-full
+                sm:w-auto
+                text-center
+                bg-[#0E3846]
+                hover:bg-[#092A34]
+                text-white
+                font-bold
+                py-3.5
+                px-7
+                rounded-xl
+                text-sm
+                sm:text-base
+                uppercase
+                tracking-wide
+                transition
+                shadow-sm
+              "
+            >
+              SOLICITĂ EVALUAREA PROPRIETĂȚII
+            </a>
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             RIGHT: OFERTA
+        ====================================================== -->
+        <div
+          class="
+            bg-[#0E3846]
+            text-white
+            p-7
+            sm:p-9
+            lg:p-10
+            flex
+            flex-col
+            justify-center
+            items-center
+            text-center
+          "
+        >
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.14em]
+              text-[#A9D1DD]
+            "
+          >
+            PROPERTY ONBOARDING
+          </p>
+
+          <p
+            class="
+              mt-2
+              text-sm
+              sm:text-base
+              text-[#DCECEF]
+              leading-6
+            "
+          >
+            &amp; Baseline Assessment
+          </p>
+
+
+          <!-- Preț normal -->
+          <div class="mt-7">
+            <p
+              class="
+                text-sm
+                uppercase
+                tracking-wider
+                text-[#BCD7DE]
+              "
+            >
+              Valoare standard
+            </p>
+
+            <div class="mt-1 flex justify-center items-baseline gap-2">
+
+              <span
+                class="
+                  text-3xl
+                  sm:text-4xl
+                  font-bold
+                  text-[#DCECEF]
+                  line-through
+                  decoration-[#D99B26]
+                  decoration-2
+                "
+              >
+                99 €
+              </span>
+
+            </div>
+
+            <p class="text-sm text-[#BCD7DE] mt-1">
+              TVA inclus
+            </p>
+          </div>
+
+
+          <!-- Inclus -->
+          <div
+            class="
+              mt-7
+              w-full
+              rounded-xl
+              bg-white/10
+              border
+              border-white/20
+              px-5
+              py-5
+            "
+          >
+            <p
+              class="
+                text-[26px]
+                sm:text-3xl
+                font-bold
+                text-white
+                leading-tight
+              "
+            >
+              INCLUS
+            </p>
+
+            <p
+              class="
+                mt-1
+                text-base
+                sm:text-lg
+                font-semibold
+                text-[#DCECEF]
+              "
+            >
+              fără cost suplimentar
+            </p>
+          </div>
+
+
+          <!-- Deadline -->
+          <div class="mt-7">
+
+            <p
+              class="
+                text-sm
+                sm:text-base
+                text-[#E7F1F3]
+                leading-6
+              "
+            >
+              Pentru contractele încheiate până la
+            </p>
+
+            <p
+              class="
+                mt-1
+                text-lg
+                sm:text-xl
+                font-bold
+                text-[#F3C76B]
+              "
+            >
+              {offerDeadline}
+            </p>
+
+          </div>
+
+
+          <!-- Fără fake urgency -->
+          <p
+            class="
+              mt-6
+              text-xs
+              sm:text-sm
+              text-[#AFCBD2]
+              leading-5
+              max-w-xs
+            "
+          >
+            După această dată se aplică tariful standard de 99 € TVA inclus.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
