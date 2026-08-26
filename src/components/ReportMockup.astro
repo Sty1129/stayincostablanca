@@ -1,102 +1,411 @@
-
 ---
 // src/components/ReportMockup.astro
+//
+// Logo recomandat:
+// public/images/sicb-logo.png
 ---
 
-<section class="py-12 sm:py-16 md:py-20 bg-background font-heading border-b border-border">
-  <div class="mx-auto max-w-site px-4 sm:px-6">
+<section
+  id="raport-digital"
+  class="py-14 sm:py-16 md:py-20 bg-white font-heading border-b border-[#D8E1E5]"
+>
+  <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-      
-      <!-- Coloană Stânga: Text explicativ -->
+
+      <!-- =====================================================
+           COLOANA STÂNGA: TEXT
+      ====================================================== -->
       <div>
-        <span class="inline-block rounded-md bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 border border-emerald-200/60 mb-4">
-          Trasabilitate & Istoric Digital
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text tracking-tight uppercase mb-4">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+            mb-3
+          "
+        >
+          RAPORTARE DIGITALĂ
+        </p>
+
+        <h2
+          class="
+            text-[28px]
+            sm:text-4xl
+            lg:text-[42px]
+            font-bold
+            text-[#0E3846]
+            tracking-tight
+            uppercase
+            leading-[1.15]
+            mb-4
+          "
+        >
           Fiecare vizită lasă o urmă digitală.
         </h2>
-        <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-6">
-          Primești un raport documentat, fotografii și observații relevante, iar noi putem compara starea proprietății în timp.
+
+        <p
+          class="
+            text-base
+            sm:text-lg
+            text-[#405963]
+            leading-7
+            sm:leading-8
+            mb-7
+          "
+        >
+          Primești un raport documentat, fotografii și observații relevante,
+          iar noi putem compara starea proprietății în timp.
         </p>
-        <ul class="space-y-3 text-xs sm:text-sm text-text">
-          <li class="flex items-center gap-2">
-            <span class="text-emerald-600 font-bold">✓</span>
-            <span>Rapoarte digitale accesibile rapid de pe telefon sau laptop</span>
+
+        <ul class="space-y-4 text-base sm:text-[17px] text-[#294650]">
+          <li class="flex items-start gap-3">
+            <span
+              class="
+                mt-0.5
+                flex
+                h-7
+                w-7
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-[#EAF4F6]
+                text-[#0E3846]
+                font-bold
+              "
+            >
+              ✓
+            </span>
+            <span class="leading-7">
+              Rapoarte digitale clare, ușor de urmărit de pe telefon sau laptop
+            </span>
           </li>
-          <li class="flex items-center gap-2">
-            <span class="text-emerald-600 font-bold">✓</span>
-            <span>Istoric vizual și măsurători comparative ale proprietății</span>
+
+          <li class="flex items-start gap-3">
+            <span
+              class="
+                mt-0.5
+                flex
+                h-7
+                w-7
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-[#EAF4F6]
+                text-[#0E3846]
+                font-bold
+              "
+            >
+              ✓
+            </span>
+            <span class="leading-7">
+              Istoric vizual și comparații între vizite, nu doar observații izolate
+            </span>
           </li>
-          <li class="flex items-center gap-2">
-            <span class="text-emerald-600 font-bold">✓</span>
-            <span>Identificarea timpurie a abaterilor de la starea inițială</span>
+
+          <li class="flex items-start gap-3">
+            <span
+              class="
+                mt-0.5
+                flex
+                h-7
+                w-7
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-[#EAF4F6]
+                text-[#0E3846]
+                font-bold
+              "
+            >
+              ✓
+            </span>
+            <span class="leading-7">
+              Evidențierea situațiilor care necesită monitorizare sau acțiune
+            </span>
           </li>
         </ul>
+
       </div>
 
-      <!-- Coloană Dreapta: Mock-up Property Visit Report -->
-      <div class="bg-surface p-6 sm:p-7 rounded-2xl border border-border shadow-lg font-sans">
-        <!-- Antet Raport -->
-        <div class="border-b border-border pb-3 mb-4 flex justify-between items-center">
-          <div>
-            <h3 class="font-bold text-emerald-900 text-sm uppercase tracking-wider">
-              RAPORT VIZITĂ PROPRIETATE
-            </h3>
-            <p class="text-[11px] text-text-muted">Ref: CB-VISIT-2026</p>
+
+      <!-- =====================================================
+           COLOANA DREAPTA: MOCK-UP RAPORT
+      ====================================================== -->
+      <div
+        class="
+          relative
+          bg-[#F7FAFA]
+          p-6
+          sm:p-7
+          rounded-2xl
+          border
+          border-[#CBDADF]
+          shadow-[0_14px_35px_rgba(14,56,70,0.12)]
+          font-sans
+          overflow-hidden
+        "
+      >
+
+        <!-- Bară de accent -->
+        <div class="absolute left-0 top-6 bottom-6 w-1.5 rounded-full bg-gradient-to-b from-[#5B9EB5] to-[#D99B26]"></div>
+
+        <!-- Antet raport -->
+        <div
+          class="
+            border-b
+            border-[#D8E1E5]
+            pb-4
+            mb-5
+            flex
+            justify-between
+            items-start
+            gap-3
+          "
+        >
+          <div class="flex items-start gap-3">
+            <img
+              src="/images/sicb-logo.png"
+              alt="Stay in Costa Blanca"
+              class="h-10 w-10 object-contain shrink-0 mt-0.5"
+            />
+
+            <div>
+              <h3
+                class="
+                  font-bold
+                  text-[#0E3846]
+                  text-sm
+                  sm:text-[15px]
+                  uppercase
+                  tracking-[0.12em]
+                  leading-tight
+                "
+              >
+                Raport vizită proprietate
+              </h3>
+
+              <p class="text-xs sm:text-[13px] text-[#5A737C] mt-1">
+                Apartament · Orihuela Costa · 14 august 2026
+              </p>
+            </div>
           </div>
-          <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded border border-emerald-200 uppercase">
+
+          <span
+            class="
+              text-[10px]
+              sm:text-[11px]
+              bg-[#EAF4F6]
+              text-[#0E3846]
+              font-bold
+              px-2.5
+              py-1
+              rounded
+              border
+              border-[#C7DCE3]
+              uppercase
+              whitespace-nowrap
+            "
+          >
             Completat
           </span>
         </div>
 
-        <!-- Lista Verificări -->
-        <div class="space-y-2.5 text-xs sm:text-sm mb-5">
-          <div class="flex justify-between border-b border-slate-100 pb-1.5">
-            <span class="text-text-muted">Acces & securitate</span>
-            <span class="font-bold text-emerald-600">OK</span>
+
+        <!-- Lista verificări -->
+        <div class="space-y-2.5 text-sm sm:text-[15px] mb-5">
+
+          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
+            <span class="text-[#4A646E]">Acces &amp; securitate</span>
+            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
           </div>
-          <div class="flex justify-between border-b border-slate-100 pb-1.5">
-            <span class="text-text-muted">Apă</span>
-            <span class="font-bold text-emerald-600">OK</span>
+
+          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
+            <span class="text-[#4A646E]">Apă</span>
+            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
           </div>
-          <div class="flex justify-between border-b border-slate-100 pb-1.5">
-            <span class="text-text-muted">Electricitate</span>
-            <span class="font-bold text-emerald-600">OK</span>
+
+          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
+            <span class="text-[#4A646E]">Electricitate</span>
+            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
           </div>
-          <div class="flex justify-between border-b border-slate-100 pb-1.5">
-            <span class="text-text-muted">Aer condiționat</span>
-            <span class="font-bold text-emerald-600">OK</span>
+
+          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
+            <span class="text-[#4A646E]">Aer condiționat</span>
+            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
           </div>
-          <div class="flex justify-between border-b border-slate-100 pb-1.5">
-            <span class="text-text-muted">Climat interior</span>
-            <span class="font-bold text-amber-600">ATENȚIE</span>
+
+          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
+            <span class="text-[#4A646E]">Climat interior</span>
+            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#FFF4DC] text-[#8B5B12] border border-[#EDD6A4]">ATENȚIE</span>
           </div>
-          <div class="flex justify-between border-b border-slate-100 pb-1.5">
-            <span class="text-text-muted">Exterior</span>
-            <span class="font-bold text-emerald-600">OK</span>
+
+          <div class="flex justify-between items-center border-b border-[#E1E8EB] pb-2.5 gap-3">
+            <span class="text-[#4A646E]">Exterior</span>
+            <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E6F2EA] text-[#245C38] border border-[#CBE2D2]">OK</span>
+          </div>
+
+        </div>
+
+
+        <!-- Umiditate + contor apă -->
+        <div class="bg-white p-4 rounded-xl border border-[#D8E1E5] mb-4">
+          <p class="text-[11px] font-bold text-[#5A737C] uppercase tracking-[0.12em] mb-3">
+            Umiditate relativă
+          </p>
+
+          <div class="flex items-end gap-6">
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="text-xs font-bold text-[#0E3846]">63%</span>
+              <div class="w-6 h-16 bg-[#F6F8F9] rounded-md overflow-hidden flex items-end border border-[#D8E1E5]">
+                <div class="w-full bg-[#D99B26] rounded-t-sm" style="height:63%"></div>
+              </div>
+              <span class="text-[10px] text-[#5A737C]">înainte</span>
+            </div>
+
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="text-xs font-bold text-[#0E3846]">55%</span>
+              <div class="w-6 h-16 bg-[#F6F8F9] rounded-md overflow-hidden flex items-end border border-[#D8E1E5]">
+                <div class="w-full bg-[#5B9EB5] rounded-t-sm" style="height:55%"></div>
+              </div>
+              <span class="text-[10px] text-[#5A737C]">după ventilație</span>
+            </div>
+
+            <span class="text-xs sm:text-sm font-bold text-[#0E3846] pb-7">
+              ↓ 8%
+            </span>
+          </div>
+
+          <div class="flex justify-between border-t border-[#E1E8EB] pt-3 mt-4 text-sm gap-3">
+            <span class="font-semibold text-[#0E3846]">Contor apă:</span>
+            <span class="text-[#5A737C] text-right">Fără variații neobișnuite</span>
           </div>
         </div>
 
-        <!-- Măsurători & Detalii -->
-        <div class="bg-slate-50 p-3.5 rounded-xl text-xs space-y-2 mb-4 border border-border">
-          <div class="flex justify-between">
-            <span class="font-semibold text-text">Umiditate relativă:</span>
-            <span class="text-text-muted">Înainte: 63% | După: 55%</span>
+
+        <!-- Fotografii atașate -->
+        <div class="mb-4">
+          <p class="text-[11px] font-bold text-[#5A737C] uppercase tracking-[0.12em] mb-2.5">
+            Fotografii atașate
+          </p>
+
+          <div class="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
+
+            <!-- thumb 1 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#EDE7DD]">
+                <div class="absolute inset-x-0 top-0 h-[38%] bg-[#BBD9E6]"></div>
+                <div class="absolute left-[14%] top-[18%] w-[58%] h-[34%] bg-white rounded-sm shadow-sm"></div>
+                <div class="absolute left-[10%] bottom-[14%] w-[72%] h-[26%] bg-[#DCC5A0] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 2 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#EFEDE7]">
+                <div class="absolute inset-x-0 top-0 h-[32%] bg-[#D9E9F0]"></div>
+                <div class="absolute right-[14%] top-[20%] w-[34%] h-[44%] bg-[#A0B7C0] rounded-sm"></div>
+                <div class="absolute left-[12%] bottom-[14%] w-[62%] h-[20%] bg-[#CDBA97] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 3 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#ECEBE6]">
+                <div class="absolute left-[10%] top-[14%] w-[80%] h-[52%] bg-[#F7F7F5] rounded-sm border border-[#E1E1DE]"></div>
+                <div class="absolute left-[17%] top-[21%] w-[26%] h-[22%] bg-[#C4D9E2] rounded-sm"></div>
+                <div class="absolute left-[50%] top-[21%] w-[23%] h-[22%] bg-[#D4E6EC] rounded-sm"></div>
+                <div class="absolute left-[18%] bottom-[18%] w-[52%] h-[8%] bg-[#B8A07D] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 4 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#E8E4DC]">
+                <div class="absolute inset-x-0 top-0 h-[36%] bg-[#AFD3E1]"></div>
+                <div class="absolute left-[10%] top-[38%] w-[78%] h-[18%] bg-white rounded-sm"></div>
+                <div class="absolute left-[16%] bottom-[12%] w-[64%] h-[22%] bg-[#B8905B] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 5 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#EEF2F3]">
+                <div class="absolute left-[18%] top-[12%] w-[20%] h-[58%] bg-[#9BB1B9] rounded-sm"></div>
+                <div class="absolute left-[44%] top-[20%] w-[30%] h-[38%] bg-[#D9E4E8] rounded-sm border border-[#BCCED4]"></div>
+                <div class="absolute left-[12%] bottom-[10%] w-[70%] h-[14%] bg-[#C6B89F] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 6 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#EBE7DE]">
+                <div class="absolute left-[10%] top-[10%] w-[80%] h-[20%] bg-[#D4E7EE] rounded-sm"></div>
+                <div class="absolute left-[18%] top-[38%] w-[22%] h-[22%] bg-[#F7F7F7] rounded-sm border border-[#E1E1E1]"></div>
+                <div class="absolute left-[48%] top-[38%] w-[24%] h-[22%] bg-[#B7D3DD] rounded-sm"></div>
+                <div class="absolute inset-x-[16%] bottom-[12%] h-[12%] bg-[#B69A73] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 7 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#EEF1F1]">
+                <div class="absolute inset-x-0 top-0 h-[34%] bg-[#C2DCE6]"></div>
+                <div class="absolute left-[15%] top-[36%] w-[66%] h-[16%] bg-white rounded-sm"></div>
+                <div class="absolute left-[22%] bottom-[12%] w-[48%] h-[22%] bg-[#94A8AF] rounded-sm"></div>
+              </div>
+            </div>
+
+            <!-- thumb 8 -->
+            <div class="aspect-square rounded-md overflow-hidden border border-[#D7E1E5] bg-white shadow-sm">
+              <div class="h-full w-full relative bg-[#EFEDE9]">
+                <div class="absolute left-[12%] top-[14%] w-[76%] h-[24%] bg-[#DCEBF1] rounded-sm"></div>
+                <div class="absolute left-[14%] top-[44%] w-[24%] h-[20%] bg-[#F7F7F5] rounded-sm border border-[#E1E1DE]"></div>
+                <div class="absolute left-[46%] top-[44%] w-[32%] h-[20%] bg-[#A8C3CF] rounded-sm"></div>
+                <div class="absolute left-[16%] bottom-[12%] w-[60%] h-[12%] bg-[#C7AE89] rounded-sm"></div>
+              </div>
+            </div>
+
           </div>
-          <div class="flex justify-between border-t border-slate-200/60 pt-1.5">
-            <span class="font-semibold text-text">Contor apă:</span>
-            <span class="text-text-muted">Fără variații neobișnuite</span>
-          </div>
-          <div class="flex justify-between border-t border-slate-200/60 pt-1.5">
-            <span class="font-semibold text-text">Fotografii atașate:</span>
-            <span class="text-text-muted font-bold">8 poze</span>
-          </div>
+
+          <p class="text-[11px] text-[#5A737C] mt-2">8 fotografii</p>
         </div>
 
-        <!-- Recomandare finală -->
-        <div class="text-xs text-text-muted bg-amber-50/80 border-l-3 border-amber-500 p-3 rounded-r-lg">
-          <strong class="text-amber-900">Recomandare:</strong> Monitorizare la următoarea vizită.
+
+        <!-- Recomandare -->
+        <div class="text-sm text-[#5A737C] bg-[#FFF8E9] border-l-4 border-[#D99B26] p-3.5 rounded-r-lg mb-4 leading-6">
+          <strong class="text-[#6B4A08]">Recomandare:</strong>
+          Monitorizare la următoarea vizită.
         </div>
+
+
+        <!-- Footer raport -->
+        <div
+          class="
+            flex
+            justify-between
+            items-center
+            border-t
+            border-[#D8E1E5]
+            pt-3
+            text-[11px]
+            text-[#5A737C]
+            gap-3
+          "
+        >
+          <span class="flex items-center gap-1.5 font-bold text-[#0E3846]">
+            <img src="/images/sicb-logo.png" alt="" class="h-4 w-4 object-contain" />
+            Stay in Costa Blanca
+          </span>
+
+          <span>raport digital</span>
+        </div>
+
       </div>
 
     </div>
