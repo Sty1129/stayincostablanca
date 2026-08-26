@@ -3,57 +3,110 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { aboutImage as localAboutImage } from '../config/images';
 
-// 1. Logica de detectare a limbii
+// Detectare limbă
 const url = new URL(Astro.request.url);
 const pathname = url.pathname;
+
 const isEn = pathname.startsWith('/en/') || pathname === '/en';
 const currentLang = isEn ? 'en' : 'ro';
 const base = isEn ? '/en' : '';
 
 const translations = {
   ro: {
-    topper: 'Partenerul tău local',
-    heading: 'Suntem ochii tăi în Spania, când tu nu poți fi aici',
-    body: [
-      'Știm ce înseamnă să ai o casă la mii de kilometri distanță. Micile defecțiuni, fenomenele meteo extreme sau riscul ocupării ilegale pot deveni surse constante de stres atunci când ești plecat.',
-      'De aceea, am creat un serviciu bazat pe proximitate și încredere totală. Nu suntem o agenție gigant care vede doar un număr de contract, ci o echipă dedicată care îți tratează casa cu aceeași grijă cu care ne-o tratăm pe a noastră.',
-    ],
+    topper: 'PARTENERUL TĂU LOCAL',
+
+    heading:
+      'Prezență locală. Proces documentat. Responsabilitate reală.',
+
+    intro:
+      'Când ne încredințezi accesul la proprietatea ta, ne încredințezi mai mult decât o cheie. De aceea, administrarea unei locuințe în absența proprietarului trebuie să fie clară, documentată și responsabilă.',
+
+    body:
+      'Stay in Costa Blanca combină prezența locală cu o abordare preventivă: verificăm proprietatea, urmărim schimbările în timp și te informăm atunci când o situație necesită atenție sau intervenție.',
+
     benefits: [
-      'Verificări riguroase de siguranță la fiecare 48-72 de ore',
-      'Rapoarte digitale pe WhatsApp (foto/video) după fiecare vizită',
-      'Serviciu Pre-Arrival: Pregătim casa înainte să vii (curățenie, aerisire, cumpărături de bază)',
+      {
+        title: 'Prezență locală',
+        text: 'Servicii dedicate proprietăților din Orihuela Costa și Torrevieja.',
+      },
+      {
+        title: 'Proces documentat',
+        text: 'Vizite structurate, fotografii, observații și istoric digital al proprietății.',
+      },
+      {
+        title: 'Abordare preventivă',
+        text: 'Urmărim schimbările și semnalăm din timp situațiile care necesită atenție.',
+      },
     ],
-    ctaLabel: 'Află mai multe',
-    imageAlt: 'Detalii chei casă vacanță Spania',
+
+    signatureTop: 'STAY IN COSTA BLANCA',
+    signatureBottom: 'Scientific & Sustainable Property Management',
+
+    ctaLabel: 'AFLĂ MAI MULTE DESPRE NOI',
+
+    imageAlt:
+      'Partener local Stay in Costa Blanca pentru administrarea proprietăților',
   },
+
   en: {
-    topper: 'Your Local Partner',
-    heading: 'We are your eyes in Spain, when you can’t be here',
-    body: [
-      'We know what it means to have a home thousands of miles away. Minor faults, extreme weather, or the risk of squatting can become constant sources of stress while you are away.',
-      'That’s why we created a service based on proximity and total trust. We are not a giant agency that sees just a contract number, but a dedicated team that treats your home with the same care we treat our own.',
-    ],
+    topper: 'YOUR LOCAL PARTNER',
+
+    heading:
+      'Local presence. Documented process. Real accountability.',
+
+    intro:
+      'When you entrust us with access to your property, you are entrusting us with more than a key. That is why managing a home while its owner is away should be clear, documented and responsible.',
+
+    body:
+      'Stay in Costa Blanca combines local presence with a preventive approach: we check the property, track changes over time and keep you informed whenever something requires attention or action.',
+
     benefits: [
-      'Rigorous security checks every 48-72 hours',
-      'Digital WhatsApp reports (photo/video) after each visit',
-      'Pre-Arrival Service: We prepare the house before you arrive (cleaning, airing, basic shopping)',
+      {
+        title: 'Local presence',
+        text: 'Dedicated property services across Orihuela Costa and Torrevieja.',
+      },
+      {
+        title: 'Documented process',
+        text: 'Structured visits, photographs, observations and a digital property history.',
+      },
+      {
+        title: 'Preventive approach',
+        text: 'We track changes and highlight situations that require attention.',
+      },
     ],
-    ctaLabel: 'Learn More',
-    imageAlt: 'Holiday home keys details Spain',
+
+    signatureTop: 'STAY IN COSTA BLANCA',
+    signatureBottom: 'Scientific & Sustainable Property Management',
+
+    ctaLabel: 'LEARN MORE ABOUT US',
+
+    imageAlt:
+      'Stay in Costa Blanca local property management partner',
   }
 };
 
 const t = translations[currentLang];
 
-const PLACEHOLDER = 'https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?w=900&q=80';
+const PLACEHOLDER =
+  'https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?w=900&q=80';
 
 interface Props {
   topper?: string;
   heading?: string;
-  body?: string[];
-  benefits?: string[];
+  intro?: string;
+  body?: string;
+
+  benefits?: {
+    title: string;
+    text: string;
+  }[];
+
+  signatureTop?: string;
+  signatureBottom?: string;
+
   ctaLabel?: string;
   ctaHref?: string;
+
   imageSrc?: ImageMetadata | string;
   imageAlt?: string;
 }
@@ -61,8 +114,11 @@ interface Props {
 const {
   topper = t.topper,
   heading = t.heading,
+  intro = t.intro,
   body = t.body,
   benefits = t.benefits,
+  signatureTop = t.signatureTop,
+  signatureBottom = t.signatureBottom,
   ctaLabel = t.ctaLabel,
   ctaHref = `${base}/about`,
   imageSrc = localAboutImage ?? PLACEHOLDER,
@@ -70,53 +126,479 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-24 bg-white font-heading">
-  <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
+<section
+  id="despre-noi"
+  class="
+    relative
+    overflow-hidden
+    bg-white
+    py-14
+    sm:py-16
+    md:py-20
+    font-heading
+    border-b
+    border-[#D8E1E5]
+  "
+>
 
-    <div class="overflow-hidden rounded-2xl shadow-2xl transition-transform hover:scale-[1.01] duration-500">
-      <Image
-        src={imageSrc}
-        alt={imageAlt}
-        width={700}
-        height={525}
-        loading="lazy"
-        decoding="async"
-        class="size-full object-cover"
-      />
-    </div>
+  <!-- accent foarte discret -->
+  <div
+    class="
+      absolute
+      -right-40
+      -bottom-40
+      w-[420px]
+      h-[420px]
+      rounded-full
+      bg-[#5B9EB5]/10
+      blur-3xl
+      pointer-events-none
+    "
+    aria-hidden="true"
+  ></div>
 
-    <div class="space-y-5">
-      <span class="text-topper font-bold uppercase tracking-widest text-blue-600">{topper}</span>
-      <h2 class="font-heading text-4xl font-black uppercase text-slate-900 leading-tight">{heading}</h2>
 
-      {body.map((paragraph) => (
-        <p class="text-slate-600 leading-relaxed text-lg">{paragraph}</p>
-      ))}
+  <div
+    class="
+      relative
+      mx-auto
+      max-w-site
+      px-4
+      sm:px-6
+      lg:px-8
+    "
+  >
 
-      <ul class="space-y-4 pt-2" role="list">
-        {benefits.map((benefit) => (
-          <li class="flex items-start gap-3">
-            <div class="mt-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                </svg>
-            </div>
-            <span class="text-slate-800 font-bold text-lg">{benefit}</span>
-          </li>
-        ))}
-      </ul>
+    <div
+      class="
+        grid
+        grid-cols-1
+        lg:grid-cols-2
+        items-center
+        gap-10
+        lg:gap-16
+      "
+    >
 
-      <div class="pt-4">
-        <a
-          href={ctaHref}
-          class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-slate-900 px-8 py-4 text-base font-black uppercase text-white shadow-xl transition-all hover:bg-blue-600"
+      <!-- =====================================================
+           TEXT
+           Pe mobil apare primul
+      ====================================================== -->
+
+      <div class="order-1 lg:order-2">
+
+        <!-- TOPPER -->
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+            mb-3
+          "
         >
-          {ctaLabel}
-          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+          {topper}
+        </p>
+
+
+        <!-- TITLU -->
+        <h2
+          class="
+            text-[28px]
+            sm:text-4xl
+            lg:text-[42px]
+            font-bold
+            text-[#0E3846]
+            tracking-tight
+            leading-[1.15]
+          "
+        >
+          {heading}
+        </h2>
+
+
+        <!-- INTRO -->
+        <p
+          class="
+            mt-5
+            text-base
+            sm:text-[18px]
+            text-[#294A55]
+            leading-7
+            sm:leading-8
+            font-medium
+          "
+        >
+          {intro}
+        </p>
+
+
+        <!-- BODY -->
+        <p
+          class="
+            mt-4
+            text-base
+            sm:text-[17px]
+            text-[#526B74]
+            leading-7
+            sm:leading-8
+          "
+        >
+          {body}
+        </p>
+
+
+        <!-- =================================================
+             CELE 3 DIFERENȚIATOARE
+        ================================================== -->
+
+        <div
+          class="
+            mt-7
+            grid
+            grid-cols-1
+            gap-4
+          "
+        >
+
+          {benefits.map((benefit, index) => (
+
+            <div
+              class="
+                flex
+                items-start
+                gap-4
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                px-5
+                py-4
+              "
+            >
+
+              <!-- ICON -->
+              <div
+                class:list={[
+                  "flex",
+                  "w-10",
+                  "h-10",
+                  "shrink-0",
+                  "items-center",
+                  "justify-center",
+                  "rounded-full",
+                  index === 2
+                    ? "bg-[#FFF2D8] text-[#A86C00]"
+                    : "bg-[#E5F1F4] text-[#0E3846]"
+                ]}
+              >
+
+                {index === 0 && (
+                  <!-- locație -->
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 21s7-5.1 7-11a7 7 0 10-14 0c0 5.9 7 11 7 11z"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="10"
+                      r="2.3"
+                      stroke-width="1.8"
+                    />
+                  </svg>
+                )}
+
+                {index === 1 && (
+                  <!-- document -->
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="5"
+                      y="3"
+                      width="14"
+                      height="18"
+                      rx="2"
+                      stroke-width="1.8"
+                    />
+                    <path
+                      d="M8.5 8h7M8.5 12h7M8.5 16h4.5"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                )}
+
+                {index === 2 && (
+                  <!-- prevenție / shield -->
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 3l7 3v5c0 4.5-2.7 8-7 10-4.3-2-7-5.5-7-10V6l7-3z"
+                      stroke-width="1.8"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9 12l2 2 4-4"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+
+              </div>
+
+
+              <!-- TEXT -->
+              <div>
+
+                <h3
+                  class="
+                    text-[17px]
+                    sm:text-lg
+                    font-bold
+                    text-[#0E3846]
+                  "
+                >
+                  {benefit.title}
+                </h3>
+
+                <p
+                  class="
+                    mt-1
+                    text-[15px]
+                    sm:text-base
+                    text-[#526B74]
+                    leading-6
+                  "
+                >
+                  {benefit.text}
+                </p>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+
+        <!-- =================================================
+             BRAND SIGNATURE
+        ================================================== -->
+
+        <div
+          class="
+            mt-7
+            pt-5
+            border-t
+            border-[#D7E3E6]
+          "
+        >
+
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.14em]
+              text-[#0E3846]
+            "
+          >
+            {signatureTop}
+          </p>
+
+          <p
+            class="
+              mt-1
+              text-sm
+              font-semibold
+              text-[#5B9EB5]
+            "
+          >
+            {signatureBottom}
+          </p>
+
+        </div>
+
+
+        <!-- CTA -->
+        <div class="mt-6">
+
+          <a
+            href={ctaHref}
+            class="
+              inline-flex
+              min-h-[50px]
+              items-center
+              justify-center
+              gap-2
+              rounded-xl
+              border-2
+              border-[#0E3846]
+              bg-white
+              px-6
+              py-3
+              text-sm
+              sm:text-[15px]
+              font-bold
+              uppercase
+              tracking-[0.05em]
+              text-[#0E3846]
+              transition-all
+              duration-200
+              hover:bg-[#0E3846]
+              hover:text-white
+            "
+          >
+            {ctaLabel}
+
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 12h14m-5-5 5 5-5 5"
+              />
+            </svg>
+
+          </a>
+
+        </div>
+
       </div>
+
+
+      <!-- =====================================================
+           IMAGINE
+      ====================================================== -->
+
+      <div
+        class="
+          order-2
+          lg:order-1
+        "
+      >
+
+        <div
+          class="
+            relative
+            overflow-hidden
+            rounded-2xl
+            border
+            border-[#D1E0E5]
+            shadow-[0_18px_40px_rgba(14,56,70,0.15)]
+          "
+        >
+
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={900}
+            height={675}
+            loading="lazy"
+            decoding="async"
+            class="
+              block
+              w-full
+              aspect-[4/3]
+              object-cover
+            "
+          />
+
+
+          <!-- gradient discret -->
+          <div
+            class="
+              absolute
+              inset-0
+              bg-gradient-to-t
+              from-[#0E3846]/25
+              via-transparent
+              to-transparent
+              pointer-events-none
+            "
+            aria-hidden="true"
+          ></div>
+
+
+          <!-- LABEL FOTO -->
+          <div
+            class="
+              absolute
+              left-4
+              bottom-4
+              sm:left-5
+              sm:bottom-5
+              rounded-xl
+              bg-white/95
+              backdrop-blur-sm
+              border
+              border-white/70
+              px-4
+              py-3
+              shadow-lg
+            "
+          >
+
+            <p
+              class="
+                text-[11px]
+                font-bold
+                uppercase
+                tracking-[0.12em]
+                text-[#D99B26]
+              "
+            >
+              LOCAL · ORIHUELA COSTA
+            </p>
+
+            <p
+              class="
+                mt-0.5
+                text-sm
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              Stay in Costa Blanca
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
