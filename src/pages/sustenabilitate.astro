@@ -2,130 +2,556 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { brand } from '../config/brand';
+
+const oddItems = [
+  {
+    number: 6,
+    title: 'Apă curată și sanitație',
+    short: 'Monitorizarea apei',
+    text:
+      'Fotografiile contoarelor, verificările instalațiilor sanitare și observarea eventualelor pierderi ne ajută să identificăm mai repede situațiile care pot duce la risipă de apă.',
+  },
+  {
+    number: 7,
+    title: 'Energie curată și la prețuri accesibile',
+    short: 'Monitorizarea energiei',
+    text:
+      'Urmărirea consumurilor și verificarea funcționării de bază a echipamentelor pot evidenția schimbări care merită investigate înainte ca acestea să genereze consum inutil.',
+  },
+  {
+    number: 11,
+    title: 'Orașe și comunități durabile',
+    short: 'Proprietăți mai reziliente',
+    text:
+      'Întreținerea preventivă și monitorizarea regulată contribuie la păstrarea proprietăților într-o stare mai bună în perioadele în care acestea sunt nelocuite.',
+  },
+  {
+    number: 12,
+    title: 'Consum și producție responsabile',
+    short: 'Prevenție înainte de înlocuire',
+    text:
+      'Identificarea timpurie a unei probleme poate permite o intervenție minoră înainte ca deteriorarea să impună reparații mai ample, materiale suplimentare sau înlocuirea unor echipamente.',
+  },
+  {
+    number: 13,
+    title: 'Acțiune climatică',
+    short: 'Pregătire & reziliență',
+    text:
+      'Verificările după episoade de vreme severă și monitorizarea elementelor exterioare ajută la identificarea mai rapidă a efectelor produse de condițiile meteo extreme.',
+  },
+  {
+    number: 17,
+    title: 'Parteneriate pentru realizarea obiectivelor',
+    short: 'Colaborare locală',
+    text:
+      'Administrarea proprietății presupune uneori colaborarea cu tehnicieni, furnizori și profesioniști locali. Coordonarea responsabilă face parte din procesul nostru.',
+  },
+];
+
+const packageLevels = [
+  {
+    name: 'ECO-BASIC',
+    level: 'WATCH',
+    subtitle: 'Awareness & Monitoring',
+    featured: false,
+    odds: [6, 7, 11],
+    items: [
+      'Fotografii ale contoarelor',
+      'Verificări periodice ale apei și instalațiilor sanitare',
+      'Observarea vizuală a umidității și infiltrațiilor',
+      'Verificare funcțională de bază a aerului condiționat',
+      'Raport digital după fiecare vizită',
+    ],
+  },
+  {
+    name: 'ECO-SMART',
+    level: 'PREVENT',
+    subtitle: 'Optimization & Efficiency',
+    featured: true,
+    odds: [6, 7, 11, 12, 13],
+    items: [
+      'Tot ce include ECO-BASIC',
+      'Temperatură și umiditate relativă',
+      'Ventilație asistată',
+      'Citiri comparative de umiditate',
+      'Analiză trimestrială apă & energie',
+      'Screening preventiv al aerului condiționat',
+    ],
+  },
+  {
+    name: 'ECO-PREMIUM',
+    level: 'MANAGE',
+    subtitle: 'Resilience & Impact',
+    featured: false,
+    odds: [6, 7, 11, 12, 13, 17],
+    items: [
+      'Tot ce include ECO-SMART',
+      'Analiză lunară apă & energie',
+      'Extended Property Reviews',
+      'Mai multe verificări după vreme severă',
+      'Property Health Report anual',
+      'Coordonare locală extinsă',
+    ],
+  },
+];
+
+const practicalItems = [
+  {
+    number: '01',
+    title: 'O variație neașteptată a consumului de apă',
+    text:
+      'Poate indica o pierdere sau o problemă care merită verificată înainte de următoarea factură.',
+  },
+  {
+    number: '02',
+    title: 'Umiditate în creștere',
+    text:
+      'Compararea valorilor între vizite poate evidenția o schimbare înainte ca deteriorarea să devină evidentă vizual.',
+  },
+  {
+    number: '03',
+    title: 'Drenaj blocat pe terasă',
+    text:
+      'Identificat înaintea unei ploi puternice, poate preveni acumularea apei și eventuale infiltrații.',
+  },
+  {
+    number: '04',
+    title: 'Un echipament care funcționează diferit',
+    text:
+      'O schimbare observată în timpul unei verificări poate fi investigată înainte de apariția unei defecțiuni mai serioase.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Sustenabilitate"
-  description={`Află cum integrează ${brand.name} principiile sustenabilității în administrarea proprietăților din Orihuela Costa și Torrevieja.`}
+  title={`Sustenabilitate | ${brand.name}`}
+  description="Administrare preventivă și sustenabilă a proprietăților din Costa Blanca: apă, energie, reziliență, digitalizare, trasabilitate și parteneriate locale."
 >
   <Header slot="header" />
 
-  <Banner title="Sustenabilitate" />
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
 
-  <!-- INTRO -->
-  <section class="py-16 sm:py-20 bg-white font-heading border-b border-[#D8E1E5]">
-    <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto max-w-4xl text-center">
-        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
-          ADMINISTRARE RESPONSABILĂ
+  <section
+    class="
+      relative
+      overflow-hidden
+      bg-[#0E3846]
+      py-16
+      sm:py-20
+      lg:py-24
+      font-heading
+    "
+  >
+    <div
+      class="
+        pointer-events-none
+        absolute
+        -right-24
+        -top-24
+        h-96
+        w-96
+        rounded-full
+        bg-[#5B9EB5]/20
+        blur-3xl
+      "
+    ></div>
+
+    <div
+      class="
+        pointer-events-none
+        absolute
+        -bottom-32
+        -left-24
+        h-80
+        w-80
+        rounded-full
+        bg-[#D99B26]/10
+        blur-3xl
+      "
+    ></div>
+
+    <div class="relative mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-5xl text-center">
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.18em]
+            text-[#F3C76B]
+          "
+        >
+          SUSTENABILITATE APLICATĂ
         </p>
 
-        <h1 class="text-[30px] sm:text-4xl lg:text-[44px] font-bold text-[#0E3846] tracking-tight leading-tight">
-          Sustenabilitate aplicată în administrarea proprietăților
+        <h1
+          class="
+            mt-4
+            text-[36px]
+            sm:text-5xl
+            lg:text-[58px]
+            font-bold
+            leading-[1.08]
+            tracking-tight
+            text-white
+          "
+        >
+          Sustenabilitate aplicată în administrarea proprietăților.
         </h1>
 
-        <p class="mt-5 text-base sm:text-lg text-[#405963] leading-7 sm:leading-8 max-w-3xl mx-auto">
-          Pentru noi, sustenabilitatea nu înseamnă doar un concept frumos formulat.
-          Înseamnă monitorizare atentă, prevenție, utilizarea responsabilă a resurselor
-          și o administrare documentată, care contribuie la protejarea proprietății pe termen lung.
+        <p
+          class="
+            mx-auto
+            mt-6
+            max-w-4xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#C9DDE2]
+          "
+        >
+          Pentru noi, sustenabilitatea înseamnă prevenție, utilizarea
+          responsabilă a resurselor, documentare și o administrare care ajută
+          proprietatea să își păstreze valoarea și funcționalitatea în timp.
         </p>
+
+        <div
+          class="
+            mt-8
+            flex
+            flex-wrap
+            justify-center
+            gap-3
+          "
+        >
+          {oddItems.map((odd) => (
+            <a
+              href={`#odd-${odd.number}`}
+              class="
+                rounded-xl
+                bg-white
+                p-1.5
+                shadow-[0_6px_18px_rgba(0,0,0,0.14)]
+                transition
+                hover:-translate-y-1
+              "
+            >
+              <img
+                src={`/odd-${odd.number}-ro.png`}
+                alt={`ODD ${odd.number} — ${odd.title}`}
+                class="
+                  h-[64px]
+                  w-[64px]
+                  sm:h-[72px]
+                  sm:w-[72px]
+                  object-contain
+                "
+              />
+            </a>
+          ))}
+        </div>
+
+        <p
+          class="
+            mt-6
+            text-sm
+            font-semibold
+            text-[#D8E6EA]
+          "
+        >
+          ODD 6 · ODD 7 · ODD 11 · ODD 12 · ODD 13 · ODD 17
+        </p>
+
+        <div
+          class="
+            mt-8
+            flex
+            flex-col
+            sm:flex-row
+            justify-center
+            gap-3
+          "
+        >
+          <a
+            href="#abordare"
+            class="
+              inline-flex
+              min-h-[52px]
+              items-center
+              justify-center
+              rounded-xl
+              bg-[#D99B26]
+              px-7
+              py-3
+              text-sm
+              font-bold
+              text-[#0E3846]
+              transition
+              hover:bg-[#E7AA38]
+            "
+          >
+            DESCOPERĂ ABORDAREA NOASTRĂ
+          </a>
+
+          <a
+            href="/services"
+            class="
+              inline-flex
+              min-h-[52px]
+              items-center
+              justify-center
+              rounded-xl
+              border
+              border-white/25
+              px-7
+              py-3
+              text-sm
+              font-bold
+              text-white
+              transition
+              hover:bg-white/10
+            "
+          >
+            VEZI PACHETELE
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PRINCIPII / PILONI -->
-  <section class="py-16 sm:py-20 bg-[#FCFDFD] font-heading border-b border-[#D8E1E5]">
-    <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
-          CUM O INTEGRĂM
+  <!-- =====================================================
+       APPROACH
+  ====================================================== -->
+
+  <section
+    id="abordare"
+    class="
+      scroll-mt-24
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-center">
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+            text-[#D99B26]
+          "
+        >
+          CUM INTEGRĂM SUSTENABILITATEA
         </p>
 
-        <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
-          Două direcții principale și două dimensiuni transversale
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          Două direcții operaționale. Două dimensiuni transversale.
         </h2>
 
-        <p class="mt-4 text-base sm:text-lg text-[#526B74] leading-7 max-w-3xl mx-auto">
-          Abordarea noastră pornește de la două direcții operaționale clare,
-          susținute permanent de digitalizare și colaborare locală.
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          Activitatea noastră se concentrează pe gestionarea resurselor și
+          reziliența proprietății. Digitalizarea și parteneriatele locale
+          susțin întregul proces.
         </p>
       </div>
 
-      <!-- CELE 2 DIRECȚII PRINCIPALE -->
-      <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <!-- RESURSE -->
-        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
-          <div class="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5F2F5] text-[#0E3846]">
+      <!-- MAIN AXES -->
+
+      <div
+        class="
+          mx-auto
+          mt-12
+          grid
+          max-w-5xl
+          grid-cols-1
+          lg:grid-cols-2
+          gap-6
+        "
+      >
+        <!-- RESOURCES -->
+
+        <article
+          class="
+            rounded-2xl
+            border
+            border-[#D2E1E5]
+            bg-[#F7FAFA]
+            p-6
+            sm:p-8
+          "
+        >
+          <div
+            class="
+              flex
+              h-16
+              w-16
+              items-center
+              justify-center
+              rounded-full
+              bg-[#E5F2F5]
+              text-[#0E3846]
+            "
+          >
             <svg
               viewBox="0 0 64 64"
               fill="none"
               stroke="currentColor"
-              class="h-8 w-8"
+              class="h-9 w-9"
               aria-hidden="true"
             >
-              <!-- picătură -->
               <path
-                d="M20 10S10 21 10 30a10 10 0 0020 0c0-9-10-20-10-20z"
+                d="M18 9S8 21 8 30a10 10 0 0020 0C28 21 18 9 18 9z"
                 stroke-width="3"
                 stroke-linejoin="round"
               />
-              <!-- fulger -->
+
               <path
-                d="M42 10L32 34h10l-5 20 17-27H43l7-17z"
+                d="M43 8L31 34h11l-5 22 19-30H44l7-18z"
                 stroke-width="3"
-                stroke-linejoin="round"
                 stroke-linecap="round"
+                stroke-linejoin="round"
               />
             </svg>
           </div>
 
-          <p class="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-[#D99B26]">
+          <div
+            class="
+              mt-6
+              flex
+              flex-wrap
+              gap-2
+            "
+          >
+            {[6, 7].map((odd) => (
+              <img
+                src={`/odd-${odd}-ro.png`}
+                alt={`ODD ${odd}`}
+                class="
+                  h-[58px]
+                  w-[58px]
+                  object-contain
+                "
+              />
+            ))}
+          </div>
+
+          <p
+            class="
+              mt-5
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.13em]
+              text-[#D99B26]
+            "
+          >
             ODD 6 + ODD 7
           </p>
 
-          <h3 class="mt-2 text-xl sm:text-2xl font-bold text-[#0E3846]">
+          <h3
+            class="
+              mt-2
+              text-2xl
+              font-bold
+              text-[#0E3846]
+            "
+          >
             Resurse
           </h3>
 
-          <p class="mt-3 text-[15px] leading-7 text-[#526B74]">
-            Monitorizăm elementele relevante legate de apă și energie, documentăm consumurile
-            și urmărim schimbările care pot indica pierderi, consum anormal sau funcționare
-            ineficientă.
+          <p
+            class="
+              mt-4
+              text-[15px]
+              leading-7
+              text-[#526B74]
+            "
+          >
+            Monitorizăm elementele relevante legate de apă și energie,
+            documentăm consumurile și urmărim schimbările care pot indica
+            pierderi, consum anormal sau funcționare ineficientă.
           </p>
         </article>
 
-        <!-- PROPRIETATE & REZILIENȚĂ -->
-        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
-          <div class="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5F2F5] text-[#0E3846]">
+        <!-- RESILIENCE -->
+
+        <article
+          class="
+            rounded-2xl
+            border
+            border-[#D2E1E5]
+            bg-[#F7FAFA]
+            p-6
+            sm:p-8
+          "
+        >
+          <div
+            class="
+              flex
+              h-16
+              w-16
+              items-center
+              justify-center
+              rounded-full
+              bg-[#E5F2F5]
+              text-[#0E3846]
+            "
+          >
             <svg
               viewBox="0 0 64 64"
               fill="none"
               stroke="currentColor"
-              class="h-8 w-8"
+              class="h-9 w-9"
               aria-hidden="true"
             >
-              <!-- casă -->
               <path
-                d="M8 30L26 15l18 15v22H8z"
+                d="M7 30L26 14l19 16v22H7z"
                 stroke-width="3"
                 stroke-linejoin="round"
               />
+
               <path
-                d="M20 52V39h12v13"
+                d="M20 52V38h12v14"
                 stroke-width="3"
                 stroke-linejoin="round"
               />
-              <!-- scut -->
+
               <path
-                d="M46 26l10 4v9c0 8-5 13-10 16-5-3-10-8-10-16v-9l10-4z"
+                d="M46 26l11 4v10c0 8-5 13-11 17-6-4-11-9-11-17V30l11-4z"
+                fill="#F7FAFA"
                 stroke-width="3"
                 stroke-linejoin="round"
               />
+
               <path
-                d="M42 39l3 3 6-7"
+                d="M41.5 40l3.5 3.5 6-7"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -133,43 +559,144 @@ import { brand } from '../config/brand';
             </svg>
           </div>
 
-          <p class="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-[#D99B26]">
+          <div
+            class="
+              mt-6
+              flex
+              flex-wrap
+              gap-2
+            "
+          >
+            {[11, 12, 13].map((odd) => (
+              <img
+                src={`/odd-${odd}-ro.png`}
+                alt={`ODD ${odd}`}
+                class="
+                  h-[58px]
+                  w-[58px]
+                  object-contain
+                "
+              />
+            ))}
+          </div>
+
+          <p
+            class="
+              mt-5
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.13em]
+              text-[#D99B26]
+            "
+          >
             ODD 11 + ODD 12 + ODD 13
           </p>
 
-          <h3 class="mt-2 text-xl sm:text-2xl font-bold text-[#0E3846]">
+          <h3
+            class="
+              mt-2
+              text-2xl
+              font-bold
+              text-[#0E3846]
+            "
+          >
             Proprietate &amp; reziliență
           </h3>
 
-          <p class="mt-3 text-[15px] leading-7 text-[#526B74]">
-            Verificările preventive, observarea schimbărilor și intervenția la timp contribuie
-            la reducerea degradării și la prelungirea duratei de viață a proprietății și echipamentelor.
+          <p
+            class="
+              mt-4
+              text-[15px]
+              leading-7
+              text-[#526B74]
+            "
+          >
+            Verificările preventive, observarea schimbărilor și intervenția
+            la timp contribuie la reducerea degradării și la prelungirea
+            duratei de viață a proprietății și echipamentelor.
           </p>
         </article>
       </div>
 
-      <!-- DIMENSIUNI TRANSVERSALE -->
-      <div class="mt-12 mx-auto max-w-5xl">
+      <!-- TRANSVERSAL -->
+
+      <div class="mx-auto mt-12 max-w-5xl">
         <div class="text-center">
-          <p class="text-xs font-bold uppercase tracking-[0.17em] text-[#D99B26]">
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.17em]
+              text-[#D99B26]
+            "
+          >
             DIMENSIUNI TRANSVERSALE
           </p>
 
-          <h3 class="mt-2 text-2xl sm:text-3xl font-bold text-[#0E3846]">
-            Două elemente susțin întregul nostru proces
+          <h3
+            class="
+              mt-2
+              text-2xl
+              sm:text-3xl
+              font-bold
+              text-[#0E3846]
+            "
+          >
+            Două elemente susțin întregul nostru proces.
           </h3>
 
-          <p class="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#526B74]">
-            Digitalizarea și colaborarea locală nu aparțin unui singur tip de verificare.
-            Ele traversează întregul proces de administrare și fac posibilă monitorizarea
-            documentată, trasabilitatea și coordonarea intervențiilor.
+          <p
+            class="
+              mx-auto
+              mt-3
+              max-w-3xl
+              text-base
+              leading-7
+              text-[#526B74]
+            "
+          >
+            Digitalizarea și colaborarea locală nu aparțin unei singure
+            verificări. Ele traversează întregul sistem de administrare.
           </p>
         </div>
 
-        <div class="mt-7 grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <!-- DIGITALIZARE -->
-          <article class="flex gap-5 rounded-2xl border border-[#BFD7DE] bg-[#EEF7F9] p-6">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-[#0E3846]">
+        <div
+          class="
+            mt-7
+            grid
+            grid-cols-1
+            lg:grid-cols-2
+            gap-5
+          "
+        >
+          <!-- DIGITAL -->
+
+          <article
+            class="
+              flex
+              gap-5
+              rounded-2xl
+              border
+              border-[#BFD7DE]
+              bg-[#EEF7F9]
+              p-6
+            "
+          >
+            <div
+              class="
+                flex
+                h-12
+                w-12
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-white
+                text-[#0E3846]
+              "
+            >
               <svg
                 viewBox="0 0 64 64"
                 fill="none"
@@ -177,15 +704,36 @@ import { brand } from '../config/brand';
                 class="h-7 w-7"
                 aria-hidden="true"
               >
-                <rect x="10" y="8" width="34" height="44" rx="4" stroke-width="3" />
-                <path d="M18 19h18M18 27h12" stroke-width="3" stroke-linecap="round" />
+                <rect
+                  x="10"
+                  y="8"
+                  width="34"
+                  height="44"
+                  rx="4"
+                  stroke-width="3"
+                />
+
+                <path
+                  d="M18 19h18M18 27h12"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+
                 <path
                   d="M18 42l7-8 6 5 11-13"
                   stroke-width="3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
-                <circle cx="48" cy="44" r="9" stroke-width="3" />
+
+                <circle
+                  cx="48"
+                  cy="44"
+                  r="9"
+                  fill="#EEF7F9"
+                  stroke-width="3"
+                />
+
                 <path
                   d="M44 44l3 3 5-6"
                   stroke-width="3"
@@ -196,25 +744,70 @@ import { brand } from '../config/brand';
             </div>
 
             <div>
-              <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#397C92]">
+              <p
+                class="
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.12em]
+                  text-[#397C92]
+                "
+              >
                 TRANSVERSAL ÎN TOATE PACHETELE
               </p>
 
-              <h4 class="mt-1 text-xl font-bold text-[#0E3846]">
+              <h4
+                class="
+                  mt-1
+                  text-xl
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
                 Digitalizare &amp; trasabilitate
               </h4>
 
-              <p class="mt-2 text-sm leading-6 text-[#526B74]">
-                Fotografiile, valorile măsurate, rapoartele și istoricul vizitelor creează
-                continuitate între verificări. Astfel putem compara starea proprietății în timp
-                și putem identifica mai ușor schimbările relevante.
+              <p
+                class="
+                  mt-2
+                  text-sm
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                Fotografiile, valorile măsurate, rapoartele și istoricul
+                vizitelor creează continuitate între verificări și permit
+                compararea stării proprietății în timp.
               </p>
             </div>
           </article>
 
-          <!-- PARTENERIATE -->
-          <article class="flex gap-5 rounded-2xl border border-[#E2D3A9] bg-[#FFF9ED] p-6">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-[#0E3846]">
+          <!-- PARTNERSHIPS -->
+
+          <article
+            class="
+              flex
+              gap-5
+              rounded-2xl
+              border
+              border-[#E2D3A9]
+              bg-[#FFF9ED]
+              p-6
+            "
+          >
+            <div
+              class="
+                flex
+                h-12
+                w-12
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-white
+                text-[#0E3846]
+              "
+            >
               <svg
                 viewBox="0 0 64 64"
                 fill="none"
@@ -228,47 +821,101 @@ import { brand } from '../config/brand';
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
+
                 <path
                   d="M57 28L46 18l-13 6"
                   stroke-width="3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
+
                 <path
                   d="M24 25l8-5c3-2 6-1 8 1l5 5"
                   stroke-width="3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
+
                 <path
                   d="M17 34l14 13c2 2 5 2 7 0l11-11"
                   stroke-width="3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
-                <path
-                  d="M26 41l5-5M32 46l5-5M38 46l5-5"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                />
               </svg>
             </div>
 
-            <div>
-              <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#D18D13]">
-                TRANSVERSAL ÎN ADMINISTRAREA PROPRIETĂȚII
+            <div class="flex-1">
+              <div
+                class="
+                  flex
+                  items-start
+                  justify-between
+                  gap-4
+                "
+              >
+                <div>
+                  <p
+                    class="
+                      text-[10px]
+                      font-bold
+                      uppercase
+                      tracking-[0.12em]
+                      text-[#D18D13]
+                    "
+                  >
+                    TRANSVERSAL ÎN ADMINISTRAREA PROPRIETĂȚII
+                  </p>
+
+                  <h4
+                    class="
+                      mt-1
+                      text-xl
+                      font-bold
+                      text-[#0E3846]
+                    "
+                  >
+                    Parteneriate locale
+                  </h4>
+                </div>
+
+                <img
+                  src="/odd-17-ro.png"
+                  alt="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+                  class="
+                    hidden
+                    sm:block
+                    h-[64px]
+                    w-[64px]
+                    shrink-0
+                    object-contain
+                  "
+                />
+              </div>
+
+              <p
+                class="
+                  mt-2
+                  text-sm
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                Colaborarea cu tehnicieni, furnizori și profesioniști locali
+                ne permite să transformăm o problemă identificată într-o
+                acțiune coordonată atunci când este necesar.
               </p>
 
-              <h4 class="mt-1 text-xl font-bold text-[#0E3846]">
-                Parteneriate locale
-              </h4>
-
-              <p class="mt-2 text-sm leading-6 text-[#526B74]">
-                Colaborarea cu tehnicieni, furnizori și profesioniști locali ne permite
-                să transformăm o problemă identificată într-o acțiune coordonată atunci când este necesar.
-              </p>
-
-              <p class="mt-3 text-xs font-bold uppercase tracking-[0.1em] text-[#D99B26]">
+              <p
+                class="
+                  mt-3
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.1em]
+                  text-[#D99B26]
+                "
+              >
                 ODD 17
               </p>
             </div>
@@ -278,209 +925,822 @@ import { brand } from '../config/brand';
     </div>
   </section>
 
-  <!-- ÎN PRACTICĂ -->
-  <section class="py-16 sm:py-20 bg-white font-heading border-b border-[#D8E1E5]">
-    <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
-          ÎN PRACTICĂ
-        </p>
+  <!-- =====================================================
+       SIX SDGs
+  ====================================================== -->
 
-        <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
-          Cum se traduce sustenabilitatea în serviciile noastre
-        </h2>
-
-        <p class="mt-4 text-base sm:text-lg text-[#526B74] leading-7">
-          Integrăm aceste principii în mod gradual, de la monitorizare și prevenție
-          până la optimizare și coordonare responsabilă.
-        </p>
-      </div>
-
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- 1 -->
-        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
-          <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#D99B26]">
-            NIVEL 1
-          </p>
-
-          <h3 class="mt-2 text-xl font-bold text-[#0E3846]">
-            Awareness & Monitoring
-          </h3>
-
-          <p class="mt-3 text-sm leading-6 text-[#526B74]">
-            Observăm, măsurăm și documentăm elementele relevante pentru a crea un punct
-            de referință și un istoric comparabil al proprietății.
-          </p>
-
-          <ul class="mt-5 space-y-3 text-sm text-[#405963]">
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Verificarea vizuală a instalațiilor și accesului
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Fotografii și observații comparative
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Monitorizarea consumului și a semnalelor timpurii
-            </li>
-          </ul>
-        </article>
-
-        <!-- 2 -->
-        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
-          <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#D99B26]">
-            NIVEL 2
-          </p>
-
-          <h3 class="mt-2 text-xl font-bold text-[#0E3846]">
-            Optimization & Efficiency
-          </h3>
-
-          <p class="mt-3 text-sm leading-6 text-[#526B74]">
-            Comparăm informațiile în timp și identificăm situațiile în care pot fi
-            prevenite pierderi, supraconsum sau degradări evitabile.
-          </p>
-
-          <ul class="mt-5 space-y-3 text-sm text-[#405963]">
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Interpretarea variațiilor de consum
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Screening preventiv pentru umiditate și echipamente
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Recomandări bazate pe observații documentate
-            </li>
-          </ul>
-        </article>
-
-        <!-- 3 -->
-        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
-          <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#D99B26]">
-            NIVEL 3
-          </p>
-
-          <h3 class="mt-2 text-xl font-bold text-[#0E3846]">
-            Resilience & Impact
-          </h3>
-
-          <p class="mt-3 text-sm leading-6 text-[#526B74]">
-            Atunci când apare o nevoie reală de intervenție, susținem coordonarea locală
-            astfel încât proprietatea să fie protejată rapid și responsabil.
-          </p>
-
-          <ul class="mt-5 space-y-3 text-sm text-[#405963]">
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Coordonarea accesului pentru tehnicieni
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Verificări după vreme severă sau incidente
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Menținerea proprietății într-o stare bună pe termen lung
-            </li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECȚIUNE DIGITALĂ -->
-  <section class="py-16 sm:py-20 bg-[#F7FAFA] font-heading border-b border-[#D8E1E5]">
-    <div class="mx-auto max-w-site px-4 sm:px-6">
+  <section
+    class="
+      bg-[#F1F7F8]
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-4xl text-center">
-        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
-          DIGITALIZARE & TRASABILITATE
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+            text-[#D99B26]
+          "
+        >
+          OBIECTIVELE DE DEZVOLTARE DURABILĂ
         </p>
 
-        <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
-          Sustenabilitatea are nevoie și de date
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          Șase obiective relevante pentru activitatea noastră.
         </h2>
 
-        <p class="mt-4 text-base sm:text-lg text-[#526B74] leading-7">
-          Nu este suficient să spunem că „totul pare în regulă”.
-          O administrare responsabilă are nevoie de istoric, comparație și continuitate.
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          Nu asociem artificial activitatea noastră cu toate cele 17
+          obiective. Ne concentrăm doar pe cele care au o legătură practică și
+          directă cu administrarea proprietăților.
         </p>
       </div>
 
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="rounded-2xl bg-white border border-[#D2E1E5] p-6 sm:p-7">
-          <h3 class="text-xl font-bold text-[#0E3846]">
-            Ce documentăm
-          </h3>
+      <div
+        class="
+          mt-12
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          xl:grid-cols-3
+          gap-5
+        "
+      >
+        {oddItems.map((odd) => (
+          <article
+            id={`odd-${odd.number}`}
+            class="
+              scroll-mt-28
+              rounded-2xl
+              border
+              border-[#D0E0E4]
+              bg-white
+              p-6
+              shadow-[0_6px_18px_rgba(14,56,70,0.05)]
+            "
+          >
+            <div
+              class="
+                flex
+                items-start
+                gap-5
+              "
+            >
+              <img
+                src={`/odd-${odd.number}-ro.png`}
+                alt={`ODD ${odd.number} — ${odd.title}`}
+                class="
+                  h-[88px]
+                  w-[88px]
+                  shrink-0
+                  object-contain
+                "
+                loading="lazy"
+              />
 
-          <ul class="mt-5 space-y-3 text-sm text-[#526B74]">
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
-              Fotografii comparative ale spațiilor și echipamentelor
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
-              Observații privind schimbările vizibile între vizite
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
-              Citiri relevante și date utile acolo unde este posibil
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
-              Incidente, alerte și recomandări
-            </li>
-          </ul>
+              <div>
+                <p
+                  class="
+                    text-xs
+                    font-bold
+                    uppercase
+                    tracking-[0.11em]
+                    text-[#D99B26]
+                  "
+                >
+                  {odd.short}
+                </p>
+
+                <h3
+                  class="
+                    mt-2
+                    text-[18px]
+                    font-bold
+                    leading-snug
+                    text-[#0E3846]
+                  "
+                >
+                  ODD {odd.number}
+                </h3>
+              </div>
+            </div>
+
+            <h4
+              class="
+                mt-5
+                text-lg
+                font-bold
+                leading-snug
+                text-[#0E3846]
+              "
+            >
+              {odd.title}
+            </h4>
+
+            <p
+              class="
+                mt-3
+                text-sm
+                leading-6
+                text-[#526B74]
+              "
+            >
+              {odd.text}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       DIGITALISATION
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#0E3846]
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[0.9fr_1.1fr]
+          gap-10
+          lg:gap-14
+          items-center
+        "
+      >
+        <div>
+          <div
+            class="
+              flex
+              h-14
+              w-14
+              items-center
+              justify-center
+              rounded-2xl
+              bg-white/10
+              text-[#F3C76B]
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="h-7 w-7"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 4h10l4 4v12H5z"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M15 4v5h5M8 13h8M8 16h5"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+
+          <p
+            class="
+              mt-6
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.17em]
+              text-[#F3C76B]
+            "
+          >
+            DIGITALIZARE &amp; TRASABILITATE
+          </p>
+
+          <h2
+            class="
+              mt-3
+              text-[30px]
+              sm:text-4xl
+              font-bold
+              tracking-tight
+              text-white
+            "
+          >
+            Sustenabilitatea are nevoie și de date.
+          </h2>
+
+          <p
+            class="
+              mt-5
+              text-base
+              sm:text-lg
+              leading-8
+              text-[#C9DDE2]
+            "
+          >
+            O verificare izolată spune ce se întâmplă într-un anumit moment.
+            O serie de vizite documentate ne permite să comparăm, să detectăm
+            schimbările și să păstrăm un istoric al proprietății.
+          </p>
         </div>
 
-        <div class="rounded-2xl bg-white border border-[#D2E1E5] p-6 sm:p-7">
-          <h3 class="text-xl font-bold text-[#0E3846]">
-            De ce contează
-          </h3>
+        <div>
+          <div
+            class="
+              grid
+              grid-cols-1
+              sm:grid-cols-2
+              gap-3
+            "
+          >
+            {[
+              'Fotografii și observații după fiecare vizită',
+              'Istoric al verificărilor proprietății',
+              'Fotografii comparative ale contoarelor',
+              'Monitorizarea valorilor relevante, în funcție de pachet',
+              'Identificarea tendințelor și schimbărilor',
+              'Documentarea incidentelor și recomandărilor',
+            ].map((item) => (
+              <div
+                class="
+                  flex
+                  items-start
+                  gap-3
+                  rounded-xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  px-4
+                  py-4
+                  text-sm
+                  leading-6
+                  text-[#D7E5E9]
+                "
+              >
+                <span
+                  class="
+                    mt-0.5
+                    flex
+                    h-5
+                    w-5
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#D99B26]
+                    text-[11px]
+                    font-bold
+                    text-[#0E3846]
+                  "
+                >
+                  ✓
+                </span>
 
-          <ul class="mt-5 space-y-3 text-sm text-[#526B74]">
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Ajută la depistarea timpurie a problemelor
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Permite comparația între vizite și sezoane
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Susține comunicarea clară cu proprietarul
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
-              Creează o bază utilă pentru coordonarea intervențiilor
-            </li>
-          </ul>
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <div
+            class="
+              mt-5
+              rounded-xl
+              border
+              border-[#D99B26]/40
+              bg-[#D99B26]/10
+              px-5
+              py-4
+              text-center
+              text-sm
+              sm:text-base
+              font-bold
+              text-[#F3C76B]
+            "
+          >
+            Măsurăm → Comparăm → Documentăm → Detectăm → Acționăm
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONCLUZIE -->
-  <section class="py-16 sm:py-20 bg-white font-heading">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-      <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
-        CONCLUZIE
-      </p>
+  <!-- =====================================================
+       PARTNERSHIPS
+  ====================================================== -->
 
-      <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
-        Administrare mai atentă. Proprietăți mai bine protejate.
-      </h2>
+  <section
+    class="
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div
+        class="
+          mx-auto
+          grid
+          max-w-5xl
+          grid-cols-1
+          lg:grid-cols-[220px_1fr]
+          gap-8
+          lg:gap-12
+          items-center
+          rounded-3xl
+          border
+          border-[#E1D5B5]
+          bg-[#FFF9ED]
+          p-7
+          sm:p-10
+        "
+      >
+        <div
+          class="
+            flex
+            justify-center
+          "
+        >
+          <img
+            src="/odd-17-ro.png"
+            alt="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+            class="
+              h-[150px]
+              w-[150px]
+              sm:h-[170px]
+              sm:w-[170px]
+              object-contain
+            "
+          />
+        </div>
 
-      <p class="mt-5 text-base sm:text-lg text-[#526B74] leading-8">
-        Pentru noi, sustenabilitatea în administrarea proprietăților înseamnă
-        grijă pentru resurse, prevenție, documentare și responsabilitate.
-        Înseamnă să observăm din timp, să comunicăm clar și să acționăm local atunci când este nevoie.
-      </p>
+        <div>
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.17em]
+              text-[#D99B26]
+            "
+          >
+            ODD 17 · PARTENERIATE
+          </p>
+
+          <h2
+            class="
+              mt-3
+              text-[28px]
+              sm:text-4xl
+              font-bold
+              tracking-tight
+              text-[#0E3846]
+            "
+          >
+            O problemă identificată trebuie să poată deveni o acțiune.
+          </h2>
+
+          <p
+            class="
+              mt-5
+              text-base
+              sm:text-lg
+              leading-8
+              text-[#526B74]
+            "
+          >
+            Atunci când verificările indică necesitatea unei intervenții,
+            colaborarea cu tehnicieni, furnizori și profesioniști locali ne
+            permite să coordonăm accesul și să menținem proprietarul informat,
+            conform serviciului contractat.
+          </p>
+
+          <p
+            class="
+              mt-4
+              text-sm
+              leading-6
+              text-[#6A7477]
+            "
+          >
+            Furnizorii și tehnicienii rămân profesioniști independenți, iar
+            lucrările, materialele și serviciile terților se facturează
+            separat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PACKAGE LEVELS
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-center">
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+            text-[#D99B26]
+          "
+        >
+          TREI NIVELURI
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          Abordarea devine mai profundă odată cu nivelul de monitorizare.
+        </h2>
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          Toate pachetele includ prevenție și documentare. Nivelurile
+          superioare adaugă monitorizare comparativă, analiză și coordonare
+          mai amplă.
+        </p>
+      </div>
+
+      <div
+        class="
+          mt-12
+          grid
+          grid-cols-1
+          lg:grid-cols-3
+          gap-6
+          items-stretch
+        "
+      >
+        {packageLevels.map((pkg) => (
+          <article
+            class:list={[
+              'rounded-2xl',
+              'border',
+              'p-6',
+              'sm:p-7',
+              pkg.featured
+                ? 'border-[#5B9EB5] bg-[#F1F8FA] shadow-[0_14px_32px_rgba(14,56,70,0.11)]'
+                : 'border-[#D2E1E5] bg-white',
+            ]}
+          >
+            <p
+              class="
+                text-xs
+                font-bold
+                uppercase
+                tracking-[0.13em]
+                text-[#D99B26]
+              "
+            >
+              {pkg.subtitle}
+            </p>
+
+            <h3
+              class="
+                mt-2
+                text-xl
+                sm:text-2xl
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              {pkg.name} — {pkg.level}
+            </h3>
+
+            <div
+              class="
+                mt-5
+                flex
+                flex-wrap
+                gap-2
+              "
+            >
+              {pkg.odds.map((odd) => (
+                <img
+                  src={`/odd-${odd}-ro.png`}
+                  alt={`ODD ${odd}`}
+                  class="
+                    h-[46px]
+                    w-[46px]
+                    object-contain
+                  "
+                  loading="lazy"
+                />
+              ))}
+            </div>
+
+            <ul
+              class="
+                mt-6
+                space-y-3
+              "
+            >
+              {pkg.items.map((item) => (
+                <li
+                  class="
+                    flex
+                    items-start
+                    gap-3
+                    text-sm
+                    leading-6
+                    text-[#526B74]
+                  "
+                >
+                  <span
+                    class="
+                      mt-0.5
+                      text-[#D99B26]
+                      font-bold
+                    "
+                  >
+                    ✓
+                  </span>
+
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div
+        class="
+          mt-8
+          text-center
+        "
+      >
+        <a
+          href="/services"
+          class="
+            inline-flex
+            min-h-[52px]
+            items-center
+            justify-center
+            rounded-xl
+            bg-[#0E3846]
+            px-7
+            py-3
+            text-sm
+            font-bold
+            text-white
+            transition
+            hover:bg-[#164D5D]
+          "
+        >
+          COMPARĂ PACHETELE
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PRACTICAL
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-center">
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+            text-[#D99B26]
+          "
+        >
+          CE ÎNSEAMNĂ ÎN PRACTICĂ
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          Gesturi mici pot preveni probleme mari.
+        </h2>
+      </div>
+
+      <div
+        class="
+          mt-10
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          gap-5
+        "
+      >
+        {practicalItems.map((item) => (
+          <article
+            class="
+              flex
+              gap-5
+              rounded-2xl
+              border
+              border-[#D2E1E5]
+              bg-[#F7FAFA]
+              p-6
+            "
+          >
+            <span
+              class="
+                flex
+                h-11
+                w-11
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-[#E7F2F5]
+                text-sm
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              {item.number}
+            </span>
+
+            <div>
+              <h3
+                class="
+                  text-lg
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {item.title}
+              </h3>
+
+              <p
+                class="
+                  mt-2
+                  text-sm
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                {item.text}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       DISCLAIMER
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      py-12
+      sm:py-14
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          rounded-2xl
+          border
+          border-[#E7D6AA]
+          bg-[#FFF9ED]
+          p-6
+          sm:p-8
+        "
+      >
+        <div
+          class="
+            flex
+            flex-col
+            sm:flex-row
+            gap-5
+            items-start
+          "
+        >
+          <div
+            class="
+              flex
+              h-11
+              w-11
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              bg-[#D99B26]
+              text-[#0E3846]
+              font-bold
+            "
+          >
+            i
+          </div>
+
+          <div>
+            <h2
+              class="
+                text-lg
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              O precizare importantă
+            </h2>
+
+            <p
+              class="
+                mt-2
+                text-sm
+                sm:text-base
+                leading-7
+                text-[#526B74]
+              "
+            >
+              Referirea la Obiectivele de Dezvoltare Durabilă descrie modul în
+              care anumite activități Stay in Costa Blanca se aliniază practic
+              cu principiile acestora. Nu reprezintă o certificare, acreditare,
+              aprobare sau afiliere cu Organizația Națiunilor Unite.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
