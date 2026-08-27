@@ -1,6 +1,6 @@
 
 
----
+
 ---
 title: "Cum protejezi o proprietate nelocuită în Costa Blanca"
 description: "Cele mai importante verificări preventive pentru o proprietate din Costa Blanca care rămâne nelocuită perioade mai lungi."
@@ -13,7 +13,7 @@ tags:
 featured: true
 draft: false
 ---
----
+
 
 O proprietate din Costa Blanca care rămâne nelocuită timp de câteva săptămâni sau luni poate dezvolta probleme care nu sunt evidente imediat.
 
