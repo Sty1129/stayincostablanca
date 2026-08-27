@@ -1,83 +1,2315 @@
 ---
+// src/pages/services.astro
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { brand } from '../config/brand';
-import { client } from '../data/client'; 
 
-const services = [
- {
-   title: 'Key Holding & Control 🔑',
-   description: 'Păstrare securizată a cheilor și vizite periodice riguroase. Verificăm instalațiile, aerisim locuința și ne asigurăm că totul este în ordine după fenomene meteo extreme.',
- },
- {
-   title: 'Management Administrativ 📑',
-   description: 'Scapă de birocrația spaniolă. Gestionăm plata taxelor (IBI, Suma), monitorizăm facturile de utilități pentru a preveni supraconsumul și ținem legătura cu comunitatea de vecini.',
- },
- {
-   title: 'Protecție Anti-Okupas 🛡️',
-   description: 'Protocol "First Responder" cu intervenție rapidă în fereastra critică de 48h. Suntem contactul nr. 1 pentru firma de securitate, oferind acces Poliției pentru evacuare legală imediată.',
- },
- {
-   title: 'Car Care & Valet 🚗',
-   description: 'Mașina ta din Spania, gata de drum. Verificăm bateria, presiunea în roți și valabilitatea ITV. Oferim și serviciu de valet/transfer de la aeroport cu mașina noastră sau a proprietarului.',
- },
- {
-   title: 'Digital Twin Inventory 📸',
-   description: 'Scanare 360° și inventar digital certificat. O dovadă incontestabilă a stării bunurilor tale, utilă pentru asigurări sau în cazul închirierii pe termen scurt.',
- },
- {
-   title: 'Pre-Arrival Concierge 🛒',
-   description: 'Pregătim casa pentru sosirea ta: pornim climatizarea, verificăm apa caldă și putem face cumpărăturile de bază pentru ca tu să te bucuri de vacanță din prima secundă.',
- },
-];
+const currentLang = Astro.currentLocale || 'ro';
 
-const icons = [
- '<path d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />',
- '<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />',
- '<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
- '<path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />',
- '<path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />',
- '<path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />',
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+/* =========================================================
+   ROUTES
+========================================================= */
+
+const routes = {
+  ro: {
+    contact: '/contact',
+    sustainability: '/sustenabilitate',
+  },
+
+  en: {
+    contact: '/en/contact',
+    sustainability: '/en/sustainability',
+  },
+
+  es: {
+    contact: '/es/contact',
+    sustainability: '/es/sustainability',
+  },
+};
+
+const r = routes[lang];
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+  ro: {
+    seoTitle: `Servicii & Prețuri | ${brand.name}`,
+    seoDescription:
+      'Compară pachetele ECO-BASIC, ECO-SMART și ECO-PREMIUM pentru Key Holding & Property Management în Orihuela Costa și Torrevieja.',
+
+    heroTopper: 'KEY HOLDING & PROPERTY MANAGEMENT',
+    heroLocation: 'Orihuela Costa & Torrevieja',
+    heroTitle: 'Alege nivelul de protecție potrivit pentru proprietatea ta.',
+    heroText:
+      'De la verificări periodice și păstrarea cheilor până la monitorizare preventivă și coordonare locală, fiecare pachet oferă un nivel diferit de prezență și control.',
+    heroCta: 'COMPARĂ PACHETELE',
+    heroSecondary: 'SOLICITĂ EVALUAREA PROPRIETĂȚII',
+
+    packagesTopper: 'PACHETELE NOASTRE',
+    packagesTitle: 'Trei niveluri de administrare. O singură metodă de lucru.',
+    packagesText:
+      'Toate pachetele sunt construite în jurul vizitelor documentate și al prevenirii. Diferența este nivelul de monitorizare, frecvența și gradul de coordonare inclus.',
+
+    vat: 'TVA inclus',
+    year: 'an',
+    month: 'lună',
+    annualOnly: 'Contract anual',
+    contract12: 'Contract 12 luni',
+    prepaid: 'Plată anuală în avans',
+    save5: 'economie 5%',
+    saveMore5: 'economie peste 5%',
+    popular: 'CEL MAI ALES',
+    choose: 'SOLICITĂ EVALUAREA',
+
+    basicShort:
+      'Pentru proprietarii care vor o verificare lunară documentată și păstrarea securizată a cheilor.',
+
+    smartShort:
+      'Pentru proprietăți nelocuite perioade mai lungi și proprietari care vor monitorizare preventivă mai frecventă.',
+
+    premiumShort:
+      'Pentru proprietarii care vor monitorizare preventivă plus administrare locală și coordonare extinsă.',
+
+    basicFeatures: [
+      '12 vizite programate și documentate / an',
+      'Key Holding securizat',
+      'Verificare acces și securitate',
+      'Verificări de bază apă, electricitate și AC',
+      'Observații vizuale pentru umezeală și infiltrații',
+      'Fotografii contoare',
+      'Raport digital după vizită',
+      '1 verificare după vreme severă / an',
+    ],
+
+    smartFeatures: [
+      '24 prezențe fizice / an',
+      '12 vizite preventive complete',
+      '12 vizite de monitorizare & ventilație asistată',
+      'Monitorizare temperatură și umiditate relativă',
+      'Citiri comparative de referință pentru umiditate',
+      'Screening preventiv AC',
+      'Monitorizare terasă și drenaj',
+      '2 verificări după vreme severă / an',
+      'Analize trimestriale apă & energie',
+    ],
+
+    premiumFeatures: [
+      '24 prezențe fizice de rutină / an',
+      '4 Extended Property Reviews',
+      'Monitorizare lunară apă & energie',
+      '4 verificări după vreme severă / an',
+      '2 accesuri și coordonări pentru tehnicieni',
+      '2 pregătiri ale proprietății înainte de sosire',
+      'Property Health Report anual',
+      'Coordonare prioritară a incidentelor',
+      'Revizuire administrativă lunară',
+    ],
+
+    methodTopper: 'METODA NOASTRĂ',
+    methodTitle: 'Măsurăm. Comparăm. Documentăm. Detectăm. Acționăm.',
+    methodText:
+      'Nu evaluăm proprietatea doar printr-o fotografie de moment. Păstrăm un istoric care ne ajută să observăm schimbările în timp.',
+
+    compareTopper: 'COMPARAȚIE DETALIATĂ',
+    compareTitle: 'Vezi exact ce include fiecare nivel.',
+    compareText:
+      'Tabelul de mai jos arată diferențele principale dintre cele trei pachete.',
+
+    tableService: 'Serviciu / verificare',
+    included: 'Inclus',
+    notIncluded: '—',
+
+    rows: [
+      ['Vizite programate', '12 / an', '24 / an', '24 / an'],
+      ['Key Holding securizat', '✓', '✓', '✓'],
+      ['Raport digital cu fotografii', '✓', '✓', '✓'],
+      ['Acces & securitate', '✓', '✓', '✓'],
+      ['Apă / WC / sifoane', 'Bază', 'Preventiv', 'Extins'],
+      ['Tablou electric', 'Verificare vizuală', 'Verificare preventivă', 'Verificare extinsă'],
+      ['Aer condiționat', 'Funcțional de bază', 'Screening preventiv', 'Screening extins'],
+      ['Temperatură & umiditate relativă', '—', '✓', '✓'],
+      ['Ventilație asistată', '—', '12 / an', '12 / an'],
+      ['Citiri comparative umiditate', '—', '✓', '✓'],
+      ['Fotografii contoare', '✓', '✓', '✓'],
+      ['Analiză consum apă & energie', '—', 'Trimestrial', 'Lunar'],
+      ['Terasă / exterior', 'Vizual', 'Preventiv', 'Extins'],
+      ['Verificări după vreme severă', '1 / an', '2 / an', '4 / an'],
+      ['Revizuire administrativă', '—', 'Trimestrial', 'Lunar'],
+      ['Extended Property Review', '—', '—', '4 / an'],
+      ['Acces & coordonare tehnicieni', 'La cerere', 'La cerere', '2 / an'],
+      ['Pregătire înainte de sosire', 'La cerere', 'La cerere', '2 / an'],
+      ['Property Health Report anual', '—', '—', '✓'],
+    ],
+
+    visitTopper: 'CE ÎNSEAMNĂ O VIZITĂ',
+    visitTitle: 'O vizită este un proces, nu doar o trecere pe la proprietate.',
+    visitIntro:
+      'Conținutul exact depinde de pachet și de configurația proprietății, dar fiecare vizită urmează o structură documentată.',
+
+    visitSteps: [
+      {
+        number: '01',
+        title: 'Acces',
+        text: 'Verificăm accesul, ușa, ferestrele, obloanele și eventualele schimbări vizibile.',
+      },
+      {
+        number: '02',
+        title: 'Utilități',
+        text: 'Verificăm punctele relevante de apă, electricitate, instalații sanitare și echipamentele prevăzute în pachet.',
+      },
+      {
+        number: '03',
+        title: 'Climat interior',
+        text: 'Observăm semne de umezeală, condens, infiltrații și, în funcție de pachet, monitorizăm temperatura și umiditatea relativă.',
+      },
+      {
+        number: '04',
+        title: 'Exterior',
+        text: 'Verificăm terasele, drenajul și elementele exterioare aplicabile proprietății.',
+      },
+      {
+        number: '05',
+        title: 'Documentare',
+        text: 'Înregistrăm fotografii, observații și valori relevante pentru istoricul proprietății.',
+      },
+    ],
+
+    onboardingTopper: 'ÎNAINTE DE PRIMA VIZITĂ',
+    onboardingTitle: 'Property Onboarding & Baseline Assessment',
+    onboardingPrice: '99 €',
+    onboardingVat: 'TVA inclus',
+    onboardingText:
+      'Înainte de începerea monitorizării realizăm o evaluare inițială pentru a înțelege proprietatea și a crea punctul de referință pentru vizitele ulterioare.',
+
+    onboardingItems: [
+      'Preluarea și înregistrarea accesului și cheilor',
+      'Identificarea zonelor și echipamentelor relevante',
+      'Fotografii de referință',
+      'Citirea inițială a contoarelor, unde este posibil',
+      'Observații privind starea inițială',
+      'Stabilirea particularităților proprietății și a protocolului de acces',
+    ],
+
+    addonsTopper: 'SERVICII SUPLIMENTARE',
+    addonsTitle: 'Ai nevoie de ceva în plus?',
+    addonsText:
+      'Serviciile suplimentare sunt disponibile la cerere și se stabilesc separat în funcție de timp, deplasare și complexitate.',
+
+    addonGroups: [
+      {
+        title: 'Property Care',
+        items: [
+          'Vizită suplimentară',
+          'Verificare suplimentară după vreme severă',
+          'Pregătire suplimentară înainte de sosire',
+          'Verificare specială la cerere',
+        ],
+      },
+      {
+        title: 'Access & Coordination',
+        items: [
+          'Acces suplimentar pentru tehnician',
+          'Așteptare / supraveghere intervenție',
+          'Predare sau preluare chei',
+          'Coordonare locală suplimentară',
+        ],
+      },
+      {
+        title: 'Convenience',
+        items: [
+          'Coordonare curățenie',
+          'Coordonare spălătorie',
+          'Colectare / redirecționare corespondență',
+          'Alte solicitări discutate individual',
+        ],
+      },
+    ],
+
+    excludedTopper: 'TRANSPARENȚĂ',
+    excludedTitle: 'Ce nu este inclus automat în pachete',
+    excluded: [
+      'Reparații, materiale și piese',
+      'Manopera tehnicienilor sau contractorilor',
+      'Curățenie și spălătorie',
+      'Cumpărături și consumabile',
+      'Transferuri aeroport',
+      'Check-in / check-out pentru închiriere',
+      'Declarații fiscale sau servicii juridice',
+      'Intervenții sau coordonare nelimitată',
+    ],
+
+    sustainabilityTopper: 'ADMINISTRARE RESPONSABILĂ',
+    sustainabilityTitle: 'Prevenție, resurse și reziliență.',
+    sustainabilityText:
+      'Integram principiile dezvoltării durabile în monitorizarea apei, energiei, întreținerea preventivă și colaborarea cu furnizorii locali.',
+    sustainabilityCta: 'VEZI ABORDAREA NOASTRĂ PRIVIND SUSTENABILITATEA',
+
+    faqTopper: 'ÎNTREBĂRI DESPRE PACHETE',
+    faqTitle: 'Înainte să alegi, e bine să știi.',
+
+    faqs: [
+      {
+        q: 'Care este diferența principală dintre BASIC și SMART?',
+        a: 'ECO-BASIC oferă o vizită documentată pe lună. ECO-SMART dublează prezența fizică și adaugă monitorizare preventivă, ventilație asistată, urmărirea temperaturii și umidității și analize trimestriale ale consumurilor.',
+      },
+      {
+        q: 'De ce ECO-PREMIUM are tot 24 de prezențe de rutină?',
+        a: 'Diferența nu este doar numărul de vizite. PREMIUM adaugă Extended Property Reviews, monitorizare lunară a consumurilor și administrării, mai multe verificări după vreme severă, coordonare pentru tehnicieni, pregătiri înainte de sosire și Property Health Report anual.',
+      },
+      {
+        q: 'Pot cumpăra vizite suplimentare?',
+        a: 'Da. Vizitele suplimentare și verificările speciale pot fi solicitate separat.',
+      },
+      {
+        q: 'Reparațiile sunt incluse?',
+        a: 'Nu. Identificăm și documentăm problema și putem coordona intervenția conform serviciului contractat, însă materialele și manopera terților se facturează separat.',
+      },
+      {
+        q: 'Ce se întâmplă dacă proprietatea mea este foarte mare sau complexă?',
+        a: 'Prețurile publicate sunt destinate proprietăților cu configurație standard. Proprietățile foarte mari, cu multe zone exterioare sau instalații speciale pot necesita o ofertă personalizată.',
+      },
+      {
+        q: 'Trebuie să aleg singur pachetul?',
+        a: 'Nu. Ne poți descrie proprietatea și perioada în care rămâne nelocuită, iar noi îți putem recomanda nivelul de monitorizare potrivit.',
+      },
+    ],
+  },
+
+  /* =========================================================
+     ENGLISH
+  ========================================================= */
+
+  en: {
+    seoTitle: `Services & Pricing | ${brand.name}`,
+    seoDescription:
+      'Compare ECO-BASIC, ECO-SMART and ECO-PREMIUM Key Holding & Property Management plans in Orihuela Costa and Torrevieja.',
+
+    heroTopper: 'KEY HOLDING & PROPERTY MANAGEMENT',
+    heroLocation: 'Orihuela Costa & Torrevieja',
+    heroTitle: 'Choose the right level of protection for your property.',
+    heroText:
+      'From scheduled property checks and secure key holding to preventive monitoring and local coordination, each plan provides a different level of presence and control.',
+    heroCta: 'COMPARE PLANS',
+    heroSecondary: 'REQUEST A PROPERTY ASSESSMENT',
+
+    packagesTopper: 'OUR PLANS',
+    packagesTitle: 'Three levels of management. One working method.',
+    packagesText:
+      'Every plan is built around documented visits and prevention. The difference is the frequency, depth of monitoring and level of local coordination included.',
+
+    vat: 'VAT included',
+    year: 'year',
+    month: 'month',
+    annualOnly: 'Annual contract',
+    contract12: '12-month contract',
+    prepaid: 'Annual prepayment',
+    save5: 'save 5%',
+    saveMore5: 'save over 5%',
+    popular: 'MOST POPULAR',
+    choose: 'REQUEST ASSESSMENT',
+
+    basicShort:
+      'For owners who want one documented monthly check and secure key holding.',
+
+    smartShort:
+      'For properties left unoccupied for longer periods and owners who want more frequent preventive monitoring.',
+
+    premiumShort:
+      'For owners who want preventive monitoring combined with extended local management and coordination.',
+
+    basicFeatures: [
+      '12 scheduled documented visits / year',
+      'Secure Key Holding',
+      'Access & security check',
+      'Basic water, electricity and AC checks',
+      'Visual damp and infiltration observations',
+      'Meter photographs',
+      'Digital report after each visit',
+      '1 severe-weather check / year',
+    ],
+
+    smartFeatures: [
+      '24 physical presences / year',
+      '12 Preventive Property Visits',
+      '12 Monitoring & Assisted Ventilation visits',
+      'Temperature and relative humidity monitoring',
+      'Comparative moisture reference readings',
+      'Preventive AC screening',
+      'Terrace and drainage monitoring',
+      '2 severe-weather checks / year',
+      'Quarterly water & energy reviews',
+    ],
+
+    premiumFeatures: [
+      '24 routine physical presences / year',
+      '4 Extended Property Reviews',
+      'Monthly water & energy reviews',
+      '4 severe-weather checks / year',
+      '2 contractor access & coordination services',
+      '2 pre-arrival property preparations',
+      'Annual Property Health Report',
+      'Priority incident coordination',
+      'Monthly administrative review',
+    ],
+
+    methodTopper: 'OUR METHOD',
+    methodTitle: 'Measure. Compare. Document. Detect. Act.',
+    methodText:
+      'We do not assess a property from a single snapshot. We build a history that helps us identify changes over time.',
+
+    compareTopper: 'DETAILED COMPARISON',
+    compareTitle: 'See exactly what each level includes.',
+    compareText:
+      'The table below highlights the key differences between the three plans.',
+
+    tableService: 'Service / check',
+
+    rows: [
+      ['Scheduled visits', '12 / year', '24 / year', '24 / year'],
+      ['Secure Key Holding', '✓', '✓', '✓'],
+      ['Digital report with photos', '✓', '✓', '✓'],
+      ['Access & security', '✓', '✓', '✓'],
+      ['Water / WC / drains', 'Basic', 'Preventive', 'Extended'],
+      ['Electrical panel', 'Visual check', 'Preventive check', 'Extended check'],
+      ['Air conditioning', 'Basic functional', 'Preventive screening', 'Extended screening'],
+      ['Temperature & relative humidity', '—', '✓', '✓'],
+      ['Assisted ventilation', '—', '12 / year', '12 / year'],
+      ['Comparative moisture readings', '—', '✓', '✓'],
+      ['Meter photographs', '✓', '✓', '✓'],
+      ['Water & energy consumption review', '—', 'Quarterly', 'Monthly'],
+      ['Terrace / exterior', 'Visual', 'Preventive', 'Extended'],
+      ['Severe-weather checks', '1 / year', '2 / year', '4 / year'],
+      ['Administrative review', '—', 'Quarterly', 'Monthly'],
+      ['Extended Property Review', '—', '—', '4 / year'],
+      ['Contractor access & coordination', 'On request', 'On request', '2 / year'],
+      ['Pre-arrival preparation', 'On request', 'On request', '2 / year'],
+      ['Annual Property Health Report', '—', '—', '✓'],
+    ],
+
+    visitTopper: 'WHAT A VISIT MEANS',
+    visitTitle: 'A visit is a process, not simply stopping by the property.',
+    visitIntro:
+      'The exact scope depends on the plan and property configuration, but every visit follows a documented structure.',
+
+    visitSteps: [
+      { number: '01', title: 'Access', text: 'We check access points, doors, windows, shutters and visible changes.' },
+      { number: '02', title: 'Utilities', text: 'We check relevant water, electricity, sanitary and equipment points covered by the plan.' },
+      { number: '03', title: 'Indoor climate', text: 'We observe damp, condensation and infiltration signs and, depending on the plan, monitor temperature and relative humidity.' },
+      { number: '04', title: 'Exterior', text: 'We inspect terraces, drainage and applicable exterior areas.' },
+      { number: '05', title: 'Documentation', text: 'We record photographs, observations and relevant values for the property history.' },
+    ],
+
+    onboardingTopper: 'BEFORE THE FIRST VISIT',
+    onboardingTitle: 'Property Onboarding & Baseline Assessment',
+    onboardingPrice: '€99',
+    onboardingVat: 'VAT included',
+    onboardingText:
+      'Before monitoring begins, we carry out an initial assessment to understand the property and establish a baseline for future visits.',
+
+    onboardingItems: [
+      'Collection and registration of access and keys',
+      'Identification of relevant areas and equipment',
+      'Baseline photographs',
+      'Initial meter readings where possible',
+      'Initial-condition observations',
+      'Property-specific access and monitoring protocol',
+    ],
+
+    addonsTopper: 'ADDITIONAL SERVICES',
+    addonsTitle: 'Need something extra?',
+    addonsText:
+      'Additional services are available on request and are quoted separately according to time, travel and complexity.',
+
+    addonGroups: [
+      {
+        title: 'Property Care',
+        items: [
+          'Additional property visit',
+          'Additional severe-weather check',
+          'Additional pre-arrival preparation',
+          'Special property check',
+        ],
+      },
+      {
+        title: 'Access & Coordination',
+        items: [
+          'Additional contractor access',
+          'Waiting / intervention supervision',
+          'Key handover',
+          'Additional local coordination',
+        ],
+      },
+      {
+        title: 'Convenience',
+        items: [
+          'Cleaning coordination',
+          'Laundry coordination',
+          'Mail collection / forwarding',
+          'Other individually agreed requests',
+        ],
+      },
+    ],
+
+    excludedTopper: 'TRANSPARENCY',
+    excludedTitle: 'What is not automatically included',
+    excluded: [
+      'Repairs, materials and parts',
+      'Contractor or technician labour',
+      'Cleaning and laundry',
+      'Shopping and consumables',
+      'Airport transfers',
+      'Rental check-in / check-out',
+      'Tax filings or legal services',
+      'Unlimited intervention or coordination',
+    ],
+
+    sustainabilityTopper: 'RESPONSIBLE MANAGEMENT',
+    sustainabilityTitle: 'Prevention, resources and resilience.',
+    sustainabilityText:
+      'We integrate sustainable-development principles into water and energy monitoring, preventive maintenance and collaboration with local providers.',
+    sustainabilityCta: 'EXPLORE OUR SUSTAINABILITY APPROACH',
+
+    faqTopper: 'PLAN QUESTIONS',
+    faqTitle: 'Useful to know before choosing.',
+
+    faqs: [
+      {
+        q: 'What is the main difference between BASIC and SMART?',
+        a: 'ECO-BASIC provides one documented visit per month. ECO-SMART doubles physical presence and adds preventive monitoring, assisted ventilation, temperature and humidity monitoring and quarterly consumption reviews.',
+      },
+      {
+        q: 'Why does ECO-PREMIUM also have 24 routine visits?',
+        a: 'The difference is not simply visit count. PREMIUM adds Extended Property Reviews, monthly consumption and administrative reviews, more severe-weather checks, contractor coordination, pre-arrival preparations and an annual Property Health Report.',
+      },
+      {
+        q: 'Can I purchase additional visits?',
+        a: 'Yes. Additional visits and special checks can be requested separately.',
+      },
+      {
+        q: 'Are repairs included?',
+        a: 'No. We identify and document issues and may coordinate intervention according to your service, but third-party labour and materials are charged separately.',
+      },
+      {
+        q: 'What if my property is unusually large or complex?',
+        a: 'Published pricing is intended for standard property configurations. Very large properties, extensive exterior areas or specialist systems may require a custom quotation.',
+      },
+      {
+        q: 'Do I need to choose the plan myself?',
+        a: 'No. Tell us about the property and how long it is normally unoccupied and we can recommend the appropriate monitoring level.',
+      },
+    ],
+  },
+
+  /* =========================================================
+     SPANISH
+  ========================================================= */
+
+  es: {
+    seoTitle: `Servicios y Precios | ${brand.name}`,
+    seoDescription:
+      'Compara los planes ECO-BASIC, ECO-SMART y ECO-PREMIUM de Key Holding y Gestión de Propiedades en Orihuela Costa y Torrevieja.',
+
+    heroTopper: 'KEY HOLDING & PROPERTY MANAGEMENT',
+    heroLocation: 'Orihuela Costa & Torrevieja',
+    heroTitle: 'Elige el nivel de protección adecuado para tu propiedad.',
+    heroText:
+      'Desde revisiones periódicas y custodia segura de llaves hasta monitorización preventiva y coordinación local, cada plan ofrece un nivel diferente de presencia y control.',
+    heroCta: 'COMPARAR PLANES',
+    heroSecondary: 'SOLICITAR EVALUACIÓN',
+
+    packagesTopper: 'NUESTROS PLANES',
+    packagesTitle: 'Tres niveles de gestión. Un único método de trabajo.',
+    packagesText:
+      'Todos los planes se basan en visitas documentadas y prevención. La diferencia está en la frecuencia, profundidad de la monitorización y nivel de coordinación local incluido.',
+
+    vat: 'IVA incluido',
+    year: 'año',
+    month: 'mes',
+    annualOnly: 'Contrato anual',
+    contract12: 'Contrato de 12 meses',
+    prepaid: 'Pago anual anticipado',
+    save5: 'ahorra 5%',
+    saveMore5: 'ahorra más del 5%',
+    popular: 'MÁS ELEGIDO',
+    choose: 'SOLICITAR EVALUACIÓN',
+
+    basicShort:
+      'Para propietarios que quieren una revisión mensual documentada y custodia segura de llaves.',
+
+    smartShort:
+      'Para propiedades desocupadas durante periodos más largos y propietarios que desean una monitorización preventiva más frecuente.',
+
+    premiumShort:
+      'Para propietarios que buscan monitorización preventiva junto con una gestión y coordinación local más completa.',
+
+    basicFeatures: [
+      '12 visitas programadas y documentadas / año',
+      'Custodia segura de llaves',
+      'Revisión de acceso y seguridad',
+      'Revisiones básicas de agua, electricidad y AC',
+      'Observación visual de humedad e infiltraciones',
+      'Fotografías de contadores',
+      'Informe digital tras cada visita',
+      '1 revisión tras clima severo / año',
+    ],
+
+    smartFeatures: [
+      '24 presencias físicas / año',
+      '12 visitas preventivas completas',
+      '12 visitas de monitorización y ventilación asistida',
+      'Monitorización de temperatura y humedad relativa',
+      'Lecturas comparativas de referencia de humedad',
+      'Screening preventivo del aire acondicionado',
+      'Monitorización de terraza y drenaje',
+      '2 revisiones tras clima severo / año',
+      'Revisión trimestral de agua y energía',
+    ],
+
+    premiumFeatures: [
+      '24 presencias físicas rutinarias / año',
+      '4 Extended Property Reviews',
+      'Revisión mensual de agua y energía',
+      '4 revisiones tras clima severo / año',
+      '2 accesos y coordinaciones con técnicos',
+      '2 preparaciones antes de la llegada',
+      'Property Health Report anual',
+      'Coordinación prioritaria de incidencias',
+      'Revisión administrativa mensual',
+    ],
+
+    methodTopper: 'NUESTRO MÉTODO',
+    methodTitle: 'Medimos. Comparamos. Documentamos. Detectamos. Actuamos.',
+    methodText:
+      'No evaluamos una propiedad a partir de una única fotografía. Creamos un historial que nos ayuda a identificar cambios a lo largo del tiempo.',
+
+    compareTopper: 'COMPARACIÓN DETALLADA',
+    compareTitle: 'Mira exactamente qué incluye cada nivel.',
+    compareText:
+      'La siguiente tabla muestra las principales diferencias entre los tres planes.',
+
+    tableService: 'Servicio / revisión',
+
+    rows: [
+      ['Visitas programadas', '12 / año', '24 / año', '24 / año'],
+      ['Custodia segura de llaves', '✓', '✓', '✓'],
+      ['Informe digital con fotografías', '✓', '✓', '✓'],
+      ['Acceso y seguridad', '✓', '✓', '✓'],
+      ['Agua / WC / desagües', 'Básico', 'Preventivo', 'Ampliado'],
+      ['Cuadro eléctrico', 'Revisión visual', 'Revisión preventiva', 'Revisión ampliada'],
+      ['Aire acondicionado', 'Funcional básico', 'Screening preventivo', 'Screening ampliado'],
+      ['Temperatura y humedad relativa', '—', '✓', '✓'],
+      ['Ventilación asistida', '—', '12 / año', '12 / año'],
+      ['Lecturas comparativas de humedad', '—', '✓', '✓'],
+      ['Fotografías de contadores', '✓', '✓', '✓'],
+      ['Revisión consumo agua y energía', '—', 'Trimestral', 'Mensual'],
+      ['Terraza / exterior', 'Visual', 'Preventivo', 'Ampliado'],
+      ['Revisiones tras clima severo', '1 / año', '2 / año', '4 / año'],
+      ['Revisión administrativa', '—', 'Trimestral', 'Mensual'],
+      ['Extended Property Review', '—', '—', '4 / año'],
+      ['Acceso y coordinación de técnicos', 'Bajo petición', 'Bajo petición', '2 / año'],
+      ['Preparación antes de llegada', 'Bajo petición', 'Bajo petición', '2 / año'],
+      ['Property Health Report anual', '—', '—', '✓'],
+    ],
+
+    visitTopper: 'QUÉ SIGNIFICA UNA VISITA',
+    visitTitle: 'Una visita es un proceso, no simplemente pasar por la propiedad.',
+    visitIntro:
+      'El contenido exacto depende del plan y de la configuración de la propiedad, pero cada visita sigue una estructura documentada.',
+
+    visitSteps: [
+      { number: '01', title: 'Acceso', text: 'Revisamos accesos, puertas, ventanas, persianas y cambios visibles.' },
+      { number: '02', title: 'Suministros', text: 'Revisamos los puntos relevantes de agua, electricidad, instalaciones sanitarias y equipos incluidos en el plan.' },
+      { number: '03', title: 'Clima interior', text: 'Observamos humedad, condensación e infiltraciones y, según el plan, monitorizamos temperatura y humedad relativa.' },
+      { number: '04', title: 'Exterior', text: 'Revisamos terrazas, drenaje y zonas exteriores aplicables.' },
+      { number: '05', title: 'Documentación', text: 'Registramos fotografías, observaciones y valores relevantes para el historial de la propiedad.' },
+    ],
+
+    onboardingTopper: 'ANTES DE LA PRIMERA VISITA',
+    onboardingTitle: 'Property Onboarding & Baseline Assessment',
+    onboardingPrice: '99 €',
+    onboardingVat: 'IVA incluido',
+    onboardingText:
+      'Antes de comenzar la monitorización realizamos una evaluación inicial para conocer la propiedad y establecer un punto de referencia para las visitas posteriores.',
+
+    onboardingItems: [
+      'Recepción y registro de accesos y llaves',
+      'Identificación de zonas y equipos relevantes',
+      'Fotografías de referencia',
+      'Lecturas iniciales de contadores cuando sea posible',
+      'Observaciones del estado inicial',
+      'Protocolo específico de acceso y monitorización',
+    ],
+
+    addonsTopper: 'SERVICIOS ADICIONALES',
+    addonsTitle: '¿Necesitas algo más?',
+    addonsText:
+      'Los servicios adicionales están disponibles bajo petición y se presupuestan aparte según tiempo, desplazamiento y complejidad.',
+
+    addonGroups: [
+      {
+        title: 'Property Care',
+        items: [
+          'Visita adicional',
+          'Revisión adicional tras clima severo',
+          'Preparación adicional antes de llegada',
+          'Revisión especial bajo petición',
+        ],
+      },
+      {
+        title: 'Access & Coordination',
+        items: [
+          'Acceso adicional para técnico',
+          'Espera / supervisión de intervención',
+          'Entrega o recogida de llaves',
+          'Coordinación local adicional',
+        ],
+      },
+      {
+        title: 'Convenience',
+        items: [
+          'Coordinación de limpieza',
+          'Coordinación de lavandería',
+          'Recogida / reenvío de correo',
+          'Otras solicitudes acordadas individualmente',
+        ],
+      },
+    ],
+
+    excludedTopper: 'TRANSPARENCIA',
+    excludedTitle: 'Qué no está incluido automáticamente',
+    excluded: [
+      'Reparaciones, materiales y piezas',
+      'Mano de obra de técnicos o contratistas',
+      'Limpieza y lavandería',
+      'Compras y consumibles',
+      'Traslados al aeropuerto',
+      'Check-in / check-out de alquileres',
+      'Declaraciones fiscales o servicios jurídicos',
+      'Intervención o coordinación ilimitada',
+    ],
+
+    sustainabilityTopper: 'GESTIÓN RESPONSABLE',
+    sustainabilityTitle: 'Prevención, recursos y resiliencia.',
+    sustainabilityText:
+      'Integramos principios de desarrollo sostenible en la monitorización del agua y la energía, el mantenimiento preventivo y la colaboración con proveedores locales.',
+    sustainabilityCta: 'VER NUESTRO ENFOQUE DE SOSTENIBILIDAD',
+
+    faqTopper: 'PREGUNTAS SOBRE LOS PLANES',
+    faqTitle: 'Conviene saberlo antes de elegir.',
+
+    faqs: [
+      {
+        q: '¿Cuál es la principal diferencia entre BASIC y SMART?',
+        a: 'ECO-BASIC ofrece una visita documentada al mes. ECO-SMART duplica la presencia física y añade monitorización preventiva, ventilación asistida, seguimiento de temperatura y humedad y revisiones trimestrales de consumo.',
+      },
+      {
+        q: '¿Por qué ECO-PREMIUM también tiene 24 presencias rutinarias?',
+        a: 'La diferencia no es solo el número de visitas. PREMIUM añade Extended Property Reviews, revisiones mensuales de consumo y administración, más revisiones tras clima severo, coordinación de técnicos, preparaciones antes de llegada y un Property Health Report anual.',
+      },
+      {
+        q: '¿Puedo solicitar visitas adicionales?',
+        a: 'Sí. Las visitas adicionales y revisiones especiales pueden contratarse por separado.',
+      },
+      {
+        q: '¿Están incluidas las reparaciones?',
+        a: 'No. Identificamos y documentamos el problema y podemos coordinar la intervención según el servicio contratado, pero los materiales y la mano de obra de terceros se facturan aparte.',
+      },
+      {
+        q: '¿Qué ocurre si mi propiedad es muy grande o compleja?',
+        a: 'Los precios publicados están pensados para propiedades con una configuración estándar. Propiedades muy grandes, con amplias zonas exteriores o instalaciones especiales pueden requerir un presupuesto personalizado.',
+      },
+      {
+        q: '¿Tengo que elegir el plan por mi cuenta?',
+        a: 'No. Cuéntanos cómo es la propiedad y cuánto tiempo suele permanecer desocupada y podremos recomendarte el nivel de monitorización adecuado.',
+      },
+    ],
+  },
+};
+
+const t = translations[lang];
+
+
+/* =========================================================
+   PACKAGE DATA
+========================================================= */
+
+const packages = [
+  {
+    id: 'eco-basic',
+    name: 'ECO-BASIC',
+    level: 'WATCH',
+    priceMain: '649 €',
+    priceUnit: `/${t.year}`,
+    subprice: t.annualOnly,
+    description: t.basicShort,
+    features: t.basicFeatures,
+    featured: false,
+  },
+
+  {
+    id: 'eco-smart',
+    name: 'ECO-SMART',
+    level: 'PREVENT',
+    priceMain: '125 €',
+    priceUnit: `/${t.month}`,
+    subprice: `${t.contract12} · 1.425 €/${t.year} ${t.prepaid} · ${t.save5}`,
+    description: t.smartShort,
+    features: t.smartFeatures,
+    featured: true,
+  },
+
+  {
+    id: 'eco-premium',
+    name: 'ECO-PREMIUM',
+    level: 'MANAGE',
+    priceMain: '185 €',
+    priceUnit: `/${t.month}`,
+    subprice: `${t.contract12} · 2.099 €/${t.year} ${t.prepaid} · ${t.saveMore5}`,
+    description: t.premiumShort,
+    features: t.premiumFeatures,
+    featured: false,
+  },
 ];
 ---
 
-<BaseLayout 
-  title="Servicii" 
-  description={`Explorează serviciile premium oferite de ${brand.name} în Torrevieja și Orihuela Costa.`}
+<BaseLayout
+  title={t.seoTitle}
+  description={t.seoDescription}
 >
   <Header slot="header" />
 
-  <Banner title="Serviciile Noastre" />
 
-  <section class="py-20 bg-white font-heading">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6">
-      <div class="mx-auto mb-10 max-w-3xl text-center lg:mb-16">
-        <h2 class="text-3xl font-bold text-text sm:text-4xl uppercase tracking-tight">Expertiză Locală, Standarde Internaționale</h2>
-        <p class="mt-4 text-lg text-text-muted leading-relaxed">
-          Nu suntem doar o agenție care păstrează cheile. Suntem partenerul tău de încredere în Spania, asigurându-ne că proprietatea ta este protejată, administrată și pregătită oricând pentru tine.
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      border-b
+      border-[#D8E1E5]
+      font-heading
+      py-14
+      sm:py-16
+      lg:py-20
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="mx-auto max-w-4xl text-center">
+
+        <div
+          class="
+            inline-flex
+            flex-col
+            sm:flex-row
+            items-center
+            gap-2
+            sm:gap-3
+            rounded-xl
+            bg-[#0E3846]
+            px-5
+            py-3
+            text-white
+          "
+        >
+          <span class="text-xs sm:text-sm font-bold tracking-[0.1em]">
+            {t.heroTopper}
+          </span>
+
+          <span class="hidden sm:inline text-[#D99B26]">•</span>
+
+          <span class="text-xs sm:text-sm font-semibold">
+            {t.heroLocation}
+          </span>
+        </div>
+
+        <h1
+          class="
+            mt-7
+            text-[36px]
+            sm:text-5xl
+            lg:text-[56px]
+            font-bold
+            tracking-tight
+            leading-[1.08]
+            text-[#0E3846]
+          "
+        >
+          {t.heroTitle}
+        </h1>
+
+        <p
+          class="
+            mt-6
+            mx-auto
+            max-w-3xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          {t.heroText}
         </p>
+
+        <div
+          class="
+            mt-8
+            flex
+            flex-col
+            sm:flex-row
+            justify-center
+            gap-3
+          "
+        >
+          <a
+            href="#comparatie"
+            class="
+              inline-flex
+              min-h-[52px]
+              items-center
+              justify-center
+              rounded-xl
+              bg-[#0E3846]
+              px-7
+              py-3
+              text-sm
+              font-bold
+              text-white
+              transition
+              hover:bg-[#164D5D]
+            "
+          >
+            {t.heroCta}
+          </a>
+
+          <a
+            href={r.contact}
+            class="
+              inline-flex
+              min-h-[52px]
+              items-center
+              justify-center
+              rounded-xl
+              border-2
+              border-[#0E3846]
+              bg-white
+              px-7
+              py-3
+              text-sm
+              font-bold
+              text-[#0E3846]
+              transition
+              hover:bg-[#EAF4F6]
+            "
+          >
+            {t.heroSecondary}
+          </a>
+        </div>
+
       </div>
 
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, i) => (
-          <div class="group flex flex-col gap-6 rounded-2xl border border-border bg-background p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div class="flex size-14 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-fg shadow-lg shadow-primary/20 group-hover:bg-accent group-hover:text-accent-fg transition-colors">
-              <svg class="size-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[i]} />
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-text uppercase tracking-tight">{service.title}</h3>
-              <p class="mt-3 text-text-muted leading-relaxed text-sm">{service.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
+
+
+  <!-- =====================================================
+       PACKAGES
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="mx-auto max-w-4xl text-center">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+          "
+        >
+          {t.packagesTopper}
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+            font-bold
+            tracking-tight
+            leading-[1.15]
+            text-[#0E3846]
+          "
+        >
+          {t.packagesTitle}
+        </h2>
+
+        <p
+          class="
+            mt-5
+            mx-auto
+            max-w-3xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          {t.packagesText}
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-12
+          grid
+          grid-cols-1
+          lg:grid-cols-3
+          gap-6
+          lg:items-stretch
+        "
+      >
+
+        {
+          packages.map((pkg) => (
+
+            <article
+              id={pkg.id}
+              class:list={[
+                "relative",
+                "flex",
+                "flex-col",
+                "rounded-2xl",
+                "border",
+                "p-6",
+                "sm:p-7",
+                "scroll-mt-28",
+
+                pkg.featured
+                  ? "border-[#5B9EB5] bg-[#F1F8FA] shadow-[0_16px_36px_rgba(14,56,70,0.13)] lg:-translate-y-2"
+                  : "border-[#D2E0E4] bg-white shadow-[0_8px_24px_rgba(14,56,70,0.07)]",
+              ]}
+            >
+
+              {pkg.featured && (
+                <div
+                  class="
+                    absolute
+                    -top-3
+                    left-1/2
+                    -translate-x-1/2
+                    rounded-full
+                    bg-[#5B9EB5]
+                    px-4
+                    py-1.5
+                    text-[10px]
+                    font-bold
+                    uppercase
+                    tracking-[0.12em]
+                    text-white
+                  "
+                >
+                  {t.popular}
+                </div>
+              )}
+
+
+              <div>
+
+                <p
+                  class="
+                    text-xs
+                    font-bold
+                    uppercase
+                    tracking-[0.15em]
+                    text-[#D99B26]
+                  "
+                >
+                  {pkg.level}
+                </p>
+
+                <h3
+                  class="
+                    mt-2
+                    text-2xl
+                    font-bold
+                    text-[#0E3846]
+                  "
+                >
+                  {pkg.name}
+                </h3>
+
+                <p
+                  class="
+                    mt-4
+                    min-h-[72px]
+                    text-[15px]
+                    leading-7
+                    text-[#526B74]
+                  "
+                >
+                  {pkg.description}
+                </p>
+
+              </div>
+
+
+              <div
+                class="
+                  mt-6
+                  border-y
+                  border-[#D8E3E6]
+                  py-5
+                "
+              >
+
+                <div class="flex items-end gap-1.5">
+
+                  <span
+                    class="
+                      text-[38px]
+                      sm:text-[42px]
+                      font-bold
+                      tracking-tight
+                      text-[#0E3846]
+                    "
+                  >
+                    {pkg.priceMain}
+                  </span>
+
+                  <span
+                    class="
+                      pb-1.5
+                      text-sm
+                      font-semibold
+                      text-[#6A838C]
+                    "
+                  >
+                    {pkg.priceUnit}
+                  </span>
+
+                </div>
+
+                <p
+                  class="
+                    mt-1
+                    text-xs
+                    leading-5
+                    text-[#6A838C]
+                  "
+                >
+                  {pkg.subprice}
+                </p>
+
+                <p
+                  class="
+                    mt-1
+                    text-xs
+                    font-semibold
+                    text-[#0E3846]
+                  "
+                >
+                  {t.vat}
+                </p>
+
+              </div>
+
+
+              <ul class="mt-6 space-y-3 flex-1">
+
+                {pkg.features.map((feature) => (
+
+                  <li
+                    class="
+                      flex
+                      items-start
+                      gap-3
+                      text-[14px]
+                      leading-6
+                      text-[#405963]
+                    "
+                  >
+
+                    <span
+                      class="
+                        mt-1
+                        flex
+                        h-5
+                        w-5
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#E5F2F5]
+                        text-[#0E3846]
+                      "
+                    >
+                      ✓
+                    </span>
+
+                    <span>{feature}</span>
+
+                  </li>
+
+                ))}
+
+              </ul>
+
+
+              <a
+                href={r.contact}
+                class:list={[
+                  "mt-7",
+                  "inline-flex",
+                  "min-h-[52px]",
+                  "items-center",
+                  "justify-center",
+                  "rounded-xl",
+                  "px-5",
+                  "py-3",
+                  "text-center",
+                  "text-sm",
+                  "font-bold",
+                  "transition",
+
+                  pkg.featured
+                    ? "bg-[#0E3846] text-white hover:bg-[#164D5D]"
+                    : "border-2 border-[#0E3846] text-[#0E3846] hover:bg-[#EAF4F6]",
+                ]}
+              >
+                {t.choose}
+              </a>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       METHOD STRIP
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#0E3846]
+      py-10
+      sm:py-12
+      font-heading
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+        text-center
+      "
+    >
+
+      <p
+        class="
+          text-xs
+          font-bold
+          uppercase
+          tracking-[0.16em]
+          text-[#F3C76B]
+        "
+      >
+        {t.methodTopper}
+      </p>
+
+      <h2
+        class="
+          mt-3
+          text-2xl
+          sm:text-3xl
+          font-bold
+          text-white
+        "
+      >
+        {t.methodTitle}
+      </h2>
+
+      <p
+        class="
+          mt-4
+          mx-auto
+          max-w-3xl
+          text-base
+          leading-7
+          text-[#CFE0E4]
+        "
+      >
+        {t.methodText}
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       COMPARISON TABLE
+  ====================================================== -->
+
+  <section
+    id="comparatie"
+    class="
+      scroll-mt-24
+      bg-[#F7FAFA]
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="mx-auto max-w-4xl text-center">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+          "
+        >
+          {t.compareTopper}
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          {t.compareTitle}
+        </h2>
+
+        <p
+          class="
+            mt-4
+            text-base
+            sm:text-lg
+            text-[#526B74]
+          "
+        >
+          {t.compareText}
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-10
+          overflow-x-auto
+          rounded-2xl
+          border
+          border-[#D1E0E5]
+          bg-white
+          shadow-[0_8px_24px_rgba(14,56,70,0.07)]
+        "
+      >
+
+        <table class="w-full min-w-[820px] border-collapse">
+
+          <thead>
+
+            <tr class="bg-[#0E3846] text-white">
+
+              <th
+                class="
+                  w-[37%]
+                  px-5
+                  py-5
+                  text-left
+                  text-sm
+                  font-bold
+                "
+              >
+                {t.tableService}
+              </th>
+
+              <th class="px-4 py-5 text-center text-sm font-bold">
+                ECO-BASIC
+                <span
+                  class="
+                    block
+                    mt-1
+                    text-[10px]
+                    tracking-[0.12em]
+                    text-[#F3C76B]
+                  "
+                >
+                  WATCH
+                </span>
+              </th>
+
+              <th
+                class="
+                  bg-[#155165]
+                  px-4
+                  py-5
+                  text-center
+                  text-sm
+                  font-bold
+                "
+              >
+                ECO-SMART
+                <span
+                  class="
+                    block
+                    mt-1
+                    text-[10px]
+                    tracking-[0.12em]
+                    text-[#F3C76B]
+                  "
+                >
+                  PREVENT
+                </span>
+              </th>
+
+              <th class="px-4 py-5 text-center text-sm font-bold">
+                ECO-PREMIUM
+                <span
+                  class="
+                    block
+                    mt-1
+                    text-[10px]
+                    tracking-[0.12em]
+                    text-[#F3C76B]
+                  "
+                >
+                  MANAGE
+                </span>
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            {
+              t.rows.map((row, index) => (
+
+                <tr
+                  class:list={[
+                    "border-t",
+                    "border-[#E0E8EA]",
+                    index % 2 === 0
+                      ? "bg-white"
+                      : "bg-[#FAFCFC]",
+                  ]}
+                >
+
+                  <td
+                    class="
+                      px-5
+                      py-4
+                      text-[14px]
+                      font-semibold
+                      text-[#294A55]
+                    "
+                  >
+                    {row[0]}
+                  </td>
+
+                  <td
+                    class="
+                      px-4
+                      py-4
+                      text-center
+                      text-[14px]
+                      text-[#526B74]
+                    "
+                  >
+                    {row[1]}
+                  </td>
+
+                  <td
+                    class="
+                      bg-[#F1F8FA]
+                      px-4
+                      py-4
+                      text-center
+                      text-[14px]
+                      font-semibold
+                      text-[#0E3846]
+                    "
+                  >
+                    {row[2]}
+                  </td>
+
+                  <td
+                    class="
+                      px-4
+                      py-4
+                      text-center
+                      text-[14px]
+                      text-[#526B74]
+                    "
+                  >
+                    {row[3]}
+                  </td>
+
+                </tr>
+
+              ))
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       WHAT A VISIT MEANS
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="mx-auto max-w-4xl text-center">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+          "
+        >
+          {t.visitTopper}
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            lg:text-[42px]
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          {t.visitTitle}
+        </h2>
+
+        <p
+          class="
+            mt-5
+            mx-auto
+            max-w-3xl
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          {t.visitIntro}
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-10
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-5
+          gap-4
+        "
+      >
+
+        {
+          t.visitSteps.map((step) => (
+
+            <article
+              class="
+                rounded-2xl
+                border
+                border-[#D3E1E5]
+                bg-[#F7FAFA]
+                p-5
+              "
+            >
+
+              <span
+                class="
+                  text-xs
+                  font-bold
+                  tracking-[0.12em]
+                  text-[#D99B26]
+                "
+              >
+                {step.number}
+              </span>
+
+              <h3
+                class="
+                  mt-3
+                  text-lg
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {step.title}
+              </h3>
+
+              <p
+                class="
+                  mt-3
+                  text-[14px]
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                {step.text}
+              </p>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       ONBOARDING
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F1F7F8]
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[1fr_0.75fr]
+          gap-8
+          lg:gap-12
+          items-center
+        "
+      >
+
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+            "
+          >
+            {t.onboardingTopper}
+          </p>
+
+          <h2
+            class="
+              mt-3
+              text-[30px]
+              sm:text-4xl
+              font-bold
+              tracking-tight
+              text-[#0E3846]
+            "
+          >
+            {t.onboardingTitle}
+          </h2>
+
+          <p
+            class="
+              mt-5
+              max-w-2xl
+              text-base
+              sm:text-lg
+              leading-8
+              text-[#526B74]
+            "
+          >
+            {t.onboardingText}
+          </p>
+
+
+          <ul
+            class="
+              mt-7
+              grid
+              grid-cols-1
+              sm:grid-cols-2
+              gap-3
+            "
+          >
+
+            {t.onboardingItems.map((item) => (
+
+              <li
+                class="
+                  flex
+                  items-start
+                  gap-3
+                  rounded-xl
+                  bg-white
+                  border
+                  border-[#D6E3E6]
+                  px-4
+                  py-3
+                  text-[14px]
+                  leading-6
+                  text-[#405963]
+                "
+              >
+
+                <span
+                  class="
+                    mt-0.5
+                    text-[#D99B26]
+                    font-bold
+                  "
+                >
+                  ✓
+                </span>
+
+                {item}
+
+              </li>
+
+            ))}
+
+          </ul>
+
+        </div>
+
+
+        <aside
+          class="
+            rounded-2xl
+            bg-[#0E3846]
+            p-7
+            sm:p-8
+            text-white
+            shadow-[0_16px_36px_rgba(14,56,70,0.16)]
+          "
+        >
+
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.15em]
+              text-[#F3C76B]
+            "
+          >
+            {t.onboardingTitle}
+          </p>
+
+          <div class="mt-5 flex items-end gap-2">
+
+            <span
+              class="
+                text-5xl
+                font-bold
+              "
+            >
+              {t.onboardingPrice}
+            </span>
+
+          </div>
+
+          <p
+            class="
+              mt-2
+              text-sm
+              text-[#C9DDE2]
+            "
+          >
+            {t.onboardingVat}
+          </p>
+
+          <a
+            href={r.contact}
+            class="
+              mt-7
+              flex
+              min-h-[52px]
+              items-center
+              justify-center
+              rounded-xl
+              bg-[#D99B26]
+              px-5
+              py-3
+              text-center
+              text-sm
+              font-bold
+              text-[#0E3846]
+              transition
+              hover:bg-[#E5A835]
+            "
+          >
+            {t.choose}
+          </a>
+
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       ADD-ONS
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="mx-auto max-w-4xl text-center">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+          "
+        >
+          {t.addonsTopper}
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            font-bold
+            tracking-tight
+            text-[#0E3846]
+          "
+        >
+          {t.addonsTitle}
+        </h2>
+
+        <p
+          class="
+            mt-4
+            text-base
+            sm:text-lg
+            leading-8
+            text-[#526B74]
+          "
+        >
+          {t.addonsText}
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-10
+          grid
+          grid-cols-1
+          md:grid-cols-3
+          gap-5
+        "
+      >
+
+        {t.addonGroups.map((group) => (
+
+          <article
+            class="
+              rounded-2xl
+              border
+              border-[#D3E1E5]
+              bg-[#F7FAFA]
+              p-6
+            "
+          >
+
+            <h3
+              class="
+                text-xl
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              {group.title}
+            </h3>
+
+            <ul class="mt-5 space-y-3">
+
+              {group.items.map((item) => (
+
+                <li
+                  class="
+                    flex
+                    items-start
+                    gap-3
+                    text-[14px]
+                    leading-6
+                    text-[#526B74]
+                  "
+                >
+                  <span class="text-[#D99B26]">•</span>
+                  {item}
+                </li>
+
+              ))}
+
+            </ul>
+
+          </article>
+
+        ))}
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       NOT INCLUDED
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#0E3846]
+      py-14
+      sm:py-16
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#F3C76B]
+          "
+        >
+          {t.excludedTopper}
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[28px]
+            sm:text-4xl
+            font-bold
+            text-white
+          "
+        >
+          {t.excludedTitle}
+        </h2>
+
+      </div>
+
+
+      <div
+        class="
+          mt-8
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-4
+          gap-3
+        "
+      >
+
+        {t.excluded.map((item) => (
+
+          <div
+            class="
+              rounded-xl
+              border
+              border-white/10
+              bg-white/5
+              px-4
+              py-4
+              text-sm
+              leading-6
+              text-[#D6E5E9]
+            "
+          >
+            {item}
+          </div>
+
+        ))}
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SUSTAINABILITY
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[1fr_auto]
+          gap-8
+          items-center
+          rounded-2xl
+          bg-white
+          border
+          border-[#D2E1E5]
+          p-7
+          sm:p-9
+          shadow-[0_8px_24px_rgba(14,56,70,0.07)]
+        "
+      >
+
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+            "
+          >
+            {t.sustainabilityTopper}
+          </p>
+
+          <h2
+            class="
+              mt-3
+              text-[28px]
+              sm:text-4xl
+              font-bold
+              text-[#0E3846]
+            "
+          >
+            {t.sustainabilityTitle}
+          </h2>
+
+          <p
+            class="
+              mt-4
+              max-w-3xl
+              text-base
+              leading-8
+              text-[#526B74]
+            "
+          >
+            {t.sustainabilityText}
+          </p>
+
+
+          <!-- ODD ICONS -->
+
+          <div
+            class="
+              mt-6
+              flex
+              flex-wrap
+              gap-3
+            "
+          >
+
+            {[6, 7, 11, 12, 13, 17].map((odd) => (
+
+              <img
+                src={`/odd-${odd}-ro.png`}
+                alt={`ODD ${odd}`}
+                class="
+                  h-14
+                  w-14
+                  rounded
+                  object-contain
+                "
+                loading="lazy"
+              />
+
+            ))}
+
+          </div>
+
+        </div>
+
+
+        <a
+          href={r.sustainability}
+          class="
+            inline-flex
+            min-h-[52px]
+            items-center
+            justify-center
+            rounded-xl
+            bg-[#0E3846]
+            px-6
+            py-3
+            text-center
+            text-sm
+            font-bold
+            text-white
+            transition
+            hover:bg-[#164D5D]
+          "
+        >
+          {t.sustainabilityCta}
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       FAQ
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-16
+      sm:py-20
+      font-heading
+    "
+  >
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+
+      <div class="mx-auto max-w-4xl text-center">
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.16em]
+            text-[#D99B26]
+          "
+        >
+          {t.faqTopper}
+        </p>
+
+        <h2
+          class="
+            mt-3
+            text-[30px]
+            sm:text-4xl
+            font-bold
+            text-[#0E3846]
+          "
+        >
+          {t.faqTitle}
+        </h2>
+
+      </div>
+
+
+      <div
+        class="
+          mt-9
+          mx-auto
+          max-w-4xl
+          space-y-3
+        "
+      >
+
+        {t.faqs.map((faq) => (
+
+          <details
+            class="
+              group
+              rounded-2xl
+              border
+              border-[#D2E1E5]
+              bg-[#F7FAFA]
+              open:bg-white
+              open:shadow-[0_8px_22px_rgba(14,56,70,0.07)]
+            "
+          >
+
+            <summary
+              class="
+                flex
+                cursor-pointer
+                list-none
+                items-center
+                justify-between
+                gap-5
+                px-5
+                sm:px-6
+                py-5
+                [&::-webkit-details-marker]:hidden
+              "
+            >
+
+              <span
+                class="
+                  text-base
+                  sm:text-[17px]
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {faq.q}
+              </span>
+
+              <span
+                class="
+                  flex
+                  h-8
+                  w-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#0E3846]
+                  text-white
+                  transition
+                  group-open:rotate-45
+                "
+              >
+                +
+              </span>
+
+            </summary>
+
+            <div
+              class="
+                px-5
+                sm:px-6
+                pb-5
+              "
+            >
+
+              <p
+                class="
+                  border-t
+                  border-[#DCE6E9]
+                  pt-4
+                  text-base
+                  leading-7
+                  text-[#526B74]
+                "
+              >
+                {faq.a}
+              </p>
+
+            </div>
+
+          </details>
+
+        ))}
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       EXISTING FINAL CTA
+  ====================================================== -->
 
   <CTA />
 
   <Footer slot="footer" />
+
 </BaseLayout>
