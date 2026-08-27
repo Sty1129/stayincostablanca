@@ -1,377 +1,1209 @@
 ---
 const pageTitle = "Stay in Costa Blanca";
+
 const phone = "+34 624 110 656";
+const phoneTel = "+34624110656";
+
+const email = "info@stayincostablanca.com";
+
 const siteUrl = "https://www.stayincostablanca.com";
-const whatsAppUrl = "https://wa.me/34624110656?text=Hi%2C%20I%20would%20like%20a%20free%20property%20assessment%20for%20my%20property%20in%20Costa%20Blanca.";
-const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=190x190&data=${encodeURIComponent(siteUrl)}`;
+
+const whatsAppMessage =
+  "Hello! I found Stay in Costa Blanca and I would like more information about your Key Holding & Property Management services for my property.";
+
+const whatsAppUrl =
+  `https://wa.me/34624110656?text=${encodeURIComponent(whatsAppMessage)}`;
+
+const qrUrl =
+  `https://api.qrserver.com/v1/create-qr-code/?size=190x190&data=${encodeURIComponent(siteUrl)}`;
 ---
 
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+
   <title>{pageTitle}</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta
+    name="description"
+    content="Key Holding & Property Management in Orihuela Costa and Torrevieja. Preventive, documented and sustainable property care."
+  />
+
+
+  <!-- =====================================================
+       FONTS
+  ====================================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
 
   <style is:global>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
 
     body {
       min-height: 100vh;
+
       font-family: "DM Sans", sans-serif;
-      color: #0D2D52;
+
+      color: #0E3846;
+
       background:
-        linear-gradient(rgba(248,245,239,.82), rgba(248,245,239,.82)),
+        linear-gradient(
+          rgba(242, 239, 233, .86),
+          rgba(242, 239, 233, .86)
+        ),
         url("/assets/images/gallery/property-management-costa-blanca.webp");
+
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
+
       padding: 22px 12px;
     }
 
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+    /* =====================================================
+       PAGE
+    ====================================================== */
+
     .page {
-      max-width: 460px;
+      width: 100%;
+      max-width: 470px;
+
       margin: 0 auto;
     }
 
+
     .card {
-      background: rgba(255,255,255,.92);
-      border: 2px solid #C8A05A;
-      border-radius: 30px;
-      padding: 24px 16px 0;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(13,45,82,.22);
+
+      border: 1px solid rgba(14, 56, 70, .14);
+      border-radius: 30px;
+
+      background: rgba(255, 255, 255, .95);
+
+      box-shadow:
+        0 24px 60px rgba(14, 56, 70, .20);
     }
+
+
+    /* =====================================================
+       TOP
+    ====================================================== */
+
+    .top {
+      padding:
+        23px
+        17px
+        18px;
+    }
+
 
     .logo {
-      width: 280px;
-      max-width: 90%;
-      height: auto;
       display: block;
-      margin: 0 auto 14px;
+
+      width: 260px;
+      max-width: 86%;
+      height: auto;
+
+      margin:
+        0
+        auto
+        18px;
     }
 
-    .brand {
+
+    /* =====================================================
+       SERVICE STRIP
+    ====================================================== */
+
+    .service-strip {
+      width: 100%;
+
+      margin-bottom: 18px;
+
+      overflow: hidden;
+
+      border-radius: 15px;
+
+      background: #0E3846;
+
+      color: #fff;
+    }
+
+
+    .service-main {
+      padding:
+        10px
+        12px
+        8px;
+
       text-align: center;
-      margin-bottom: 10px;
-    }
 
-    .brand-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 34px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      line-height: .95;
-      color: #0D2D52;
-    }
+      font-size: 11px;
+      line-height: 1.25;
 
-    .brand-sub {
-      margin-top: 8px;
-      color: #B9862F;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .22em;
+      font-weight: 800;
+
+      letter-spacing: .11em;
+
       text-transform: uppercase;
     }
 
-    .stars {
+
+    .service-location {
+      padding:
+        7px
+        12px
+        8px;
+
+      border-top: 1px solid rgba(255, 255, 255, .12);
+
       text-align: center;
-      color: #C8A05A;
-      font-size: 20px;
-      letter-spacing: 8px;
-      margin: 12px 0;
+
+      color: #F3C76B;
+
+      font-size: 11px;
+      line-height: 1.3;
+
+      font-weight: 700;
     }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
 
     .hero {
-      border: 1.5px solid #C8A05A;
+      border: 1px solid #D5E1E4;
       border-radius: 22px;
+
+      background: #F7FAFA;
+
+      padding:
+        20px
+        16px;
+
       text-align: center;
-      padding: 18px 12px;
-      margin-bottom: 16px;
-      background: rgba(248,245,239,.72);
     }
+
+
+    .hero-kicker {
+      margin-bottom: 8px;
+
+      color: #D99B26;
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: .15em;
+
+      text-transform: uppercase;
+    }
+
 
     .hero h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 31px;
-      line-height: 1;
-      margin-bottom: 10px;
-      color: #0D2D52;
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      color: #0E3846;
+
+      font-size: 32px;
+      line-height: 1.02;
+
+      font-weight: 700;
     }
+
 
     .hero p {
-      font-size: 15px;
-      line-height: 1.35;
-      margin-bottom: 10px;
+      max-width: 380px;
+
+      margin:
+        12px
+        auto
+        0;
+
+      color: #526B74;
+
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .phone {
-      font-size: 21px;
-      font-weight: 800;
+
+    .method {
+      margin-top: 13px;
+
+      color: #397C92;
+
+      font-size: 11px;
+      line-height: 1.5;
+
+      font-weight: 700;
     }
+
+
+    /* =====================================================
+       PHONE
+    ====================================================== */
+
+    .phone-link {
+      display: inline-flex;
+
+      margin-top: 15px;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 7px;
+
+      color: #0E3846;
+
+      font-size: 18px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+
+    /* =====================================================
+       LINKS
+    ====================================================== */
 
     .links {
       display: flex;
+
       flex-direction: column;
-      gap: 11px;
+
+      gap: 10px;
+
+      margin-top: 16px;
     }
+
 
     .link {
       display: flex;
+
+      min-height: 68px;
+
       align-items: center;
+
       gap: 13px;
-      padding: 14px 14px;
-      text-decoration: none;
-      color: #0D2D52;
-      background: #fff;
+
+      padding:
+        12px
+        13px;
+
+      border: 1px solid rgba(14, 56, 70, .10);
       border-radius: 16px;
-      border: 1px solid rgba(13,45,82,.10);
-      box-shadow: 0 8px 20px rgba(13,45,82,.10);
+
+      background: #fff;
+
+      color: #0E3846;
+
+      text-decoration: none;
+
+      box-shadow:
+        0 6px 18px rgba(14, 56, 70, .07);
+
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
     }
 
-    .link.primary {
-      background: linear-gradient(135deg, #D9AA4A, #C89135);
-      color: #0D2D52;
+
+    .link:hover {
+      transform: translateY(-2px);
+
+      border-color: rgba(91, 158, 181, .50);
+
+      box-shadow:
+        0 10px 24px rgba(14, 56, 70, .11);
     }
+
+
+    /* =====================================================
+       WHATSAPP PRIMARY
+    ====================================================== */
+
+    .link.whatsapp {
+      border-color: #25D366;
+
+      background: #25D366;
+
+      color: #073B27;
+    }
+
+
+    .link.whatsapp:hover {
+      border-color: #25D366;
+
+      background: #2ADF70;
+    }
+
+
+    .whatsapp .link-sub {
+      color: rgba(7, 59, 39, .75);
+    }
+
+
+    /* =====================================================
+       ICONS
+    ====================================================== */
 
     .icon {
-      width: 42px;
-      font-size: 28px;
-      text-align: center;
+      display: flex;
+
+      width: 43px;
+      height: 43px;
+
       flex-shrink: 0;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #E7F2F5;
+
+      font-size: 23px;
     }
 
+
+    .whatsapp .icon {
+      background: rgba(255, 255, 255, .75);
+    }
+
+
     .link-content {
+      min-width: 0;
+
       flex: 1;
     }
 
+
     .link-title {
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.3;
+
       font-weight: 800;
+
+      letter-spacing: .025em;
+
       text-transform: uppercase;
-      letter-spacing: .02em;
     }
+
 
     .link-sub {
       margin-top: 3px;
-      font-size: 13px;
-      color: #B9862F;
-      font-weight: 600;
+
+      color: #6C828A;
+
+      font-size: 12px;
+      line-height: 1.4;
+
+      font-weight: 500;
     }
 
-    .primary .link-sub {
-      color: rgba(13,45,82,.78);
-    }
 
     .arrow {
-      font-size: 28px;
+      flex-shrink: 0;
+
+      color: #5B9EB5;
+
+      font-size: 27px;
+      line-height: 1;
+
       font-weight: 700;
     }
 
-    .trust {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(200,160,90,.45);
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(255,255,255,.72);
+
+    .whatsapp .arrow {
+      color: #073B27;
     }
 
-    .trust div {
-      text-align: center;
-      padding: 10px 4px;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      border-right: 1px solid rgba(200,160,90,.35);
+
+    /* =====================================================
+       TRUST / POSITIONING
+    ====================================================== */
+
+    .trust {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      margin-top: 16px;
+
+      overflow: hidden;
+
+      border: 1px solid #D5E1E4;
+      border-radius: 16px;
+
+      background: #F7FAFA;
     }
+
+
+    .trust div {
+      padding:
+        10px
+        4px;
+
+      border-right: 1px solid #D5E1E4;
+
+      text-align: center;
+
+      color: #0E3846;
+
+      font-size: 9px;
+      line-height: 1.3;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+    }
+
 
     .trust div:last-child {
       border-right: 0;
     }
 
+
     .trust span {
       display: block;
-      font-size: 22px;
+
       margin-bottom: 4px;
+
+      font-size: 21px;
     }
 
+
+    /* =====================================================
+       SUSTAINABILITY STRIP
+    ====================================================== */
+
+    .sustainable {
+      display: flex;
+
+      margin-top: 13px;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      padding:
+        10px
+        12px;
+
+      border: 1px solid #E4D6AF;
+      border-radius: 14px;
+
+      background: #FFF9ED;
+
+      color: #0E3846;
+
+      text-align: center;
+
+      font-size: 11px;
+      line-height: 1.4;
+
+      font-weight: 700;
+    }
+
+
+    /* =====================================================
+       QR
+    ====================================================== */
+
     .qr {
-      margin: 18px 0;
       display: grid;
-      grid-template-columns: 135px 1fr;
+
+      grid-template-columns:
+        130px
+        1fr;
+
       gap: 14px;
+
+      margin:
+        18px
+        0
+        20px;
+
       align-items: center;
     }
 
+
     .qr-box {
-      background: #fff;
-      border: 2px solid #C8A05A;
+      padding: 8px;
+
+      border: 1px solid #D99B26;
       border-radius: 16px;
-      padding: 9px;
+
+      background: #fff;
     }
 
+
     .qr-box img {
-      width: 100%;
       display: block;
+
+      width: 100%;
     }
+
 
     .qr-text {
       text-align: center;
     }
 
+
     .scan {
-      font-family: "Cormorant Garamond", serif;
-      color: #B9862F;
-      font-size: 27px;
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      color: #D99B26;
+
+      font-size: 25px;
       font-weight: 700;
-      margin-bottom: 4px;
     }
 
+
     .qr-title {
-      font-size: 20px;
+      margin-top: 3px;
+
+      color: #0E3846;
+
+      font-size: 17px;
+      line-height: 1.25;
+
       font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 10px;
     }
+
 
     .site-pill {
       display: inline-block;
-      background: #0D2D52;
-      color: #fff;
+
+      margin-top: 10px;
+
       border-radius: 999px;
-      padding: 8px 13px;
-      font-size: 13px;
+
+      background: #0E3846;
+
+      padding:
+        7px
+        11px;
+
+      color: #fff;
+
+      font-size: 11px;
+
       font-weight: 700;
+
       text-decoration: none;
     }
 
-    .footer {
-      margin: 0 -16px;
-      background: #0D2D52;
-      color: #fff;
+
+    /* =====================================================
+       CONTACT DETAILS
+    ====================================================== */
+
+    .details {
+      margin-top: 14px;
+
       text-align: center;
-      padding: 18px 12px 20px;
-      border-top: 2px solid #C8A05A;
+
+      color: #647A82;
+
+      font-size: 11px;
+      line-height: 1.7;
     }
 
+
+    .details a {
+      color: #0E3846;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    .footer {
+      margin:
+        0
+        -17px
+        -18px;
+
+      border-top: 2px solid #D99B26;
+
+      background: #0E3846;
+
+      padding:
+        18px
+        13px
+        20px;
+
+      color: #fff;
+
+      text-align: center;
+    }
+
+
     .footer-main {
-      font-family: "Cormorant Garamond", serif;
-      color: #C8A05A;
-      font-size: 26px;
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      color: #F3C76B;
+
+      font-size: 25px;
+
       font-weight: 700;
     }
 
+
     .footer-sub {
-      margin-top: 3px;
-      font-size: 15px;
+      margin-top: 2px;
+
+      font-size: 13px;
+
       letter-spacing: .04em;
     }
 
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
     @media (max-width: 420px) {
-      .brand-title { font-size: 30px; }
-      .hero h1 { font-size: 28px; }
-      .qr { grid-template-columns: 120px 1fr; }
-      .trust div { font-size: 9px; }
+
+      body {
+        padding:
+          12px
+          8px;
+      }
+
+
+      .top {
+        padding:
+          20px
+          13px
+          16px;
+      }
+
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+
+      .qr {
+        grid-template-columns:
+          112px
+          1fr;
+
+        gap: 10px;
+      }
+
+
+      .qr-title {
+        font-size: 15px;
+      }
+
+
+      .trust div {
+        font-size: 8px;
+      }
+
+
+      .footer {
+        margin:
+          0
+          -13px
+          -16px;
+      }
+
     }
+
   </style>
+
 </head>
 
+
 <body>
+
   <main class="page">
+
     <section class="card">
 
-      <img class="logo" src="/sicb.png" alt="Stay in Costa Blanca logo" />
+      <div class="top">
 
-      <div class="brand">
-        <div class="brand-title">STAY IN<br />COSTA BLANCA</div>
-        <div class="brand-sub">Property Management</div>
-      </div>
 
-      <div class="stars">★★★★★</div>
+        <!-- =================================================
+             LOGO
+        ================================================== -->
 
-      <div class="hero">
-        <h1>Your Property.<br />Professionally Cared For.</h1>
-        <p>Premium Property Management<br />in Orihuela Costa &amp; Torrevieja</p>
-        <div class="phone">📞 {phone}</div>
-      </div>
+        <img
+          class="logo"
+          src="/sicb.png"
+          alt="Stay in Costa Blanca"
+        />
 
-      <nav class="links">
-        <a class="link primary" href={whatsAppUrl} target="_blank" rel="noopener">
-          <div class="icon">💬</div>
-          <div class="link-content">
-            <div class="link-title">Free Property Assessment</div>
-            <div class="link-sub">Get expert advice in WhatsApp</div>
+
+        <!-- =================================================
+             TOP SERVICE STRIP
+        ================================================== -->
+
+        <div class="service-strip">
+
+          <div class="service-main">
+            KEY HOLDING &amp; PROPERTY MANAGEMENT
           </div>
-          <div class="arrow">›</div>
-        </a>
 
-        <a class="link" href="/services">
-          <div class="icon">🏠</div>
-          <div class="link-content">
-            <div class="link-title">Property Management Packages</div>
-            <div class="link-sub">Compare Standard, Optimum &amp; Prestige</div>
+          <div class="service-location">
+            Orihuela Costa &amp; Torrevieja
           </div>
-          <div class="arrow">›</div>
-        </a>
 
-        <a class="link" href="/request-inspection">
-          <div class="icon">📋</div>
-          <div class="link-content">
-            <div class="link-title">Book an Inspection</div>
-            <div class="link-sub">Request a digital property check</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-
-        <a class="link" href="/emergency">
-          <div class="icon">🔑</div>
-          <div class="link-content">
-            <div class="link-title">Key Holding & Emergency Support</div>
-            <div class="link-sub">Fast local assistance when you need it</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-
-        <a class="link" href={siteUrl}>
-          <div class="icon">🌐</div>
-          <div class="link-content">
-            <div class="link-title">Visit Our Website</div>
-            <div class="link-sub">Explore all services & owner resources</div>
-          </div>
-          <div class="arrow">›</div>
-        </a>
-      </nav>
-
-      <section class="trust">
-        <div><span>🛡️</span>Fully<br />Insured</div>
-        <div><span>📱</span>Digital<br />Reports</div>
-        <div><span>📍</span>Local<br />Team</div>
-        <div><span>⏱️</span>Rapid<br />Response</div>
-      </section>
-
-      <section class="qr">
-        <div class="qr-box">
-          <img src={qrUrl} alt="QR code for Stay in Costa Blanca website" />
         </div>
 
-        <div class="qr-text">
-          <div class="scan">Scan me!</div>
-          <div class="qr-title">Scan & discover<br />how we protect your property</div>
-          <a class="site-pill" href={siteUrl}>🌐 stayincostablanca.com</a>
-        </div>
-      </section>
 
-      <footer class="footer">
-        <div class="footer-main">More time for you.</div>
-        <div class="footer-sub">We take care of the rest.</div>
-      </footer>
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+          <div class="hero-kicker">
+            SCIENTIFIC &amp; SUSTAINABLE PROPERTY MANAGEMENT
+          </div>
+
+          <h1>
+            Your property cared for<br />
+            while you are away.
+          </h1>
+
+          <p>
+            Secure key holding, documented property checks,
+            preventive monitoring and local coordination for owners
+            who do not live permanently in Costa Blanca.
+          </p>
+
+          <div class="method">
+            Measure → Compare → Document → Detect → Act
+          </div>
+
+          <a
+            class="phone-link"
+            href={`tel:${phoneTel}`}
+          >
+            📞 {phone}
+          </a>
+
+        </section>
+
+
+        <!-- =================================================
+             LINKS
+        ================================================== -->
+
+        <nav
+          class="links"
+          aria-label="Quick links"
+        >
+
+
+          <!-- WHATSAPP -->
+
+          <a
+            class="link whatsapp"
+            href={whatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="icon">
+              💬
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                Contact us on WhatsApp
+              </div>
+
+              <div class="link-sub">
+                The quickest way to tell us about your property
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+
+          <!-- SERVICES -->
+
+          <a
+            class="link"
+            href="/services"
+          >
+
+            <div class="icon">
+              🏠
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                Services &amp; Pricing
+              </div>
+
+              <div class="link-sub">
+                Compare ECO-BASIC, ECO-SMART &amp; ECO-PREMIUM
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+
+          <!-- SUSTAINABILITY -->
+
+          <a
+            class="link"
+            href="/sustenabilitate"
+          >
+
+            <div class="icon">
+              ♻️
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                Sustainability
+              </div>
+
+              <div class="link-sub">
+                Water, energy, resilience &amp; documented prevention
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+
+          <!-- BLOG -->
+
+          <a
+            class="link"
+            href="/blog"
+          >
+
+            <div class="icon">
+              📚
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                Property Owner Guides
+              </div>
+
+              <div class="link-sub">
+                Practical advice for owning a home in Costa Blanca
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+
+          <!-- ABOUT -->
+
+          <a
+            class="link"
+            href="/about"
+          >
+
+            <div class="icon">
+              👤
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                About Stay in Costa Blanca
+              </div>
+
+              <div class="link-sub">
+                Local presence, documented process, real responsibility
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+
+          <!-- CONTACT -->
+
+          <a
+            class="link"
+            href="/contact"
+          >
+
+            <div class="icon">
+              ✉️
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                Contact
+              </div>
+
+              <div class="link-sub">
+                Tell us about your property and what you need
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+
+          <!-- WEBSITE -->
+
+          <a
+            class="link"
+            href={siteUrl}
+          >
+
+            <div class="icon">
+              🌐
+            </div>
+
+            <div class="link-content">
+
+              <div class="link-title">
+                Visit Our Website
+              </div>
+
+              <div class="link-sub">
+                Explore Stay in Costa Blanca
+              </div>
+
+            </div>
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             TRUST / METHOD
+        ================================================== -->
+
+        <section class="trust">
+
+          <div>
+            <span>🔑</span>
+            Secure<br />
+            Key Holding
+          </div>
+
+          <div>
+            <span>📱</span>
+            Digital<br />
+            Reports
+          </div>
+
+          <div>
+            <span>📍</span>
+            Local<br />
+            Presence
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUSTAINABILITY
+        ================================================== -->
+
+        <div class="sustainable">
+
+          <span>
+            ♻️
+          </span>
+
+          <span>
+            Preventive · Documented · Sustainable Property Care
+          </span>
+
+        </div>
+
+
+        <!-- =================================================
+             QR
+        ================================================== -->
+
+        <section class="qr">
+
+          <div class="qr-box">
+
+            <img
+              src={qrUrl}
+              alt="QR code for Stay in Costa Blanca website"
+            />
+
+          </div>
+
+
+          <div class="qr-text">
+
+            <div class="scan">
+              Scan me
+            </div>
+
+            <div class="qr-title">
+              Discover how we protect<br />
+              your property
+            </div>
+
+            <a
+              class="site-pill"
+              href={siteUrl}
+            >
+              stayincostablanca.com
+            </a>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DETAILS
+        ================================================== -->
+
+        <div class="details">
+
+          <div>
+            <a href={`tel:${phoneTel}`}>
+              {phone}
+            </a>
+          </div>
+
+          <div>
+            <a href={`mailto:${email}`}>
+              {email}
+            </a>
+          </div>
+
+          <div>
+            Orihuela Costa &amp; Torrevieja
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="footer">
+
+          <div class="footer-main">
+            More time for you.
+          </div>
+
+          <div class="footer-sub">
+            We take care of the rest.
+          </div>
+
+        </footer>
+
+      </div>
 
     </section>
+
   </main>
+
 </body>
+
 </html>
