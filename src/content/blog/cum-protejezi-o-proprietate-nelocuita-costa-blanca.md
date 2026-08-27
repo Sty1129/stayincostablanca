@@ -10,7 +10,7 @@ tags:
   - Prevention
   - Costa Blanca
   - featured: false
-draft: false
+  - draft: false
 ---
 
 O proprietate din Costa Blanca care rămâne nelocuită timp de câteva săptămâni sau luni poate dezvolta probleme care nu sunt evidente imediat.
