@@ -223,13 +223,13 @@ const posts = (
 ========================================================= */
 
 const featuredPost =
-  posts.length > 0
-    ? posts[0]
-    : null;
+  posts.find((post) => post.data.featured === true)
+  ?? posts[0]
+  ?? null;
 
 const remainingPosts =
-  posts.length > 1
-    ? posts.slice(1)
+  featuredPost
+    ? posts.filter((post) => post.id !== featuredPost.id)
     : [];
 
 
