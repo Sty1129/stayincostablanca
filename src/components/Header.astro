@@ -1,161 +1,767 @@
 ---
-import { brand } from '../config/brand';
+// src/components/Header.astro
 
-// Detectare limbă (EN, RO, ES)
-const url = new URL(Astro.request.url);
-const pathname = url.pathname;
+const currentLang = Astro.currentLocale || "ro";
+const pathname = Astro.url.pathname;
 
-let currentLang = 'ro';
-if (pathname.startsWith('/en/') || pathname === '/en') currentLang = 'en';
-else if (pathname.startsWith('/es/') || pathname === '/es') currentLang = 'es';
+/* =========================================================
+   ROUTES
+========================================================= */
 
-const isEn = currentLang === 'en';
-const isEs = currentLang === 'es';
-const base = currentLang === 'ro' ? '' : `/${currentLang}`;
+const routes = {
+  ro: {
+    home: "/",
+    services: "/services",
+    sustainability: "/sustenabilitate",
+    about: "/about",
+    blog: "/blog",
+    contact: "/contact",
+  },
 
-const translations = {
-  ro: { home: 'Acasă', about: 'Despre noi', services: 'Servicii', reviews: 'Recenzii', blog: 'Blog', contact: 'Contact', cta: 'Cere Ofertă' },
-  en: { home: 'Home', about: 'About Us', services: 'Services', reviews: 'Reviews', blog: 'Blog', contact: 'Contact', cta: 'Get a Quote' },
-  es: { home: 'Inicio', about: 'Sobre nosotros', services: 'Servicios', reviews: 'Reseñas', blog: 'Blog', contact: 'Contacto', cta: 'Pedir Oferta' }
+  en: {
+    home: "/en/",
+    services: "/en/services",
+    sustainability: "/en/sustainability",
+    about: "/en/about",
+    blog: "/en/blog",
+    contact: "/en/contact",
+  },
+
+  es: {
+    home: "/es/",
+    services: "/es/services",
+    sustainability: "/es/sustainability",
+    about: "/es/about",
+    blog: "/es/blog",
+    contact: "/es/contact",
+  },
 };
 
-const t = translations[currentLang] || translations.ro;
+const translations = {
+  ro: {
+    home: "Acasă",
+    services: "Servicii",
+    sustainability: "Sustenabilitate",
+    about: "Despre noi",
+    blog: "Blog",
+    contact: "Contact",
+    phoneLabel: "Sună-ne",
+    cta: "SOLICITĂ EVALUAREA",
+    menu: "Meniu",
+  },
 
-const phoneFormatted = "+34 624 110 656";
-const phoneForTel = "34624110656";
-const waMessage = encodeURIComponent("Bună ziua! Doresc mai multe informații despre serviciile de administrare.");
-const waLink = `https://wa.me/${phoneForTel}?text=${waMessage}`;
+  en: {
+    home: "Home",
+    services: "Services",
+    sustainability: "Sustainability",
+    about: "About us",
+    blog: "Blog",
+    contact: "Contact",
+    phoneLabel: "Call us",
+    cta: "REQUEST ASSESSMENT",
+    menu: "Menu",
+  },
 
-const nav = [
-  { label: t.home,     href: isEn ? '/en/' : (isEs ? '/es/' : '/') },
-  { label: t.about,    href: `${base}/about` },
-  { label: t.services, href: `${base}/services` },
-  { label: t.reviews,  href: `${base}/reviews` },
-  { label: t.blog,     href: `${base}/blog` },
-  { label: t.contact,  href: `${base}/contact` },
+  es: {
+    home: "Inicio",
+    services: "Servicios",
+    sustainability: "Sostenibilidad",
+    about: "Sobre nosotros",
+    blog: "Blog",
+    contact: "Contacto",
+    phoneLabel: "Llámanos",
+    cta: "SOLICITAR EVALUACIÓN",
+    menu: "Menú",
+  },
+};
+
+const lang =
+  currentLang === "en" || currentLang === "es"
+    ? currentLang
+    : "ro";
+
+const t = translations[lang];
+const r = routes[lang];
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const navigation = [
+  {
+    label: t.home,
+    href: r.home,
+    key: "home",
+  },
+  {
+    label: t.services,
+    href: r.services,
+    key: "services",
+  },
+  {
+    label: t.sustainability,
+    href: r.sustainability,
+    key: "sustainability",
+  },
+  {
+    label: t.about,
+    href: r.about,
+    key: "about",
+  },
+  {
+    label: t.blog,
+    href: r.blog,
+    key: "blog",
+  },
+  {
+    label: t.contact,
+    href: r.contact,
+    key: "contact",
+  },
 ];
 
-const languages = [
-  { code: 'en', label: 'EN', href: '/en/' },
-  { code: 'ro', label: 'RO', href: '/' },
-  { code: 'es', label: 'ES', href: '/es/' }
-];
+
+/* =========================================================
+   IDENTIFICĂ PAGINA CURENTĂ
+========================================================= */
+
+function getCurrentPageKey() {
+  const cleanPath =
+    pathname.length > 1 && pathname.endsWith("/")
+      ? pathname.slice(0, -1)
+      : pathname;
+
+  if (
+    cleanPath === "" ||
+    cleanPath === "/" ||
+    cleanPath === "/en" ||
+    cleanPath === "/es"
+  ) {
+    return "home";
+  }
+
+  if (
+    cleanPath.includes("/services")
+  ) {
+    return "services";
+  }
+
+  if (
+    cleanPath.includes("/sustenabilitate") ||
+    cleanPath.includes("/sustainability")
+  ) {
+    return "sustainability";
+  }
+
+  if (cleanPath.includes("/about")) {
+    return "about";
+  }
+
+  if (cleanPath.includes("/blog")) {
+    return "blog";
+  }
+
+  if (cleanPath.includes("/contact")) {
+    return "contact";
+  }
+
+  return "home";
+}
+
+const currentPageKey = getCurrentPageKey();
+
+
+/* =========================================================
+   LANGUAGE LINKS
+   Păstrăm aceeași pagină când schimbăm limba
+========================================================= */
+
+const languageLinks = {
+  ro: routes.ro[currentPageKey as keyof typeof routes.ro],
+  en: routes.en[currentPageKey as keyof typeof routes.en],
+  es: routes.es[currentPageKey as keyof typeof routes.es],
+};
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-emerald-100 bg-white/95 backdrop-blur-sm font-heading">
-  <div class="mx-auto flex max-w-site items-center justify-between px-3 py-2.5 sm:px-6">
-    
-    {/* Logo Transparent + Text Stil Premium Subțire */}
-    <a href={isEn ? '/en/' : (isEs ? '/es/' : '/')} class="flex items-center gap-3 transition-opacity hover:opacity-90 shrink-0">
-      <img src="/sicb.png" alt="Stay in Costa Blanca Logo" class="h-10 sm:h-12 w-auto object-contain" />
-      <div class="flex flex-col justify-center leading-tight font-serif">
-        <span class="text-xs sm:text-sm font-medium tracking-widest text-slate-900 uppercase">
-          STAY IN
-        </span>
-        <span class="text-[11px] sm:text-xs font-medium tracking-widest text-slate-900 uppercase">
-          COSTA BLANCA
-        </span>
-      </div>
+<header
+  class="
+    sticky
+    top-0
+    z-50
+    w-full
+    border-b
+    border-[#D8E5E8]
+    bg-white/95
+    backdrop-blur-md
+    font-heading
+  "
+>
+  <div
+    class="
+      mx-auto
+      flex
+      min-h-[68px]
+      max-w-site
+      items-center
+      justify-between
+      gap-4
+      px-4
+      sm:px-6
+      lg:px-8
+    "
+  >
+
+    <!-- =====================================================
+         LOGO
+    ====================================================== -->
+
+    <a
+      href={r.home}
+      class="
+        flex
+        shrink-0
+        items-center
+      "
+      aria-label="Stay in Costa Blanca"
+    >
+      <img
+        src="/sicb.png"
+        alt="Stay in Costa Blanca"
+        class="
+          h-[46px]
+          w-auto
+          object-contain
+          sm:h-[50px]
+        "
+      />
     </a>
 
-    {/* Navigare Desktop */}
-    <nav class="hidden items-center gap-1 lg:flex">
-      {nav.map(({ label, href }) => {
-        const isActive = pathname === href || (href !== '/' && href !== '/en/' && href !== '/es/' && pathname.startsWith(href));
-        return (
-          <a
-            href={href}
-            class:list={[
-              'rounded-md px-3 py-2 text-sm font-bold transition-all duration-200 whitespace-nowrap',
-              isActive ? 'bg-emerald-700 text-white shadow-md' : 'text-slate-700 hover:text-emerald-700 hover:bg-emerald-50',
-            ]}
-          >
-            {label}
-          </a>
-        );
-      })}
+
+    <!-- =====================================================
+         DESKTOP NAVIGATION
+    ====================================================== -->
+
+    <nav
+      class="
+        hidden
+        xl:flex
+        items-center
+        gap-1
+      "
+      aria-label="Main navigation"
+    >
+      {
+        navigation.map((item) => {
+          const active = currentPageKey === item.key;
+
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? "page" : undefined}
+              class:list={[
+                "relative",
+                "rounded-lg",
+                "px-3",
+                "py-2.5",
+                "text-[14px]",
+                "font-semibold",
+                "transition-all",
+                "duration-200",
+
+                active
+                  ? "bg-[#E5F2F5] text-[#0E3846]"
+                  : "text-[#294A55] hover:bg-[#F1F6F7] hover:text-[#0E3846]",
+              ]}
+            >
+              {item.label}
+
+              {active && (
+                <span
+                  class="
+                    absolute
+                    left-3
+                    right-3
+                    -bottom-[1px]
+                    h-[2px]
+                    rounded-full
+                    bg-[#D99B26]
+                  "
+                  aria-hidden="true"
+                />
+              )}
+            </a>
+          );
+        })
+      }
     </nav>
 
-    {/* Selector Limbi (EN, RO, ES) + Telefon + CTA */}
-    <div class="hidden items-center gap-3 lg:flex shrink-0">
-      <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-200">
-        {languages.map((lang) => (
-          <a
-            href={lang.href}
-            class:list={[
-              "px-2.5 py-1 rounded-full text-xs font-black transition-all",
-              currentLang === lang.code ? "bg-emerald-700 text-white shadow-md" : "text-slate-600 hover:text-emerald-800"
-            ]}
-          >
-            {lang.label}
-          </a>
-        ))}
-      </div>
 
-      <a href={`tel:${phoneForTel}`} class="text-xs font-bold text-slate-800 hover:text-emerald-700 transition-colors flex items-center gap-1.5 whitespace-nowrap">
-        <svg class="size-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-          <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-        <span>{phoneFormatted}</span>
-      </a>
-      
-      <a 
-        href={waLink} 
-        target="_blank" 
-        class="inline-flex h-10 items-center rounded-lg bg-amber-400 px-4 text-xs font-black uppercase text-slate-900 shadow-md transition-all duration-300 hover:bg-emerald-600 hover:text-white hover:shadow-lg whitespace-nowrap"
+    <!-- =====================================================
+         DESKTOP RIGHT SIDE
+    ====================================================== -->
+
+    <div
+      class="
+        hidden
+        xl:flex
+        items-center
+        gap-3
+        shrink-0
+      "
+    >
+
+      <!-- LANGUAGE SWITCHER -->
+
+      <div
+        class="
+          flex
+          items-center
+          rounded-full
+          border
+          border-[#D8E3E6]
+          bg-[#F3F7F8]
+          p-1
+        "
+        aria-label="Language"
       >
-        {t.cta}
-      </a>
-    </div>
 
-    {/* Meniu Mobil */}
-    <div class="flex items-center gap-2 lg:hidden">
-      <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-200">
-        {languages.map((lang) => (
-          <a
-            href={lang.href}
-            class:list={[
-              "px-2 py-0.5 rounded-full text-[10px] font-black",
-              currentLang === lang.code ? "bg-emerald-700 text-white shadow-sm" : "text-slate-600"
-            ]}
-          >
-            {lang.label}
-          </a>
-        ))}
-      </div>
+        <a
+          href={languageLinks.en}
+          class:list={[
+            "flex",
+            "h-7",
+            "min-w-[34px]",
+            "items-center",
+            "justify-center",
+            "rounded-full",
+            "px-2",
+            "text-[11px]",
+            "font-bold",
+            "transition-colors",
 
-      <button id="menu-toggle" class="p-2 text-slate-900 bg-slate-50 rounded-lg border border-slate-200">
-        <svg id="menu-icon-open" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2.5"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  {/* Dropdown Mobil */}
-  <div id="mobile-menu" class="hidden border-t border-slate-100 bg-white px-4 pb-8 pt-4 lg:hidden shadow-2xl">
-    <nav class="flex flex-col gap-2">
-      {nav.map(({ label, href }) => (
-        <a href={href} class="rounded-xl px-4 py-3 text-base font-black text-slate-900 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-          {label}
+            lang === "en"
+              ? "bg-[#0E3846] text-white"
+              : "text-[#536E77] hover:text-[#0E3846]",
+          ]}
+        >
+          EN
         </a>
-      ))}
-      <a 
-        href={waLink} 
-        target="_blank" 
-        class="mt-4 block w-full text-center rounded-xl bg-amber-400 py-4 text-sm font-black uppercase text-slate-900 shadow-lg hover:bg-emerald-600 hover:text-white transition-all"
+
+
+        <a
+          href={languageLinks.ro}
+          class:list={[
+            "flex",
+            "h-7",
+            "min-w-[34px]",
+            "items-center",
+            "justify-center",
+            "rounded-full",
+            "px-2",
+            "text-[11px]",
+            "font-bold",
+            "transition-colors",
+
+            lang === "ro"
+              ? "bg-[#0E3846] text-white"
+              : "text-[#536E77] hover:text-[#0E3846]",
+          ]}
+        >
+          RO
+        </a>
+
+
+        <a
+          href={languageLinks.es}
+          class:list={[
+            "flex",
+            "h-7",
+            "min-w-[34px]",
+            "items-center",
+            "justify-center",
+            "rounded-full",
+            "px-2",
+            "text-[11px]",
+            "font-bold",
+            "transition-colors",
+
+            lang === "es"
+              ? "bg-[#0E3846] text-white"
+              : "text-[#536E77] hover:text-[#0E3846]",
+          ]}
+        >
+          ES
+        </a>
+
+      </div>
+
+
+      <!-- PHONE -->
+
+      <a
+        href="tel:+34624110656"
+        aria-label={`${t.phoneLabel}: +34 624 110 656`}
+        class="
+          group
+          flex
+          items-center
+          gap-2
+          whitespace-nowrap
+          text-[13px]
+          font-bold
+          text-[#294A55]
+          transition-colors
+          hover:text-[#0E3846]
+        "
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          class="
+            h-4
+            w-4
+            shrink-0
+            text-[#168D79]
+          "
+          aria-hidden="true"
+        >
+          <path
+            d="M5 4h3l2 5-2 1.5c1.1 2.3 3.2 4.4 5.5 5.5L15 14l5 2v3c0 1.1-.9 2-2 2C10.3 21 3 13.7 3 6c0-1.1.9-2 2-2z"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        <span>
+          +34 624 110 656
+        </span>
+
+      </a>
+
+
+      <!-- CTA -->
+
+      <a
+        href={r.contact}
+        class="
+          inline-flex
+          min-h-[42px]
+          items-center
+          justify-center
+          whitespace-nowrap
+          rounded-xl
+          bg-[#D99B26]
+          px-5
+          py-2.5
+          text-[12px]
+          font-extrabold
+          uppercase
+          tracking-[0.04em]
+          text-[#0E3846]
+          shadow-[0_5px_14px_rgba(217,155,38,0.25)]
+          transition-all
+          duration-200
+          hover:-translate-y-0.5
+          hover:bg-[#E5A835]
+        "
       >
         {t.cta}
       </a>
-    </nav>
+
+    </div>
+
+
+    <!-- =====================================================
+         MOBILE / TABLET MENU
+    ====================================================== -->
+
+    <details
+      class="
+        group
+        relative
+        xl:hidden
+      "
+    >
+
+      <summary
+        class="
+          flex
+          h-11
+          w-11
+          cursor-pointer
+          list-none
+          items-center
+          justify-center
+          rounded-xl
+          border
+          border-[#CBDCE1]
+          bg-white
+          text-[#0E3846]
+          transition-colors
+          hover:bg-[#F0F6F7]
+          [&::-webkit-details-marker]:hidden
+        "
+        aria-label={t.menu}
+      >
+
+        <!-- HAMBURGER -->
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          class="
+            h-6
+            w-6
+            group-open:hidden
+          "
+          aria-hidden="true"
+        >
+          <path
+            d="M4 7h16M4 12h16M4 17h16"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+
+
+        <!-- CLOSE -->
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          class="
+            hidden
+            h-6
+            w-6
+            group-open:block
+          "
+          aria-hidden="true"
+        >
+          <path
+            d="M6 6l12 12M18 6L6 18"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+
+      </summary>
+
+
+      <!-- MOBILE PANEL -->
+
+      <div
+        class="
+          fixed
+          left-0
+          right-0
+          top-[68px]
+          max-h-[calc(100vh-68px)]
+          overflow-y-auto
+          border-t
+          border-[#D7E3E6]
+          bg-white
+          shadow-[0_18px_32px_rgba(14,56,70,0.14)]
+        "
+      >
+
+        <div
+          class="
+            mx-auto
+            max-w-site
+            px-4
+            sm:px-6
+            py-5
+          "
+        >
+
+          <!-- MOBILE NAV -->
+
+          <nav
+            class="
+              flex
+              flex-col
+              gap-1
+            "
+          >
+
+            {
+              navigation.map((item) => {
+                const active = currentPageKey === item.key;
+
+                return (
+                  <a
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    class:list={[
+                      "flex",
+                      "min-h-[48px]",
+                      "items-center",
+                      "rounded-xl",
+                      "px-4",
+                      "text-[16px]",
+                      "font-semibold",
+                      "transition-colors",
+
+                      active
+                        ? "bg-[#E5F2F5] text-[#0E3846]"
+                        : "text-[#294A55] hover:bg-[#F3F7F8]",
+                    ]}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })
+            }
+
+          </nav>
+
+
+          <!-- MOBILE LANGUAGE -->
+
+          <div
+            class="
+              mt-5
+              border-t
+              border-[#DCE6E9]
+              pt-5
+            "
+          >
+
+            <div
+              class="
+                inline-flex
+                items-center
+                rounded-full
+                border
+                border-[#D6E2E5]
+                bg-[#F3F7F8]
+                p-1
+              "
+            >
+
+              <a
+                href={languageLinks.en}
+                class:list={[
+                  "flex h-9 min-w-[46px] items-center justify-center rounded-full px-3 text-xs font-bold",
+                  lang === "en"
+                    ? "bg-[#0E3846] text-white"
+                    : "text-[#526B74]",
+                ]}
+              >
+                EN
+              </a>
+
+              <a
+                href={languageLinks.ro}
+                class:list={[
+                  "flex h-9 min-w-[46px] items-center justify-center rounded-full px-3 text-xs font-bold",
+                  lang === "ro"
+                    ? "bg-[#0E3846] text-white"
+                    : "text-[#526B74]",
+                ]}
+              >
+                RO
+              </a>
+
+              <a
+                href={languageLinks.es}
+                class:list={[
+                  "flex h-9 min-w-[46px] items-center justify-center rounded-full px-3 text-xs font-bold",
+                  lang === "es"
+                    ? "bg-[#0E3846] text-white"
+                    : "text-[#526B74]",
+                ]}
+              >
+                ES
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- MOBILE PHONE -->
+
+          <a
+            href="tel:+34624110656"
+            class="
+              mt-5
+              flex
+              min-h-[48px]
+              items-center
+              gap-3
+              rounded-xl
+              border
+              border-[#D7E3E6]
+              px-4
+              text-[15px]
+              font-bold
+              text-[#0E3846]
+            "
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="
+                h-5
+                w-5
+                shrink-0
+                text-[#D99B26]
+              "
+              aria-hidden="true"
+            >
+              <path
+                d="M5 4h3l2 5-2 1.5c1.1 2.3 3.2 4.4 5.5 5.5L15 14l5 2v3c0 1.1-.9 2-2 2C10.3 21 3 13.7 3 6c0-1.1.9-2 2-2z"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            +34 624 110 656
+
+          </a>
+
+
+          <!-- MOBILE CTA -->
+
+          <a
+            href={r.contact}
+            class="
+              mt-3
+              flex
+              min-h-[52px]
+              w-full
+              items-center
+              justify-center
+              rounded-xl
+              bg-[#D99B26]
+              px-5
+              py-3
+              text-center
+              text-sm
+              font-extrabold
+              uppercase
+              tracking-[0.04em]
+              text-[#0E3846]
+            "
+          >
+            {t.cta}
+          </a>
+
+        </div>
+
+      </div>
+
+    </details>
+
   </div>
 </header>
-
-<script>
-  const toggleBtn = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  toggleBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-</script>
