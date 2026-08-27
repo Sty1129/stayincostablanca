@@ -1,91 +1,118 @@
 ---
 // src/components/Hero.astro
 
-const currentLang = Astro.currentLocale || 'ro';
+const currentLang = Astro.currentLocale || "ro";
 
 const translations = {
   ro: {
-    serviceType: 'KEY HOLDING & PROPERTY MANAGEMENT',
-    location: 'Orihuela Costa & Torrevieja',
+    serviceType: "KEY HOLDING & PROPERTY MANAGEMENT",
+    location: "Orihuela Costa & Torrevieja",
 
     heading:
-      'Proprietatea ta din Costa Blanca, verificată și administrată când tu nu ești aici.',
+      "Proprietatea ta din Costa Blanca, verificată și administrată când tu nu ești aici.",
 
     description:
-      'Păstrăm cheile în siguranță, verificăm periodic proprietatea, documentăm starea ei și te informăm atunci când ceva necesită atenție.',
+      "Păstrăm cheile în siguranță, verificăm periodic proprietatea, documentăm starea ei și te informăm atunci când ceva necesită atenție.",
 
     reassurance:
-      'Pentru proprietarii care nu locuiesc permanent în Costa Blanca.',
+      "Pentru proprietarii care nu locuiesc permanent în Costa Blanca.",
 
-    ctaLabel: 'DESCOPERĂ CUM ÎȚI PROTEJĂM PROPRIETATEA',
-    ctaHref: '#cum-lucram',
+    ctaLabel:
+      "DESCOPERĂ CUM ÎȚI PROTEJĂM PROPRIETATEA",
 
-    secondaryLabel: 'VEZI SERVICIILE ȘI PREȚURILE',
-    secondaryHref: '/services',
+    ctaHref:
+      "#cum-lucram",
+
+    secondaryLabel:
+      "VEZI SERVICIILE ȘI PREȚURILE",
+
+    secondaryHref:
+      "/services",
 
     processBadge:
-      'MĂSURĂM · COMPARĂM · DOCUMENTĂM · DETECTĂM · ACȚIONĂM',
+      "MĂSURĂM · COMPARĂM · DOCUMENTĂM · DETECTĂM · ACȚIONĂM",
 
     imageAlt:
-      'Proprietate cu piscină în Costa Blanca'
+      "Proprietate cu piscină în Costa Blanca",
   },
 
   en: {
-    serviceType: 'KEY HOLDING & PROPERTY MANAGEMENT',
-    location: 'Orihuela Costa & Torrevieja',
+    serviceType:
+      "KEY HOLDING & PROPERTY MANAGEMENT",
+
+    location:
+      "Orihuela Costa & Torrevieja",
 
     heading:
-      'Your Costa Blanca property, professionally looked after while you are away.',
+      "Your Costa Blanca property, checked and managed while you are away.",
 
     description:
-      'We securely hold your keys, carry out scheduled property checks, document its condition and keep you informed when something needs attention.',
+      "We keep your keys safe, inspect the property regularly, document its condition and inform you whenever something needs attention.",
 
     reassurance:
-      'For owners who do not live permanently in Costa Blanca.',
+      "For owners who do not live permanently in Costa Blanca.",
 
-    ctaLabel: 'SEE HOW WE PROTECT YOUR PROPERTY',
-    ctaHref: '#cum-lucram',
+    ctaLabel:
+      "DISCOVER HOW WE PROTECT YOUR PROPERTY",
 
-    secondaryLabel: 'VIEW SERVICES & PRICES',
-    secondaryHref: '/en/services',
+    ctaHref:
+      "#how-we-work",
+
+    secondaryLabel:
+      "VIEW SERVICES & PRICING",
+
+    secondaryHref:
+      "/en/services",
 
     processBadge:
-      'MEASURE · COMPARE · DOCUMENT · DETECT · ACT',
+      "MEASURE · COMPARE · DOCUMENT · DETECT · ACT",
 
     imageAlt:
-      'Property with swimming pool in Costa Blanca'
-  }
+      "Property with swimming pool in Costa Blanca",
+  },
+
+  es: {
+    serviceType:
+      "KEY HOLDING & PROPERTY MANAGEMENT",
+
+    location:
+      "Orihuela Costa & Torrevieja",
+
+    heading:
+      "Tu propiedad en Costa Blanca, revisada y gestionada cuando no estás aquí.",
+
+    description:
+      "Custodiamos tus llaves de forma segura, revisamos periódicamente la propiedad, documentamos su estado y te informamos cuando algo requiere atención.",
+
+    reassurance:
+      "Para propietarios que no residen permanentemente en Costa Blanca.",
+
+    ctaLabel:
+      "DESCUBRE CÓMO PROTEGEMOS TU PROPIEDAD",
+
+    ctaHref:
+      "#como-trabajamos",
+
+    secondaryLabel:
+      "VER SERVICIOS Y PRECIOS",
+
+    secondaryHref:
+      "/es/services",
+
+    processBadge:
+      "MEDIMOS · COMPARAMOS · DOCUMENTAMOS · DETECTAMOS · ACTUAMOS",
+
+    imageAlt:
+      "Propiedad con piscina en Costa Blanca",
+  },
 };
 
-const t = translations[currentLang] || translations.ro;
+const lang =
+  currentLang === "en" || currentLang === "es"
+    ? currentLang
+    : "ro";
 
-interface Props {
-  serviceType?: string;
-  location?: string;
-  heading?: string;
-  description?: string;
-  reassurance?: string;
-  ctaLabel?: string;
-  ctaHref?: string;
-  secondaryLabel?: string;
-  secondaryHref?: string;
-  processBadge?: string;
-  imageAlt?: string;
-}
-
-const {
-  serviceType = t.serviceType,
-  location = t.location,
-  heading = t.heading,
-  description = t.description,
-  reassurance = t.reassurance,
-  ctaLabel = t.ctaLabel,
-  ctaHref = t.ctaHref,
-  secondaryLabel = t.secondaryLabel,
-  secondaryHref = t.secondaryHref,
-  processBadge = t.processBadge,
-  imageAlt = t.imageAlt,
-} = Astro.props;
+const t = translations[lang];
 ---
 
 <section
@@ -99,15 +126,16 @@ const {
   "
 >
 
-  <!-- Accent discret de fundal -->
+  <!-- FUNDAL DISCRET -->
+
   <div
     class="
       pointer-events-none
       absolute
       -top-32
       -left-32
-      w-[420px]
       h-[420px]
+      w-[420px]
       rounded-full
       bg-[#5B9EB5]/10
       blur-3xl
@@ -124,31 +152,32 @@ const {
       px-4
       sm:px-6
       lg:px-8
-      py-9
+      py-10
       sm:py-12
       md:py-16
       lg:py-20
     "
   >
 
-    <!-- IMPORTANT:
-         items-stretch = cele două coloane au aceeași înălțime pe desktop
-    -->
+    <!-- =====================================================
+         GRID PRINCIPAL
+    ====================================================== -->
+
     <div
       class="
         grid
         grid-cols-1
         lg:grid-cols-2
-        gap-9
+        gap-10
         lg:gap-14
+        xl:gap-16
         lg:items-stretch
       "
     >
 
-      <!-- =====================================================
-           TEXT
-           PE MOBIL APARE PRIMUL
-      ====================================================== -->
+      <!-- ===================================================
+           STÂNGA
+      ==================================================== -->
 
       <div
         class="
@@ -156,114 +185,113 @@ const {
           flex
           flex-col
           justify-center
+          w-full
         "
       >
 
         <!-- =================================================
-             IDENTIFICAREA SERVICIULUI + LOCAȚIE
+             CASSETĂ SERVICIU
+             
+             IMPORTANT:
+             w-full = aceeași lățime ca rândul butoanelor
         ================================================== -->
 
-        <div class="mb-6">
+        <div
+          class="
+            w-full
+            rounded-xl
+            bg-[#0E3846]
+            px-5
+            sm:px-6
+            py-4
+            shadow-[0_10px_24px_rgba(14,56,70,0.18)]
+            border
+            border-[#1C5161]
+          "
+        >
 
           <div
             class="
-              inline-flex
-              flex-col
-              items-start
-              gap-2.5
-              rounded-xl
-              bg-[#0E3846]
-              px-5
-              sm:px-6
-              py-4
-              shadow-[0_10px_24px_rgba(14,56,70,0.18)]
-              border
-              border-[#1C5161]
-              max-w-full
+              flex
+              items-center
+              gap-3
             "
           >
 
-            <!-- Serviciu -->
-            <div class="flex items-center gap-2.5">
-
-              <span
-                class="
-                  block
-                  w-2.5
-                  h-2.5
-                  rounded-full
-                  bg-[#D99B26]
-                  shrink-0
-                "
-                aria-hidden="true"
-              ></span>
-
-              <span
-                class="
-                  text-[14px]
-                  sm:text-[15px]
-                  font-bold
-                  uppercase
-                  tracking-[0.12em]
-                  text-white
-                  leading-5
-                "
-              >
-                {serviceType}
-              </span>
-
-            </div>
-
-
-            <!-- Locație -->
-            <div
+            <span
               class="
-                flex
-                items-center
-                gap-2.5
-                text-[#DCECEF]
+                h-2.5
+                w-2.5
+                shrink-0
+                rounded-full
+                bg-[#D99B26]
+              "
+              aria-hidden="true"
+            ></span>
+
+            <span
+              class="
+                text-[13px]
+                sm:text-[15px]
+                font-bold
+                uppercase
+                tracking-[0.1em]
+                leading-5
+                text-white
               "
             >
+              {t.serviceType}
+            </span>
 
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                class="
-                  w-4
-                  h-4
-                  shrink-0
-                  text-[#D99B26]
-                "
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 21s7-5.1 7-11a7 7 0 10-14 0c0 5.9 7 11 7 11z"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+          </div>
 
-                <circle
-                  cx="12"
-                  cy="10"
-                  r="2.3"
-                  stroke-width="1.8"
-                />
-              </svg>
 
-              <span
-                class="
-                  text-sm
-                  sm:text-[15px]
-                  font-semibold
-                  leading-5
-                "
-              >
-                {location}
-              </span>
+          <div
+            class="
+              mt-3
+              flex
+              items-center
+              gap-3
+            "
+          >
 
-            </div>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="
+                h-4
+                w-4
+                shrink-0
+                text-[#D99B26]
+              "
+              aria-hidden="true"
+            >
+              <path
+                d="M12 21s7-5.1 7-11a7 7 0 10-14 0c0 5.9 7 11 7 11z"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <circle
+                cx="12"
+                cy="10"
+                r="2.3"
+                stroke-width="1.8"
+              />
+            </svg>
+
+            <span
+              class="
+                text-sm
+                sm:text-[15px]
+                font-semibold
+                text-white
+              "
+            >
+              {t.location}
+            </span>
 
           </div>
 
@@ -271,24 +299,33 @@ const {
 
 
         <!-- =================================================
-             TITLU PRINCIPAL
+             TITLU
+             
+             CENTRAT
         ================================================== -->
 
         <h1
           class="
-            max-w-2xl
-            text-[32px]
-            sm:text-[40px]
-            lg:text-[48px]
-            xl:text-[52px]
+            mt-7
+            w-full
+
+            text-center
+
+            text-[36px]
+            sm:text-[42px]
+            lg:text-[46px]
+            xl:text-[50px]
+
             font-bold
-            leading-[1.1]
+
+            leading-[1.08]
             tracking-tight
+
             text-[#0E3846]
           "
           transition:name="hero-heading"
         >
-          {heading}
+          {t.heading}
         </h1>
 
 
@@ -298,42 +335,41 @@ const {
 
         <p
           class="
-            mt-5
-            max-w-2xl
-            text-[17px]
-            sm:text-lg
-            text-[#405963]
+            mt-6
+            w-full
+            text-[16px]
+            sm:text-[17px]
             leading-7
             sm:leading-8
+            text-[#405963]
           "
         >
-          {description}
+          {t.description}
         </p>
 
 
         <!-- =================================================
-             PENTRU CINE ESTE SERVICIUL
+             REASSURANCE
         ================================================== -->
 
         <div
           class="
             mt-5
             flex
-            items-start
+            items-center
             gap-3
-            max-w-xl
+            w-full
           "
         >
 
           <div
             class="
-              mt-0.5
               flex
+              h-8
+              w-8
+              shrink-0
               items-center
               justify-center
-              w-7
-              h-7
-              shrink-0
               rounded-full
               bg-[#E2F0F4]
               text-[#0E3846]
@@ -344,7 +380,10 @@ const {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              class="w-4 h-4"
+              class="
+                h-4
+                w-4
+              "
               aria-hidden="true"
             >
               <path
@@ -364,93 +403,120 @@ const {
 
           </div>
 
+
           <p
             class="
-              text-[15px]
-              sm:text-base
-              font-semibold
+              text-[14px]
+              sm:text-[15px]
+              font-bold
+              leading-6
               text-[#294A55]
-              leading-7
             "
           >
-            {reassurance}
+            {t.reassurance}
           </p>
 
         </div>
 
 
         <!-- =================================================
-             CTA
+             BUTOANE
+             
+             GRID = împreună ocupă exact 100% din lățime
         ================================================== -->
 
         <div
           class="
             mt-7
-            flex
-            flex-col
-            sm:flex-row
-            sm:items-center
+            grid
+            grid-cols-1
+            sm:grid-cols-[1.35fr_0.95fr]
             gap-3
+            w-full
           "
         >
 
-          <!-- CTA PRINCIPAL -->
+          <!-- PRINCIPAL -->
+
           <a
-            href={ctaHref}
+            href={t.ctaHref}
             class="
-              inline-flex
-              min-h-[52px]
+              flex
+              min-h-[60px]
               items-center
               justify-center
+
               rounded-xl
+
               bg-[#0E3846]
-              px-6
+
+              px-5
               py-3.5
-              text-sm
-              sm:text-[15px]
+
+              text-center
+
+              text-[13px]
+              sm:text-[14px]
+
               font-bold
+              uppercase
+              tracking-[0.03em]
+              leading-5
+
               text-white
+
               shadow-[0_7px_18px_rgba(14,56,70,0.18)]
+
               transition-all
               duration-200
+
               hover:bg-[#164D5D]
               hover:-translate-y-0.5
-              text-center
-              uppercase
-              tracking-[0.04em]
             "
           >
-            {ctaLabel}
+            {t.ctaLabel}
           </a>
 
 
-          <!-- CTA SECUNDAR -->
+          <!-- SECUNDAR -->
+
           <a
-            href={secondaryHref}
+            href={t.secondaryHref}
             class="
-              inline-flex
-              min-h-[52px]
+              flex
+              min-h-[60px]
               items-center
               justify-center
+
               rounded-xl
+
               border-2
               border-[#0E3846]
+
               bg-white
-              px-6
+
+              px-5
               py-3.5
-              text-sm
-              sm:text-[15px]
+
+              text-center
+
+              text-[13px]
+              sm:text-[14px]
+
               font-bold
+              uppercase
+              tracking-[0.03em]
+              leading-5
+
               text-[#0E3846]
+
               transition-all
               duration-200
+
               hover:bg-[#EAF4F6]
-              text-center
-              uppercase
-              tracking-[0.04em]
             "
           >
-            {secondaryLabel}
+            {t.secondaryLabel}
           </a>
 
         </div>
@@ -460,48 +526,54 @@ const {
              PROCES
         ================================================== -->
 
-        {processBadge && (
-          <div
+        <div
+          class="
+            mt-6
+            pt-5
+            border-t
+            border-[#D3E1E5]
+            w-full
+          "
+        >
+
+          <p
             class="
-              mt-6
-              pt-5
-              border-t
-              border-[#D3E1E5]
-              max-w-2xl
+              text-center
+              text-[11px]
+              sm:text-[12px]
+              xl:text-[13px]
+              font-bold
+              uppercase
+              tracking-[0.08em]
+              leading-6
+              text-[#6A838C]
             "
           >
-            <p
-              class="
-                text-xs
-                sm:text-[13px]
-                font-bold
-                uppercase
-                tracking-[0.09em]
-                text-[#6A838C]
-                leading-6
-              "
-            >
-              {processBadge}
-            </p>
-          </div>
-        )}
+            {t.processBadge}
+          </p>
+
+        </div>
 
       </div>
 
 
-      <!-- =====================================================
-           O SINGURĂ IMAGINE
-           PE DESKTOP = ACEEAȘI ÎNĂLȚIME CU TEXTUL
-      ====================================================== -->
+      <!-- ===================================================
+           DREAPTA - IMAGINE
+      ==================================================== -->
 
       <div
         class="
           order-2
           relative
           overflow-hidden
+
           rounded-2xl
+
           border
           border-[#D2E1E5]
+
+          bg-[#EAF2F4]
+
           shadow-[0_18px_40px_rgba(14,56,70,0.16)]
 
           aspect-[4/5]
@@ -513,29 +585,32 @@ const {
         transition:name="hero-image"
       >
 
+        <!-- FOTOGRAFIE -->
+
         <img
           src="/hero-secondary.jpg"
-          alt={imageAlt}
+          alt={t.imageAlt}
           loading="eager"
           decoding="async"
           class="
             absolute
             inset-0
-            w-full
             h-full
+            w-full
             object-cover
             object-center
           "
         />
 
 
-        <!-- Gradient discret -->
+        <!-- Gradient foarte discret -->
+
         <div
           class="
             absolute
             inset-0
             bg-gradient-to-t
-            from-[#0E3846]/25
+            from-[#0E3846]/10
             via-transparent
             to-transparent
             pointer-events-none
@@ -544,51 +619,48 @@ const {
         ></div>
 
 
-        <!-- IDENTIFICARE PE IMAGINE -->
+        <!-- =================================================
+             LOGO COLORAT PESTE FOTOGRAFIE
+             
+             FĂRĂ CASETĂ ALBĂ
+        ================================================== -->
+
         <div
           class="
             absolute
-            left-4
-            right-4
-            bottom-4
 
-            sm:left-5
-            sm:right-auto
-            sm:bottom-5
+            left-5
+            bottom-5
 
-            bg-white/95
-            backdrop-blur-sm
-            rounded-xl
-            px-4
-            py-3
-            shadow-lg
-            border
-            border-white/70
+            sm:left-6
+            sm:bottom-6
+
+            lg:left-7
+            lg:bottom-7
+
+            z-20
+
+            pointer-events-none
           "
         >
 
-          <p
+          <img
+            src="/sicb-symbol.png"
+            alt=""
+            aria-hidden="true"
             class="
-              text-[11px]
-              font-bold
-              uppercase
-              tracking-[0.12em]
-              text-[#D99B26]
-            "
-          >
-            Stay in Costa Blanca
-          </p>
+              w-[125px]
+              sm:w-[145px]
+              lg:w-[155px]
+              xl:w-[170px]
 
-          <p
-            class="
-              mt-0.5
-              text-sm
-              font-bold
-              text-[#0E3846]
+              h-auto
+
+              opacity-90
+
+              drop-shadow-[0_5px_10px_rgba(0,0,0,0.20)]
             "
-          >
-            Key Holding &amp; Property Management
-          </p>
+          />
 
         </div>
 
@@ -597,4 +669,5 @@ const {
     </div>
 
   </div>
+
 </section>
