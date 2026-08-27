@@ -1,1941 +1,490 @@
-
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { brand } from '../config/brand';
-
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-const currentLang = Astro.currentLocale || 'ro';
-
-const lang =
-  currentLang === 'en' || currentLang === 'es'
-    ? currentLang
-    : 'ro';
-
-
-/* =========================================================
-   ROUTES
-========================================================= */
-
-const routes = {
-  ro: {
-    services: '/services',
-    contact: '/contact',
-  },
-
-  en: {
-    services: '/en/services',
-    contact: '/en/contact',
-  },
-
-  es: {
-    services: '/es/services',
-    contact: '/es/contact',
-  },
-};
-
-const r = routes[lang];
-
-
-/* =========================================================
-   TRANSLATIONS
-========================================================= */
-
-const translations = {
-
-  /* =======================================================
-     ROMÂNĂ
-  ======================================================= */
-
-  ro: {
-    seoTitle:
-      `Sustenabilitate | Administrarea responsabilă a proprietății | ${brand.name}`,
-
-    seoDescription:
-      'Descoperă abordarea Stay in Costa Blanca privind administrarea preventivă și sustenabilă a proprietăților: apă, energie, reziliență, digitalizare și parteneriate locale.',
-
-
-    /* HERO */
-
-    heroTopper:
-      'SUSTENABILITATE APLICATĂ',
-
-    heroTitle:
-      'O proprietate bine administrată consumă mai responsabil și rezistă mai bine în timp.',
-
-    heroText:
-      'Pentru noi, sustenabilitatea nu înseamnă doar obiective și simboluri. Înseamnă să observăm consumurile, să prevenim risipa, să detectăm problemele din timp și să păstrăm un istoric documentat al proprietății.',
-
-    heroBadge:
-      'Prevenție · Monitorizare · Documentare · Responsabilitate',
-
-    heroPrimary:
-      'VEZI CUM LUCRĂM',
-
-    heroSecondary:
-      'VEZI PACHETELE',
-
-
-    /* INTRO */
-
-    introTopper:
-      'ABORDAREA NOASTRĂ',
-
-    introTitle:
-      'Sustenabilitatea începe cu administrarea de zi cu zi.',
-
-    introText:
-      'O locuință care rămâne nelocuită perioade mai lungi poate consuma inutil apă sau energie, poate dezvolta probleme de umiditate sau poate suferi degradări care nu sunt observate la timp. Rolul nostru este să introducem prevenția și trasabilitatea în administrarea proprietății.',
-
-
-    /* PILLARS */
-
-    resourcesTitle:
-      'Resurse',
-
-    resourcesText:
-      'Urmărim elementele relevante legate de apă și energie și documentăm schimbările care pot indica pierderi, consum anormal sau funcționare ineficientă.',
-
-    resourcesOdd:
-      'ODD 6 + ODD 7',
-
-    resilienceTitle:
-      'Proprietate & reziliență',
-
-    resilienceText:
-      'Verificările preventive, întreținerea la timp și observarea schimbărilor contribuie la reducerea degradării și la prelungirea duratei de viață a proprietății și echipamentelor.',
-
-    resilienceOdd:
-      'ODD 11 + ODD 12 + ODD 13',
-
-    partnershipsTitle:
-      'Parteneriate locale',
-
-    partnershipsText:
-      'Atunci când este necesară o intervenție, colaborarea cu tehnicieni și furnizori locali permite coordonarea mai eficientă și responsabilă a problemelor identificate.',
-
-    partnershipsOdd:
-      'ODD 17',
-
-
-    /* SDG */
-
-    oddTopper:
-      'OBIECTIVELE DE DEZVOLTARE DURABILĂ',
-
-    oddTitle:
-      'Șase obiective relevante pentru activitatea noastră.',
-
-    oddText:
-      'Nu încercăm să asociem fiecare activitate cu toate cele 17 obiective. Ne concentrăm doar asupra celor care au o legătură practică și directă cu administrarea proprietăților.',
-
-    odds: [
-      {
-        number: 6,
-        title: 'Apă curată și sanitație',
-        short: 'Monitorizarea apei',
-        text: 'Fotografiile contoarelor, verificările instalațiilor sanitare și observarea eventualelor pierderi ne ajută să identificăm mai repede situațiile care pot duce la risipă de apă.',
-      },
-
-      {
-        number: 7,
-        title: 'Energie curată și la prețuri accesibile',
-        short: 'Monitorizarea energiei',
-        text: 'Urmărirea consumurilor și verificarea funcționării de bază a echipamentelor pot evidenția schimbări care merită investigate înainte ca acestea să genereze consum inutil.',
-      },
-
-      {
-        number: 11,
-        title: 'Orașe și comunități durabile',
-        short: 'Proprietăți mai reziliente',
-        text: 'Întreținerea preventivă și monitorizarea regulată contribuie la păstrarea proprietăților într-o stare mai bună și la reducerea degradării în perioadele în care acestea sunt nelocuite.',
-      },
-
-      {
-        number: 12,
-        title: 'Consum și producție responsabile',
-        short: 'Prevenție înainte de înlocuire',
-        text: 'Identificarea timpurie a unei probleme poate permite o intervenție minoră înainte ca deteriorarea să impună reparații mai ample, materiale suplimentare sau înlocuirea echipamentelor.',
-      },
-
-      {
-        number: 13,
-        title: 'Acțiune climatică',
-        short: 'Pregătire & reziliență',
-        text: 'Verificările după episoade de vreme severă și monitorizarea elementelor exterioare ajută proprietarii să identifice mai repede eventualele efecte ale condițiilor meteo extreme.',
-      },
-
-      {
-        number: 17,
-        title: 'Parteneriate pentru realizarea obiectivelor',
-        short: 'Colaborare locală',
-        text: 'Administrarea proprietății presupune uneori colaborarea cu tehnicieni, furnizori și alți profesioniști locali. Coordonarea responsabilă face parte din procesul nostru.',
-      },
-    ],
-
-
-    /* DIGITAL */
-
-    digitalTopper:
-      'DIGITALIZARE & TRASABILITATE',
-
-    digitalTitle:
-      'Sustenabilitatea are nevoie și de date.',
-
-    digitalText:
-      'O verificare izolată spune ce se întâmplă într-un anumit moment. O serie de vizite documentate ne permite să comparăm și să observăm schimbările în timp.',
-
-    digitalItems: [
-      'Fotografii și observații după vizită',
-      'Istoric al verificărilor proprietății',
-      'Fotografii comparative ale contoarelor',
-      'Monitorizarea valorilor relevante, în funcție de pachet',
-      'Identificarea tendințelor și schimbărilor',
-      'Documentarea incidentelor și a acțiunilor recomandate',
-    ],
-
-    digitalMethod:
-      'Măsurăm → Comparăm → Documentăm → Detectăm → Acționăm',
-
-
-    /* LEVELS */
-
-    levelsTopper:
-      'TREI NIVELURI',
-
-    levelsTitle:
-      'Sustenabilitatea crește odată cu nivelul de monitorizare.',
-
-    levelsText:
-      'Fiecare pachet include elemente de prevenție și responsabilitate. Pachetele superioare adaugă mai multe date comparative, monitorizare și analiză.',
-
-    basicTitle:
-      'ECO-BASIC — WATCH',
-
-    basicSubtitle:
-      'Awareness & Monitoring',
-
-    basicItems: [
-      'Fotografii ale contoarelor',
-      'Verificări periodice ale apei și instalațiilor',
-      'Observarea vizuală a umidității și infiltrațiilor',
-      'Verificare de bază a funcționării AC',
-      'Raport digital după vizită',
-    ],
-
-    smartTitle:
-      'ECO-SMART — PREVENT',
-
-    smartSubtitle:
-      'Optimization & Efficiency',
-
-    smartItems: [
-      'Tot ce include ECO-BASIC',
-      'Temperatură și umiditate relativă',
-      'Ventilație asistată',
-      'Citiri comparative de umiditate',
-      'Analiză trimestrială apă & energie',
-      'Screening preventiv al aerului condiționat',
-    ],
-
-    premiumTitle:
-      'ECO-PREMIUM — MANAGE',
-
-    premiumSubtitle:
-      'Resilience & Impact',
-
-    premiumItems: [
-      'Tot ce include ECO-SMART',
-      'Analiză lunară apă & energie',
-      'Extended Property Reviews',
-      'Mai multe verificări după vreme severă',
-      'Property Health Report anual',
-      'Coordonare locală extinsă',
-    ],
-
-
-    /* PRACTICAL */
-
-    practicalTopper:
-      'CE ÎNSEAMNĂ ÎN PRACTICĂ',
-
-    practicalTitle:
-      'Gesturi mici pot preveni probleme mari.',
-
-    practicalItems: [
-      {
-        title: 'O variație neașteptată a consumului de apă',
-        text: 'Poate indica o pierdere sau o problemă care merită verificată înainte de următoarea factură.',
-      },
-      {
-        title: 'Umiditate în creștere',
-        text: 'Compararea valorilor între vizite poate evidenția o schimbare chiar înainte ca deteriorarea să devină evidentă vizual.',
-      },
-      {
-        title: 'Drenaj blocat pe terasă',
-        text: 'Identificat înaintea unei ploi puternice, poate preveni acumularea apei și eventuale infiltrații.',
-      },
-      {
-        title: 'Echipament care funcționează diferit',
-        text: 'O schimbare observată în timpul unei verificări poate fi investigată înainte de apariția unei defecțiuni mai serioase.',
-      },
-    ],
-
-
-    /* DISCLAIMER */
-
-    disclaimerTitle:
-      'O precizare importantă',
-
-    disclaimerText:
-      'Referirea la Obiectivele de Dezvoltare Durabilă descrie modul în care anumite activități ale Stay in Costa Blanca se aliniază practic cu principiile acestora. Nu reprezintă o certificare, acreditare, aprobare sau afiliere cu Organizația Națiunilor Unite.',
-
-
-    /* CTA LINK */
-
-    servicesButton:
-      'COMPARĂ PACHETELE',
-
-    contactButton:
-      'DISCUTĂ CU NOI',
-  },
-
-
-  /* =======================================================
-     ENGLISH
-  ======================================================= */
-
-  en: {
-    seoTitle:
-      `Sustainability | Responsible Property Management | ${brand.name}`,
-
-    seoDescription:
-      'Discover the Stay in Costa Blanca approach to preventive and sustainable property management: water, energy, resilience, digitalisation and local partnerships.',
-
-    heroTopper:
-      'SUSTAINABILITY IN PRACTICE',
-
-    heroTitle:
-      'A well-managed property uses resources more responsibly and remains resilient over time.',
-
-    heroText:
-      'For us, sustainability is not simply about goals and symbols. It means monitoring consumption, preventing waste, identifying problems early and maintaining a documented property history.',
-
-    heroBadge:
-      'Prevention · Monitoring · Documentation · Responsibility',
-
-    heroPrimary:
-      'DISCOVER OUR APPROACH',
-
-    heroSecondary:
-      'VIEW OUR PLANS',
-
-    introTopper:
-      'OUR APPROACH',
-
-    introTitle:
-      'Sustainability starts with everyday property management.',
-
-    introText:
-      'A home left unoccupied for longer periods can waste water or energy, develop humidity problems or experience deterioration that goes unnoticed. Our role is to introduce prevention and traceability into property management.',
-
-    resourcesTitle:
-      'Resources',
-
-    resourcesText:
-      'We monitor relevant water and energy indicators and document changes that could suggest leaks, abnormal consumption or inefficient operation.',
-
-    resourcesOdd:
-      'SDG 6 + SDG 7',
-
-    resilienceTitle:
-      'Property & resilience',
-
-    resilienceText:
-      'Preventive checks, timely maintenance and observation of changes help reduce deterioration and extend the useful life of the property and its equipment.',
-
-    resilienceOdd:
-      'SDG 11 + SDG 12 + SDG 13',
-
-    partnershipsTitle:
-      'Local partnerships',
-
-    partnershipsText:
-      'When intervention is required, collaboration with local technicians and providers enables more efficient and responsible coordination.',
-
-    partnershipsOdd:
-      'SDG 17',
-
-    oddTopper:
-      'SUSTAINABLE DEVELOPMENT GOALS',
-
-    oddTitle:
-      'Six goals that are relevant to our activity.',
-
-    oddText:
-      'We do not try to connect every activity to all 17 goals. We focus only on those with a practical and direct relationship to property management.',
-
-    odds: [
-      {
-        number: 6,
-        title: 'Clean Water and Sanitation',
-        short: 'Water monitoring',
-        text: 'Meter photographs, sanitary checks and observation of potential leaks help identify situations that may result in unnecessary water consumption.',
-      },
-      {
-        number: 7,
-        title: 'Affordable and Clean Energy',
-        short: 'Energy monitoring',
-        text: 'Consumption monitoring and basic equipment checks can highlight changes that may deserve investigation before they generate unnecessary energy use.',
-      },
-      {
-        number: 11,
-        title: 'Sustainable Cities and Communities',
-        short: 'More resilient properties',
-        text: 'Preventive care and regular monitoring contribute to keeping properties in better condition during periods when they are unoccupied.',
-      },
-      {
-        number: 12,
-        title: 'Responsible Consumption and Production',
-        short: 'Prevention before replacement',
-        text: 'Early identification may allow a minor intervention before deterioration requires larger repairs, additional materials or equipment replacement.',
-      },
-      {
-        number: 13,
-        title: 'Climate Action',
-        short: 'Preparation & resilience',
-        text: 'Checks following severe weather and monitoring exterior elements help owners identify possible effects of extreme conditions sooner.',
-      },
-      {
-        number: 17,
-        title: 'Partnerships for the Goals',
-        short: 'Local collaboration',
-        text: 'Property management sometimes requires collaboration with technicians, providers and other local professionals. Responsible coordination is part of our process.',
-      },
-    ],
-
-    digitalTopper:
-      'DIGITALISATION & TRACEABILITY',
-
-    digitalTitle:
-      'Sustainability also needs data.',
-
-    digitalText:
-      'A single inspection tells us what is happening at one moment. A documented series of visits allows us to compare and identify changes over time.',
-
-    digitalItems: [
-      'Photographs and observations after visits',
-      'Property inspection history',
-      'Comparative meter photographs',
-      'Monitoring of relevant values depending on the plan',
-      'Identification of trends and changes',
-      'Documentation of incidents and recommended actions',
-    ],
-
-    digitalMethod:
-      'Measure → Compare → Document → Detect → Act',
-
-    levelsTopper:
-      'THREE LEVELS',
-
-    levelsTitle:
-      'Sustainability increases with the depth of monitoring.',
-
-    levelsText:
-      'Every plan includes prevention and responsible management elements. Higher plans add more comparative data, monitoring and analysis.',
-
-    basicTitle:
-      'ECO-BASIC — WATCH',
-
-    basicSubtitle:
-      'Awareness & Monitoring',
-
-    basicItems: [
-      'Meter photographs',
-      'Regular water and sanitary checks',
-      'Visual observation of humidity and infiltration',
-      'Basic AC functional check',
-      'Digital report after each visit',
-    ],
-
-    smartTitle:
-      'ECO-SMART — PREVENT',
-
-    smartSubtitle:
-      'Optimization & Efficiency',
-
-    smartItems: [
-      'Everything in ECO-BASIC',
-      'Temperature and relative humidity',
-      'Assisted ventilation',
-      'Comparative moisture readings',
-      'Quarterly water & energy review',
-      'Preventive AC screening',
-    ],
-
-    premiumTitle:
-      'ECO-PREMIUM — MANAGE',
-
-    premiumSubtitle:
-      'Resilience & Impact',
-
-    premiumItems: [
-      'Everything in ECO-SMART',
-      'Monthly water & energy review',
-      'Extended Property Reviews',
-      'Additional severe-weather checks',
-      'Annual Property Health Report',
-      'Extended local coordination',
-    ],
-
-    practicalTopper:
-      'WHAT THIS MEANS IN PRACTICE',
-
-    practicalTitle:
-      'Small observations can prevent larger problems.',
-
-    practicalItems: [
-      {
-        title: 'An unexpected change in water consumption',
-        text: 'It may indicate a leak or another issue worth checking before the next bill.',
-      },
-      {
-        title: 'Increasing humidity',
-        text: 'Comparing readings between visits may highlight a change before deterioration becomes clearly visible.',
-      },
-      {
-        title: 'Blocked terrace drainage',
-        text: 'Identifying it before heavy rain can help prevent water accumulation and potential infiltration.',
-      },
-      {
-        title: 'Equipment behaving differently',
-        text: 'A change noticed during an inspection can be investigated before a more serious failure occurs.',
-      },
-    ],
-
-    disclaimerTitle:
-      'An important clarification',
-
-    disclaimerText:
-      'References to the Sustainable Development Goals describe how certain Stay in Costa Blanca activities practically align with their principles. They do not constitute certification, accreditation, endorsement or affiliation with the United Nations.',
-
-    servicesButton:
-      'COMPARE PLANS',
-
-    contactButton:
-      'CONTACT US',
-  },
-
-
-  /* =======================================================
-     ESPAÑOL
-  ======================================================= */
-
-  es: {
-    seoTitle:
-      `Sostenibilidad | Gestión Responsable de Propiedades | ${brand.name}`,
-
-    seoDescription:
-      'Descubre el enfoque de Stay in Costa Blanca sobre gestión preventiva y sostenible: agua, energía, resiliencia, digitalización y colaboración local.',
-
-    heroTopper:
-      'SOSTENIBILIDAD APLICADA',
-
-    heroTitle:
-      'Una propiedad bien gestionada utiliza los recursos de forma más responsable y resiste mejor con el tiempo.',
-
-    heroText:
-      'Para nosotros, la sostenibilidad no consiste únicamente en objetivos y símbolos. Significa controlar consumos, prevenir desperdicios, detectar problemas a tiempo y mantener un historial documentado de la propiedad.',
-
-    heroBadge:
-      'Prevención · Monitorización · Documentación · Responsabilidad',
-
-    heroPrimary:
-      'DESCUBRE NUESTRO ENFOQUE',
-
-    heroSecondary:
-      'VER LOS PLANES',
-
-    introTopper:
-      'NUESTRO ENFOQUE',
-
-    introTitle:
-      'La sostenibilidad empieza en la gestión cotidiana.',
-
-    introText:
-      'Una vivienda que permanece desocupada durante largos periodos puede desperdiciar agua o energía, desarrollar problemas de humedad o sufrir deterioros que pasan desapercibidos. Nuestro papel es introducir prevención y trazabilidad en la gestión.',
-
-    resourcesTitle:
-      'Recursos',
-
-    resourcesText:
-      'Controlamos indicadores relevantes relacionados con agua y energía y documentamos cambios que pueden sugerir fugas, consumos anormales o funcionamiento ineficiente.',
-
-    resourcesOdd:
-      'ODS 6 + ODS 7',
-
-    resilienceTitle:
-      'Propiedad y resiliencia',
-
-    resilienceText:
-      'Las revisiones preventivas, el mantenimiento a tiempo y la observación de cambios ayudan a reducir el deterioro y prolongar la vida útil de la propiedad y sus equipos.',
-
-    resilienceOdd:
-      'ODS 11 + ODS 12 + ODS 13',
-
-    partnershipsTitle:
-      'Colaboración local',
-
-    partnershipsText:
-      'Cuando es necesaria una intervención, la colaboración con técnicos y proveedores locales permite una coordinación más eficiente y responsable.',
-
-    partnershipsOdd:
-      'ODS 17',
-
-    oddTopper:
-      'OBJETIVOS DE DESARROLLO SOSTENIBLE',
-
-    oddTitle:
-      'Seis objetivos relevantes para nuestra actividad.',
-
-    oddText:
-      'No intentamos relacionar cada actividad con los 17 objetivos. Nos centramos únicamente en aquellos que tienen una relación práctica y directa con la gestión de propiedades.',
-
-    odds: [
-      {
-        number: 6,
-        title: 'Agua limpia y saneamiento',
-        short: 'Monitorización del agua',
-        text: 'Las fotografías de contadores, revisiones sanitarias y observación de posibles fugas ayudan a identificar antes situaciones que pueden provocar desperdicio de agua.',
-      },
-      {
-        number: 7,
-        title: 'Energía asequible y no contaminante',
-        short: 'Monitorización energética',
-        text: 'El seguimiento de consumos y las revisiones básicas de equipos pueden señalar cambios que conviene investigar antes de generar consumos innecesarios.',
-      },
-      {
-        number: 11,
-        title: 'Ciudades y comunidades sostenibles',
-        short: 'Propiedades más resilientes',
-        text: 'El mantenimiento preventivo y la monitorización regular contribuyen a conservar mejor las propiedades durante los periodos en que permanecen desocupadas.',
-      },
-      {
-        number: 12,
-        title: 'Producción y consumo responsables',
-        short: 'Prevenir antes de sustituir',
-        text: 'La identificación temprana puede permitir una intervención menor antes de que el deterioro requiera reparaciones mayores, materiales adicionales o sustitución de equipos.',
-      },
-      {
-        number: 13,
-        title: 'Acción por el clima',
-        short: 'Preparación y resiliencia',
-        text: 'Las revisiones después de episodios meteorológicos severos ayudan a identificar antes posibles efectos sobre la propiedad.',
-      },
-      {
-        number: 17,
-        title: 'Alianzas para lograr los objetivos',
-        short: 'Colaboración local',
-        text: 'La gestión de propiedades requiere en ocasiones colaborar con técnicos, proveedores y profesionales locales. La coordinación responsable forma parte de nuestro proceso.',
-      },
-    ],
-
-    digitalTopper:
-      'DIGITALIZACIÓN & TRAZABILIDAD',
-
-    digitalTitle:
-      'La sostenibilidad también necesita datos.',
-
-    digitalText:
-      'Una revisión aislada muestra lo que ocurre en un momento determinado. Una serie de visitas documentadas permite comparar e identificar cambios con el tiempo.',
-
-    digitalItems: [
-      'Fotografías y observaciones después de las visitas',
-      'Historial de revisiones de la propiedad',
-      'Fotografías comparativas de contadores',
-      'Monitorización de valores relevantes según el plan',
-      'Identificación de tendencias y cambios',
-      'Documentación de incidencias y acciones recomendadas',
-    ],
-
-    digitalMethod:
-      'Medimos → Comparamos → Documentamos → Detectamos → Actuamos',
-
-    levelsTopper:
-      'TRES NIVELES',
-
-    levelsTitle:
-      'La sostenibilidad aumenta con la profundidad de la monitorización.',
-
-    levelsText:
-      'Cada plan incluye elementos de prevención y gestión responsable. Los niveles superiores añaden más datos comparativos, monitorización y análisis.',
-
-    basicTitle:
-      'ECO-BASIC — WATCH',
-
-    basicSubtitle:
-      'Awareness & Monitoring',
-
-    basicItems: [
-      'Fotografías de contadores',
-      'Revisiones periódicas de agua e instalaciones',
-      'Observación visual de humedad e infiltraciones',
-      'Revisión funcional básica del AC',
-      'Informe digital después de cada visita',
-    ],
-
-    smartTitle:
-      'ECO-SMART — PREVENT',
-
-    smartSubtitle:
-      'Optimization & Efficiency',
-
-    smartItems: [
-      'Todo lo incluido en ECO-BASIC',
-      'Temperatura y humedad relativa',
-      'Ventilación asistida',
-      'Lecturas comparativas de humedad',
-      'Revisión trimestral de agua y energía',
-      'Screening preventivo del aire acondicionado',
-    ],
-
-    premiumTitle:
-      'ECO-PREMIUM — MANAGE',
-
-    premiumSubtitle:
-      'Resilience & Impact',
-
-    premiumItems: [
-      'Todo lo incluido en ECO-SMART',
-      'Revisión mensual de agua y energía',
-      'Extended Property Reviews',
-      'Más revisiones tras clima severo',
-      'Property Health Report anual',
-      'Coordinación local ampliada',
-    ],
-
-    practicalTopper:
-      'QUÉ SIGNIFICA EN LA PRÁCTICA',
-
-    practicalTitle:
-      'Pequeñas observaciones pueden prevenir grandes problemas.',
-
-    practicalItems: [
-      {
-        title: 'Un cambio inesperado en el consumo de agua',
-        text: 'Puede indicar una fuga u otro problema que conviene revisar antes de la siguiente factura.',
-      },
-      {
-        title: 'Aumento de la humedad',
-        text: 'Comparar valores entre visitas puede señalar un cambio antes de que el deterioro sea claramente visible.',
-      },
-      {
-        title: 'Drenaje bloqueado en una terraza',
-        text: 'Detectarlo antes de una lluvia intensa puede ayudar a evitar acumulaciones de agua e infiltraciones.',
-      },
-      {
-        title: 'Un equipo funciona de forma diferente',
-        text: 'Un cambio observado durante una revisión puede investigarse antes de que aparezca una avería más grave.',
-      },
-    ],
-
-    disclaimerTitle:
-      'Una aclaración importante',
-
-    disclaimerText:
-      'Las referencias a los Objetivos de Desarrollo Sostenible describen cómo determinadas actividades de Stay in Costa Blanca se alinean de forma práctica con sus principios. No constituyen certificación, acreditación, aprobación ni afiliación con las Naciones Unidas.',
-
-    servicesButton:
-      'COMPARAR PLANES',
-
-    contactButton:
-      'CONTACTAR',
-  },
-};
-
-const t = translations[lang];
-
-
-/* =========================================================
-   PILLARS
-========================================================= */
-
-const pillars = [
-  {
-    icon: 'drop',
-    title: t.resourcesTitle,
-    text: t.resourcesText,
-    odd: t.resourcesOdd,
-  },
-
-  {
-    icon: 'home',
-    title: t.resilienceTitle,
-    text: t.resilienceText,
-    odd: t.resilienceOdd,
-  },
-
-  {
-    icon: 'people',
-    title: t.partnershipsTitle,
-    text: t.partnershipsText,
-    odd: t.partnershipsOdd,
-  },
-];
-
-
-/* =========================================================
-   LEVELS
-========================================================= */
-
-const levels = [
-  {
-    title: t.basicTitle,
-    subtitle: t.basicSubtitle,
-    items: t.basicItems,
-    featured: false,
-  },
-
-  {
-    title: t.smartTitle,
-    subtitle: t.smartSubtitle,
-    items: t.smartItems,
-    featured: true,
-  },
-
-  {
-    title: t.premiumTitle,
-    subtitle: t.premiumSubtitle,
-    items: t.premiumItems,
-    featured: false,
-  },
-];
 ---
 
 <BaseLayout
-  title={t.seoTitle}
-  description={t.seoDescription}
+  title="Sustenabilitate"
+  description={`Află cum integrează ${brand.name} principiile sustenabilității în administrarea proprietăților din Orihuela Costa și Torrevieja.`}
 >
-
   <Header slot="header" />
 
+  <Banner title="Sustenabilitate" />
 
-  <!-- =====================================================
-       HERO
-  ====================================================== -->
-
-  <section
-    class="
-      relative
-      overflow-hidden
-      bg-[#0E3846]
-      py-16
-      sm:py-20
-      lg:py-24
-      font-heading
-    "
-  >
-
-    <div
-      class="
-        pointer-events-none
-        absolute
-        -right-20
-        -top-20
-        h-96
-        w-96
-        rounded-full
-        bg-[#5B9EB5]/20
-        blur-3xl
-      "
-    ></div>
-
-    <div
-      class="
-        pointer-events-none
-        absolute
-        -bottom-32
-        -left-20
-        h-80
-        w-80
-        rounded-full
-        bg-[#D99B26]/10
-        blur-3xl
-      "
-    ></div>
-
-
-    <div
-      class="
-        relative
-        mx-auto
-        max-w-site
-        px-4
-        sm:px-6
-        lg:px-8
-      "
-    >
-
-      <div
-        class="
-          mx-auto
-          max-w-5xl
-          text-center
-        "
-      >
-
-        <p
-          class="
-            text-sm
-            font-bold
-            uppercase
-            tracking-[0.18em]
-            text-[#F3C76B]
-          "
-        >
-          {t.heroTopper}
+  <!-- INTRO -->
+  <section class="py-16 sm:py-20 bg-white font-heading border-b border-[#D8E1E5]">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto max-w-4xl text-center">
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
+          ADMINISTRARE RESPONSABILĂ
         </p>
 
-
-        <h1
-          class="
-            mt-4
-            text-[36px]
-            sm:text-5xl
-            lg:text-[58px]
-            font-bold
-            leading-[1.08]
-            tracking-tight
-            text-white
-          "
-        >
-          {t.heroTitle}
+        <h1 class="text-[30px] sm:text-4xl lg:text-[44px] font-bold text-[#0E3846] tracking-tight leading-tight">
+          Sustenabilitate aplicată în administrarea proprietăților
         </h1>
 
-
-        <p
-          class="
-            mx-auto
-            mt-6
-            max-w-4xl
-            text-base
-            sm:text-lg
-            leading-8
-            text-[#C9DDE2]
-          "
-        >
-          {t.heroText}
+        <p class="mt-5 text-base sm:text-lg text-[#405963] leading-7 sm:leading-8 max-w-3xl mx-auto">
+          Pentru noi, sustenabilitatea nu înseamnă doar un concept frumos formulat.
+          Înseamnă monitorizare atentă, prevenție, utilizarea responsabilă a resurselor
+          și o administrare documentată, care contribuie la protejarea proprietății pe termen lung.
         </p>
-
-
-        <div
-          class="
-            mt-7
-            inline-flex
-            rounded-full
-            border
-            border-white/15
-            bg-white/5
-            px-5
-            py-2.5
-            text-xs
-            sm:text-sm
-            font-semibold
-            text-[#E0ECEF]
-          "
-        >
-          {t.heroBadge}
-        </div>
-
-
-        <div
-          class="
-            mt-8
-            flex
-            flex-col
-            sm:flex-row
-            justify-center
-            gap-3
-          "
-        >
-
-          <a
-            href="#abordare"
-            class="
-              inline-flex
-              min-h-[52px]
-              items-center
-              justify-center
-              rounded-xl
-              bg-[#D99B26]
-              px-7
-              py-3
-              text-sm
-              font-bold
-              text-[#0E3846]
-              transition
-              hover:bg-[#E7AA38]
-            "
-          >
-            {t.heroPrimary}
-          </a>
-
-
-          <a
-            href={r.services}
-            class="
-              inline-flex
-              min-h-[52px]
-              items-center
-              justify-center
-              rounded-xl
-              border
-              border-white/25
-              px-7
-              py-3
-              text-sm
-              font-bold
-              text-white
-              transition
-              hover:bg-white/10
-            "
-          >
-            {t.heroSecondary}
-          </a>
-
-        </div>
-
       </div>
-
     </div>
-
   </section>
 
-
-  <!-- =====================================================
-       APPROACH
-  ====================================================== -->
-
-  <section
-    id="abordare"
-    class="
-      scroll-mt-24
-      bg-white
-      py-16
-      sm:py-20
-      font-heading
-    "
-  >
-
-    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
-
-      <div class="mx-auto max-w-4xl text-center">
-
-        <p class="text-sm font-bold uppercase tracking-[0.17em] text-[#D99B26]">
-          {t.introTopper}
+  <!-- PRINCIPII / PILONI -->
+  <section class="py-16 sm:py-20 bg-[#FCFDFD] font-heading border-b border-[#D8E1E5]">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
+          CUM O INTEGRĂM
         </p>
 
-        <h2
-          class="
-            mt-3
-            text-[30px]
-            sm:text-4xl
-            lg:text-[44px]
-            font-bold
-            tracking-tight
-            text-[#0E3846]
-          "
-        >
-          {t.introTitle}
+        <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
+          Două direcții principale și două dimensiuni transversale
         </h2>
 
-        <p
-          class="
-            mx-auto
-            mt-5
-            max-w-3xl
-            text-base
-            sm:text-lg
-            leading-8
-            text-[#526B74]
-          "
-        >
-          {t.introText}
+        <p class="mt-4 text-base sm:text-lg text-[#526B74] leading-7 max-w-3xl mx-auto">
+          Abordarea noastră pornește de la două direcții operaționale clare,
+          susținute permanent de digitalizare și colaborare locală.
         </p>
-
       </div>
 
-
-      <div
-        class="
-          mt-12
-          grid
-          grid-cols-1
-          md:grid-cols-3
-          gap-6
-        "
-      >
-
-        {
-          pillars.map((pillar) => (
-
-            <article
-              class="
-                rounded-2xl
-                border
-                border-[#D2E1E5]
-                bg-[#F7FAFA]
-                p-6
-                sm:p-7
-              "
-            >
-
-              <div
-                class="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#E5F2F5]
-                  text-[#0E3846]
-                "
-              >
-
-                {
-                  pillar.icon === 'drop' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6">
-                      <path
-                        d="M12 3s-6 6.1-6 11a6 6 0 0012 0c0-4.9-6-11-6-11z"
-                        stroke-width="1.7"
-                      />
-                    </svg>
-                  )
-                }
-
-                {
-                  pillar.icon === 'home' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6">
-                      <path
-                        d="M4 11l8-7 8 7v9H4zM9 20v-6h6v6"
-                        stroke-width="1.7"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  )
-                }
-
-                {
-                  pillar.icon === 'people' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6">
-                      <circle cx="8" cy="8" r="3" stroke-width="1.7" />
-                      <circle cx="17" cy="9" r="2.5" stroke-width="1.7" />
-                      <path
-                        d="M3 20c.4-4 2.3-6 5-6s4.6 2 5 6M14 15c3.5-.7 6 1 7 4"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  )
-                }
-
-              </div>
-
-
-              <p
-                class="
-                  mt-5
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.12em]
-                  text-[#D99B26]
-                "
-              >
-                {pillar.odd}
-              </p>
-
-
-              <h3
-                class="
-                  mt-2
-                  text-xl
-                  font-bold
-                  text-[#0E3846]
-                "
-              >
-                {pillar.title}
-              </h3>
-
-
-              <p
-                class="
-                  mt-3
-                  text-[15px]
-                  leading-7
-                  text-[#526B74]
-                "
-              >
-                {pillar.text}
-              </p>
-
-            </article>
-
-          ))
-        }
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       ODD
-  ====================================================== -->
-
-  <section
-    class="
-      bg-[#F1F7F8]
-      py-16
-      sm:py-20
-      font-heading
-    "
-  >
-
-    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
-
-      <div class="mx-auto max-w-4xl text-center">
-
-        <p class="text-sm font-bold uppercase tracking-[0.17em] text-[#D99B26]">
-          {t.oddTopper}
-        </p>
-
-        <h2
-          class="
-            mt-3
-            text-[30px]
-            sm:text-4xl
-            lg:text-[44px]
-            font-bold
-            tracking-tight
-            text-[#0E3846]
-          "
-        >
-          {t.oddTitle}
-        </h2>
-
-        <p
-          class="
-            mx-auto
-            mt-5
-            max-w-3xl
-            text-base
-            sm:text-lg
-            leading-8
-            text-[#526B74]
-          "
-        >
-          {t.oddText}
-        </p>
-
-      </div>
-
-
-      <div
-        class="
-          mt-12
-          grid
-          grid-cols-1
-          md:grid-cols-2
-          xl:grid-cols-3
-          gap-5
-        "
-      >
-
-        {
-          t.odds.map((odd) => (
-
-            <article
-              id={`odd-${odd.number}`}
-              class="
-                scroll-mt-28
-                flex
-                gap-5
-                rounded-2xl
-                border
-                border-[#D0E0E4]
-                bg-white
-                p-5
-                sm:p-6
-                shadow-[0_6px_18px_rgba(14,56,70,0.05)]
-              "
-            >
-
-              <img
-                src={`/odd-${odd.number}-ro.png`}
-                alt={`ODD ${odd.number} — ${odd.title}`}
-                class="
-                  h-[82px]
-                  w-[82px]
-                  shrink-0
-                  object-contain
-                "
-                loading="lazy"
-              />
-
-
-              <div>
-
-                <p
-                  class="
-                    text-xs
-                    font-bold
-                    uppercase
-                    tracking-[0.1em]
-                    text-[#D99B26]
-                  "
-                >
-                  {odd.short}
-                </p>
-
-
-                <h3
-                  class="
-                    mt-1
-                    text-[17px]
-                    font-bold
-                    leading-snug
-                    text-[#0E3846]
-                  "
-                >
-                  {odd.title}
-                </h3>
-
-
-                <p
-                  class="
-                    mt-3
-                    text-sm
-                    leading-6
-                    text-[#526B74]
-                  "
-                >
-                  {odd.text}
-                </p>
-
-              </div>
-
-            </article>
-
-          ))
-        }
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       DIGITALISATION
-  ====================================================== -->
-
-  <section
-    class="
-      bg-[#0E3846]
-      py-16
-      sm:py-20
-      font-heading
-    "
-  >
-
-    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
-
-      <div
-        class="
-          grid
-          grid-cols-1
-          lg:grid-cols-[0.9fr_1.1fr]
-          gap-10
-          lg:gap-14
-          items-center
-        "
-      >
-
-        <div>
-
-          <div
-            class="
-              flex
-              h-14
-              w-14
-              items-center
-              justify-center
-              rounded-2xl
-              bg-white/10
-              text-[#F3C76B]
-            "
-          >
-
+      <!-- CELE 2 DIRECȚII PRINCIPALE -->
+      <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <!-- RESURSE -->
+        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
+          <div class="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5F2F5] text-[#0E3846]">
             <svg
-              viewBox="0 0 24 24"
+              viewBox="0 0 64 64"
               fill="none"
               stroke="currentColor"
-              class="h-7 w-7"
+              class="h-8 w-8"
+              aria-hidden="true"
             >
+              <!-- picătură -->
               <path
-                d="M5 4h10l4 4v12H5z"
-                stroke-width="1.7"
+                d="M20 10S10 21 10 30a10 10 0 0020 0c0-9-10-20-10-20z"
+                stroke-width="3"
                 stroke-linejoin="round"
               />
+              <!-- fulger -->
               <path
-                d="M15 4v5h5M8 13h8M8 16h5"
-                stroke-width="1.7"
+                d="M42 10L32 34h10l-5 20 17-27H43l7-17z"
+                stroke-width="3"
+                stroke-linejoin="round"
                 stroke-linecap="round"
               />
             </svg>
-
           </div>
 
-
-          <p
-            class="
-              mt-6
-              text-sm
-              font-bold
-              uppercase
-              tracking-[0.17em]
-              text-[#F3C76B]
-            "
-          >
-            {t.digitalTopper}
+          <p class="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-[#D99B26]">
+            ODD 6 + ODD 7
           </p>
 
+          <h3 class="mt-2 text-xl sm:text-2xl font-bold text-[#0E3846]">
+            Resurse
+          </h3>
 
-          <h2
-            class="
-              mt-3
-              text-[30px]
-              sm:text-4xl
-              font-bold
-              tracking-tight
-              text-white
-            "
-          >
-            {t.digitalTitle}
-          </h2>
-
-
-          <p
-            class="
-              mt-5
-              text-base
-              sm:text-lg
-              leading-8
-              text-[#C9DDE2]
-            "
-          >
-            {t.digitalText}
+          <p class="mt-3 text-[15px] leading-7 text-[#526B74]">
+            Monitorizăm elementele relevante legate de apă și energie, documentăm consumurile
+            și urmărim schimbările care pot indica pierderi, consum anormal sau funcționare
+            ineficientă.
           </p>
+        </article>
 
-        </div>
-
-
-        <div>
-
-          <div
-            class="
-              grid
-              grid-cols-1
-              sm:grid-cols-2
-              gap-3
-            "
-          >
-
-            {
-              t.digitalItems.map((item) => (
-
-                <div
-                  class="
-                    flex
-                    items-start
-                    gap-3
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    px-4
-                    py-4
-                    text-sm
-                    leading-6
-                    text-[#D7E5E9]
-                  "
-                >
-
-                  <span
-                    class="
-                      mt-0.5
-                      flex
-                      h-5
-                      w-5
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#D99B26]
-                      text-[11px]
-                      font-bold
-                      text-[#0E3846]
-                    "
-                  >
-                    ✓
-                  </span>
-
-                  {item}
-
-                </div>
-
-              ))
-            }
-
-          </div>
-
-
-          <div
-            class="
-              mt-5
-              rounded-xl
-              border
-              border-[#D99B26]/40
-              bg-[#D99B26]/10
-              px-5
-              py-4
-              text-center
-              text-sm
-              sm:text-base
-              font-bold
-              text-[#F3C76B]
-            "
-          >
-            {t.digitalMethod}
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       PACKAGE LEVELS
-  ====================================================== -->
-
-  <section
-    class="
-      bg-white
-      py-16
-      sm:py-20
-      font-heading
-    "
-  >
-
-    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
-
-      <div class="mx-auto max-w-4xl text-center">
-
-        <p class="text-sm font-bold uppercase tracking-[0.17em] text-[#D99B26]">
-          {t.levelsTopper}
-        </p>
-
-        <h2
-          class="
-            mt-3
-            text-[30px]
-            sm:text-4xl
-            lg:text-[44px]
-            font-bold
-            tracking-tight
-            text-[#0E3846]
-          "
-        >
-          {t.levelsTitle}
-        </h2>
-
-        <p
-          class="
-            mx-auto
-            mt-5
-            max-w-3xl
-            text-base
-            sm:text-lg
-            leading-8
-            text-[#526B74]
-          "
-        >
-          {t.levelsText}
-        </p>
-
-      </div>
-
-
-      <div
-        class="
-          mt-12
-          grid
-          grid-cols-1
-          lg:grid-cols-3
-          gap-6
-          items-stretch
-        "
-      >
-
-        {
-          levels.map((level) => (
-
-            <article
-              class:list={[
-                'rounded-2xl',
-                'border',
-                'p-6',
-                'sm:p-7',
-
-                level.featured
-                  ? 'border-[#5B9EB5] bg-[#F1F8FA] shadow-[0_14px_32px_rgba(14,56,70,0.11)]'
-                  : 'border-[#D2E1E5] bg-white',
-              ]}
+        <!-- PROPRIETATE & REZILIENȚĂ -->
+        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
+          <div class="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5F2F5] text-[#0E3846]">
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+              stroke="currentColor"
+              class="h-8 w-8"
+              aria-hidden="true"
             >
+              <!-- casă -->
+              <path
+                d="M8 30L26 15l18 15v22H8z"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M20 52V39h12v13"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+              <!-- scut -->
+              <path
+                d="M46 26l10 4v9c0 8-5 13-10 16-5-3-10-8-10-16v-9l10-4z"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M42 39l3 3 6-7"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
 
-              <p
-                class="
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.13em]
-                  text-[#D99B26]
-                "
+          <p class="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-[#D99B26]">
+            ODD 11 + ODD 12 + ODD 13
+          </p>
+
+          <h3 class="mt-2 text-xl sm:text-2xl font-bold text-[#0E3846]">
+            Proprietate &amp; reziliență
+          </h3>
+
+          <p class="mt-3 text-[15px] leading-7 text-[#526B74]">
+            Verificările preventive, observarea schimbărilor și intervenția la timp contribuie
+            la reducerea degradării și la prelungirea duratei de viață a proprietății și echipamentelor.
+          </p>
+        </article>
+      </div>
+
+      <!-- DIMENSIUNI TRANSVERSALE -->
+      <div class="mt-12 mx-auto max-w-5xl">
+        <div class="text-center">
+          <p class="text-xs font-bold uppercase tracking-[0.17em] text-[#D99B26]">
+            DIMENSIUNI TRANSVERSALE
+          </p>
+
+          <h3 class="mt-2 text-2xl sm:text-3xl font-bold text-[#0E3846]">
+            Două elemente susțin întregul nostru proces
+          </h3>
+
+          <p class="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#526B74]">
+            Digitalizarea și colaborarea locală nu aparțin unui singur tip de verificare.
+            Ele traversează întregul proces de administrare și fac posibilă monitorizarea
+            documentată, trasabilitatea și coordonarea intervențiilor.
+          </p>
+        </div>
+
+        <div class="mt-7 grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- DIGITALIZARE -->
+          <article class="flex gap-5 rounded-2xl border border-[#BFD7DE] bg-[#EEF7F9] p-6">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-[#0E3846]">
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+                class="h-7 w-7"
+                aria-hidden="true"
               >
-                {level.subtitle}
+                <rect x="10" y="8" width="34" height="44" rx="4" stroke-width="3" />
+                <path d="M18 19h18M18 27h12" stroke-width="3" stroke-linecap="round" />
+                <path
+                  d="M18 42l7-8 6 5 11-13"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle cx="48" cy="44" r="9" stroke-width="3" />
+                <path
+                  d="M44 44l3 3 5-6"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#397C92]">
+                TRANSVERSAL ÎN TOATE PACHETELE
               </p>
 
+              <h4 class="mt-1 text-xl font-bold text-[#0E3846]">
+                Digitalizare &amp; trasabilitate
+              </h4>
 
-              <h3
-                class="
-                  mt-2
-                  text-xl
-                  sm:text-2xl
-                  font-bold
-                  text-[#0E3846]
-                "
+              <p class="mt-2 text-sm leading-6 text-[#526B74]">
+                Fotografiile, valorile măsurate, rapoartele și istoricul vizitelor creează
+                continuitate între verificări. Astfel putem compara starea proprietății în timp
+                și putem identifica mai ușor schimbările relevante.
+              </p>
+            </div>
+          </article>
+
+          <!-- PARTENERIATE -->
+          <article class="flex gap-5 rounded-2xl border border-[#E2D3A9] bg-[#FFF9ED] p-6">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-[#0E3846]">
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+                class="h-8 w-8"
+                aria-hidden="true"
               >
-                {level.title}
-              </h3>
+                <path
+                  d="M7 28l11-10 12 5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M57 28L46 18l-13 6"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M24 25l8-5c3-2 6-1 8 1l5 5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M17 34l14 13c2 2 5 2 7 0l11-11"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M26 41l5-5M32 46l5-5M38 46l5-5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
 
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#D18D13]">
+                TRANSVERSAL ÎN ADMINISTRAREA PROPRIETĂȚII
+              </p>
 
-              <ul class="mt-6 space-y-3">
+              <h4 class="mt-1 text-xl font-bold text-[#0E3846]">
+                Parteneriate locale
+              </h4>
 
-                {
-                  level.items.map((item) => (
+              <p class="mt-2 text-sm leading-6 text-[#526B74]">
+                Colaborarea cu tehnicieni, furnizori și profesioniști locali ne permite
+                să transformăm o problemă identificată într-o acțiune coordonată atunci când este necesar.
+              </p>
 
-                    <li
-                      class="
-                        flex
-                        items-start
-                        gap-3
-                        text-sm
-                        leading-6
-                        text-[#526B74]
-                      "
-                    >
-
-                      <span
-                        class="
-                          mt-0.5
-                          text-[#D99B26]
-                          font-bold
-                        "
-                      >
-                        ✓
-                      </span>
-
-                      {item}
-
-                    </li>
-
-                  ))
-                }
-
-              </ul>
-
-            </article>
-
-          ))
-        }
-
+              <p class="mt-3 text-xs font-bold uppercase tracking-[0.1em] text-[#D99B26]">
+                ODD 17
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
-
-
-      <div class="mt-8 text-center">
-
-        <a
-          href={r.services}
-          class="
-            inline-flex
-            min-h-[52px]
-            items-center
-            justify-center
-            rounded-xl
-            bg-[#0E3846]
-            px-7
-            py-3
-            text-sm
-            font-bold
-            text-white
-            transition
-            hover:bg-[#164D5D]
-          "
-        >
-          {t.servicesButton}
-        </a>
-
-      </div>
-
     </div>
-
   </section>
 
-
-  <!-- =====================================================
-       PRACTICAL EXAMPLES
-  ====================================================== -->
-
-  <section
-    class="
-      bg-[#F7FAFA]
-      py-16
-      sm:py-20
-      font-heading
-    "
-  >
-
-    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
-
-      <div class="mx-auto max-w-4xl text-center">
-
-        <p class="text-sm font-bold uppercase tracking-[0.17em] text-[#D99B26]">
-          {t.practicalTopper}
+  <!-- ÎN PRACTICĂ -->
+  <section class="py-16 sm:py-20 bg-white font-heading border-b border-[#D8E1E5]">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
+          ÎN PRACTICĂ
         </p>
 
-
-        <h2
-          class="
-            mt-3
-            text-[30px]
-            sm:text-4xl
-            font-bold
-            tracking-tight
-            text-[#0E3846]
-          "
-        >
-          {t.practicalTitle}
+        <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
+          Cum se traduce sustenabilitatea în serviciile noastre
         </h2>
 
+        <p class="mt-4 text-base sm:text-lg text-[#526B74] leading-7">
+          Integrăm aceste principii în mod gradual, de la monitorizare și prevenție
+          până la optimizare și coordonare responsabilă.
+        </p>
       </div>
 
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 1 -->
+        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
+          <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#D99B26]">
+            NIVEL 1
+          </p>
 
-      <div
-        class="
-          mt-10
-          grid
-          grid-cols-1
-          md:grid-cols-2
-          gap-5
-        "
-      >
+          <h3 class="mt-2 text-xl font-bold text-[#0E3846]">
+            Awareness & Monitoring
+          </h3>
 
-        {
-          t.practicalItems.map((item, index) => (
+          <p class="mt-3 text-sm leading-6 text-[#526B74]">
+            Observăm, măsurăm și documentăm elementele relevante pentru a crea un punct
+            de referință și un istoric comparabil al proprietății.
+          </p>
 
-            <article
-              class="
-                flex
-                gap-5
-                rounded-2xl
-                border
-                border-[#D2E1E5]
-                bg-white
-                p-6
-              "
-            >
+          <ul class="mt-5 space-y-3 text-sm text-[#405963]">
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Verificarea vizuală a instalațiilor și accesului
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Fotografii și observații comparative
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Monitorizarea consumului și a semnalelor timpurii
+            </li>
+          </ul>
+        </article>
 
-              <span
-                class="
-                  flex
-                  h-10
-                  w-10
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#E7F2F5]
-                  text-sm
-                  font-bold
-                  text-[#0E3846]
-                "
-              >
-                {String(index + 1).padStart(2, '0')}
-              </span>
+        <!-- 2 -->
+        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
+          <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#D99B26]">
+            NIVEL 2
+          </p>
 
+          <h3 class="mt-2 text-xl font-bold text-[#0E3846]">
+            Optimization & Efficiency
+          </h3>
 
-              <div>
+          <p class="mt-3 text-sm leading-6 text-[#526B74]">
+            Comparăm informațiile în timp și identificăm situațiile în care pot fi
+            prevenite pierderi, supraconsum sau degradări evitabile.
+          </p>
 
-                <h3
-                  class="
-                    text-lg
-                    font-bold
-                    text-[#0E3846]
-                  "
-                >
-                  {item.title}
-                </h3>
+          <ul class="mt-5 space-y-3 text-sm text-[#405963]">
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Interpretarea variațiilor de consum
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Screening preventiv pentru umiditate și echipamente
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Recomandări bazate pe observații documentate
+            </li>
+          </ul>
+        </article>
 
+        <!-- 3 -->
+        <article class="rounded-2xl border border-[#D2E1E5] bg-[#F7FAFA] p-6 sm:p-7">
+          <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#D99B26]">
+            NIVEL 3
+          </p>
 
-                <p
-                  class="
-                    mt-2
-                    text-sm
-                    leading-6
-                    text-[#526B74]
-                  "
-                >
-                  {item.text}
-                </p>
+          <h3 class="mt-2 text-xl font-bold text-[#0E3846]">
+            Resilience & Impact
+          </h3>
 
-              </div>
+          <p class="mt-3 text-sm leading-6 text-[#526B74]">
+            Atunci când apare o nevoie reală de intervenție, susținem coordonarea locală
+            astfel încât proprietatea să fie protejată rapid și responsabil.
+          </p>
 
-            </article>
-
-          ))
-        }
-
+          <ul class="mt-5 space-y-3 text-sm text-[#405963]">
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Coordonarea accesului pentru tehnicieni
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Verificări după vreme severă sau incidente
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Menținerea proprietății într-o stare bună pe termen lung
+            </li>
+          </ul>
+        </article>
       </div>
-
     </div>
-
   </section>
 
+  <!-- SECȚIUNE DIGITALĂ -->
+  <section class="py-16 sm:py-20 bg-[#F7FAFA] font-heading border-b border-[#D8E1E5]">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto max-w-4xl text-center">
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
+          DIGITALIZARE & TRASABILITATE
+        </p>
 
-  <!-- =====================================================
-       DISCLAIMER
-  ====================================================== -->
+        <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
+          Sustenabilitatea are nevoie și de date
+        </h2>
 
-  <section
-    class="
-      bg-white
-      py-12
-      sm:py-14
-      font-heading
-    "
-  >
+        <p class="mt-4 text-base sm:text-lg text-[#526B74] leading-7">
+          Nu este suficient să spunem că „totul pare în regulă”.
+          O administrare responsabilă are nevoie de istoric, comparație și continuitate.
+        </p>
+      </div>
 
-    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-2xl bg-white border border-[#D2E1E5] p-6 sm:p-7">
+          <h3 class="text-xl font-bold text-[#0E3846]">
+            Ce documentăm
+          </h3>
 
-      <div
-        class="
-          mx-auto
-          max-w-4xl
-          rounded-2xl
-          border
-          border-[#E7D6AA]
-          bg-[#FFF9ED]
-          p-6
-          sm:p-8
-        "
-      >
-
-        <div
-          class="
-            flex
-            flex-col
-            sm:flex-row
-            gap-5
-            items-start
-          "
-        >
-
-          <div
-            class="
-              flex
-              h-11
-              w-11
-              shrink-0
-              items-center
-              justify-center
-              rounded-full
-              bg-[#D99B26]
-              text-[#0E3846]
-              font-bold
-            "
-          >
-            i
-          </div>
-
-
-          <div>
-
-            <h2
-              class="
-                text-lg
-                font-bold
-                text-[#0E3846]
-              "
-            >
-              {t.disclaimerTitle}
-            </h2>
-
-
-            <p
-              class="
-                mt-2
-                text-sm
-                sm:text-base
-                leading-7
-                text-[#526B74]
-              "
-            >
-              {t.disclaimerText}
-            </p>
-
-          </div>
-
+          <ul class="mt-5 space-y-3 text-sm text-[#526B74]">
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
+              Fotografii comparative ale spațiilor și echipamentelor
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
+              Observații privind schimbările vizibile între vizite
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
+              Citiri relevante și date utile acolo unde este posibil
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#0E3846] shrink-0"></span>
+              Incidente, alerte și recomandări
+            </li>
+          </ul>
         </div>
 
+        <div class="rounded-2xl bg-white border border-[#D2E1E5] p-6 sm:p-7">
+          <h3 class="text-xl font-bold text-[#0E3846]">
+            De ce contează
+          </h3>
+
+          <ul class="mt-5 space-y-3 text-sm text-[#526B74]">
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Ajută la depistarea timpurie a problemelor
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Permite comparația între vizite și sezoane
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Susține comunicarea clară cu proprietarul
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#D99B26] shrink-0"></span>
+              Creează o bază utilă pentru coordonarea intervențiilor
+            </li>
+          </ul>
+        </div>
       </div>
-
     </div>
-
   </section>
 
+  <!-- CONCLUZIE -->
+  <section class="py-16 sm:py-20 bg-white font-heading">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#D99B26] mb-3">
+        CONCLUZIE
+      </p>
 
-  <!-- =====================================================
-       FINAL CTA
-  ====================================================== -->
+      <h2 class="text-[28px] sm:text-4xl font-bold text-[#0E3846] tracking-tight leading-tight">
+        Administrare mai atentă. Proprietăți mai bine protejate.
+      </h2>
+
+      <p class="mt-5 text-base sm:text-lg text-[#526B74] leading-8">
+        Pentru noi, sustenabilitatea în administrarea proprietăților înseamnă
+        grijă pentru resurse, prevenție, documentare și responsabilitate.
+        Înseamnă să observăm din timp, să comunicăm clar și să acționăm local atunci când este nevoie.
+      </p>
+    </div>
+  </section>
 
   <CTA />
 
-
   <Footer slot="footer" />
-
 </BaseLayout>
