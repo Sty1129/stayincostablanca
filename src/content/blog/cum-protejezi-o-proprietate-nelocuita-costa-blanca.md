@@ -9,6 +9,7 @@ tags:
   - Property Care
   - Prevention
   - Costa Blanca
+  - featured: false
 draft: false
 ---
 
