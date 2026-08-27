@@ -1,1 +1,368 @@
 
+---
+// src/components/FAQ.astro
+
+const faqs = [
+  {
+    question: "Ce înseamnă serviciul de Key Holding?",
+    answer:
+      "Păstrăm în siguranță cheile proprietății și le folosim exclusiv pentru serviciile convenite cu tine: vizite programate, verificări, acces autorizat sau alte intervenții solicitate. Cheile sunt gestionate printr-un sistem de identificare care evită asocierea evidentă dintre cheie și adresa proprietății.",
+  },
+
+  {
+    question: "Ce verificați în timpul unei vizite?",
+    answer:
+      "În funcție de pachet, verificăm accesul și securitatea, apa și instalațiile sanitare, tabloul electric, funcționarea de bază a aerului condiționat, semnele vizibile de umezeală sau infiltrații, contoarele, interiorul și zonele exterioare. Vizita este documentată, astfel încât starea proprietății să poată fi urmărită în timp.",
+  },
+
+  {
+    question: "Primesc un raport după fiecare vizită?",
+    answer:
+      "Da. Vizitele sunt documentate digital, cu fotografii și observații relevante. Scopul nu este doar să confirmăm că „totul este în regulă”, ci să construim un istoric al proprietății și să putem identifica schimbările care necesită atenție.",
+  },
+
+  {
+    question: "Ce se întâmplă dacă descoperiți o problemă?",
+    answer:
+      "Documentăm situația și te informăm. Dacă este necesară o intervenție, stabilim împreună următorii pași. Nu comandăm lucrări sau reparații în numele tău fără acord, exceptând situațiile și limitele convenite în prealabil.",
+  },
+
+  {
+    question: "Reparațiile și materialele sunt incluse în pachet?",
+    answer:
+      "Nu. Pachetele acoperă serviciile de monitorizare, verificare, documentare și coordonare prevăzute pentru nivelul ales. Materialele, piesele, manopera tehnicienilor și reparațiile efective se facturează separat. Unele pachete includ un număr limitat de servicii de acces și coordonare pentru tehnicieni.",
+  },
+
+  {
+    question: "Ce înseamnă verificarea după vreme severă?",
+    answer:
+      "După un eveniment meteo local relevant, putem efectua o verificare suplimentară a proprietății pentru a observa eventuale probleme de acces, infiltrații, deteriorări exterioare sau alte schimbări vizibile. Numărul de verificări incluse anual depinde de pachetul contractat.",
+  },
+
+  {
+    question: "Trebuie să fiu în Spania pentru a începe serviciul?",
+    answer:
+      "Nu neapărat. La început realizăm Property Onboarding & Baseline Assessment, când înregistrăm accesul, cheile, informațiile tehnice și starea inițială a proprietății. Modul de predare a cheilor și accesului poate fi stabilit în funcție de situația fiecărui proprietar.",
+  },
+
+  {
+    question: "Serviciile sunt potrivite pentru apartamente, bungalow-uri și vile?",
+    answer:
+      "Da. Pachetele sunt concepute pentru diferite tipuri de proprietăți. Prețurile publicate se aplică proprietăților cu o configurație standard; proprietățile foarte mari, cu multe zone exterioare sau cu o complexitate tehnică ridicată pot necesita o evaluare și o ofertă personalizată.",
+  },
+
+  {
+    question: "Curățenia și pregătirea casei înainte de sosire sunt incluse?",
+    answer:
+      "Curățenia, spălătoria, cumpărăturile și consumabilele nu sunt incluse automat în pachetele standard. ECO-PREMIUM include un număr limitat de servicii de pregătire a proprietății înainte de sosire, iar alte servicii pot fi solicitate separat.",
+  },
+
+  {
+    question: "În ce zone oferiți serviciile?",
+    answer:
+      "Activitatea noastră este concentrată în Orihuela Costa și Torrevieja, astfel încât să putem păstra caracterul local al serviciului și să gestionăm eficient vizitele și coordonarea intervențiilor.",
+  },
+];
+---
+
+<section
+  id="faq"
+  class="
+    bg-white
+    py-14
+    sm:py-16
+    md:py-20
+    font-heading
+    border-b
+    border-[#D8E1E5]
+  "
+>
+  <div
+    class="
+      mx-auto
+      max-w-site
+      px-4
+      sm:px-6
+      lg:px-8
+    "
+  >
+
+    <!-- =====================================================
+         TITLU
+    ====================================================== -->
+
+    <div
+      class="
+        mx-auto
+        max-w-4xl
+        text-center
+        mb-10
+        sm:mb-12
+      "
+    >
+
+      <p
+        class="
+          text-sm
+          font-bold
+          uppercase
+          tracking-[0.16em]
+          text-[#D99B26]
+          mb-3
+        "
+      >
+        ÎNTREBĂRI FRECVENTE
+      </p>
+
+
+      <h2
+        class="
+          text-[28px]
+          sm:text-4xl
+          lg:text-[42px]
+          font-bold
+          text-[#0E3846]
+          tracking-tight
+          leading-[1.15]
+        "
+      >
+        Lucrurile pe care ai vrea să le știi înainte să ne încredințezi proprietatea.
+      </h2>
+
+
+      <p
+        class="
+          mt-5
+          max-w-3xl
+          mx-auto
+          text-base
+          sm:text-lg
+          text-[#526B74]
+          leading-7
+          sm:leading-8
+        "
+      >
+        Am răspuns simplu la cele mai importante întrebări despre
+        key holding, vizite, rapoarte și administrarea proprietății.
+      </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         ACCORDION
+    ====================================================== -->
+
+    <div
+      class="
+        mx-auto
+        max-w-4xl
+        space-y-3
+      "
+    >
+
+      {faqs.map((faq, index) => (
+
+        <details
+          class="
+            group
+            overflow-hidden
+            rounded-2xl
+            border
+            border-[#D1E0E5]
+            bg-[#F7FAFA]
+            transition-all
+            duration-200
+            open:bg-white
+            open:border-[#BBD4DC]
+            open:shadow-[0_8px_24px_rgba(14,56,70,0.08)]
+          "
+        >
+
+          <summary
+            class="
+              flex
+              min-h-[66px]
+              cursor-pointer
+              list-none
+              items-center
+              justify-between
+              gap-4
+              px-5
+              sm:px-6
+              py-4
+              text-left
+              select-none
+              [&::-webkit-details-marker]:hidden
+            "
+          >
+
+            <!-- NUMĂR + ÎNTREBARE -->
+            <div
+              class="
+                flex
+                items-center
+                gap-4
+              "
+            >
+
+              <span
+                class="
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#E4F1F4]
+                  text-xs
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+
+              <h3
+                class="
+                  text-base
+                  sm:text-[18px]
+                  font-bold
+                  text-[#0E3846]
+                  leading-6
+                "
+              >
+                {faq.question}
+              </h3>
+
+            </div>
+
+
+            <!-- PLUS -->
+            <span
+              class="
+                relative
+                flex
+                h-9
+                w-9
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-[#0E3846]
+                text-white
+                transition-transform
+                duration-200
+                group-open:rotate-45
+              "
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  d="M12 5v14M5 12h14"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+
+          </summary>
+
+
+          <!-- RĂSPUNS -->
+          <div
+            class="
+              px-5
+              sm:px-6
+              pb-5
+              sm:pb-6
+            "
+          >
+
+            <div
+              class="
+                ml-0
+                sm:ml-[52px]
+                border-t
+                border-[#D8E3E6]
+                pt-4
+              "
+            >
+
+              <p
+                class="
+                  text-base
+                  sm:text-[17px]
+                  text-[#526B74]
+                  leading-7
+                  sm:leading-8
+                "
+              >
+                {faq.answer}
+              </p>
+
+            </div>
+
+          </div>
+
+        </details>
+
+      ))}
+
+    </div>
+
+
+    <!-- =====================================================
+         MIC LINK CĂTRE CONTACT
+    ====================================================== -->
+
+    <div
+      class="
+        mt-9
+        text-center
+      "
+    >
+
+      <p
+        class="
+          text-base
+          sm:text-[17px]
+          text-[#405963]
+          leading-7
+        "
+      >
+        Ai o întrebare care nu apare aici?
+      </p>
+
+
+      <a
+        href="/contact"
+        class="
+          inline-flex
+          items-center
+          gap-2
+          mt-3
+          text-sm
+          sm:text-base
+          font-bold
+          text-[#0E3846]
+          hover:text-[#5B9EB5]
+          transition-colors
+        "
+      >
+        DISCUTĂ CU NOI
+
+        <span aria-hidden="true">→</span>
+      </a>
+
+    </div>
+
+  </div>
+</section>
