@@ -10,26 +10,12 @@ const blog = defineCollection({
 
   schema: z.object({
     title: z.string(),
-
     description: z.string(),
-
-    author: z
-      .string()
-      .default('Stay in Costa Blanca'),
-
+    author: z.string().default('Stay in Costa Blanca'),
     date: z.coerce.date(),
-
-    tags: z
-      .array(z.string())
-      .default([]),
-
-    featured: z
-      .boolean()
-      .default(false),
-
-    draft: z
-      .boolean()
-      .default(false),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
   }),
 });
 
