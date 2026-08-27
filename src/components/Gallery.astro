@@ -1,67 +1,71 @@
 ---
 // src/components/Gallery.astro
 
-const images = [
+const areas = [
   {
-    src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=85',
-    alt: 'Proprietate mediteraneană modernă cu piscină',
-    label: 'EXTERIOR',
-    text: 'Acces, terase și zone exterioare',
-    featured: true,
+    src: "/Usa.jpg",
+    title: "Acces & securitate",
+    label: "UȘĂ / ACCES",
+    description:
+      "Verificăm ușa de acces, închiderea, ferestrele, obloanele și punctele principale de securitate.",
+    alt: "Ușă de acces a unei proprietăți",
+    icon: "door",
   },
+
   {
-    src: 'https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?w=900&q=85',
-    alt: 'Interior luminos al unei proprietăți',
-    label: 'INTERIOR',
-    text: 'Starea generală a locuinței',
-    featured: false,
+    src: "/Baie.jpg",
+    title: "Baie & umiditate",
+    label: "BAIE",
+    description:
+      "Urmărim semnele vizibile de umezeală, scurgerile, toaleta, sifonul și funcționarea instalațiilor sanitare.",
+    alt: "Baie într-o proprietate din Costa Blanca",
+    icon: "water",
   },
+
   {
-    src: 'https://images.unsplash.com/photo-1519449556851-5720b33024e7?w=900&q=85',
-    alt: 'Proprietate în stil mediteranean',
-    label: 'COSTA BLANCA',
-    text: 'Proprietăți de vacanță și locuințe secundare',
-    featured: false,
+    src: "/Bucatarie.jpg",
+    title: "Bucătărie & apă",
+    label: "BUCĂTĂRIE",
+    description:
+      "Verificăm punctele de apă, chiuveta, robinetele și eventualele semne de scurgere sau deteriorare.",
+    alt: "Bucătărie într-o proprietate",
+    icon: "kitchen",
   },
+
   {
-    src: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85',
-    alt: 'Casă modernă cu spații exterioare',
-    label: 'PROPRIETATE',
-    text: 'Monitorizare periodică și prevenție',
-    featured: true,
+    src: "/AC.jpg",
+    title: "Climat interior & AC",
+    label: "AER CONDIȚIONAT",
+    description:
+      "Verificăm funcționarea de bază a aerului condiționat și observăm condițiile relevante ale climatului interior.",
+    alt: "Cameră cu instalație de aer condiționat",
+    icon: "ac",
   },
+
   {
-    src: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=85',
-    alt: 'Interior modern al unei locuințe',
-    label: 'DETALII',
-    text: 'Observații documentate în timp',
-    featured: false,
+    src: "/Terasa.jpg",
+    title: "Terasă & exterior",
+    label: "TERASĂ",
+    description:
+      "Observăm starea terasei, mobilierului exterior, pergolelor, drenajului și zonelor expuse vremii.",
+    alt: "Terasă exterioară a unei proprietăți",
+    icon: "terrace",
   },
+
   {
-    src: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=85',
-    alt: 'Terasă și zonă exterioară cu piscină',
-    label: 'EXTERIOR',
-    text: 'Terase, piscine și zone expuse',
-    featured: false,
+    src: "/living.jpg",
+    title: "Interior & stare generală",
+    label: "LIVING",
+    description:
+      "Urmărim starea generală a încăperilor, mobilierului, ferestrelor și eventualele schimbări vizibile în timp.",
+    alt: "Living al unei proprietăți",
+    icon: "home",
   },
 ];
-
-interface Props {
-  topper?: string;
-  heading?: string;
-  description?: string;
-}
-
-const {
-  topper = 'PROPRIETATEA, VĂZUTĂ ÎN ANSAMBLU',
-  heading = 'Fiecare zonă spune ceva despre starea proprietății.',
-  description =
-    'De la acces și spațiile interioare până la terase și exterior, o administrare preventivă înseamnă să urmărești proprietatea ca întreg — nu doar să verifici dacă ușa este încuiată.',
-} = Astro.props;
 ---
 
 <section
-  id="galerie"
+  id="ce-verificam"
   class="
     bg-[#F7FAFA]
     py-14
@@ -92,7 +96,7 @@ const {
         max-w-4xl
         text-center
         mb-10
-        sm:mb-12
+        sm:mb-14
       "
     >
 
@@ -106,7 +110,7 @@ const {
           mb-3
         "
       >
-        {topper}
+        CE VERIFICĂM ÎN PRACTICĂ
       </p>
 
       <h2
@@ -120,7 +124,7 @@ const {
           leading-[1.15]
         "
       >
-        {heading}
+        O proprietate se protejează punct cu punct.
       </h2>
 
       <p
@@ -135,14 +139,16 @@ const {
           sm:leading-8
         "
       >
-        {description}
+        Fiecare vizită urmărește zone concrete ale proprietății.
+        Nu ne limităm la o privire generală, ci documentăm elementele
+        care pot indica schimbări, uzură sau situații ce necesită atenție.
       </p>
 
     </div>
 
 
     <!-- =====================================================
-         GALERIE
+         GRID
     ====================================================== -->
 
     <div
@@ -151,54 +157,220 @@ const {
         grid-cols-1
         sm:grid-cols-2
         lg:grid-cols-3
-        gap-4
-        lg:gap-5
+        gap-5
+        lg:gap-6
       "
     >
 
-      {images.map((image, index) => (
+      {areas.map((area) => (
 
         <article
-          class:list={[
-            "group",
-            "relative",
-            "overflow-hidden",
-            "rounded-2xl",
-            "border",
-            "border-[#CFDDE2]",
-            "bg-[#EAF1F3]",
-            "shadow-[0_8px_22px_rgba(14,56,70,0.08)]",
-            "transition-all",
-            "duration-300",
-            "hover:-translate-y-1",
-            "hover:shadow-[0_15px_32px_rgba(14,56,70,0.14)]",
-
-            image.featured
-              ? "sm:col-span-2 lg:col-span-2"
-              : ""
-          ]}
+          class="
+            group
+            overflow-hidden
+            rounded-2xl
+            bg-white
+            border
+            border-[#D1E0E5]
+            shadow-[0_8px_22px_rgba(14,56,70,0.08)]
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:shadow-[0_15px_32px_rgba(14,56,70,0.13)]
+          "
         >
 
-          <div
-            class:list={[
-              "relative",
-              "overflow-hidden",
+          <!-- =================================================
+               FOTO
+          ================================================== -->
 
-              image.featured
-                ? "aspect-[16/8] sm:aspect-[16/7]"
-                : "aspect-[4/3]"
-            ]}
+          <div
+            class="
+              relative
+              aspect-[4/3]
+              overflow-hidden
+              bg-[#E6EFF2]
+            "
           >
 
-            <!-- IMAGINE -->
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              decoding="async"
+            <!-- Placeholder vizibil până încarci poza -->
+            <div
               class="
                 absolute
                 inset-0
+                flex
+                flex-col
+                items-center
+                justify-center
+                bg-[#EAF3F5]
+                text-[#5E7A84]
+                px-6
+                text-center
+              "
+              data-placeholder
+            >
+
+              <!-- ICON PLACEHOLDER -->
+              <div
+                class="
+                  w-14
+                  h-14
+                  rounded-full
+                  bg-white
+                  border
+                  border-[#CADCE2]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#0E3846]
+                  shadow-sm
+                  mb-3
+                "
+              >
+
+                {area.icon === "door" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6 21V4a1 1 0 011-1h10a1 1 0 011 1v17"
+                      stroke-width="1.7"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M3 21h18"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="14.5"
+                      cy="12"
+                      r="1"
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                  </svg>
+                )}
+
+                {area.icon === "water" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 3.5c-2.8 3.7-5.2 6.5-5.2 9.5a5.2 5.2 0 0010.4 0c0-3-2.4-5.8-5.2-9.5z"
+                      stroke-width="1.7"
+                    />
+                  </svg>
+                )}
+
+                {area.icon === "kitchen" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 10h16v10H4zM8 10V6h5M13 6h3"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+
+                {area.icon === "ac" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="3"
+                      y="5"
+                      width="18"
+                      height="7"
+                      rx="2"
+                      stroke-width="1.7"
+                    />
+                    <path
+                      d="M7 16c1 0 2 .7 2 2M12 15c0 1.5 1 2.5 2.5 2.5M17 16c-1 0-2 .7-2 2"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                )}
+
+                {area.icon === "terrace" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 12h18M5 12v7M19 12v7M8 8h8l2 4H6l2-4z"
+                      stroke-width="1.7"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+
+                {area.icon === "home" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+
+              </div>
+
+              <p
+                class="
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.12em]
+                "
+              >
+                FOTO {area.label}
+              </p>
+
+            </div>
+
+
+            <!-- Imaginea reală -->
+            <img
+              src={area.src}
+              alt={area.alt}
+              loading="lazy"
+              decoding="async"
+              data-gallery-image
+              class="
+                relative
+                z-10
                 w-full
                 h-full
                 object-cover
@@ -209,84 +381,70 @@ const {
             />
 
 
-            <!-- GRADIENT -->
+            <!-- LABEL PE FOTO -->
             <div
               class="
                 absolute
-                inset-0
-                bg-gradient-to-t
-                from-[#071F27]/80
-                via-[#071F27]/15
-                to-transparent
-                pointer-events-none
-              "
-              aria-hidden="true"
-            ></div>
-
-
-            <!-- NUMĂR DISCRET -->
-            <div
-              class="
-                absolute
+                z-20
+                left-4
                 top-4
-                right-4
-                flex
-                h-8
-                w-8
-                items-center
-                justify-center
-                rounded-full
-                bg-white/90
+                rounded-lg
+                bg-[#0E3846]/95
                 backdrop-blur-sm
-                text-[11px]
-                font-bold
-                text-[#0E3846]
+                px-3
+                py-2
                 shadow-sm
               "
             >
-              {String(index + 1).padStart(2, '0')}
-            </div>
-
-
-            <!-- TEXT -->
-            <div
-              class="
-                absolute
-                left-0
-                right-0
-                bottom-0
-                p-5
-                sm:p-6
-              "
-            >
-
               <p
                 class="
-                  text-[11px]
-                  sm:text-xs
+                  text-[10px]
+                  sm:text-[11px]
                   font-bold
                   uppercase
-                  tracking-[0.14em]
-                  text-[#F3C76B]
-                "
-              >
-                {image.label}
-              </p>
-
-              <p
-                class="
-                  mt-1.5
-                  text-base
-                  sm:text-lg
-                  font-bold
+                  tracking-[0.12em]
                   text-white
-                  leading-snug
                 "
               >
-                {image.text}
+                {area.label}
               </p>
-
             </div>
+
+          </div>
+
+
+          <!-- =================================================
+               TEXT
+          ================================================== -->
+
+          <div
+            class="
+              p-5
+              sm:p-6
+            "
+          >
+
+            <h3
+              class="
+                text-xl
+                font-bold
+                text-[#0E3846]
+                leading-tight
+              "
+            >
+              {area.title}
+            </h3>
+
+            <p
+              class="
+                mt-3
+                text-base
+                text-[#526B74]
+                leading-7
+              "
+            >
+              {area.description}
+            </p>
 
           </div>
 
@@ -298,27 +456,84 @@ const {
 
 
     <!-- =====================================================
-         NOTĂ
+         CONCLUZIE
     ====================================================== -->
 
     <div
       class="
-        mt-7
+        mt-9
+        max-w-3xl
+        mx-auto
         text-center
       "
     >
+
       <p
         class="
-          text-xs
-          sm:text-sm
-          text-[#748B93]
-          leading-6
+          text-base
+          sm:text-[17px]
+          text-[#405963]
+          leading-7
         "
       >
-        Imaginile au rol ilustrativ pentru tipurile de proprietăți și spații
-        întâlnite în activitatea de administrare.
+        Aceste verificări sunt adaptate nivelului de serviciu contractat și
+        caracteristicilor fiecărei proprietăți.
       </p>
+
     </div>
 
   </div>
 </section>
+
+
+<!-- =========================================================
+     Dacă imaginea încă nu există, păstrăm placeholder-ul
+========================================================== -->
+
+<script>
+  function initialiseInspectionGallery() {
+    document
+      .querySelectorAll<HTMLImageElement>("[data-gallery-image]")
+      .forEach((img) => {
+        const parent = img.parentElement;
+        if (!parent) return;
+
+        const placeholder =
+          parent.querySelector<HTMLElement>("[data-placeholder]");
+
+        const showImage = () => {
+          if (placeholder) {
+            placeholder.style.display = "none";
+          }
+
+          img.style.display = "block";
+        };
+
+        const showPlaceholder = () => {
+          img.style.display = "none";
+
+          if (placeholder) {
+            placeholder.style.display = "flex";
+          }
+        };
+
+        if (img.complete) {
+          if (img.naturalWidth > 0) {
+            showImage();
+          } else {
+            showPlaceholder();
+          }
+        } else {
+          img.addEventListener("load", showImage, { once: true });
+          img.addEventListener("error", showPlaceholder, { once: true });
+        }
+      });
+  }
+
+  initialiseInspectionGallery();
+
+  document.addEventListener(
+    "astro:after-swap",
+    initialiseInspectionGallery
+  );
+</script>
