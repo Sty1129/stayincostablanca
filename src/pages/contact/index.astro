@@ -2,121 +2,1855 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Banner from '../../components/Banner.astro';
 import { brand } from '../../config/brand';
-import { client } from '../../data/client';
+
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+
+/* =========================================================
+   ROUTES
+========================================================= */
+
+const routes = {
+  ro: {
+    success: '/contact/success',
+  },
+
+  en: {
+    success: '/en/contact/success',
+  },
+
+  es: {
+    success: '/es/contact/success',
+  },
+};
+
+const r = routes[lang];
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+  /* =======================================================
+     ROMÂNĂ
+  ======================================================= */
+
+  ro: {
+    seoTitle: `Contact | ${brand.name}`,
+
+    seoDescription:
+      'Contactează Stay in Costa Blanca pentru servicii de Key Holding & Property Management în Orihuela Costa și Torrevieja.',
+
+    topper:
+      'CONTACT',
+
+    title:
+      'Hai să discutăm despre proprietatea ta.',
+
+    intro:
+      'Spune-ne unde este proprietatea, ce tip de proprietate este și cât timp rămâne de obicei nelocuită. Îți putem recomanda nivelul de monitorizare potrivit.',
+
+
+    formTopper:
+      'SPUNE-NE DESPRE PROPRIETATE',
+
+    formTitle:
+      'Trimite-ne un mesaj',
+
+    formText:
+      'Completează formularul de mai jos și te vom contacta cât mai curând posibil.',
+
+
+    name:
+      'Nume complet *',
+
+    namePlaceholder:
+      'Numele tău',
+
+    email:
+      'Email *',
+
+    emailPlaceholder:
+      'nume@email.com',
+
+    phone:
+      'Telefon',
+
+    phonePlaceholder:
+      '+34 ...',
+
+    area:
+      'Zona proprietății',
+
+    areaPlaceholder:
+      'Ex. Torrevieja, Villamartín, Cabo Roig...',
+
+    propertyType:
+      'Tipul proprietății',
+
+    propertyPlaceholder:
+      'Selectează',
+
+    propertyOptions: [
+      'Apartament',
+      'Bungalow',
+      'Casă / Townhouse',
+      'Vilă',
+      'Alt tip de proprietate',
+    ],
+
+    message:
+      'Mesaj *',
+
+    messagePlaceholder:
+      'Spune-ne pe scurt cu ce te putem ajuta și cât timp rămâne de obicei proprietatea nelocuită.',
+
+    submit:
+      'TRIMITE MESAJUL',
+
+    sending:
+      'Se trimite...',
+
+    error:
+      'A apărut o problemă. Te rugăm să încerci din nou.',
+
+    networkError:
+      'Eroare de rețea. Verifică conexiunea și încearcă din nou.',
+
+
+    quickTopper:
+      'CONTACT RAPID',
+
+    quickTitle:
+      'Vrei să ne contactezi mai rapid?',
+
+    quickText:
+      'Scrie-ne direct pe WhatsApp. Spune-ne pe scurt unde este proprietatea și cu ce te putem ajuta.',
+
+    whatsappButton:
+      'DISCUTĂ CU NOI PE WHATSAPP',
+
+    whatsappNote:
+      'Mesajul se deschide deja completat. Îl poți modifica înainte de trimitere.',
+
+    whatsappMessage:
+      'Bună ziua! Am găsit Stay in Costa Blanca și aș dori mai multe informații despre serviciile de Key Holding & Property Management pentru proprietatea mea.',
+
+
+    directTopper:
+      'DATE DE CONTACT',
+
+    phoneLabel:
+      'Telefon',
+
+    emailLabel:
+      'Email',
+
+    areaLabel:
+      'Zona noastră',
+
+    areaValue:
+      'Orihuela Costa & Torrevieja',
+
+    websiteLabel:
+      'Website',
+
+
+    reassuranceTitle:
+      'Nu știi ce pachet ți se potrivește?',
+
+    reassuranceText:
+      'Nu trebuie să alegi singur. Spune-ne câteva lucruri despre proprietate, iar noi îți recomandăm nivelul de monitorizare potrivit.',
+  },
+
+
+  /* =======================================================
+     ENGLISH
+  ======================================================= */
+
+  en: {
+    seoTitle:
+      `Contact | ${brand.name}`,
+
+    seoDescription:
+      'Contact Stay in Costa Blanca for Key Holding & Property Management services in Orihuela Costa and Torrevieja.',
+
+    topper:
+      'CONTACT',
+
+    title:
+      'Let’s talk about your property.',
+
+    intro:
+      'Tell us where your property is located, what type of property it is and how long it is usually left unoccupied. We can recommend the appropriate level of monitoring.',
+
+
+    formTopper:
+      'TELL US ABOUT YOUR PROPERTY',
+
+    formTitle:
+      'Send us a message',
+
+    formText:
+      'Complete the form below and we will get back to you as soon as possible.',
+
+
+    name:
+      'Full name *',
+
+    namePlaceholder:
+      'Your name',
+
+    email:
+      'Email *',
+
+    emailPlaceholder:
+      'name@email.com',
+
+    phone:
+      'Phone',
+
+    phonePlaceholder:
+      '+34 ...',
+
+    area:
+      'Property location',
+
+    areaPlaceholder:
+      'e.g. Torrevieja, Villamartín, Cabo Roig...',
+
+    propertyType:
+      'Property type',
+
+    propertyPlaceholder:
+      'Select',
+
+    propertyOptions: [
+      'Apartment',
+      'Bungalow',
+      'House / Townhouse',
+      'Villa',
+      'Other property type',
+    ],
+
+    message:
+      'Message *',
+
+    messagePlaceholder:
+      'Tell us briefly how we can help and how long the property is usually left unoccupied.',
+
+    submit:
+      'SEND MESSAGE',
+
+    sending:
+      'Sending...',
+
+    error:
+      'Something went wrong. Please try again.',
+
+    networkError:
+      'Network error. Please check your connection and try again.',
+
+
+    quickTopper:
+      'QUICK CONTACT',
+
+    quickTitle:
+      'Want to contact us faster?',
+
+    quickText:
+      'Message us directly on WhatsApp. Tell us briefly where your property is and how we can help.',
+
+    whatsappButton:
+      'CHAT WITH US ON WHATSAPP',
+
+    whatsappNote:
+      'The message will open pre-filled. You can edit it before sending.',
+
+    whatsappMessage:
+      'Hello! I found Stay in Costa Blanca and I would like more information about your Key Holding & Property Management services for my property.',
+
+
+    directTopper:
+      'CONTACT DETAILS',
+
+    phoneLabel:
+      'Phone',
+
+    emailLabel:
+      'Email',
+
+    areaLabel:
+      'Our area',
+
+    areaValue:
+      'Orihuela Costa & Torrevieja',
+
+    websiteLabel:
+      'Website',
+
+
+    reassuranceTitle:
+      'Not sure which plan is right for you?',
+
+    reassuranceText:
+      'You do not need to choose on your own. Tell us a few details about your property and we can recommend the appropriate monitoring level.',
+  },
+
+
+  /* =======================================================
+     ESPAÑOL
+  ======================================================= */
+
+  es: {
+    seoTitle:
+      `Contacto | ${brand.name}`,
+
+    seoDescription:
+      'Contacta con Stay in Costa Blanca para servicios de Key Holding y Gestión de Propiedades en Orihuela Costa y Torrevieja.',
+
+    topper:
+      'CONTACTO',
+
+    title:
+      'Hablemos de tu propiedad.',
+
+    intro:
+      'Cuéntanos dónde se encuentra la propiedad, qué tipo de propiedad es y cuánto tiempo suele permanecer desocupada. Podemos recomendarte el nivel de monitorización adecuado.',
+
+
+    formTopper:
+      'CUÉNTANOS SOBRE TU PROPIEDAD',
+
+    formTitle:
+      'Envíanos un mensaje',
+
+    formText:
+      'Completa el formulario y nos pondremos en contacto contigo lo antes posible.',
+
+
+    name:
+      'Nombre completo *',
+
+    namePlaceholder:
+      'Tu nombre',
+
+    email:
+      'Email *',
+
+    emailPlaceholder:
+      'nombre@email.com',
+
+    phone:
+      'Teléfono',
+
+    phonePlaceholder:
+      '+34 ...',
+
+    area:
+      'Zona de la propiedad',
+
+    areaPlaceholder:
+      'Ej. Torrevieja, Villamartín, Cabo Roig...',
+
+    propertyType:
+      'Tipo de propiedad',
+
+    propertyPlaceholder:
+      'Selecciona',
+
+    propertyOptions: [
+      'Apartamento',
+      'Bungalow',
+      'Casa / Adosado',
+      'Villa',
+      'Otro tipo de propiedad',
+    ],
+
+    message:
+      'Mensaje *',
+
+    messagePlaceholder:
+      'Cuéntanos brevemente cómo podemos ayudarte y cuánto tiempo suele permanecer desocupada la propiedad.',
+
+    submit:
+      'ENVIAR MENSAJE',
+
+    sending:
+      'Enviando...',
+
+    error:
+      'Ha ocurrido un problema. Inténtalo de nuevo.',
+
+    networkError:
+      'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
+
+
+    quickTopper:
+      'CONTACTO RÁPIDO',
+
+    quickTitle:
+      '¿Quieres contactar con nosotros más rápido?',
+
+    quickText:
+      'Escríbenos directamente por WhatsApp. Cuéntanos brevemente dónde está tu propiedad y cómo podemos ayudarte.',
+
+    whatsappButton:
+      'HABLAR POR WHATSAPP',
+
+    whatsappNote:
+      'El mensaje se abrirá ya preparado. Puedes modificarlo antes de enviarlo.',
+
+    whatsappMessage:
+      '¡Hola! He encontrado Stay in Costa Blanca y me gustaría recibir más información sobre sus servicios de Key Holding y Gestión de Propiedades para mi propiedad.',
+
+
+    directTopper:
+      'DATOS DE CONTACTO',
+
+    phoneLabel:
+      'Teléfono',
+
+    emailLabel:
+      'Email',
+
+    areaLabel:
+      'Nuestra zona',
+
+    areaValue:
+      'Orihuela Costa & Torrevieja',
+
+    websiteLabel:
+      'Website',
+
+
+    reassuranceTitle:
+      '¿No sabes qué plan necesitas?',
+
+    reassuranceText:
+      'No tienes que elegir por tu cuenta. Cuéntanos algunos detalles sobre la propiedad y podremos recomendarte el nivel de monitorización adecuado.',
+  },
+};
+
+const t = translations[lang];
+
+const whatsappUrl =
+  `https://wa.me/34624110656?text=${encodeURIComponent(t.whatsappMessage)}`;
 ---
 
-<BaseLayout 
-  title="Contact" 
-  description={`Contactează echipa ${brand.name} pentru administrare proprietăți.`}
+<BaseLayout
+  title={t.seoTitle}
+  description={t.seoDescription}
 >
+
   <Header slot="header" />
-  <Banner title="Contactează-ne" />
 
-  <section class="py-section font-heading">
-    <div class="mx-auto grid max-w-site grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-14">
-      
-      <div class="lg:col-span-3">
-        <h2 class="font-heading text-h2 font-bold uppercase text-text">Trimite-ne un mesaj</h2>
-        <p class="mt-2 mb-8 text-text-muted">Îți vom răspunde în cel mai scurt timp posibil.</p>
 
-        <form
-          id="contact-form"
-          class="flex flex-col gap-5"
+  <!-- =====================================================
+       PAGE INTRO
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      border-b
+      border-[#D8E1E5]
+      font-heading
+      py-14
+      sm:py-16
+      lg:py-20
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.18em]
+            text-[#D99B26]
+          "
         >
-          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <label class="flex flex-col gap-1.5">
-              <span class="text-sm font-medium text-text">Nume Complet *</span>
-              <input type="text" name="name" required class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 outline-none focus:border-primary" />
-            </label>
-            <label class="flex flex-col gap-1.5">
-              <span class="text-sm font-medium text-text">Email *</span>
-              <input type="email" name="email" required class="min-h-[44px] rounded-md border border-border bg-background px-4 py-2.5 outline-none focus:border-primary" />
-            </label>
-          </div>
-          <label class="flex flex-col gap-1.5">
-            <span class="text-sm font-medium text-text">Mesaj *</span>
-            <textarea name="message" rows="5" required class="min-h-[120px] rounded-md border border-border bg-background px-4 py-2.5 resize-y outline-none focus:border-primary"></textarea>
-          </label>
+          {t.topper}
+        </p>
 
-          <button
-            id="submit-btn"
-            type="submit"
-            class="inline-flex min-h-[48px] items-center justify-center rounded-md bg-primary px-10 py-4 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 disabled:opacity-50"
-          >
-            Trimite Mesajul
-          </button>
-          <p id="form-status" class="hidden text-sm font-bold mt-2"></p>
-        </div>
 
-        <aside class="lg:col-span-2 space-y-6">
-          <div class="rounded-2xl bg-surface p-8 border border-border">
-            <h3 class="font-bold uppercase mb-4 text-text">Contact Rapid</h3>
-            <p class="text-sm text-primary font-bold">{client.phoneFormatted}</p>
-            <p class="text-sm text-text-muted">{client.email}</p>
-          </div>
-        </aside>
+        <h1
+          class="
+            mt-3
+
+            text-[36px]
+            sm:text-5xl
+            lg:text-[56px]
+
+            font-bold
+            tracking-tight
+            leading-[1.08]
+
+            text-[#0E3846]
+          "
+        >
+          {t.title}
+        </h1>
+
+
+        <p
+          class="
+            mt-6
+
+            mx-auto
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          {t.intro}
+        </p>
+
       </div>
+
     </div>
+
   </section>
 
+
+  <!-- =====================================================
+       CONTACT CONTENT
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-14
+      sm:py-16
+      lg:py-20
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[1.15fr_0.85fr]
+
+          gap-10
+          lg:gap-12
+          xl:gap-16
+
+          items-start
+        "
+      >
+
+        <!-- =================================================
+             LEFT — FORM
+        ================================================== -->
+
+        <div>
+
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+            "
+          >
+            {t.formTopper}
+          </p>
+
+
+          <h2
+            class="
+              mt-3
+              text-[30px]
+              sm:text-4xl
+              font-bold
+              tracking-tight
+              text-[#0E3846]
+            "
+          >
+            {t.formTitle}
+          </h2>
+
+
+          <p
+            class="
+              mt-3
+              mb-8
+              max-w-2xl
+              text-base
+              leading-7
+              text-[#526B74]
+            "
+          >
+            {t.formText}
+          </p>
+
+
+          <!-- FORM -->
+
+          <form
+            id="contact-form"
+
+            class="
+              flex
+              flex-col
+              gap-5
+            "
+
+            data-success-url={r.success}
+            data-default-label={t.submit}
+            data-sending-label={t.sending}
+            data-error-message={t.error}
+            data-network-message={t.networkError}
+          >
+
+            <!-- LANGUAGE INFO -->
+
+            <input
+              type="hidden"
+              name="language"
+              value={lang}
+            />
+
+            <input
+              type="hidden"
+              name="source"
+              value="Stay in Costa Blanca website contact form"
+            />
+
+
+            <!-- NAME + EMAIL -->
+
+            <div
+              class="
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                gap-5
+              "
+            >
+
+              <label
+                class="
+                  flex
+                  flex-col
+                  gap-2
+                "
+              >
+
+                <span
+                  class="
+                    text-sm
+                    font-semibold
+                    text-[#294A55]
+                  "
+                >
+                  {t.name}
+                </span>
+
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  placeholder={t.namePlaceholder}
+
+                  class="
+                    min-h-[52px]
+                    rounded-xl
+
+                    border
+                    border-[#CBDCE1]
+
+                    bg-[#F9FBFB]
+
+                    px-4
+                    py-3
+
+                    text-base
+                    text-[#0E3846]
+
+                    outline-none
+
+                    transition
+
+                    placeholder:text-[#91A2A8]
+
+                    focus:border-[#5B9EB5]
+                    focus:bg-white
+                    focus:ring-2
+                    focus:ring-[#5B9EB5]/15
+                  "
+                />
+
+              </label>
+
+
+              <label
+                class="
+                  flex
+                  flex-col
+                  gap-2
+                "
+              >
+
+                <span
+                  class="
+                    text-sm
+                    font-semibold
+                    text-[#294A55]
+                  "
+                >
+                  {t.email}
+                </span>
+
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder={t.emailPlaceholder}
+
+                  class="
+                    min-h-[52px]
+                    rounded-xl
+
+                    border
+                    border-[#CBDCE1]
+
+                    bg-[#F9FBFB]
+
+                    px-4
+                    py-3
+
+                    text-base
+                    text-[#0E3846]
+
+                    outline-none
+
+                    transition
+
+                    placeholder:text-[#91A2A8]
+
+                    focus:border-[#5B9EB5]
+                    focus:bg-white
+                    focus:ring-2
+                    focus:ring-[#5B9EB5]/15
+                  "
+                />
+
+              </label>
+
+            </div>
+
+
+            <!-- PHONE + AREA -->
+
+            <div
+              class="
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                gap-5
+              "
+            >
+
+              <label
+                class="
+                  flex
+                  flex-col
+                  gap-2
+                "
+              >
+
+                <span
+                  class="
+                    text-sm
+                    font-semibold
+                    text-[#294A55]
+                  "
+                >
+                  {t.phone}
+                </span>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  autocomplete="tel"
+                  placeholder={t.phonePlaceholder}
+
+                  class="
+                    min-h-[52px]
+                    rounded-xl
+
+                    border
+                    border-[#CBDCE1]
+
+                    bg-[#F9FBFB]
+
+                    px-4
+                    py-3
+
+                    text-base
+                    text-[#0E3846]
+
+                    outline-none
+
+                    transition
+
+                    placeholder:text-[#91A2A8]
+
+                    focus:border-[#5B9EB5]
+                    focus:bg-white
+                    focus:ring-2
+                    focus:ring-[#5B9EB5]/15
+                  "
+                />
+
+              </label>
+
+
+              <label
+                class="
+                  flex
+                  flex-col
+                  gap-2
+                "
+              >
+
+                <span
+                  class="
+                    text-sm
+                    font-semibold
+                    text-[#294A55]
+                  "
+                >
+                  {t.area}
+                </span>
+
+                <input
+                  type="text"
+                  name="property_area"
+                  placeholder={t.areaPlaceholder}
+
+                  class="
+                    min-h-[52px]
+                    rounded-xl
+
+                    border
+                    border-[#CBDCE1]
+
+                    bg-[#F9FBFB]
+
+                    px-4
+                    py-3
+
+                    text-base
+                    text-[#0E3846]
+
+                    outline-none
+
+                    transition
+
+                    placeholder:text-[#91A2A8]
+
+                    focus:border-[#5B9EB5]
+                    focus:bg-white
+                    focus:ring-2
+                    focus:ring-[#5B9EB5]/15
+                  "
+                />
+
+              </label>
+
+            </div>
+
+
+            <!-- PROPERTY TYPE -->
+
+            <label
+              class="
+                flex
+                flex-col
+                gap-2
+              "
+            >
+
+              <span
+                class="
+                  text-sm
+                  font-semibold
+                  text-[#294A55]
+                "
+              >
+                {t.propertyType}
+              </span>
+
+
+              <select
+                name="property_type"
+
+                class="
+                  min-h-[52px]
+                  rounded-xl
+
+                  border
+                  border-[#CBDCE1]
+
+                  bg-[#F9FBFB]
+
+                  px-4
+                  py-3
+
+                  text-base
+                  text-[#0E3846]
+
+                  outline-none
+
+                  transition
+
+                  focus:border-[#5B9EB5]
+                  focus:bg-white
+                  focus:ring-2
+                  focus:ring-[#5B9EB5]/15
+                "
+              >
+
+                <option value="">
+                  {t.propertyPlaceholder}
+                </option>
+
+                {
+                  t.propertyOptions.map((option) => (
+
+                    <option value={option}>
+                      {option}
+                    </option>
+
+                  ))
+                }
+
+              </select>
+
+            </label>
+
+
+            <!-- MESSAGE -->
+
+            <label
+              class="
+                flex
+                flex-col
+                gap-2
+              "
+            >
+
+              <span
+                class="
+                  text-sm
+                  font-semibold
+                  text-[#294A55]
+                "
+              >
+                {t.message}
+              </span>
+
+
+              <textarea
+                name="message"
+                rows="6"
+                required
+                placeholder={t.messagePlaceholder}
+
+                class="
+                  min-h-[150px]
+
+                  resize-y
+
+                  rounded-xl
+
+                  border
+                  border-[#CBDCE1]
+
+                  bg-[#F9FBFB]
+
+                  px-4
+                  py-3
+
+                  text-base
+                  leading-7
+                  text-[#0E3846]
+
+                  outline-none
+
+                  transition
+
+                  placeholder:text-[#91A2A8]
+
+                  focus:border-[#5B9EB5]
+                  focus:bg-white
+                  focus:ring-2
+                  focus:ring-[#5B9EB5]/15
+                "
+              ></textarea>
+
+            </label>
+
+
+            <!-- SUBMIT -->
+
+            <button
+              id="submit-btn"
+              type="submit"
+
+              class="
+                mt-1
+
+                inline-flex
+                min-h-[54px]
+
+                items-center
+                justify-center
+
+                rounded-xl
+
+                bg-[#0E3846]
+
+                px-8
+                py-3.5
+
+                text-sm
+                font-bold
+                uppercase
+                tracking-[0.04em]
+
+                text-white
+
+                shadow-[0_8px_20px_rgba(14,56,70,0.18)]
+
+                transition-all
+                duration-200
+
+                hover:-translate-y-0.5
+                hover:bg-[#164D5D]
+
+                disabled:cursor-not-allowed
+                disabled:opacity-60
+              "
+            >
+              {t.submit}
+            </button>
+
+          </form>
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT
+        ================================================== -->
+
+        <aside
+          class="
+            space-y-5
+          "
+        >
+
+          <!-- =================================================
+               WHATSAPP
+          ================================================== -->
+
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+
+              border
+              border-[#C8DDE1]
+
+              bg-[#F7FAFA]
+
+              shadow-[0_10px_28px_rgba(14,56,70,0.08)]
+            "
+          >
+
+            <!-- TOP -->
+
+            <div
+              class="
+                bg-[#0E3846]
+
+                px-6
+                sm:px-7
+
+                py-6
+              "
+            >
+
+              <div
+                class="
+                  flex
+                  items-center
+                  gap-3
+                "
+              >
+
+                <!-- WHATSAPP BADGE -->
+
+                <div
+                  class="
+                    flex
+                    h-12
+                    w-12
+                    shrink-0
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    bg-[#25D366]
+
+                    text-white
+
+                    shadow-[0_5px_14px_rgba(37,211,102,0.25)]
+                  "
+                >
+
+                  <svg
+                    viewBox="0 0 32 32"
+                    fill="currentColor"
+                    class="h-7 w-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M16 3C8.83 3 3 8.55 3 15.39c0 2.41.73 4.77 2.11 6.77L3.74 29 10.9 27.1A13.55 13.55 0 0016 28.08c7.17 0 13-5.55 13-12.39C29 8.55 23.17 3 16 3zm0 22.86c-1.82 0-3.6-.47-5.16-1.36l-.37-.21-4.25 1.13.83-4.13-.24-.4a9.84 9.84 0 01-1.55-5.5C5.26 10 10.08 5.22 16 5.22S26.74 10 26.74 15.39 21.92 25.86 16 25.86zm5.9-7.84c-.32-.15-1.9-.89-2.2-.99-.29-.1-.5-.15-.71.15-.21.29-.82.99-1 1.19-.18.2-.37.22-.69.07-.32-.15-1.35-.47-2.57-1.51-.95-.8-1.59-1.78-1.78-2.08-.19-.29-.02-.45.14-.6.15-.14.32-.37.48-.55.16-.17.21-.29.32-.49.1-.2.05-.37-.03-.52-.08-.15-.71-1.63-.98-2.23-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.07-.85.37-.29.3-1.11 1.04-1.11 2.53s1.14 2.93 1.3 3.13c.16.2 2.24 3.28 5.43 4.6.76.31 1.35.5 1.81.64.76.23 1.45.2 2 .12.61-.09 1.9-.74 2.17-1.46.27-.72.27-1.33.19-1.46-.08-.13-.29-.2-.61-.35z"
+                    />
+                  </svg>
+
+                </div>
+
+
+                <div>
+
+                  <p
+                    class="
+                      text-[11px]
+                      font-bold
+                      uppercase
+                      tracking-[0.16em]
+                      text-[#F3C76B]
+                    "
+                  >
+                    {t.quickTopper}
+                  </p>
+
+                  <h2
+                    class="
+                      mt-1
+                      text-xl
+                      sm:text-2xl
+                      font-bold
+                      leading-tight
+                      text-white
+                    "
+                  >
+                    {t.quickTitle}
+                  </h2>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- BODY -->
+
+            <div
+              class="
+                p-6
+                sm:p-7
+              "
+            >
+
+              <p
+                class="
+                  text-base
+                  leading-7
+                  text-[#526B74]
+                "
+              >
+                {t.quickText}
+              </p>
+
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+
+                class="
+                  mt-6
+
+                  flex
+                  min-h-[56px]
+
+                  w-full
+
+                  items-center
+                  justify-center
+
+                  gap-3
+
+                  rounded-xl
+
+                  bg-[#25D366]
+
+                  px-5
+                  py-3.5
+
+                  text-center
+
+                  text-sm
+                  font-bold
+                  uppercase
+                  tracking-[0.03em]
+
+                  text-[#073B27]
+
+                  shadow-[0_7px_18px_rgba(37,211,102,0.22)]
+
+                  transition-all
+                  duration-200
+
+                  hover:-translate-y-0.5
+                  hover:bg-[#2DE071]
+                "
+              >
+
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="currentColor"
+                  class="h-5 w-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M16 3C8.83 3 3 8.55 3 15.39c0 2.41.73 4.77 2.11 6.77L3.74 29 10.9 27.1A13.55 13.55 0 0016 28.08c7.17 0 13-5.55 13-12.39C29 8.55 23.17 3 16 3zm0 22.86c-1.82 0-3.6-.47-5.16-1.36l-.37-.21-4.25 1.13.83-4.13-.24-.4a9.84 9.84 0 01-1.55-5.5C5.26 10 10.08 5.22 16 5.22S26.74 10 26.74 15.39 21.92 25.86 16 25.86zm5.9-7.84c-.32-.15-1.9-.89-2.2-.99-.29-.1-.5-.15-.71.15-.21.29-.82.99-1 1.19-.18.2-.37.22-.69.07-.32-.15-1.35-.47-2.57-1.51-.95-.8-1.59-1.78-1.78-2.08-.19-.29-.02-.45.14-.6.15-.14.32-.37.48-.55.16-.17.21-.29.32-.49.1-.2.05-.37-.03-.52-.08-.15-.71-1.63-.98-2.23-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.07-.85.37-.29.3-1.11 1.04-1.11 2.53s1.14 2.93 1.3 3.13c.16.2 2.24 3.28 5.43 4.6.76.31 1.35.5 1.81.64.76.23 1.45.2 2 .12.61-.09 1.9-.74 2.17-1.46.27-.72.27-1.33.19-1.46-.08-.13-.29-.2-.61-.35z"
+                  />
+                </svg>
+
+                {t.whatsappButton}
+
+              </a>
+
+
+              <p
+                class="
+                  mt-3
+                  text-center
+                  text-xs
+                  leading-5
+                  text-[#82969D]
+                "
+              >
+                {t.whatsappNote}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               CONTACT DETAILS
+          ================================================== -->
+
+          <div
+            class="
+              rounded-2xl
+
+              border
+              border-[#D2E1E5]
+
+              bg-white
+
+              p-6
+              sm:p-7
+            "
+          >
+
+            <p
+              class="
+                text-xs
+                font-bold
+                uppercase
+                tracking-[0.16em]
+                text-[#D99B26]
+              "
+            >
+              {t.directTopper}
+            </p>
+
+
+            <div
+              class="
+                mt-5
+                space-y-5
+              "
+            >
+
+              <!-- PHONE -->
+
+              <a
+                href="tel:+34624110656"
+
+                class="
+                  group
+
+                  flex
+                  items-center
+
+                  gap-4
+                "
+              >
+
+                <div
+                  class="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    bg-[#E8F3F5]
+
+                    text-[#0E3846]
+                  "
+                >
+
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 4h3l2 5-2 1.5c1.1 2.3 3.2 4.4 5.5 5.5L15 14l5 2v3c0 1.1-.9 2-2 2C10.3 21 3 13.7 3 6c0-1.1.9-2 2-2z"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                </div>
+
+
+                <div>
+
+                  <p
+                    class="
+                      text-xs
+                      uppercase
+                      tracking-[0.08em]
+                      text-[#82969D]
+                    "
+                  >
+                    {t.phoneLabel}
+                  </p>
+
+                  <p
+                    class="
+                      mt-0.5
+                      text-base
+                      font-bold
+                      text-[#0E3846]
+
+                      transition-colors
+
+                      group-hover:text-[#5B9EB5]
+                    "
+                  >
+                    +34 624 110 656
+                  </p>
+
+                </div>
+
+              </a>
+
+
+              <!-- EMAIL -->
+
+              <a
+                href="mailto:info@stayincostablanca.com"
+
+                class="
+                  group
+
+                  flex
+                  items-center
+
+                  gap-4
+                "
+              >
+
+                <div
+                  class="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    bg-[#E8F3F5]
+
+                    text-[#0E3846]
+                  "
+                >
+
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="3"
+                      y="5"
+                      width="18"
+                      height="14"
+                      rx="2"
+                      stroke-width="1.7"
+                    />
+
+                    <path
+                      d="M4 7l8 6 8-6"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                </div>
+
+
+                <div class="min-w-0">
+
+                  <p
+                    class="
+                      text-xs
+                      uppercase
+                      tracking-[0.08em]
+                      text-[#82969D]
+                    "
+                  >
+                    {t.emailLabel}
+                  </p>
+
+                  <p
+                    class="
+                      mt-0.5
+                      text-[14px]
+                      sm:text-base
+                      font-bold
+
+                      text-[#0E3846]
+
+                      break-words
+
+                      transition-colors
+
+                      group-hover:text-[#5B9EB5]
+                    "
+                  >
+                    info@stayincostablanca.com
+                  </p>
+
+                </div>
+
+              </a>
+
+
+              <!-- AREA -->
+
+              <div
+                class="
+                  flex
+                  items-center
+                  gap-4
+                "
+              >
+
+                <div
+                  class="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    bg-[#E8F3F5]
+
+                    text-[#0E3846]
+                  "
+                >
+
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 21s7-5.1 7-11a7 7 0 10-14 0c0 5.9 7 11 7 11z"
+                      stroke-width="1.7"
+                    />
+
+                    <circle
+                      cx="12"
+                      cy="10"
+                      r="2.3"
+                      stroke-width="1.7"
+                    />
+                  </svg>
+
+                </div>
+
+
+                <div>
+
+                  <p
+                    class="
+                      text-xs
+                      uppercase
+                      tracking-[0.08em]
+                      text-[#82969D]
+                    "
+                  >
+                    {t.areaLabel}
+                  </p>
+
+                  <p
+                    class="
+                      mt-0.5
+                      text-base
+                      font-bold
+                      text-[#0E3846]
+                    "
+                  >
+                    {t.areaValue}
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <!-- WEBSITE -->
+
+              <a
+                href="https://www.stayincostablanca.com"
+
+                class="
+                  group
+
+                  flex
+                  items-center
+
+                  gap-4
+                "
+              >
+
+                <div
+                  class="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    bg-[#E8F3F5]
+
+                    text-[#0E3846]
+                  "
+                >
+
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke-width="1.7"
+                    />
+
+                    <path
+                      d="M3.5 12h17M12 3c2.2 2.5 3.2 5.5 3.2 9S14.2 18.5 12 21M12 3C9.8 5.5 8.8 8.5 8.8 12s1 6.5 3.2 9"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+
+                </div>
+
+
+                <div>
+
+                  <p
+                    class="
+                      text-xs
+                      uppercase
+                      tracking-[0.08em]
+                      text-[#82969D]
+                    "
+                  >
+                    {t.websiteLabel}
+                  </p>
+
+                  <p
+                    class="
+                      mt-0.5
+                      text-base
+                      font-bold
+                      text-[#0E3846]
+
+                      transition-colors
+
+                      group-hover:text-[#5B9EB5]
+                    "
+                  >
+                    stayincostablanca.com
+                  </p>
+
+                </div>
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               REASSURANCE
+          ================================================== -->
+
+          <div
+            class="
+              rounded-2xl
+
+              border
+              border-[#E4C575]
+
+              bg-[#FFF9ED]
+
+              p-6
+            "
+          >
+
+            <h3
+              class="
+                text-lg
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              {t.reassuranceTitle}
+            </h3>
+
+
+            <p
+              class="
+                mt-2
+                text-sm
+                leading-6
+                text-[#526B74]
+              "
+            >
+              {t.reassuranceText}
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
   <Footer slot="footer" />
+
 </BaseLayout>
 
+
+<!-- =========================================================
+     FORMSPREE
+========================================================= -->
+
 <script is:inline>
-  // Punem ID-ul tau direct in JS
   const FORMSPREE_URL = "https://formspree.io/f/xjgjyjdk";
 
   function initForm() {
+
     const form = document.getElementById('contact-form');
     const btn = document.getElementById('submit-btn');
-    const status = document.getElementById('form-status');
 
-    if (!form || form.dataset.listener === "true") return;
+    if (!form || !btn || form.dataset.listener === "true") {
+      return;
+    }
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      e.stopPropagation(); // Oprim orice altă acțiune a browserului
+    const defaultLabel =
+      form.dataset.defaultLabel || 'Send';
+
+    const sendingLabel =
+      form.dataset.sendingLabel || 'Sending...';
+
+    const errorMessage =
+      form.dataset.errorMessage || 'Something went wrong.';
+
+    const networkMessage =
+      form.dataset.networkMessage || 'Network error.';
+
+    const successUrl =
+      form.dataset.successUrl || '/contact/success';
+
+
+    form.addEventListener('submit', async (event) => {
+
+      event.preventDefault();
+      event.stopPropagation();
 
       btn.disabled = true;
-      btn.innerText = 'Se trimite...';
+      btn.innerText = sendingLabel;
+
 
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+
+      const data =
+        Object.fromEntries(formData.entries());
+
 
       try {
-        const response = await fetch(FORMSPREE_URL, {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-        });
+
+        const response =
+          await fetch(FORMSPREE_URL, {
+
+            method: 'POST',
+
+            body:
+              JSON.stringify(data),
+
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+
+          });
+
 
         if (response.ok) {
-          // REDIRECT FORȚAT
-          window.location.replace('/contact/success');
+
+          window.location.replace(successUrl);
+
         } else {
-          alert('A apărut o problemă. Te rugăm să încerci din nou.');
+
+          alert(errorMessage);
+
           btn.disabled = false;
-          btn.innerText = 'Trimite Mesajul';
+          btn.innerText = defaultLabel;
+
         }
+
       } catch (error) {
-        alert('Eroare de rețea. Verifică conexiunea.');
+
+        alert(networkMessage);
+
         btn.disabled = false;
-        btn.innerText = 'Trimite Mesajul';
+        btn.innerText = defaultLabel;
+
       }
+
     });
+
 
     form.dataset.listener = "true";
   }
 
-  // Pornim la prima încărcare
+
   initForm();
-  
-  // Repornim dacă Astro schimbă pagina (View Transitions)
-  document.addEventListener('astro:after-swap', initForm);
-  document.addEventListener('astro:page-load', initForm);
+
+  document.addEventListener(
+    'astro:after-swap',
+    initForm
+  );
+
+  document.addEventListener(
+    'astro:page-load',
+    initForm
+  );
 </script>
