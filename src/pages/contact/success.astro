@@ -3,50 +3,333 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { brand } from '../../config/brand';
-import { client } from '../../data/client';
+
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const translations = {
+  ro: {
+    title: `Mesaj trimis | ${brand.name}`,
+    description:
+      'Mulțumim pentru mesaj. Am primit solicitarea ta și te vom contacta cât mai curând posibil.',
+
+    topper: 'MESAJ PRIMIT',
+    heading: 'Mulțumim! Solicitarea ta a fost trimisă.',
+    text:
+      'Am primit mesajul tău. Vom analiza informațiile despre proprietate și te vom contacta cât mai curând posibil.',
+
+    note:
+      'Dacă vrei să ne transmiți între timp o informație suplimentară, ne poți scrie și pe WhatsApp.',
+
+    home: 'ÎNAPOI LA PAGINA PRINCIPALĂ',
+    homeHref: '/',
+
+    whatsapp: 'SCRIE-NE PE WHATSAPP',
+  },
+
+  en: {
+    title: `Message sent | ${brand.name}`,
+    description:
+      'Thank you for your message. We have received your enquiry and will contact you as soon as possible.',
+
+    topper: 'MESSAGE RECEIVED',
+    heading: 'Thank you! Your enquiry has been sent.',
+    text:
+      'We have received your message. We will review the information about your property and contact you as soon as possible.',
+
+    note:
+      'If you would like to add any information in the meantime, you can also message us on WhatsApp.',
+
+    home: 'BACK TO HOME',
+    homeHref: '/en/',
+
+    whatsapp: 'MESSAGE US ON WHATSAPP',
+  },
+
+  es: {
+    title: `Mensaje enviado | ${brand.name}`,
+    description:
+      'Gracias por tu mensaje. Hemos recibido tu solicitud y nos pondremos en contacto contigo lo antes posible.',
+
+    topper: 'MENSAJE RECIBIDO',
+    heading: '¡Gracias! Tu solicitud ha sido enviada.',
+    text:
+      'Hemos recibido tu mensaje. Revisaremos la información sobre tu propiedad y nos pondremos en contacto contigo lo antes posible.',
+
+    note:
+      'Si mientras tanto quieres añadir alguna información, también puedes escribirnos por WhatsApp.',
+
+    home: 'VOLVER AL INICIO',
+    homeHref: '/es/',
+
+    whatsapp: 'ESCRÍBENOS POR WHATSAPP',
+  },
+};
+
+const t = translations[lang];
 ---
 
-<BaseLayout 
-  title="Mesaj Trimis" 
-  description="Mulțumim pentru mesaj! Te vom contacta în cel mai scurt timp."
+<BaseLayout
+  title={t.title}
+  description={t.description}
 >
   <Header slot="header" />
 
-  <section class="py-24 sm:py-32 flex min-h-[60vh] items-center justify-center font-heading">
-    <div class="mx-auto max-w-2xl px-4 text-center sm:px-6">
-      
-      <div class="mx-auto mb-8 flex size-20 items-center justify-center rounded-full bg-green-100 text-green-600">
-        <svg class="size-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-      </div>
-
-      <h1 class="font-heading text-h2 font-bold uppercase text-text leading-tight">
-        Mesaj Trimis cu Succes!
-      </h1>
-      
-      <p class="mt-6 text-lg text-text-muted leading-relaxed">
-        Mulțumim pentru încredere. Am primit solicitarea ta, iar <strong>Stelian</strong> te va contacta în cel mai scurt timp pentru a discuta despre proprietatea ta.
-      </p>
-
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href="/"
-          class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-10 py-3 text-base font-bold text-primary-fg shadow-lg transition-all hover:opacity-90 active:scale-95"
+  <main>
+    <section
+      class="
+        flex
+        min-h-[68vh]
+        items-center
+        bg-[#F7FAFA]
+        py-16
+        sm:py-20
+        lg:py-24
+        font-heading
+      "
+    >
+      <div
+        class="
+          mx-auto
+          w-full
+          max-w-site
+          px-4
+          sm:px-6
+          lg:px-8
+        "
+      >
+        <div
+          class="
+            mx-auto
+            max-w-3xl
+            rounded-3xl
+            border
+            border-[#D3E1E5]
+            bg-white
+            px-6
+            py-10
+            text-center
+            shadow-[0_16px_40px_rgba(14,56,70,0.08)]
+            sm:px-10
+            sm:py-12
+            lg:px-14
+          "
         >
-          Înapoi la Acasă
-        </a>
-        
-        <a
-          href={`https://wa.me/${client.phoneForTel}`}
-          target="_blank"
-          class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border-2 border-border px-8 py-3 text-base font-bold text-text transition-colors hover:bg-surface"
-        >
-          Scrie-ne pe WhatsApp
-        </a>
+
+          <!-- SUCCESS ICON -->
+
+          <div
+            class="
+              mx-auto
+              flex
+              h-20
+              w-20
+              items-center
+              justify-center
+              rounded-full
+              bg-[#E5F2F5]
+              text-[#0E3846]
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="h-10 w-10"
+              aria-hidden="true"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                stroke-width="1.7"
+              />
+
+              <path
+                d="M8 12.2l2.6 2.6L16.5 9"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+
+          <!-- TOPPER -->
+
+          <p
+            class="
+              mt-7
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.18em]
+              text-[#D99B26]
+            "
+          >
+            {t.topper}
+          </p>
+
+
+          <!-- TITLE -->
+
+          <h1
+            class="
+              mt-3
+              text-[30px]
+              font-bold
+              leading-tight
+              tracking-tight
+              text-[#0E3846]
+              sm:text-4xl
+              lg:text-[42px]
+            "
+          >
+            {t.heading}
+          </h1>
+
+
+          <!-- TEXT -->
+
+          <p
+            class="
+              mx-auto
+              mt-5
+              max-w-2xl
+              text-base
+              leading-8
+              text-[#526B74]
+              sm:text-lg
+            "
+          >
+            {t.text}
+          </p>
+
+
+          <!-- SMALL NOTE -->
+
+          <div
+            class="
+              mx-auto
+              mt-7
+              max-w-2xl
+              rounded-xl
+              border
+              border-[#E7D39E]
+              bg-[#FFF9ED]
+              px-5
+              py-4
+            "
+          >
+            <p
+              class="
+                text-sm
+                leading-6
+                text-[#526B74]
+              "
+            >
+              {t.note}
+            </p>
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div
+            class="
+              mt-8
+              flex
+              flex-col
+              justify-center
+              gap-3
+              sm:flex-row
+            "
+          >
+
+            <a
+              href={t.homeHref}
+              class="
+                inline-flex
+                min-h-[52px]
+                items-center
+                justify-center
+                rounded-xl
+                bg-[#0E3846]
+                px-7
+                py-3
+                text-sm
+                font-bold
+                uppercase
+                tracking-[0.03em]
+                text-white
+                transition-all
+                duration-200
+                hover:-translate-y-0.5
+                hover:bg-[#164D5D]
+              "
+            >
+              {t.home}
+            </a>
+
+
+            <!--
+              Fără mesaj precompletat aici intenționat:
+              utilizatorul tocmai a completat formularul și poate
+              scrie liber orice informație suplimentară.
+            -->
+
+            <a
+              href="https://wa.me/34624110656"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                inline-flex
+                min-h-[52px]
+                items-center
+                justify-center
+                gap-2.5
+                rounded-xl
+                border-2
+                border-[#25D366]
+                bg-white
+                px-7
+                py-3
+                text-sm
+                font-bold
+                uppercase
+                tracking-[0.03em]
+                text-[#0E3846]
+                transition-all
+                duration-200
+                hover:bg-[#EEFBF3]
+              "
+            >
+
+              <svg
+                viewBox="0 0 32 32"
+                fill="currentColor"
+                class="h-5 w-5 text-[#25D366]"
+                aria-hidden="true"
+              >
+                <path
+                  d="M16 3C8.83 3 3 8.55 3 15.39c0 2.41.73 4.77 2.11 6.77L3.74 29 10.9 27.1A13.55 13.55 0 0016 28.08c7.17 0 13-5.55 13-12.39C29 8.55 23.17 3 16 3zm0 22.86c-1.82 0-3.6-.47-5.16-1.36l-.37-.21-4.25 1.13.83-4.13-.24-.4a9.84 9.84 0 01-1.55-5.5C5.26 10 10.08 5.22 16 5.22S26.74 10 26.74 15.39 21.92 25.86 16 25.86zm5.9-7.84c-.32-.15-1.9-.89-2.2-.99-.29-.1-.5-.15-.71.15-.21.29-.82.99-1 1.19-.18.2-.37.22-.69.07-.32-.15-1.35-.47-2.57-1.51-.95-.8-1.59-1.78-1.78-2.08-.19-.29-.02-.45.14-.6.15-.14.32-.37.48-.55.16-.17.21-.29.32-.49.1-.2.05-.37-.03-.52-.08-.15-.71-1.63-.98-2.23-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.07-.85.37-.29.3-1.11 1.04-1.11 2.53s1.14 2.93 1.3 3.13c.16.2 2.24 3.28 5.43 4.6.76.31 1.35.5 1.81.64.76.23 1.45.2 2 .12.61-.09 1.9-.74 2.17-1.46.27-.72.27-1.33.19-1.46-.08-.13-.29-.2-.61-.35z"
+                />
+              </svg>
+
+              {t.whatsapp}
+
+            </a>
+
+          </div>
+
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <Footer slot="footer" />
 </BaseLayout>
