@@ -10,7 +10,7 @@ tags:
   - "Property Care"
   - "Prevention"
   - "Costa Blanca"
-featured: true
+featured: false
 draft: false
 ---
 
