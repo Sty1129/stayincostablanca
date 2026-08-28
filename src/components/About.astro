@@ -1,12 +1,26 @@
 ---
 // src/components/About.astro
 
-const url = new URL(Astro.request.url);
-const pathname = url.pathname;
+const currentLang = Astro.currentLocale || 'ro';
 
-const isEn = pathname.startsWith('/en/') || pathname === '/en';
-const currentLang = isEn ? 'en' : 'ro';
-const base = isEn ? '/en' : '';
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const routes = {
+  ro: {
+    about: '/about',
+  },
+  en: {
+    about: '/en/about',
+  },
+  es: {
+    about: '/es/sobre-nosotros',
+  },
+};
+
+const r = routes[lang];
 
 const translations = {
   ro: {
@@ -73,7 +87,7 @@ const translations = {
       },
       {
         title: 'Documented process',
-        text: 'Photos, observations and digital property history',
+        text: 'Photos, observations and a digital history of the property',
         icon: 'document',
       },
       {
@@ -90,11 +104,51 @@ const translations = {
     ctaLabel: 'LEARN MORE ABOUT US',
 
     imageAlt:
-      'Stelian Matei, Stay in Costa Blanca property management',
-  }
+      'Stelian Matei, Stay in Costa Blanca property management in Orihuela Costa and Torrevieja',
+  },
+
+  es: {
+    topper: 'TU SOCIO LOCAL',
+
+    heading:
+      'Presencia local. Proceso documentado. Responsabilidad real.',
+
+    intro:
+      'Cuando nos confías el acceso a tu propiedad, nos confías mucho más que una llave.',
+
+    body:
+      'Stay in Costa Blanca combina la presencia local con un enfoque preventivo y documentado. Revisamos la propiedad, seguimos los cambios a lo largo del tiempo y te informamos cuando algo requiere atención.',
+
+    points: [
+      {
+        title: 'Presencia local',
+        text: 'Orihuela Costa & Torrevieja',
+        icon: 'location',
+      },
+      {
+        title: 'Proceso documentado',
+        text: 'Fotografías, observaciones e historial digital de la propiedad',
+        icon: 'document',
+      },
+      {
+        title: 'Enfoque preventivo',
+        text: 'Identificamos los cambios antes de que se conviertan en problemas mayores',
+        icon: 'shield',
+      },
+    ],
+
+    name: 'Stelian Matei',
+    role: 'Director General y Especialista en Gestión de Propiedades',
+    brandline: 'Gestión Científica y Sostenible de Propiedades',
+
+    ctaLabel: 'CONOCE MÁS SOBRE NOSOTROS',
+
+    imageAlt:
+      'Stelian Matei, Stay in Costa Blanca, gestión de propiedades en Orihuela Costa y Torrevieja',
+  },
 };
 
-const t = translations[currentLang];
+const t = translations[lang];
 ---
 
 <section
@@ -522,7 +576,7 @@ const t = translations[currentLang];
         <div class="mt-7">
 
           <a
-            href={`${base}/about`}
+            href={r.about}
             class="
               inline-flex
               min-h-[50px]
