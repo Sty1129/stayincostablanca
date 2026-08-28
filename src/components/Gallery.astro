@@ -1,105 +1,224 @@
 ---
 // src/components/Gallery.astro
 
-const areas = [
-  {
-    src: "/Usa.jpg",
-    title: "Acces & securitate",
-    label: "UȘĂ / ACCES",
-    description:
-      "Verificăm ușa de acces, închiderea, ferestrele, obloanele și punctele principale de securitate.",
-    alt: "Ușă de acces a unei proprietăți",
-    icon: "door",
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const translations = {
+  ro: {
+    topper: 'CE MONITORIZĂM ÎN PRACTICĂ',
+    heading:
+      'Detaliile mici pot semnala probleme înainte ca acestea să devină costisitoare.',
+    intro:
+      'În timpul vizitelor verificăm și documentăm punctele care pot trece ușor neobservate atunci când proprietatea rămâne nelocuită.',
+
+    cards: [
+      {
+        image: '/door-damage.webp',
+        title: 'Acces & securitate',
+        text:
+          'Inspectăm ușile, încuietorile și punctele de acces pentru modificări, deteriorări sau semne care necesită atenție.',
+        alt:
+          'Ușă de acces cu deteriorare în zona încuietorii, exemplu de verificare a securității proprietății',
+      },
+      {
+        image: '/bathroom-leak.webp',
+        title: 'Apă & scurgeri',
+        text:
+          'Observăm robinetele, obiectele sanitare și semnele vizibile care pot indica pierderi de apă sau infiltrații.',
+        alt:
+          'Robinet care picură într-o baie, exemplu de verificare pentru pierderi de apă',
+      },
+      {
+        image: '/ac-filters.webp',
+        title: 'Aer condiționat',
+        text:
+          'Verificăm funcționarea de bază și observăm starea vizibilă a filtrelor și a unității interioare.',
+        alt:
+          'Unitate de aer condiționat cu capacul ridicat și filtre murdare',
+      },
+      {
+        image: '/kitchen-check.webp',
+        title: 'Instalații & zone ascunse',
+        text:
+          'Inspectăm zonele de sub chiuvete și conexiunile vizibile pentru urme de umezeală, scurgeri sau alte modificări.',
+        alt:
+          'Spațiu sub chiuvetă cu instalații vizibile și urme de apă',
+      },
+      {
+        image: '/terrace-check.webp',
+        title: 'Exterior & terasă',
+        text:
+          'Verificăm drenajul, acumulările de apă și efectele ploii sau vântului asupra zonelor exterioare.',
+        alt:
+          'Terasă cu apă acumulată și drenaj parțial blocat de frunze',
+      },
+      {
+        image: '/living-humidity.webp',
+        title: 'Umiditate & climat interior',
+        text:
+          'Urmărim semnele vizibile de umezeală, condens sau mucegai și le comparăm cu observațiile anterioare.',
+        alt:
+          'Colț interior cu urme vizibile de umezeală și mucegai',
+      },
+    ],
+
+    reportTitle: 'Fiecare observație este documentată.',
+    reportText:
+      'Fotografiile, valorile relevante și recomandările din fiecare vizită contribuie la istoricul digital al proprietății.',
+    preventionTitle: 'Nu căutăm doar probleme evidente.',
+    preventionText:
+      'Scopul este să observăm schimbările suficient de devreme pentru ca proprietarul să poată decide ce trebuie făcut.',
   },
 
-  {
-    src: "/Baie.jpg",
-    title: "Baie & umiditate",
-    label: "BAIE",
-    description:
-      "Urmărim semnele vizibile de umezeală, scurgerile, toaleta, sifonul și funcționarea instalațiilor sanitare.",
-    alt: "Baie într-o proprietate din Costa Blanca",
-    icon: "water",
+  en: {
+    topper: 'WHAT WE MONITOR IN PRACTICE',
+    heading:
+      'Small details can signal problems before they become expensive.',
+    intro:
+      'During our visits we check and document areas that can easily go unnoticed when a property is left unoccupied.',
+
+    cards: [
+      {
+        image: '/door-damage.webp',
+        title: 'Access & security',
+        text:
+          'We inspect doors, locks and access points for changes, damage or signs that require attention.',
+        alt:
+          'Entrance door with damage around the lock, illustrating a property security check',
+      },
+      {
+        image: '/bathroom-leak.webp',
+        title: 'Water & leaks',
+        text:
+          'We observe taps, sanitary fixtures and visible signs that may indicate water loss or infiltration.',
+        alt:
+          'Dripping bathroom tap illustrating a water-leak check',
+      },
+      {
+        image: '/ac-filters.webp',
+        title: 'Air conditioning',
+        text:
+          'We carry out a basic functional check and observe the visible condition of the filters and indoor unit.',
+        alt:
+          'Air-conditioning unit with the cover open and visibly dirty filters',
+      },
+      {
+        image: '/kitchen-check.webp',
+        title: 'Installations & hidden areas',
+        text:
+          'We inspect areas beneath sinks and visible connections for signs of moisture, leakage or other changes.',
+        alt:
+          'Area beneath a sink with visible plumbing and signs of water',
+      },
+      {
+        image: '/terrace-check.webp',
+        title: 'Exterior & terrace',
+        text:
+          'We check drainage, standing water and the effects of rain or wind on exterior areas.',
+        alt:
+          'Terrace with standing water and drainage partially blocked by leaves',
+      },
+      {
+        image: '/living-humidity.webp',
+        title: 'Humidity & indoor climate',
+        text:
+          'We monitor visible signs of damp, condensation or mould and compare them with previous observations.',
+        alt:
+          'Interior corner with visible signs of damp and mould',
+      },
+    ],
+
+    reportTitle: 'Every observation is documented.',
+    reportText:
+      'Photographs, relevant readings and recommendations from each visit contribute to the property’s digital history.',
+    preventionTitle: 'We do not look only for obvious problems.',
+    preventionText:
+      'The aim is to notice changes early enough for the owner to decide what action should be taken.',
   },
 
-  {
-    src: "/Bucatarie.jpg",
-    title: "Bucătărie & apă",
-    label: "BUCĂTĂRIE",
-    description:
-      "Verificăm punctele de apă, chiuveta, robinetele și eventualele semne de scurgere sau deteriorare.",
-    alt: "Bucătărie într-o proprietate",
-    icon: "kitchen",
-  },
+  es: {
+    topper: 'QUÉ MONITORIZAMOS EN LA PRÁCTICA',
+    heading:
+      'Los pequeños detalles pueden señalar problemas antes de que resulten costosos.',
+    intro:
+      'Durante nuestras visitas revisamos y documentamos zonas que pueden pasar fácilmente desapercibidas cuando una propiedad permanece desocupada.',
 
-  {
-    src: "/AC.jpg",
-    title: "Climat interior & AC",
-    label: "AER CONDIȚIONAT",
-    description:
-      "Verificăm funcționarea de bază a aerului condiționat și observăm condițiile relevante ale climatului interior.",
-    alt: "Cameră cu instalație de aer condiționat",
-    icon: "ac",
-  },
+    cards: [
+      {
+        image: '/door-damage.webp',
+        title: 'Acceso y seguridad',
+        text:
+          'Inspeccionamos puertas, cerraduras y puntos de acceso para detectar cambios, daños o señales que requieran atención.',
+        alt:
+          'Puerta de entrada con daños alrededor de la cerradura, ejemplo de revisión de seguridad',
+      },
+      {
+        image: '/bathroom-leak.webp',
+        title: 'Agua y fugas',
+        text:
+          'Observamos grifos, sanitarios y señales visibles que puedan indicar pérdidas de agua o infiltraciones.',
+        alt:
+          'Grifo de baño que gotea, ejemplo de revisión de una posible fuga de agua',
+      },
+      {
+        image: '/ac-filters.webp',
+        title: 'Aire acondicionado',
+        text:
+          'Realizamos una comprobación funcional básica y observamos el estado visible de los filtros y de la unidad interior.',
+        alt:
+          'Unidad de aire acondicionado abierta con filtros visiblemente sucios',
+      },
+      {
+        image: '/kitchen-check.webp',
+        title: 'Instalaciones y zonas ocultas',
+        text:
+          'Inspeccionamos las zonas bajo los fregaderos y las conexiones visibles para detectar humedad, fugas u otros cambios.',
+        alt:
+          'Zona bajo un fregadero con tuberías visibles y señales de agua',
+      },
+      {
+        image: '/terrace-check.webp',
+        title: 'Exterior y terraza',
+        text:
+          'Revisamos el drenaje, las acumulaciones de agua y los efectos de la lluvia o el viento sobre las zonas exteriores.',
+        alt:
+          'Terraza con agua acumulada y drenaje parcialmente obstruido por hojas',
+      },
+      {
+        image: '/living-humidity.webp',
+        title: 'Humedad y clima interior',
+        text:
+          'Seguimos las señales visibles de humedad, condensación o moho y las comparamos con observaciones anteriores.',
+        alt:
+          'Esquina interior con señales visibles de humedad y moho',
+      },
+    ],
 
-  {
-    src: "/Terasa.jpg",
-    title: "Terasă & exterior",
-    label: "TERASĂ",
-    description:
-      "Observăm starea terasei, mobilierului exterior, pergolelor, drenajului și zonelor expuse vremii.",
-    alt: "Terasă exterioară a unei proprietăți",
-    icon: "terrace",
+    reportTitle: 'Cada observación queda documentada.',
+    reportText:
+      'Las fotografías, los valores relevantes y las recomendaciones de cada visita contribuyen al historial digital de la propiedad.',
+    preventionTitle: 'No buscamos únicamente problemas evidentes.',
+    preventionText:
+      'El objetivo es detectar los cambios con suficiente antelación para que el propietario pueda decidir qué medidas tomar.',
   },
+};
 
-  {
-    src: "/living.jpg",
-    title: "Interior & stare generală",
-    label: "LIVING",
-    description:
-      "Urmărim starea generală a încăperilor, mobilierului, ferestrelor și eventualele schimbări vizibile în timp.",
-    alt: "Living al unei proprietăți",
-    icon: "home",
-  },
-];
+const t = translations[lang];
 ---
 
 <section
-  id="ce-verificam"
-  class="
-    bg-[#F7FAFA]
-    py-14
-    sm:py-16
-    md:py-20
-    font-heading
-    border-b
-    border-[#D8E1E5]
-  "
+  id="galerie"
+  class="bg-[#F7FAFA] py-14 sm:py-16 md:py-20 font-heading border-b border-[#D8E1E5]"
 >
-  <div
-    class="
-      mx-auto
-      max-w-site
-      px-4
-      sm:px-6
-      lg:px-8
-    "
-  >
+  <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
 
-    <!-- =====================================================
-         TITLU
-    ====================================================== -->
-
-    <div
-      class="
-        mx-auto
-        max-w-4xl
-        text-center
-        mb-10
-        sm:mb-14
-      "
-    >
-
+    <!-- INTRO -->
+    <div class="max-w-4xl mb-10 sm:mb-12">
       <p
         class="
           text-sm
@@ -110,28 +229,27 @@ const areas = [
           mb-3
         "
       >
-        CE VERIFICĂM ÎN PRACTICĂ
+        {t.topper}
       </p>
 
       <h2
         class="
-          text-[28px]
+          text-[30px]
           sm:text-4xl
           lg:text-[42px]
           font-bold
           text-[#0E3846]
           tracking-tight
-          leading-[1.15]
+          leading-[1.13]
         "
       >
-        O proprietate se protejează punct cu punct.
+        {t.heading}
       </h2>
 
       <p
         class="
           mt-5
           max-w-3xl
-          mx-auto
           text-base
           sm:text-lg
           text-[#526B74]
@@ -139,401 +257,198 @@ const areas = [
           sm:leading-8
         "
       >
-        Fiecare vizită urmărește zone concrete ale proprietății.
-        Nu ne limităm la o privire generală, ci documentăm elementele
-        care pot indica schimbări, uzură sau situații ce necesită atenție.
+        {t.intro}
       </p>
-
     </div>
 
-
-    <!-- =====================================================
-         GRID
-    ====================================================== -->
-
-    <div
-      class="
-        grid
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-3
-        gap-5
-        lg:gap-6
-      "
-    >
-
-      {areas.map((area) => (
-
+    <!-- VISUAL GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {t.cards.map((card) => (
         <article
           class="
             group
             overflow-hidden
             rounded-2xl
-            bg-white
             border
             border-[#D1E0E5]
-            shadow-[0_8px_22px_rgba(14,56,70,0.08)]
+            bg-white
+            shadow-[0_5px_18px_rgba(14,56,70,0.07)]
             transition-all
             duration-300
             hover:-translate-y-1
-            hover:shadow-[0_15px_32px_rgba(14,56,70,0.13)]
+            hover:shadow-[0_14px_32px_rgba(14,56,70,0.12)]
           "
         >
-
-          <!-- =================================================
-               FOTO
-          ================================================== -->
-
-          <div
-            class="
-              relative
-              aspect-[4/3]
-              overflow-hidden
-              bg-[#E6EFF2]
-            "
-          >
-
-            <!-- Placeholder vizibil până încarci poza -->
-            <div
-              class="
-                absolute
-                inset-0
-                flex
-                flex-col
-                items-center
-                justify-center
-                bg-[#EAF3F5]
-                text-[#5E7A84]
-                px-6
-                text-center
-              "
-              data-placeholder
-            >
-
-              <!-- ICON PLACEHOLDER -->
-              <div
-                class="
-                  w-14
-                  h-14
-                  rounded-full
-                  bg-white
-                  border
-                  border-[#CADCE2]
-                  flex
-                  items-center
-                  justify-center
-                  text-[#0E3846]
-                  shadow-sm
-                  mb-3
-                "
-              >
-
-                {area.icon === "door" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    class="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M6 21V4a1 1 0 011-1h10a1 1 0 011 1v17"
-                      stroke-width="1.7"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M3 21h18"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
-                    <circle
-                      cx="14.5"
-                      cy="12"
-                      r="1"
-                      fill="currentColor"
-                      stroke="none"
-                    />
-                  </svg>
-                )}
-
-                {area.icon === "water" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    class="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M12 3.5c-2.8 3.7-5.2 6.5-5.2 9.5a5.2 5.2 0 0010.4 0c0-3-2.4-5.8-5.2-9.5z"
-                      stroke-width="1.7"
-                    />
-                  </svg>
-                )}
-
-                {area.icon === "kitchen" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    class="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M4 10h16v10H4zM8 10V6h5M13 6h3"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                )}
-
-                {area.icon === "ac" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    class="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <rect
-                      x="3"
-                      y="5"
-                      width="18"
-                      height="7"
-                      rx="2"
-                      stroke-width="1.7"
-                    />
-                    <path
-                      d="M7 16c1 0 2 .7 2 2M12 15c0 1.5 1 2.5 2.5 2.5M17 16c-1 0-2 .7-2 2"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                )}
-
-                {area.icon === "terrace" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    class="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M3 12h18M5 12v7M19 12v7M8 8h8l2 4H6l2-4z"
-                      stroke-width="1.7"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                )}
-
-                {area.icon === "home" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    class="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                )}
-
-              </div>
-
-              <p
-                class="
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.12em]
-                "
-              >
-                FOTO {area.label}
-              </p>
-
-            </div>
-
-
-            <!-- Imaginea reală -->
+          <div class="relative overflow-hidden aspect-[4/3] bg-[#EAF1F3]">
             <img
-              src={area.src}
-              alt={area.alt}
+              src={card.image}
+              alt={card.alt}
               loading="lazy"
               decoding="async"
-              data-gallery-image
               class="
-                relative
-                z-10
-                w-full
+                block
                 h-full
+                w-full
                 object-cover
                 transition-transform
-                duration-700
-                group-hover:scale-[1.04]
+                duration-500
+                group-hover:scale-[1.025]
               "
             />
 
-
-            <!-- LABEL PE FOTO -->
             <div
               class="
                 absolute
-                z-20
-                left-4
-                top-4
-                rounded-lg
-                bg-[#0E3846]/95
-                backdrop-blur-sm
-                px-3
-                py-2
-                shadow-sm
+                inset-x-0
+                bottom-0
+                h-20
+                bg-gradient-to-t
+                from-[#071F28]/35
+                to-transparent
+                pointer-events-none
               "
-            >
-              <p
-                class="
-                  text-[10px]
-                  sm:text-[11px]
-                  font-bold
-                  uppercase
-                  tracking-[0.12em]
-                  text-white
-                "
-              >
-                {area.label}
-              </p>
-            </div>
-
+              aria-hidden="true"
+            ></div>
           </div>
 
-
-          <!-- =================================================
-               TEXT
-          ================================================== -->
-
-          <div
-            class="
-              p-5
-              sm:p-6
-            "
-          >
+          <div class="p-5 sm:p-6">
+            <div class="mb-3 h-1 w-10 rounded-full bg-[#5B9EB5]"></div>
 
             <h3
               class="
-                text-xl
+                text-lg
+                sm:text-xl
                 font-bold
                 text-[#0E3846]
                 leading-tight
               "
             >
-              {area.title}
+              {card.title}
             </h3>
 
             <p
               class="
                 mt-3
-                text-base
+                text-sm
+                sm:text-[15px]
                 text-[#526B74]
-                leading-7
+                leading-6
               "
             >
-              {area.description}
+              {card.text}
             </p>
-
           </div>
-
         </article>
-
       ))}
-
     </div>
 
-
-    <!-- =====================================================
-         CONCLUZIE
-    ====================================================== -->
-
+    <!-- BOTTOM MESSAGE -->
     <div
       class="
-        mt-9
-        max-w-3xl
-        mx-auto
-        text-center
+        mt-8
+        sm:mt-10
+        grid
+        grid-cols-1
+        lg:grid-cols-2
+        gap-px
+        overflow-hidden
+        rounded-2xl
+        border
+        border-[#C9DDE3]
+        bg-[#C9DDE3]
       "
     >
+      <div class="bg-[#EAF4F6] p-6 sm:p-7">
+        <div class="flex items-start gap-4">
+          <div
+            class="
+              flex
+              h-11
+              w-11
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              text-[#0E3846]
+              shadow-sm
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="h-5 w-5"
+              aria-hidden="true"
+            >
+              <rect x="5" y="3" width="14" height="18" rx="2" stroke-width="1.8" />
+              <path
+                d="M8.5 8h7M8.5 12h7M8.5 16h4.5"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
 
-      <p
-        class="
-          text-base
-          sm:text-[17px]
-          text-[#405963]
-          leading-7
-        "
-      >
-        Aceste verificări sunt adaptate nivelului de serviciu contractat și
-        caracteristicilor fiecărei proprietăți.
-      </p>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-[#0E3846]">
+              {t.reportTitle}
+            </h3>
+            <p class="mt-2 text-sm sm:text-[15px] leading-6 text-[#526B74]">
+              {t.reportText}
+            </p>
+          </div>
+        </div>
+      </div>
 
+      <div class="bg-[#EAF4F6] p-6 sm:p-7">
+        <div class="flex items-start gap-4">
+          <div
+            class="
+              flex
+              h-11
+              w-11
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              text-[#0E3846]
+              shadow-sm
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="h-5 w-5"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3l7 3v5c0 4.5-2.7 8-7 10-4.3-2-7-5.5-7-10V6l7-3z"
+                stroke-width="1.8"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9 12l2 2 4-4"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-[#0E3846]">
+              {t.preventionTitle}
+            </h3>
+            <p class="mt-2 text-sm sm:text-[15px] leading-6 text-[#526B74]">
+              {t.preventionText}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
-
-
-<!-- =========================================================
-     Dacă imaginea încă nu există, păstrăm placeholder-ul
-========================================================== -->
-
-<script>
-  function initialiseInspectionGallery() {
-    document
-      .querySelectorAll<HTMLImageElement>("[data-gallery-image]")
-      .forEach((img) => {
-        const parent = img.parentElement;
-        if (!parent) return;
-
-        const placeholder =
-          parent.querySelector<HTMLElement>("[data-placeholder]");
-
-        const showImage = () => {
-          if (placeholder) {
-            placeholder.style.display = "none";
-          }
-
-          img.style.display = "block";
-        };
-
-        const showPlaceholder = () => {
-          img.style.display = "none";
-
-          if (placeholder) {
-            placeholder.style.display = "flex";
-          }
-        };
-
-        if (img.complete) {
-          if (img.naturalWidth > 0) {
-            showImage();
-          } else {
-            showPlaceholder();
-          }
-        } else {
-          img.addEventListener("load", showImage, { once: true });
-          img.addEventListener("error", showPlaceholder, { once: true });
-        }
-      });
-  }
-
-  initialiseInspectionGallery();
-
-  document.addEventListener(
-    "astro:after-swap",
-    initialiseInspectionGallery
-  );
-</script>
