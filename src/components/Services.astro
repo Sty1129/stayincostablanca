@@ -39,7 +39,7 @@ const translations = {
     requestAssessment: 'SOLICITĂ EVALUAREA PROPRIETĂȚII',
     viewIncludes: 'VEZI TOT CE INCLUDE',
     recommended:
-      'RECOMANDAT PROPRIETARILOR CARE LOCUIESC ÎN STRĂINĂTATE',
+      'RECOMANDAT PENTRU PROPRIETARII DIN STRĂINĂTATE',
 
     year: '/ an',
     month: '/ lună',
@@ -139,7 +139,7 @@ const translations = {
     requestAssessment: 'REQUEST A PROPERTY ASSESSMENT',
     viewIncludes: 'SEE EVERYTHING INCLUDED IN',
     recommended:
-      'RECOMMENDED FOR OWNERS WHO LIVE ABROAD',
+      'RECOMMENDED FOR OWNERS ABROAD',
 
     year: '/ year',
     month: '/ month',
@@ -239,7 +239,7 @@ const translations = {
     requestAssessment: 'SOLICITA LA EVALUACIÓN DE TU PROPIEDAD',
     viewIncludes: 'VER TODO LO QUE INCLUYE',
     recommended:
-      'RECOMENDADO PARA PROPIETARIOS QUE VIVEN EN EL EXTRANJERO',
+      'RECOMENDADO PARA PROPIETARIOS EN EL EXTRANJERO',
 
     year: '/ año',
     month: '/ mes',
@@ -388,19 +388,21 @@ const t = translations[lang];
               class="
                 absolute
                 -top-4
-                left-1/2
-                -translate-x-1/2
+                left-4
+                right-4
+                z-10
                 bg-[#0E3846]
                 text-white
-                px-5
+                px-4
                 py-2
                 rounded-full
-                text-xs
-                sm:text-[13px]
+                text-[11px]
+                sm:text-xs
                 font-bold
                 uppercase
-                tracking-[0.08em]
-                whitespace-nowrap
+                tracking-[0.06em]
+                text-center
+                leading-snug
                 shadow-md
               "
             >
@@ -409,7 +411,7 @@ const t = translations[lang];
           )}
 
           <div>
-            <div class:list={['mb-5', pkg.featured && 'pt-4']}>
+            <div class:list={['mb-5', pkg.featured && 'pt-6']}>
               <h3
                 class="
                   text-2xl
