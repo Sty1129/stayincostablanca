@@ -1,68 +1,220 @@
-
 ---
 // src/components/FAQ.astro
 
-const faqs = [
-  {
-    question: "Ce înseamnă serviciul de Key Holding?",
-    answer:
-      "Păstrăm în siguranță cheile proprietății și le folosim exclusiv pentru serviciile convenite cu tine: vizite programate, verificări, acces autorizat sau alte intervenții solicitate. Cheile sunt gestionate printr-un sistem de identificare care evită asocierea evidentă dintre cheie și adresa proprietății.",
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const routes = {
+  ro: {
+    contact: '/contact',
+  },
+  en: {
+    contact: '/en/contact',
+  },
+  es: {
+    contact: '/es/contacto',
+  },
+};
+
+const r = routes[lang];
+
+const translations = {
+  ro: {
+    topper: 'ÎNTREBĂRI FRECVENTE',
+    heading:
+      'Lucrurile pe care ai vrea să le știi înainte să ne încredințezi proprietatea.',
+    intro:
+      'Am răspuns simplu la cele mai importante întrebări despre key holding, vizite, rapoarte și administrarea proprietății.',
+    moreQuestion: 'Ai o întrebare care nu apare aici?',
+    contactLabel: 'DISCUTĂ CU NOI',
+
+    faqs: [
+      {
+        question: 'Ce înseamnă serviciul de Key Holding?',
+        answer:
+          'Păstrăm în siguranță cheile proprietății și le folosim exclusiv pentru serviciile convenite cu tine: vizite programate, verificări, acces autorizat sau alte intervenții solicitate. Cheile sunt gestionate printr-un sistem de identificare care evită asocierea evidentă dintre cheie și adresa proprietății.',
+      },
+      {
+        question: 'Ce verificați în timpul unei vizite?',
+        answer:
+          'În funcție de pachet, verificăm accesul și securitatea, apa și instalațiile sanitare, tabloul electric, funcționarea de bază a aerului condiționat, semnele vizibile de umezeală sau infiltrații, contoarele, interiorul și zonele exterioare. Vizita este documentată, astfel încât starea proprietății să poată fi urmărită în timp.',
+      },
+      {
+        question: 'Primesc un raport după fiecare vizită?',
+        answer:
+          'Da. Vizitele sunt documentate digital, cu fotografii și observații relevante. Scopul nu este doar să confirmăm că „totul este în regulă”, ci să construim un istoric al proprietății și să putem identifica schimbările care necesită atenție.',
+      },
+      {
+        question: 'Ce se întâmplă dacă descoperiți o problemă?',
+        answer:
+          'Documentăm situația și te informăm. Dacă este necesară o intervenție, stabilim împreună următorii pași. Nu comandăm lucrări sau reparații în numele tău fără acord, exceptând situațiile și limitele convenite în prealabil.',
+      },
+      {
+        question: 'Reparațiile și materialele sunt incluse în pachet?',
+        answer:
+          'Nu. Pachetele acoperă serviciile de monitorizare, verificare, documentare și coordonare prevăzute pentru nivelul ales. Materialele, piesele, manopera tehnicienilor și reparațiile efective se facturează separat. Unele pachete includ un număr limitat de servicii de acces și coordonare pentru tehnicieni.',
+      },
+      {
+        question: 'Ce înseamnă verificarea după vreme severă?',
+        answer:
+          'După un eveniment meteo local relevant, putem efectua o verificare suplimentară a proprietății pentru a observa eventuale probleme de acces, infiltrații, deteriorări exterioare sau alte schimbări vizibile. Numărul de verificări incluse anual depinde de pachetul contractat.',
+      },
+      {
+        question: 'Pot începe colaborarea chiar dacă nu sunt în Spania?',
+        answer:
+          'Da, fără probleme. Prima evaluare a proprietății (acces, chei, stare inițială, fotografii) se poate face fără prezența ta — cheile pot ajunge prin curier, printr-o persoană de încredere sau direct în cutia de acces cu cod. Stabilim împreună ce variantă ți se potrivește.',
+      },
+      {
+        question: 'Serviciile sunt potrivite pentru apartamente, bungalow-uri și vile?',
+        answer:
+          'Da. Pachetele sunt concepute pentru diferite tipuri de proprietăți. Prețurile publicate se aplică proprietăților cu o configurație standard; proprietățile foarte mari, cu multe zone exterioare sau cu o complexitate tehnică ridicată pot necesita o evaluare și o ofertă personalizată.',
+      },
+      {
+        question: 'Curățenia și pregătirea casei înainte de sosire sunt incluse?',
+        answer:
+          'Curățenia, spălătoria, cumpărăturile și consumabilele nu sunt incluse automat în pachetele standard. ECO-PREMIUM include un număr limitat de servicii de pregătire a proprietății înainte de sosire, iar alte servicii pot fi solicitate separat.',
+      },
+      {
+        question: 'În ce zone oferiți serviciile?',
+        answer:
+          'Activitatea noastră este concentrată în Orihuela Costa și Torrevieja, astfel încât să putem păstra caracterul local al serviciului și să gestionăm eficient vizitele și coordonarea intervențiilor.',
+      },
+    ],
   },
 
-  {
-    question: "Ce verificați în timpul unei vizite?",
-    answer:
-      "În funcție de pachet, verificăm accesul și securitatea, apa și instalațiile sanitare, tabloul electric, funcționarea de bază a aerului condiționat, semnele vizibile de umezeală sau infiltrații, contoarele, interiorul și zonele exterioare. Vizita este documentată, astfel încât starea proprietății să poată fi urmărită în timp.",
+  en: {
+    topper: 'FREQUENTLY ASKED QUESTIONS',
+    heading:
+      'What you may want to know before entrusting us with your property.',
+    intro:
+      'Clear answers to the most important questions about key holding, property visits, reports and property management.',
+    moreQuestion: 'Do you have a question that is not answered here?',
+    contactLabel: 'TALK TO US',
+
+    faqs: [
+      {
+        question: 'What does the Key Holding service mean?',
+        answer:
+          'We keep your property keys secure and use them exclusively for the services agreed with you: scheduled visits, checks, authorised access or other requested interventions. Keys are managed through an identification system designed to avoid an obvious link between the key and the property address.',
+      },
+      {
+        question: 'What do you check during a property visit?',
+        answer:
+          'Depending on the plan, we check access and security, water and sanitary installations, the electrical panel, basic air-conditioning operation, visible signs of damp or water ingress, meters, interior areas and exterior spaces. Each visit is documented so the condition of the property can be tracked over time.',
+      },
+      {
+        question: 'Do I receive a report after every visit?',
+        answer:
+          'Yes. Visits are documented digitally with photographs and relevant observations. The purpose is not simply to confirm that “everything is fine”, but to build a history of the property and identify changes that require attention.',
+      },
+      {
+        question: 'What happens if you discover a problem?',
+        answer:
+          'We document the situation and inform you. If an intervention is required, we agree the next steps with you. We do not order works or repairs on your behalf without your approval, except within situations and limits agreed in advance.',
+      },
+      {
+        question: 'Are repairs and materials included in the plan?',
+        answer:
+          'No. The plans cover the monitoring, checking, documentation and coordination services included at the selected level. Materials, parts, technicians’ labour and actual repairs are charged separately. Some plans include a limited number of contractor access and coordination services.',
+      },
+      {
+        question: 'What does a severe-weather check mean?',
+        answer:
+          'After a relevant local weather event, we can carry out an additional property check to look for possible access issues, water ingress, exterior damage or other visible changes. The number of severe-weather checks included each year depends on the selected plan.',
+      },
+      {
+        question: 'Can I start working with you even if I am not in Spain?',
+        answer:
+          'Yes, absolutely. The initial property assessment (access, keys, initial condition and photographs) can be completed without you being present — the keys can be sent by courier, handed over by someone you trust or left directly in a coded access box. We agree together which option works best for you.',
+      },
+      {
+        question: 'Are the services suitable for apartments, bungalows and villas?',
+        answer:
+          'Yes. The plans are designed for different types of properties. Published prices apply to properties with a standard configuration; very large properties, properties with extensive exterior areas or properties with greater technical complexity may require an assessment and a personalised quotation.',
+      },
+      {
+        question: 'Are cleaning and pre-arrival property preparation included?',
+        answer:
+          'Cleaning, laundry, shopping and consumables are not automatically included in the standard plans. ECO-PREMIUM includes a limited number of pre-arrival property preparation services, while other services can be requested separately.',
+      },
+      {
+        question: 'Which areas do you cover?',
+        answer:
+          'Our activity is focused on Orihuela Costa and Torrevieja, allowing us to maintain the local nature of the service and manage visits and intervention coordination efficiently.',
+      },
+    ],
   },
 
-  {
-    question: "Primesc un raport după fiecare vizită?",
-    answer:
-      "Da. Vizitele sunt documentate digital, cu fotografii și observații relevante. Scopul nu este doar să confirmăm că „totul este în regulă”, ci să construim un istoric al proprietății și să putem identifica schimbările care necesită atenție.",
-  },
+  es: {
+    topper: 'PREGUNTAS FRECUENTES',
+    heading:
+      'Lo que quizá quieras saber antes de confiarnos tu propiedad.',
+    intro:
+      'Respondemos de forma clara a las preguntas más importantes sobre custodia de llaves, visitas, informes y gestión de la propiedad.',
+    moreQuestion: '¿Tienes alguna pregunta que no aparece aquí?',
+    contactLabel: 'HABLA CON NOSOTROS',
 
-  {
-    question: "Ce se întâmplă dacă descoperiți o problemă?",
-    answer:
-      "Documentăm situația și te informăm. Dacă este necesară o intervenție, stabilim împreună următorii pași. Nu comandăm lucrări sau reparații în numele tău fără acord, exceptând situațiile și limitele convenite în prealabil.",
+    faqs: [
+      {
+        question: '¿Qué significa el servicio de custodia de llaves?',
+        answer:
+          'Custodiamos las llaves de tu propiedad de forma segura y las utilizamos exclusivamente para los servicios acordados contigo: visitas programadas, revisiones, accesos autorizados u otras intervenciones solicitadas. Las llaves se gestionan mediante un sistema de identificación que evita una asociación evidente entre la llave y la dirección de la propiedad.',
+      },
+      {
+        question: '¿Qué revisáis durante una visita?',
+        answer:
+          'Según el plan contratado, revisamos el acceso y la seguridad, el agua y las instalaciones sanitarias, el cuadro eléctrico, el funcionamiento básico del aire acondicionado, las señales visibles de humedad o infiltraciones, los contadores, el interior y las zonas exteriores. Cada visita queda documentada para poder seguir la evolución del estado de la propiedad.',
+      },
+      {
+        question: '¿Recibo un informe después de cada visita?',
+        answer:
+          'Sí. Las visitas se documentan digitalmente con fotografías y observaciones relevantes. El objetivo no es solo confirmar que “todo está bien”, sino crear un historial de la propiedad e identificar cambios que requieran atención.',
+      },
+      {
+        question: '¿Qué ocurre si detectáis un problema?',
+        answer:
+          'Documentamos la situación y te informamos. Si es necesaria una intervención, acordamos contigo los siguientes pasos. No encargamos trabajos ni reparaciones en tu nombre sin tu autorización, salvo dentro de las situaciones y límites acordados previamente.',
+      },
+      {
+        question: '¿Las reparaciones y los materiales están incluidos en el plan?',
+        answer:
+          'No. Los planes cubren los servicios de monitorización, revisión, documentación y coordinación correspondientes al nivel contratado. Los materiales, piezas, mano de obra de técnicos y reparaciones efectivas se facturan por separado. Algunos planes incluyen un número limitado de servicios de acceso y coordinación con técnicos.',
+      },
+      {
+        question: '¿Qué significa una revisión después de condiciones meteorológicas severas?',
+        answer:
+          'Después de un episodio meteorológico local relevante, podemos realizar una revisión adicional de la propiedad para detectar posibles problemas de acceso, infiltraciones, daños exteriores u otros cambios visibles. El número de revisiones incluidas al año depende del plan contratado.',
+      },
+      {
+        question: '¿Puedo empezar a trabajar con vosotros aunque no esté en España?',
+        answer:
+          'Sí, por supuesto. La primera evaluación de la propiedad (acceso, llaves, estado inicial y fotografías) puede realizarse sin tu presencia: las llaves pueden llegar por mensajería, entregarlas una persona de confianza o dejarse directamente en una caja de acceso con código. Acordamos contigo qué opción se adapta mejor a tu situación.',
+      },
+      {
+        question: '¿Los servicios son adecuados para apartamentos, bungalows y villas?',
+        answer:
+          'Sí. Los planes están diseñados para distintos tipos de propiedades. Los precios publicados se aplican a propiedades con una configuración estándar; las propiedades muy grandes, con amplias zonas exteriores o con una mayor complejidad técnica pueden requerir una evaluación y un presupuesto personalizado.',
+      },
+      {
+        question: '¿La limpieza y la preparación de la vivienda antes de la llegada están incluidas?',
+        answer:
+          'La limpieza, lavandería, compras y consumibles no están incluidos automáticamente en los planes estándar. ECO-PREMIUM incluye un número limitado de servicios de preparación de la propiedad antes de la llegada, mientras que otros servicios pueden solicitarse por separado.',
+      },
+      {
+        question: '¿En qué zonas ofrecéis los servicios?',
+        answer:
+          'Nuestra actividad se concentra en Orihuela Costa y Torrevieja, lo que nos permite mantener el carácter local del servicio y gestionar eficazmente las visitas y la coordinación de intervenciones.',
+      },
+    ],
   },
+};
 
-  {
-    question: "Reparațiile și materialele sunt incluse în pachet?",
-    answer:
-      "Nu. Pachetele acoperă serviciile de monitorizare, verificare, documentare și coordonare prevăzute pentru nivelul ales. Materialele, piesele, manopera tehnicienilor și reparațiile efective se facturează separat. Unele pachete includ un număr limitat de servicii de acces și coordonare pentru tehnicieni.",
-  },
-
-  {
-    question: "Ce înseamnă verificarea după vreme severă?",
-    answer:
-      "După un eveniment meteo local relevant, putem efectua o verificare suplimentară a proprietății pentru a observa eventuale probleme de acces, infiltrații, deteriorări exterioare sau alte schimbări vizibile. Numărul de verificări incluse anual depinde de pachetul contractat.",
-  },
-
-  {
-    question: "Trebuie să fiu în Spania pentru a începe serviciul?",
-    answer:
-      "Nu neapărat. La început realizăm Property Onboarding & Baseline Assessment, când înregistrăm accesul, cheile, informațiile tehnice și starea inițială a proprietății. Modul de predare a cheilor și accesului poate fi stabilit în funcție de situația fiecărui proprietar.",
-  },
-
-  {
-    question: "Serviciile sunt potrivite pentru apartamente, bungalow-uri și vile?",
-    answer:
-      "Da. Pachetele sunt concepute pentru diferite tipuri de proprietăți. Prețurile publicate se aplică proprietăților cu o configurație standard; proprietățile foarte mari, cu multe zone exterioare sau cu o complexitate tehnică ridicată pot necesita o evaluare și o ofertă personalizată.",
-  },
-
-  {
-    question: "Curățenia și pregătirea casei înainte de sosire sunt incluse?",
-    answer:
-      "Curățenia, spălătoria, cumpărăturile și consumabilele nu sunt incluse automat în pachetele standard. ECO-PREMIUM include un număr limitat de servicii de pregătire a proprietății înainte de sosire, iar alte servicii pot fi solicitate separat.",
-  },
-
-  {
-    question: "În ce zone oferiți serviciile?",
-    answer:
-      "Activitatea noastră este concentrată în Orihuela Costa și Torrevieja, astfel încât să putem păstra caracterul local al serviciului și să gestionăm eficient vizitele și coordonarea intervențiilor.",
-  },
-];
+const t = translations[lang];
+const faqs = t.faqs;
 ---
 
 <section
@@ -87,10 +239,7 @@ const faqs = [
     "
   >
 
-    <!-- =====================================================
-         TITLU
-    ====================================================== -->
-
+    <!-- TITLE -->
     <div
       class="
         mx-auto
@@ -100,7 +249,6 @@ const faqs = [
         sm:mb-12
       "
     >
-
       <p
         class="
           text-sm
@@ -111,9 +259,8 @@ const faqs = [
           mb-3
         "
       >
-        ÎNTREBĂRI FRECVENTE
+        {t.topper}
       </p>
-
 
       <h2
         class="
@@ -126,9 +273,8 @@ const faqs = [
           leading-[1.15]
         "
       >
-        Lucrurile pe care ai vrea să le știi înainte să ne încredințezi proprietatea.
+        {t.heading}
       </h2>
-
 
       <p
         class="
@@ -142,17 +288,11 @@ const faqs = [
           sm:leading-8
         "
       >
-        Am răspuns simplu la cele mai importante întrebări despre
-        key holding, vizite, rapoarte și administrarea proprietății.
+        {t.intro}
       </p>
-
     </div>
 
-
-    <!-- =====================================================
-         ACCORDION
-    ====================================================== -->
-
+    <!-- ACCORDION -->
     <div
       class="
         mx-auto
@@ -160,9 +300,7 @@ const faqs = [
         space-y-3
       "
     >
-
       {faqs.map((faq, index) => (
-
         <details
           class="
             group
@@ -178,7 +316,6 @@ const faqs = [
             open:shadow-[0_8px_24px_rgba(14,56,70,0.08)]
           "
         >
-
           <summary
             class="
               flex
@@ -196,8 +333,6 @@ const faqs = [
               [&::-webkit-details-marker]:hidden
             "
           >
-
-            <!-- NUMĂR + ÎNTREBARE -->
             <div
               class="
                 flex
@@ -205,7 +340,6 @@ const faqs = [
                 gap-4
               "
             >
-
               <span
                 class="
                   flex
@@ -221,9 +355,8 @@ const faqs = [
                   text-[#0E3846]
                 "
               >
-                {String(index + 1).padStart(2, "0")}
+                {String(index + 1).padStart(2, '0')}
               </span>
-
 
               <h3
                 class="
@@ -236,11 +369,8 @@ const faqs = [
               >
                 {faq.question}
               </h3>
-
             </div>
 
-
-            <!-- PLUS -->
             <span
               class="
                 relative
@@ -272,11 +402,8 @@ const faqs = [
                 />
               </svg>
             </span>
-
           </summary>
 
-
-          <!-- RĂSPUNS -->
           <div
             class="
               px-5
@@ -285,7 +412,6 @@ const faqs = [
               sm:pb-6
             "
           >
-
             <div
               class="
                 ml-0
@@ -295,7 +421,6 @@ const faqs = [
                 pt-4
               "
             >
-
               <p
                 class="
                   text-base
@@ -307,29 +432,14 @@ const faqs = [
               >
                 {faq.answer}
               </p>
-
             </div>
-
           </div>
-
         </details>
-
       ))}
-
     </div>
 
-
-    <!-- =====================================================
-         MIC LINK CĂTRE CONTACT
-    ====================================================== -->
-
-    <div
-      class="
-        mt-9
-        text-center
-      "
-    >
-
+    <!-- CONTACT -->
+    <div class="mt-9 text-center">
       <p
         class="
           text-base
@@ -338,12 +448,11 @@ const faqs = [
           leading-7
         "
       >
-        Ai o întrebare care nu apare aici?
+        {t.moreQuestion}
       </p>
 
-
       <a
-        href="/contact"
+        href={r.contact}
         class="
           inline-flex
           items-center
@@ -357,11 +466,9 @@ const faqs = [
           transition-colors
         "
       >
-        DISCUTĂ CU NOI
-
+        {t.contactLabel}
         <span aria-hidden="true">→</span>
       </a>
-
     </div>
 
   </div>
