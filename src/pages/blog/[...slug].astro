@@ -5,17 +5,22 @@ import PostLayout from '../../layouts/PostLayout.astro';
 export async function getStaticPaths() {
   const posts = await getCollection(
     'blog',
-    ({ data }) => !data.draft
+    ({ data }) => !data.draft && data.lang === 'ro'
   );
 
-  return posts.map((post) => ({
-    params: {
-      slug: post.id,
-    },
-    props: {
-      post,
-    },
-  }));
+  return posts.map((post) => {
+    const slug = post.id.replace(/^ro\//, '');
+
+    return {
+      params: {
+        slug,
+      },
+
+      props: {
+        post,
+      },
+    };
+  });
 }
 
 const { post } = Astro.props;
