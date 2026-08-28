@@ -1,8 +1,145 @@
 ---
 // src/components/ReportMockup.astro
 //
-// Folosește logo-ul existent din:
+// Uses the existing logo from:
 // public/sicb.png
+
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const translations = {
+  ro: {
+    eyebrow: 'Raportare digitală',
+    heading: 'Fiecare vizită lasă o urmă digitală.',
+    intro:
+      'Nu primești doar o confirmare că totul este în regulă. Primești un raport structurat, cu status pentru zonele verificate, fotografii, valori relevante și recomandări clare.',
+
+    points: [
+      'Verificare punct cu punct: acces, utilități, climat și exterior',
+      'Fotografii documentate la fiecare vizită',
+      'Valori și observații comparabile în timp',
+      'Recomandări clare atunci când ceva necesită atenție',
+    ],
+
+    reportLabel: 'Raport vizită proprietate',
+    property: 'Apartament · Orihuela Costa',
+    date: '14 august 2026 · 10:42',
+    overall: '1 DE MONITORIZAT',
+
+    access: 'Acces & securitate',
+    water: 'Apă',
+    electricity: 'Electricitate',
+    ac: 'Aer condiționat',
+    indoorClimate: 'Climat interior',
+    exterior: 'Exterior',
+    warning: 'ATENȚIE',
+
+    humidity: 'Umiditate relativă',
+    before: 'înainte',
+    afterVentilation: 'după ventilație',
+
+    waterMeter: 'Contor apă',
+    meterNote: 'Fără variații neobișnuite',
+
+    photosAttached: 'Fotografii atașate',
+    photosCount: '8 fotografii',
+
+    recommendationLabel: 'Recomandare:',
+    recommendation: 'monitorizare la următoarea vizită.',
+
+    digitalReport: 'raport digital',
+  },
+
+  en: {
+    eyebrow: 'Digital reporting',
+    heading: 'Every visit leaves a digital record.',
+    intro:
+      'You receive more than a simple confirmation that everything is fine. You receive a structured report with the status of the areas checked, photographs, relevant readings and clear recommendations.',
+
+    points: [
+      'Point-by-point checks: access, utilities, indoor climate and exterior',
+      'Documented photographs at every visit',
+      'Readings and observations that can be compared over time',
+      'Clear recommendations when something requires attention',
+    ],
+
+    reportLabel: 'Property visit report',
+    property: 'Apartment · Orihuela Costa',
+    date: '14 August 2026 · 10:42',
+    overall: '1 TO MONITOR',
+
+    access: 'Access & security',
+    water: 'Water',
+    electricity: 'Electricity',
+    ac: 'Air conditioning',
+    indoorClimate: 'Indoor climate',
+    exterior: 'Exterior',
+    warning: 'ATTENTION',
+
+    humidity: 'Relative humidity',
+    before: 'before',
+    afterVentilation: 'after ventilation',
+
+    waterMeter: 'Water meter',
+    meterNote: 'No unusual variations',
+
+    photosAttached: 'Attached photographs',
+    photosCount: '8 photographs',
+
+    recommendationLabel: 'Recommendation:',
+    recommendation: 'monitor again at the next visit.',
+
+    digitalReport: 'digital report',
+  },
+
+  es: {
+    eyebrow: 'Informes digitales',
+    heading: 'Cada visita deja un registro digital.',
+    intro:
+      'No recibes solo una confirmación de que todo está bien. Recibes un informe estructurado con el estado de las zonas revisadas, fotografías, valores relevantes y recomendaciones claras.',
+
+    points: [
+      'Revisión punto por punto: acceso, suministros, clima interior y exterior',
+      'Fotografías documentadas en cada visita',
+      'Valores y observaciones comparables a lo largo del tiempo',
+      'Recomendaciones claras cuando algo requiere atención',
+    ],
+
+    reportLabel: 'Informe de visita de la propiedad',
+    property: 'Apartamento · Orihuela Costa',
+    date: '14 de agosto de 2026 · 10:42',
+    overall: '1 PARA MONITORIZAR',
+
+    access: 'Acceso y seguridad',
+    water: 'Agua',
+    electricity: 'Electricidad',
+    ac: 'Aire acondicionado',
+    indoorClimate: 'Clima interior',
+    exterior: 'Exterior',
+    warning: 'ATENCIÓN',
+
+    humidity: 'Humedad relativa',
+    before: 'antes',
+    afterVentilation: 'después de ventilar',
+
+    waterMeter: 'Contador de agua',
+    meterNote: 'Sin variaciones inusuales',
+
+    photosAttached: 'Fotografías adjuntas',
+    photosCount: '8 fotografías',
+
+    recommendationLabel: 'Recomendación:',
+    recommendation: 'monitorizar de nuevo en la próxima visita.',
+
+    digitalReport: 'informe digital',
+  },
+};
+
+const t = translations[lang];
 ---
 
 <section id="raport-digital" class="report-section">
@@ -13,14 +150,12 @@
     ====================================================== -->
     <div class="intro">
 
-      <span class="eyebrow">Raportare digitală</span>
+      <span class="eyebrow">{t.eyebrow}</span>
 
-      <h2>Fiecare vizită lasă o urmă digitală.</h2>
+      <h2>{t.heading}</h2>
 
       <p class="intro-copy">
-        Nu primești doar o confirmare că totul este în regulă.
-        Primești un raport structurat, cu status pentru zonele verificate,
-        fotografii, valori relevante și recomandări clare.
+        {t.intro}
       </p>
 
       <ul class="intro-points">
@@ -28,28 +163,28 @@
         <li>
           <span class="dot"></span>
           <span>
-            Verificare punct cu punct: acces, utilități, climat și exterior
+            {t.points[0]}
           </span>
         </li>
 
         <li>
           <span class="dot"></span>
           <span>
-            Fotografii documentate la fiecare vizită
+            {t.points[1]}
           </span>
         </li>
 
         <li>
           <span class="dot"></span>
           <span>
-            Valori și observații comparabile în timp
+            {t.points[2]}
           </span>
         </li>
 
         <li>
           <span class="dot"></span>
           <span>
-            Recomandări clare atunci când ceva necesită atenție
+            {t.points[3]}
           </span>
         </li>
 
@@ -81,20 +216,20 @@
 
             <div class="id">
               <span class="mono-label">
-                Raport vizită proprietate
+                {t.reportLabel}
               </span>
 
-              <h3>Apartament · Orihuela Costa</h3>
+              <h3>{t.property}</h3>
 
               <span class="meta">
-                14 august 2026 · 10:42
+                {t.date}
               </span>
             </div>
 
           </div>
 
           <span class="badge-overall">
-            1 DE MONITORIZAT
+            {t.overall}
           </span>
 
         </div>
@@ -106,32 +241,32 @@
         <div class="checklist">
 
           <div class="row">
-            <span class="label">Acces &amp; securitate</span>
+            <span class="label">{t.access}</span>
             <span class="status ok">OK</span>
           </div>
 
           <div class="row">
-            <span class="label">Apă</span>
+            <span class="label">{t.water}</span>
             <span class="status ok">OK</span>
           </div>
 
           <div class="row">
-            <span class="label">Electricitate</span>
+            <span class="label">{t.electricity}</span>
             <span class="status ok">OK</span>
           </div>
 
           <div class="row">
-            <span class="label">Aer condiționat</span>
+            <span class="label">{t.ac}</span>
             <span class="status ok">OK</span>
           </div>
 
           <div class="row">
-            <span class="label">Climat interior</span>
-            <span class="status warn">ATENȚIE</span>
+            <span class="label">{t.indoorClimate}</span>
+            <span class="status warn">{t.warning}</span>
           </div>
 
           <div class="row">
-            <span class="label">Exterior</span>
+            <span class="label">{t.exterior}</span>
             <span class="status ok">OK</span>
           </div>
 
@@ -147,7 +282,7 @@
         <div class="humidity">
 
           <div class="block-label">
-            Umiditate relativă
+            {t.humidity}
           </div>
 
           <div class="humidity-bars">
@@ -161,7 +296,7 @@
               </div>
 
               <span class="tag">
-                înainte
+                {t.before}
               </span>
 
             </div>
@@ -181,7 +316,7 @@
               </div>
 
               <span class="tag">
-                după ventilație
+                {t.afterVentilation}
               </span>
 
             </div>
@@ -216,10 +351,10 @@
 
           <span class="meter-text">
 
-            <b>Contor apă</b>
+            <b>{t.waterMeter}</b>
 
             <span>
-              Fără variații neobișnuite
+              {t.meterNote}
             </span>
 
           </span>
@@ -233,7 +368,7 @@
         <div class="photos">
 
           <div class="block-label">
-            Fotografii atașate
+            {t.photosAttached}
           </div>
 
 
@@ -293,7 +428,7 @@
 
 
           <div class="photos-count">
-            8 fotografii
+            {t.photosCount}
           </div>
 
         </div>
@@ -307,8 +442,8 @@
           <span class="dot-icon"></span>
 
           <p>
-            <b>Recomandare:</b>
-            monitorizare la următoarea vizită.
+            <b>{t.recommendationLabel}</b>
+            {t.recommendation}
           </p>
 
         </div>
@@ -332,7 +467,7 @@
           </span>
 
           <span class="stamp">
-            raport digital
+            {t.digitalReport}
           </span>
 
         </div>
