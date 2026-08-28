@@ -3,6 +3,11 @@
 
 const currentLang = Astro.currentLocale || "ro";
 
+const lang =
+  currentLang === "en" || currentLang === "es"
+    ? currentLang
+    : "ro";
+
 const translations = {
   ro: {
     topper: "URMĂTORUL PAS",
@@ -31,9 +36,23 @@ const translations = {
     reassurance2: "Recommendation tailored to your property",
     reassurance3: "Orihuela Costa & Torrevieja",
   },
+
+  es: {
+    topper: "SIGUIENTE PASO",
+    heading: "¿Tienes una propiedad en Orihuela Costa o Torrevieja?",
+    description:
+      "Cuéntanos qué tipo de propiedad tienes y cuánto tiempo suele permanecer desocupada. Te recomendaremos el nivel de protección que mejor se adapte a las necesidades reales de la propiedad.",
+    primaryLabel: "SOLICITA LA EVALUACIÓN DE TU PROPIEDAD",
+    primaryHref: "/es/contacto",
+    secondaryLabel: "VER SERVICIOS Y PRECIOS",
+    secondaryHref: "/es/servicios",
+    reassurance1: "Primera conversación sin compromiso",
+    reassurance2: "Recomendación adaptada a tu propiedad",
+    reassurance3: "Orihuela Costa & Torrevieja",
+  },
 };
 
-const t = translations[currentLang] || translations.ro;
+const t = translations[lang];
 ---
 
 <section
