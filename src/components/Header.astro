@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+
 // src/components/Header.astro
 
 const currentLang = Astro.currentLocale || "ro";
@@ -196,17 +198,146 @@ const currentPageKey = getCurrentPageKey();
 
 
 /* =========================================================
-   LANGUAGE LINKS
-
-   Când utilizatorul schimbă limba,
-   încercăm să păstrăm aceeași pagină.
+   DEFAULT LANGUAGE LINKS
 ========================================================= */
 
-const languageLinks = {
+const defaultLanguageLinks = {
   ro: routes.ro[currentPageKey as keyof typeof routes.ro],
   en: routes.en[currentPageKey as keyof typeof routes.en],
   es: routes.es[currentPageKey as keyof typeof routes.es],
 };
+
+
+/* =========================================================
+   BLOG ARTICLE DETECTION
+========================================================= */
+
+function getCurrentBlogSlug() {
+  if (lang === "ro" && pathname.startsWith("/blog/")) {
+    return pathname
+      .replace(/^\/blog\//, "")
+      .replace(/\/$/, "");
+  }
+
+  if (lang === "en" && pathname.startsWith("/en/blog/")) {
+    return pathname
+      .replace(/^\/en\/blog\//, "")
+      .replace(/\/$/, "");
+  }
+
+  if (lang === "es" && pathname.startsWith("/es/blog/")) {
+    return pathname
+      .replace(/^\/es\/blog\//, "")
+      .replace(/\/$/, "");
+  }
+
+  return null;
+}
+
+const currentBlogSlug = getCurrentBlogSlug();
+
+
+/* =========================================================
+   ARTICLE PUBLIC URL
+========================================================= */
+
+function getArticleUrl(
+  post: any,
+  targetLang: "ro" | "en" | "es"
+) {
+  const slug = post.id.replace(
+    new RegExp(`^${targetLang}/`),
+    ""
+  );
+
+  if (targetLang === "ro") {
+    return `/blog/${slug}`;
+  }
+
+  return `/${targetLang}/blog/${slug}`;
+}
+
+
+/* =========================================================
+   ARTICLE TRANSLATIONS
+========================================================= */
+
+let articleLanguageLinks:
+  | {
+      ro: string;
+      en: string;
+      es: string;
+    }
+  | null = null;
+
+if (currentBlogSlug) {
+  const allPosts = await getCollection(
+    "blog",
+    ({ data }) => !data.draft
+  );
+
+  const currentArticle = allPosts.find((post) => {
+    if (post.data.lang !== lang) {
+      return false;
+    }
+
+    const postSlug = post.id.replace(
+      new RegExp(`^${lang}/`),
+      ""
+    );
+
+    return postSlug === currentBlogSlug;
+  });
+
+  if (
+    currentArticle &&
+    currentArticle.data.translationKey
+  ) {
+    const translationKey =
+      currentArticle.data.translationKey;
+
+    const roPost = allPosts.find(
+      (post) =>
+        post.data.lang === "ro" &&
+        post.data.translationKey === translationKey
+    );
+
+    const enPost = allPosts.find(
+      (post) =>
+        post.data.lang === "en" &&
+        post.data.translationKey === translationKey
+    );
+
+    const esPost = allPosts.find(
+      (post) =>
+        post.data.lang === "es" &&
+        post.data.translationKey === translationKey
+    );
+
+    articleLanguageLinks = {
+      ro: roPost
+        ? getArticleUrl(roPost, "ro")
+        : routes.ro.blog,
+
+      en: enPost
+        ? getArticleUrl(enPost, "en")
+        : routes.en.blog,
+
+      es: esPost
+        ? getArticleUrl(esPost, "es")
+        : routes.es.blog,
+    };
+  }
+}
+
+
+/* =========================================================
+   FINAL LANGUAGE LINKS
+========================================================= */
+
+const languageLinks =
+  articleLanguageLinks ??
+  defaultLanguageLinks;
 ---
 
 <header
