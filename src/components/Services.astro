@@ -2,6 +2,337 @@
 // src/components/Services.astro
 
 import LaunchOffer from "./LaunchOffer.astro";
+
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const routes = {
+  ro: {
+    contact: '/contact',
+    services: '/services',
+    comparison: '/services#comparatie',
+  },
+  en: {
+    contact: '/en/contact',
+    services: '/en/services',
+    comparison: '/en/services#comparison',
+  },
+  es: {
+    contact: '/es/contacto',
+    services: '/es/servicios',
+    comparison: '/es/servicios#comparacion',
+  },
+};
+
+const r = routes[lang];
+
+const translations = {
+  ro: {
+    heading: 'Alege nivelul de protecție potrivit proprietății tale',
+    intro:
+      'De la monitorizare esențială până la administrare locală extinsă.',
+
+    requestAssessment: 'SOLICITĂ EVALUAREA PROPRIETĂȚII',
+    viewIncludes: 'VEZI TOT CE INCLUDE',
+    recommended:
+      'RECOMANDAT PROPRIETARILOR CARE LOCUIESC ÎN STRĂINĂTATE',
+
+    year: '/ an',
+    month: '/ lună',
+    annualPayment: 'TVA inclus · Plată anuală',
+    serviceContract: 'TVA inclus · Contract servicii 12 luni',
+    annual: '/ an',
+    save5: '· economisești 5%',
+    saveOver5: '· economisești peste 5%',
+
+    compareTitle: 'Nu ești sigur ce plan ți se potrivește?',
+    compareText:
+      'Compară toate serviciile, frecvențele și beneficiile incluse în fiecare plan.',
+    compareButton: 'COMPARĂ PACHETELE ȘI SERVICIILE →',
+    extras: 'Servicii suplimentare disponibile la cerere.',
+
+    packages: [
+      {
+        name: 'ECO-BASIC',
+        label: 'WATCH',
+        subtitle: 'Supravegherea esențială a proprietății',
+        description:
+          'Pentru proprietarii care doresc o verificare regulată și documentată a locuinței atunci când sunt plecați.',
+        benefits: [
+          '12 vizite documentate / an',
+          'Păstrarea securizată a cheilor',
+          'Verificarea accesului și instalațiilor esențiale',
+          'Verificare funcțională de bază a aerului condiționat',
+          'Verificare vizuală pentru umezeală și infiltrații',
+          'Înregistrarea contoarelor și verificarea corespondenței',
+          'Raport digital cu fotografii după fiecare vizită',
+          '1 verificare după vreme severă / an',
+        ],
+        price: '649 €',
+        frequency: 'year',
+        priceNote: 'annualPayment',
+        annualPrice: null,
+        saving: null,
+        anchor: 'eco-basic',
+        featured: false,
+      },
+      {
+        name: 'ECO-SMART',
+        label: 'PREVENT',
+        subtitle: 'Prevenție activă, nu doar verificare',
+        description:
+          'Pentru proprietarii care vor să monitorizeze evoluția proprietății și să identifice din timp schimbările care necesită atenție.',
+        benefits: [
+          '24 de vizite / an (12 preventive + 12 ventilație)',
+          'Monitorizarea temperaturii și umidității',
+          'Ventilație activă asistată',
+          'Monitorizare preventivă a aerului condiționat',
+          'Analiza consumului de apă și energie',
+          'Verificări administrative periodice',
+          'Raport digital după fiecare vizită',
+        ],
+        price: '125 €',
+        frequency: 'month',
+        priceNote: 'serviceContract',
+        annualPrice: '1.425 €',
+        saving: 'save5',
+        anchor: 'eco-smart',
+        featured: true,
+      },
+      {
+        name: 'ECO-PREMIUM',
+        label: 'MANAGE',
+        subtitle: 'Proprietatea ta administrată local',
+        description:
+          'Pentru proprietarii care vor mai mult decât monitorizare și doresc să reducă administrarea proprietății de la distanță.',
+        benefits: [
+          'Tot ce include ECO-SMART',
+          '4 evaluări extinse ale proprietății / an',
+          'Monitorizare administrativă lunară',
+          'Analiză lunară a consumului de apă și energie',
+          '4 verificări după vreme severă / an',
+          '2 accesuri și coordonări cu tehnicieni / an',
+          '2 pregătiri ale proprietății înainte de sosire / an',
+          'Coordonare prioritară a incidentelor',
+          'Property Health Report anual',
+        ],
+        price: '185 €',
+        frequency: 'month',
+        priceNote: 'serviceContract',
+        annualPrice: '2.099 €',
+        saving: 'saveOver5',
+        anchor: 'eco-premium',
+        featured: false,
+      },
+    ],
+  },
+
+  en: {
+    heading: 'Choose the right level of protection for your property',
+    intro:
+      'From essential monitoring to extended local property management.',
+
+    requestAssessment: 'REQUEST A PROPERTY ASSESSMENT',
+    viewIncludes: 'SEE EVERYTHING INCLUDED IN',
+    recommended:
+      'RECOMMENDED FOR OWNERS WHO LIVE ABROAD',
+
+    year: '/ year',
+    month: '/ month',
+    annualPayment: 'VAT included · Annual payment',
+    serviceContract: 'VAT included · 12-month service contract',
+    annual: '/ year',
+    save5: '· save 5%',
+    saveOver5: '· save over 5%',
+
+    compareTitle: 'Not sure which plan is right for you?',
+    compareText:
+      'Compare all services, frequencies and benefits included in each plan.',
+    compareButton: 'COMPARE PLANS AND SERVICES →',
+    extras: 'Additional services available on request.',
+
+    packages: [
+      {
+        name: 'ECO-BASIC',
+        label: 'WATCH',
+        subtitle: 'Essential property oversight',
+        description:
+          'For owners who want their home checked regularly and documented while they are away.',
+        benefits: [
+          '12 documented visits / year',
+          'Secure key holding',
+          'Access and essential installations check',
+          'Basic functional air-conditioning check',
+          'Visual check for damp and water ingress',
+          'Meter recording and mail check',
+          'Digital report with photographs after every visit',
+          '1 severe-weather check / year',
+        ],
+        price: '649 €',
+        frequency: 'year',
+        priceNote: 'annualPayment',
+        annualPrice: null,
+        saving: null,
+        anchor: 'eco-basic',
+        featured: false,
+      },
+      {
+        name: 'ECO-SMART',
+        label: 'PREVENT',
+        subtitle: 'Active prevention, not just checking',
+        description:
+          'For owners who want to monitor how the property changes over time and identify issues that require attention at an early stage.',
+        benefits: [
+          '24 visits / year (12 preventive + 12 ventilation)',
+          'Temperature and humidity monitoring',
+          'Active assisted ventilation',
+          'Preventive air-conditioning monitoring',
+          'Water and energy consumption analysis',
+          'Periodic administrative checks',
+          'Digital report after every visit',
+        ],
+        price: '125 €',
+        frequency: 'month',
+        priceNote: 'serviceContract',
+        annualPrice: '1,425 €',
+        saving: 'save5',
+        anchor: 'eco-smart',
+        featured: true,
+      },
+      {
+        name: 'ECO-PREMIUM',
+        label: 'MANAGE',
+        subtitle: 'Your property managed locally',
+        description:
+          'For owners who want more than monitoring and wish to reduce the burden of managing their property remotely.',
+        benefits: [
+          'Everything included in ECO-SMART',
+          '4 extended property reviews / year',
+          'Monthly administrative monitoring',
+          'Monthly water and energy consumption analysis',
+          '4 severe-weather checks / year',
+          '2 contractor access and coordination visits / year',
+          '2 pre-arrival property preparations / year',
+          'Priority incident coordination',
+          'Annual Property Health Report',
+        ],
+        price: '185 €',
+        frequency: 'month',
+        priceNote: 'serviceContract',
+        annualPrice: '2,099 €',
+        saving: 'saveOver5',
+        anchor: 'eco-premium',
+        featured: false,
+      },
+    ],
+  },
+
+  es: {
+    heading: 'Elige el nivel de protección adecuado para tu propiedad',
+    intro:
+      'Desde la monitorización esencial hasta una gestión local más completa.',
+
+    requestAssessment: 'SOLICITA LA EVALUACIÓN DE TU PROPIEDAD',
+    viewIncludes: 'VER TODO LO QUE INCLUYE',
+    recommended:
+      'RECOMENDADO PARA PROPIETARIOS QUE VIVEN EN EL EXTRANJERO',
+
+    year: '/ año',
+    month: '/ mes',
+    annualPayment: 'IVA incluido · Pago anual',
+    serviceContract: 'IVA incluido · Contrato de servicios de 12 meses',
+    annual: '/ año',
+    save5: '· ahorras un 5%',
+    saveOver5: '· ahorras más de un 5%',
+
+    compareTitle: '¿No estás seguro de qué plan se adapta mejor a ti?',
+    compareText:
+      'Compara todos los servicios, frecuencias y beneficios incluidos en cada plan.',
+    compareButton: 'COMPARA LOS PLANES Y SERVICIOS →',
+    extras: 'Servicios adicionales disponibles bajo petición.',
+
+    packages: [
+      {
+        name: 'ECO-BASIC',
+        label: 'WATCH',
+        subtitle: 'Supervisión esencial de la propiedad',
+        description:
+          'Para propietarios que desean una revisión regular y documentada de su vivienda mientras están fuera.',
+        benefits: [
+          '12 visitas documentadas / año',
+          'Custodia segura de llaves',
+          'Revisión del acceso y de las instalaciones esenciales',
+          'Revisión funcional básica del aire acondicionado',
+          'Inspección visual de humedad e infiltraciones',
+          'Registro de contadores y revisión de correspondencia',
+          'Informe digital con fotografías después de cada visita',
+          '1 revisión tras condiciones meteorológicas severas / año',
+        ],
+        price: '649 €',
+        frequency: 'year',
+        priceNote: 'annualPayment',
+        annualPrice: null,
+        saving: null,
+        anchor: 'eco-basic',
+        featured: false,
+      },
+      {
+        name: 'ECO-SMART',
+        label: 'PREVENT',
+        subtitle: 'Prevención activa, no solo revisión',
+        description:
+          'Para propietarios que quieren monitorizar la evolución de la propiedad e identificar con antelación los cambios que requieren atención.',
+        benefits: [
+          '24 visitas / año (12 preventivas + 12 de ventilación)',
+          'Monitorización de temperatura y humedad',
+          'Ventilación activa asistida',
+          'Monitorización preventiva del aire acondicionado',
+          'Análisis del consumo de agua y energía',
+          'Revisiones administrativas periódicas',
+          'Informe digital después de cada visita',
+        ],
+        price: '125 €',
+        frequency: 'month',
+        priceNote: 'serviceContract',
+        annualPrice: '1.425 €',
+        saving: 'save5',
+        anchor: 'eco-smart',
+        featured: true,
+      },
+      {
+        name: 'ECO-PREMIUM',
+        label: 'MANAGE',
+        subtitle: 'Tu propiedad gestionada localmente',
+        description:
+          'Para propietarios que quieren más que monitorización y desean reducir la gestión de su propiedad a distancia.',
+        benefits: [
+          'Todo lo incluido en ECO-SMART',
+          '4 evaluaciones ampliadas de la propiedad / año',
+          'Monitorización administrativa mensual',
+          'Análisis mensual del consumo de agua y energía',
+          '4 revisiones tras condiciones meteorológicas severas / año',
+          '2 accesos y coordinaciones con técnicos / año',
+          '2 preparaciones de la propiedad antes de la llegada / año',
+          'Coordinación prioritaria de incidencias',
+          'Property Health Report anual',
+        ],
+        price: '185 €',
+        frequency: 'month',
+        priceNote: 'serviceContract',
+        annualPrice: '2.099 €',
+        saving: 'saveOver5',
+        anchor: 'eco-premium',
+        featured: false,
+      },
+    ],
+  },
+};
+
+const t = translations[lang];
 ---
 
 <section
@@ -10,11 +341,8 @@ import LaunchOffer from "./LaunchOffer.astro";
 >
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- =====================================================
-         TITLU & SUBTITLU
-    ====================================================== -->
+    <!-- TITLE & SUBTITLE -->
     <div class="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
-
       <h2
         class="
           text-[28px]
@@ -27,7 +355,7 @@ import LaunchOffer from "./LaunchOffer.astro";
           leading-tight
         "
       >
-        Alege nivelul de protecție potrivit proprietății tale
+        {t.heading}
       </h2>
 
       <p
@@ -40,847 +368,193 @@ import LaunchOffer from "./LaunchOffer.astro";
           sm:leading-8
         "
       >
-        De la monitorizare esențială până la administrare locală extinsă.
+        {t.intro}
       </p>
-
     </div>
 
-
-    <!-- =====================================================
-         CELE 3 PACHETE
-    ====================================================== -->
+    <!-- PACKAGES -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-
-
-      <!-- =====================================================
-           ECO-BASIC
-      ====================================================== -->
-      <article
-        class="
-          bg-white
-          p-6
-          sm:p-8
-          rounded-2xl
-          border
-          border-[#CCD9DE]
-          shadow-[0_3px_10px_rgba(14,56,70,0.07)]
-          flex
-          flex-col
-          justify-between
-        "
-      >
-
-        <div>
-
-          <!-- Header -->
-          <div class="mb-5">
-
-            <h3
-              class="
-                text-2xl
-                sm:text-[28px]
-                font-bold
-                text-[#0E3846]
-              "
-            >
-              ECO-BASIC
-            </h3>
-
-            <p
-              class="
-                text-sm
-                font-bold
-                text-[#5B9EB5]
-                uppercase
-                tracking-[0.15em]
-                mt-1
-              "
-            >
-              WATCH
-            </p>
-
-            <p
-              class="
-                text-base
-                sm:text-[17px]
-                font-semibold
-                text-[#284650]
-                mt-3
-                leading-snug
-              "
-            >
-              Supravegherea esențială a proprietății
-            </p>
-
-          </div>
-
-
-          <!-- Descriere -->
-          <p
-            class="
-              text-base
-              sm:text-[17px]
-              text-[#405963]
-              mb-7
-              leading-7
-            "
-          >
-            Pentru proprietarii care doresc o verificare regulată și
-            documentată a locuinței atunci când sunt plecați.
-          </p>
-
-
-          <!-- Beneficii -->
-          <ul
-            class="
-              space-y-3.5
-              text-base
-              text-[#243F49]
-              leading-6
-              mb-8
-              border-t
-              border-[#D8E1E5]
-              pt-6
-            "
-          >
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>12 vizite documentate / an</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Păstrarea securizată a cheilor</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Verificarea accesului și instalațiilor esențiale</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Verificare funcțională de bază a aerului condiționat</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Verificare vizuală pentru umezeală și infiltrații</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>
-                Înregistrarea contoarelor și verificarea corespondenței
-              </span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Raport digital cu fotografii după fiecare vizită</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>1 verificare după vreme severă / an</span>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <!-- Preț & CTA -->
-        <div>
-
-          <div
-            class="
-              border-t
-              border-[#D8E1E5]
-              pt-5
-              mb-6
-            "
-          >
-
-            <div class="flex items-baseline gap-2">
-
-              <span
-                class="
-                  text-4xl
-                  font-bold
-                  text-[#0E3846]
-                "
-              >
-                649 €
-              </span>
-
-              <span
-                class="
-                  text-base
-                  text-[#405963]
-                  font-medium
-                "
-              >
-                / an
-              </span>
-
-            </div>
-
-            <p
-              class="
-                text-sm
-                text-[#405963]
-                mt-1.5
-                font-medium
-              "
-            >
-              TVA inclus · Plată anuală
-            </p>
-
-          </div>
-
-
-          <!-- CTA principal -->
-          <a
-            href="/contact"
-            class="
-              block
-              w-full
-              text-center
-              bg-[#0E3846]
-              hover:bg-[#092A34]
-              text-white
-              font-bold
-              py-3.5
-              px-5
-              rounded-xl
-              text-sm
-              sm:text-base
-              transition
-              shadow-sm
-              uppercase
-              tracking-wide
-            "
-          >
-            SOLICITĂ EVALUAREA PROPRIETĂȚII
-          </a>
-
-
-          <!-- CTA secundar -->
-          <a
-            href="/services#eco-basic"
-            class="
-              block
-              w-full
-              text-center
-              mt-3
-              border-2
-              border-[#0E3846]
-              hover:bg-[#F2EFE9]
-              text-[#0E3846]
-              font-bold
-              py-3
-              px-5
-              rounded-xl
-              text-sm
-              sm:text-base
-              transition
-              uppercase
-              tracking-wide
-            "
-          >
-            VEZI TOT CE INCLUDE ECO-BASIC →
-          </a>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- =====================================================
-           ECO-SMART
-      ====================================================== -->
-      <article
-        class="
-          bg-white
-          p-6
-          sm:p-8
-          rounded-2xl
-          border-2
-          border-[#5B9EB5]
-          shadow-[0_10px_30px_rgba(14,56,70,0.14)]
-          flex
-          flex-col
-          justify-between
-          relative
-          lg:-translate-y-2
-        "
-      >
-
-        <!-- Badge -->
-        <div
-          class="
-            absolute
-            -top-4
-            left-1/2
-            -translate-x-1/2
-            bg-[#0E3846]
-            text-white
-            px-5
-            py-2
-            rounded-full
-            text-xs
-            sm:text-[13px]
-            font-bold
-            uppercase
-            tracking-[0.08em]
-            whitespace-nowrap
-            shadow-md
-          "
+      {t.packages.map((pkg) => (
+        <article
+          class:list={[
+            'bg-white p-6 sm:p-8 rounded-2xl flex flex-col justify-between relative',
+            pkg.featured
+              ? 'border-2 border-[#5B9EB5] shadow-[0_10px_30px_rgba(14,56,70,0.14)] lg:-translate-y-2'
+              : 'border border-[#CCD9DE] shadow-[0_3px_10px_rgba(14,56,70,0.07)]'
+          ]}
         >
-          RECOMANDAT PROPRIETARILOR CARE LOCUIESC ÎN STRĂINĂTATE
-        </div>
-
-
-        <div>
-
-          <!-- Header -->
-          <div class="mb-5 pt-4">
-
-            <h3
+          {pkg.featured && (
+            <div
               class="
-                text-2xl
-                sm:text-[28px]
+                absolute
+                -top-4
+                left-1/2
+                -translate-x-1/2
+                bg-[#0E3846]
+                text-white
+                px-5
+                py-2
+                rounded-full
+                text-xs
+                sm:text-[13px]
                 font-bold
-                text-[#0E3846]
-              "
-            >
-              ECO-SMART
-            </h3>
-
-            <p
-              class="
-                text-sm
-                font-bold
-                text-[#5B9EB5]
                 uppercase
-                tracking-[0.15em]
-                mt-1
+                tracking-[0.08em]
+                whitespace-nowrap
+                shadow-md
               "
             >
-              PREVENT
-            </p>
+              {t.recommended}
+            </div>
+          )}
+
+          <div>
+            <div class:list={['mb-5', pkg.featured && 'pt-4']}>
+              <h3
+                class="
+                  text-2xl
+                  sm:text-[28px]
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {pkg.name}
+              </h3>
+
+              <p
+                class="
+                  text-sm
+                  font-bold
+                  text-[#5B9EB5]
+                  uppercase
+                  tracking-[0.15em]
+                  mt-1
+                "
+              >
+                {pkg.label}
+              </p>
+
+              <p
+                class="
+                  text-base
+                  sm:text-[17px]
+                  font-semibold
+                  text-[#284650]
+                  mt-3
+                  leading-snug
+                "
+              >
+                {pkg.subtitle}
+              </p>
+            </div>
 
             <p
               class="
                 text-base
                 sm:text-[17px]
-                font-semibold
-                text-[#284650]
-                mt-3
-                leading-snug
+                text-[#405963]
+                mb-7
+                leading-7
               "
             >
-              Prevenție activă, nu doar verificare
+              {pkg.description}
             </p>
 
+            <ul
+              class:list={[
+                'space-y-3.5 text-base text-[#243F49] leading-6 mb-8 border-t pt-6',
+                pkg.featured ? 'border-[#C9E0E6]' : 'border-[#D8E1E5]'
+              ]}
+            >
+              {pkg.benefits.map((benefit, index) => (
+                <li
+                  class:list={[
+                    'flex items-start gap-3',
+                    pkg.featured && index === 0 && 'font-semibold text-[#0E3846]',
+                    pkg.name === 'ECO-PREMIUM' && index === 0 && 'font-semibold text-[#0E3846]'
+                  ]}
+                >
+                  <span class="text-[#5B9EB5] font-bold text-lg leading-6">
+                    ✓
+                  </span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-
-          <!-- Descriere -->
-          <p
-            class="
-              text-base
-              sm:text-[17px]
-              text-[#405963]
-              mb-7
-              leading-7
-            "
-          >
-            Pentru proprietarii care vor să monitorizeze evoluția proprietății
-            și să identifice din timp schimbările care necesită atenție.
-          </p>
-
-
-          <!-- Beneficii -->
-          <ul
-            class="
-              space-y-3.5
-              text-base
-              text-[#243F49]
-              leading-6
-              mb-8
-              border-t
-              border-[#C9E0E6]
-              pt-6
-            "
-          >
-
-            <li
+          <!-- PRICE & CTA -->
+          <div>
+            <div
               class="
-                flex
-                items-start
-                gap-3
-                font-semibold
-                text-[#0E3846]
+                border-t
+                border-[#D8E1E5]
+                pt-5
+                mb-6
               "
             >
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>24 de vizite / an (12 preventive + 12 ventilație)</span>
-            </li>
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-bold text-[#0E3846]">
+                  {pkg.price}
+                </span>
 
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Monitorizarea temperaturii și umidității</span>
-            </li>
+                <span class="text-base text-[#405963] font-medium">
+                  {pkg.frequency === 'year' ? t.year : t.month}
+                </span>
+              </div>
 
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Ventilație activă asistată</span>
-            </li>
+              <p class="text-sm text-[#405963] mt-1.5 font-medium">
+                {t[pkg.priceNote]}
+              </p>
 
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Monitorizare preventivă a aerului condiționat</span>
-            </li>
+              {pkg.annualPrice && (
+                <p
+                  class="
+                    text-base
+                    text-[#0E3846]
+                    font-bold
+                    mt-3
+                    leading-6
+                  "
+                >
+                  {pkg.annualPrice} {t.annual}
 
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Analiza consumului de apă și energie</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Verificări administrative periodice</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Raport digital după fiecare vizită</span>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <!-- Preț & CTA -->
-        <div>
-
-          <div
-            class="
-              border-t
-              border-[#D8E1E5]
-              pt-5
-              mb-6
-            "
-          >
-
-            <div class="flex items-baseline gap-2">
-
-              <span
-                class="
-                  text-4xl
-                  font-bold
-                  text-[#0E3846]
-                "
-              >
-                125 €
-              </span>
-
-              <span
-                class="
-                  text-base
-                  text-[#405963]
-                  font-medium
-                "
-              >
-                / lună
-              </span>
-
+                  <span class="font-medium text-[#405963]">
+                    {' '}{t[pkg.saving]}
+                  </span>
+                </p>
+              )}
             </div>
 
-            <p
-              class="
-                text-sm
-                text-[#405963]
-                mt-1.5
-                font-medium
-              "
+            <a
+              href={r.contact}
+              class:list={[
+                'block w-full text-center text-white font-bold py-3.5 px-5 rounded-xl text-sm sm:text-base transition uppercase tracking-wide',
+                pkg.featured
+                  ? 'bg-[#5B9EB5] hover:bg-[#478BA3] shadow-md'
+                  : 'bg-[#0E3846] hover:bg-[#092A34] shadow-sm'
+              ]}
             >
-              TVA inclus · Contract servicii 12 luni
-            </p>
+              {t.requestAssessment}
+            </a>
 
-            <p
-              class="
-                text-base
-                text-[#0E3846]
-                font-bold
-                mt-3
-                leading-6
-              "
+            <a
+              href={`${r.services}#${pkg.anchor}`}
+              class:list={[
+                'block w-full text-center mt-3 border-2 font-bold py-3 px-5 rounded-xl text-sm sm:text-base transition uppercase tracking-wide',
+                pkg.featured
+                  ? 'border-[#5B9EB5] hover:bg-[#EAF4F6] text-[#0E3846]'
+                  : 'border-[#0E3846] hover:bg-[#F2EFE9] text-[#0E3846]'
+              ]}
             >
-              1.425 € / an
-
-              <span
-                class="
-                  font-medium
-                  text-[#405963]
-                "
-              >
-                · economisești 5%
-              </span>
-
-            </p>
-
+              {t.viewIncludes} {pkg.name} →
+            </a>
           </div>
-
-
-          <!-- CTA principal -->
-          <a
-            href="/contact"
-            class="
-              block
-              w-full
-              text-center
-              bg-[#5B9EB5]
-              hover:bg-[#478BA3]
-              text-white
-              font-bold
-              py-3.5
-              px-5
-              rounded-xl
-              text-sm
-              sm:text-base
-              transition
-              shadow-md
-              uppercase
-              tracking-wide
-            "
-          >
-            SOLICITĂ EVALUAREA PROPRIETĂȚII
-          </a>
-
-
-          <!-- CTA secundar -->
-          <a
-            href="/services#eco-smart"
-            class="
-              block
-              w-full
-              text-center
-              mt-3
-              border-2
-              border-[#5B9EB5]
-              hover:bg-[#EAF4F6]
-              text-[#0E3846]
-              font-bold
-              py-3
-              px-5
-              rounded-xl
-              text-sm
-              sm:text-base
-              transition
-              uppercase
-              tracking-wide
-            "
-          >
-            VEZI TOT CE INCLUDE ECO-SMART →
-          </a>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- =====================================================
-           ECO-PREMIUM
-      ====================================================== -->
-      <article
-        class="
-          bg-white
-          p-6
-          sm:p-8
-          rounded-2xl
-          border
-          border-[#CCD9DE]
-          shadow-[0_3px_10px_rgba(14,56,70,0.07)]
-          flex
-          flex-col
-          justify-between
-        "
-      >
-
-        <div>
-
-          <!-- Header -->
-          <div class="mb-5">
-
-            <h3
-              class="
-                text-2xl
-                sm:text-[28px]
-                font-bold
-                text-[#0E3846]
-              "
-            >
-              ECO-PREMIUM
-            </h3>
-
-            <p
-              class="
-                text-sm
-                font-bold
-                text-[#5B9EB5]
-                uppercase
-                tracking-[0.15em]
-                mt-1
-              "
-            >
-              MANAGE
-            </p>
-
-            <p
-              class="
-                text-base
-                sm:text-[17px]
-                font-semibold
-                text-[#284650]
-                mt-3
-                leading-snug
-              "
-            >
-              Proprietatea ta administrată local
-            </p>
-
-          </div>
-
-
-          <!-- Descriere -->
-          <p
-            class="
-              text-base
-              sm:text-[17px]
-              text-[#405963]
-              mb-7
-              leading-7
-            "
-          >
-            Pentru proprietarii care vor mai mult decât monitorizare și doresc
-            să reducă administrarea proprietății de la distanță.
-          </p>
-
-
-          <!-- Beneficii -->
-          <ul
-            class="
-              space-y-3.5
-              text-base
-              text-[#243F49]
-              leading-6
-              mb-8
-              border-t
-              border-[#D8E1E5]
-              pt-6
-            "
-          >
-
-            <li
-              class="
-                flex
-                items-start
-                gap-3
-                font-semibold
-                text-[#0E3846]
-              "
-            >
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Tot ce include ECO-SMART</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>4 evaluări extinse ale proprietății / an</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Monitorizare administrativă lunară</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Analiză lunară a consumului de apă și energie</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>4 verificări după vreme severă / an</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>2 accesuri și coordonări cu tehnicieni / an</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>2 pregătiri ale proprietății înainte de sosire / an</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Coordonare prioritară a incidentelor</span>
-            </li>
-
-            <li class="flex items-start gap-3">
-              <span class="text-[#5B9EB5] font-bold text-lg leading-6">✓</span>
-              <span>Property Health Report anual</span>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <!-- Preț & CTA -->
-        <div>
-
-          <div
-            class="
-              border-t
-              border-[#D8E1E5]
-              pt-5
-              mb-6
-            "
-          >
-
-            <div class="flex items-baseline gap-2">
-
-              <span
-                class="
-                  text-4xl
-                  font-bold
-                  text-[#0E3846]
-                "
-              >
-                185 €
-              </span>
-
-              <span
-                class="
-                  text-base
-                  text-[#405963]
-                  font-medium
-                "
-              >
-                / lună
-              </span>
-
-            </div>
-
-            <p
-              class="
-                text-sm
-                text-[#405963]
-                mt-1.5
-                font-medium
-              "
-            >
-              TVA inclus · Contract servicii 12 luni
-            </p>
-
-            <p
-              class="
-                text-base
-                text-[#0E3846]
-                font-bold
-                mt-3
-                leading-6
-              "
-            >
-              2.099 € / an
-
-              <span
-                class="
-                  font-medium
-                  text-[#405963]
-                "
-              >
-                · economisești peste 5%
-              </span>
-
-            </p>
-
-          </div>
-
-
-          <!-- CTA principal -->
-          <a
-            href="/contact"
-            class="
-              block
-              w-full
-              text-center
-              bg-[#0E3846]
-              hover:bg-[#092A34]
-              text-white
-              font-bold
-              py-3.5
-              px-5
-              rounded-xl
-              text-sm
-              sm:text-base
-              transition
-              shadow-sm
-              uppercase
-              tracking-wide
-            "
-          >
-            SOLICITĂ EVALUAREA PROPRIETĂȚII
-          </a>
-
-
-          <!-- CTA secundar -->
-          <a
-            href="/services#eco-premium"
-            class="
-              block
-              w-full
-              text-center
-              mt-3
-              border-2
-              border-[#0E3846]
-              hover:bg-[#F2EFE9]
-              text-[#0E3846]
-              font-bold
-              py-3
-              px-5
-              rounded-xl
-              text-sm
-              sm:text-base
-              transition
-              uppercase
-              tracking-wide
-            "
-          >
-            VEZI TOT CE INCLUDE ECO-PREMIUM →
-          </a>
-
-        </div>
-
-      </article>
-
+        </article>
+      ))}
     </div>
 
-
-
-    <!-- =====================================================
-         COMPARAȚIE COMPLETĂ
-    ====================================================== -->
+    <!-- FULL COMPARISON -->
     <div
       class="
         mt-16
@@ -893,7 +567,6 @@ import LaunchOffer from "./LaunchOffer.astro";
         mx-auto
       "
     >
-
       <h3
         class="
           text-xl
@@ -902,9 +575,8 @@ import LaunchOffer from "./LaunchOffer.astro";
           text-[#0E3846]
         "
       >
-        Nu ești sigur ce plan ți se potrivește?
+        {t.compareTitle}
       </h3>
-
 
       <p
         class="
@@ -916,13 +588,11 @@ import LaunchOffer from "./LaunchOffer.astro";
           leading-7
         "
       >
-        Compară toate serviciile, frecvențele și beneficiile incluse în
-        fiecare plan.
+        {t.compareText}
       </p>
 
-
       <a
-        href="/services#comparatie"
+        href={r.comparison}
         class="
           inline-block
           bg-white
@@ -943,28 +613,16 @@ import LaunchOffer from "./LaunchOffer.astro";
           tracking-wide
         "
       >
-        COMPARĂ PACHETELE ȘI SERVICIILE →
+        {t.compareButton}
       </a>
 
-
-      <p
-        class="
-          text-sm
-          text-[#526B74]
-          mt-4
-        "
-      >
-        Servicii suplimentare disponibile la cerere.
+      <p class="text-sm text-[#526B74] mt-4">
+        {t.extras}
       </p>
-
     </div>
 
   </div>
 </section>
 
-
-<!-- =========================================================
-     OFERTA DE LANSARE:
-     PROPERTY ONBOARDING & BASELINE ASSESSMENT
-========================================================= -->
+<!-- Launch offer remains a shared component and will use the current locale. -->
 <LaunchOffer />
