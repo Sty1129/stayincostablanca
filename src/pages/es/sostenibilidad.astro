@@ -1,1 +1,2694 @@
 
+---
+/* src/pages/es/sostenibilidad.astro */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import { brand } from '../../config/brand';
+
+
+/* =========================================================
+   ODS DATA
+========================================================= */
+
+const oddItems = [
+  {
+    number: 6,
+    title: 'Agua limpia y saneamiento',
+    short: 'Monitorización del agua',
+    text:
+      'Las fotografías de los contadores, las revisiones de las instalaciones sanitarias y la observación de posibles pérdidas nos ayudan a identificar antes situaciones que pueden provocar un consumo innecesario de agua.',
+  },
+
+  {
+    number: 7,
+    title: 'Energía asequible y no contaminante',
+    short: 'Monitorización de la energía',
+    text:
+      'El seguimiento del consumo y la comprobación del funcionamiento básico de los equipos pueden revelar cambios que conviene investigar antes de que generen un consumo innecesario.',
+  },
+
+  {
+    number: 11,
+    title: 'Ciudades y comunidades sostenibles',
+    short: 'Propiedades más resilientes',
+    text:
+      'El mantenimiento preventivo y la monitorización periódica contribuyen a conservar las propiedades en mejores condiciones durante los periodos en los que permanecen desocupadas.',
+  },
+
+  {
+    number: 12,
+    title: 'Producción y consumo responsables',
+    short: 'Prevenir antes de sustituir',
+    text:
+      'La detección temprana de un problema puede permitir una intervención menor antes de que el deterioro exija reparaciones más amplias, materiales adicionales o la sustitución de equipos.',
+  },
+
+  {
+    number: 13,
+    title: 'Acción por el clima',
+    short: 'Preparación y resiliencia',
+    text:
+      'Las revisiones después de episodios meteorológicos adversos y la monitorización de los elementos exteriores ayudan a identificar con mayor rapidez sus posibles efectos sobre la propiedad.',
+  },
+
+  {
+    number: 17,
+    title: 'Alianzas para lograr los objetivos',
+    short: 'Colaboración local',
+    text:
+      'La gestión de una propiedad requiere en ocasiones colaborar con técnicos, proveedores y profesionales locales. Una coordinación responsable forma parte de nuestro proceso.',
+  },
+];
+
+
+/* =========================================================
+   HERO ODS
+========================================================= */
+
+const heroOdds = [
+  {
+    number: 6,
+    title: 'Agua limpia y saneamiento',
+  },
+
+  {
+    number: 7,
+    title: 'Energía asequible y no contaminante',
+  },
+
+  {
+    number: 9,
+    title: 'Industria, innovación e infraestructura',
+  },
+
+  {
+    number: 11,
+    title: 'Ciudades y comunidades sostenibles',
+  },
+
+  {
+    number: 12,
+    title: 'Producción y consumo responsables',
+  },
+
+  {
+    number: 13,
+    title: 'Acción por el clima',
+  },
+
+  {
+    number: 17,
+    title: 'Alianzas para lograr los objetivos',
+  },
+];
+
+
+/* =========================================================
+   PACKAGE LEVELS
+========================================================= */
+
+const packageLevels = [
+  {
+    name: 'ECO-BASIC',
+    level: 'WATCH',
+    subtitle: 'Concienciación y Monitorización',
+
+    featured: false,
+
+    odds: [6, 7, 9, 11],
+
+    items: [
+      'Fotografías de los contadores',
+      'Revisiones periódicas del agua y de las instalaciones sanitarias',
+      'Observación visual de humedad e infiltraciones',
+      'Comprobación funcional básica del aire acondicionado',
+      'Informe digital después de cada visita',
+    ],
+  },
+
+  {
+    name: 'ECO-SMART',
+    level: 'PREVENT',
+    subtitle: 'Optimización y Eficiencia',
+
+    featured: true,
+
+    odds: [6, 7, 9, 11, 12, 13],
+
+    items: [
+      'Todo lo incluido en ECO-BASIC',
+      'Temperatura y humedad relativa',
+      'Ventilación asistida',
+      'Lecturas comparativas de humedad',
+      'Análisis trimestral de agua y energía',
+      'Revisión preventiva del aire acondicionado',
+    ],
+  },
+
+  {
+    name: 'ECO-PREMIUM',
+    level: 'MANAGE',
+    subtitle: 'Resiliencia e Impacto',
+
+    featured: false,
+
+    odds: [6, 7, 9, 11, 12, 13, 17],
+
+    items: [
+      'Todo lo incluido en ECO-SMART',
+      'Análisis mensual de agua y energía',
+      'Revisiones ampliadas de la propiedad',
+      'Más revisiones después de condiciones meteorológicas adversas',
+      'Informe anual sobre el estado de la propiedad',
+      'Coordinación local ampliada',
+    ],
+  },
+];
+
+
+/* =========================================================
+   PRACTICAL EXAMPLES
+========================================================= */
+
+const practicalItems = [
+  {
+    number: '01',
+
+    title:
+      'Una variación inesperada en el consumo de agua',
+
+    text:
+      'Puede indicar una fuga o un problema que conviene revisar antes de la siguiente factura.',
+  },
+
+  {
+    number: '02',
+
+    title:
+      'Aumento de la humedad',
+
+    text:
+      'Comparar los valores entre visitas puede revelar un cambio antes de que el deterioro sea evidente a simple vista.',
+  },
+
+  {
+    number: '03',
+
+    title:
+      'Drenaje bloqueado en la terraza',
+
+    text:
+      'Detectarlo antes de una lluvia intensa puede ayudar a prevenir acumulaciones de agua y posibles infiltraciones.',
+  },
+
+  {
+    number: '04',
+
+    title:
+      'Un equipo que funciona de forma diferente',
+
+    text:
+      'Un cambio observado durante una revisión puede investigarse antes de que aparezca una avería más importante.',
+  },
+];
+---
+<BaseLayout
+  title={`Sostenibilidad | ${brand.name}`}
+  description="Gestión preventiva y sostenible de propiedades en Costa Blanca: agua, energía, resiliencia, digitalización, trazabilidad y alianzas locales."
+>
+
+  <Header slot="header" />
+
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section
+    class="
+      relative
+      overflow-hidden
+
+      bg-[#0E3846]
+
+      py-16
+      sm:py-20
+      lg:py-24
+
+      font-heading
+    "
+  >
+
+    <!-- BACKGROUND -->
+
+    <div
+      class="
+        pointer-events-none
+
+        absolute
+        -right-24
+        -top-24
+
+        h-96
+        w-96
+
+        rounded-full
+
+        bg-[#5B9EB5]/20
+
+        blur-3xl
+      "
+    ></div>
+
+
+    <div
+      class="
+        pointer-events-none
+
+        absolute
+        -bottom-32
+        -left-24
+
+        h-80
+        w-80
+
+        rounded-full
+
+        bg-[#D99B26]/10
+
+        blur-3xl
+      "
+    ></div>
+
+
+    <div
+      class="
+        relative
+
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-5xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.18em]
+
+            text-[#F3C76B]
+          "
+        >
+          SOSTENIBILIDAD APLICADA
+        </p>
+
+
+        <h1
+          class="
+            mt-4
+
+            text-[36px]
+            sm:text-5xl
+            lg:text-[58px]
+
+            font-bold
+
+            leading-[1.08]
+            tracking-tight
+
+            text-white
+          "
+        >
+          Sostenibilidad aplicada a la gestión de propiedades.
+        </h1>
+
+
+        <p
+          class="
+            mx-auto
+            mt-6
+            max-w-4xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#C9DDE2]
+          "
+        >
+          Para nosotros, la sostenibilidad significa prevención, uso responsable
+          de los recursos, documentación y una gestión que ayuda a conservar
+          el valor y la funcionalidad de la propiedad a lo largo del tiempo.
+        </p>
+
+
+        <!-- ODS ICONS -->
+
+        <div
+          class="
+            mt-9
+
+            flex
+            flex-wrap
+
+            justify-center
+
+            gap-3
+          "
+        >
+
+          {
+            heroOdds.map((odd) => (
+
+              <a
+                href={
+                  odd.number === 9
+                    ? '#sdg9'
+                    : `#sdg${odd.number}`
+                }
+
+                class="
+                  rounded-xl
+
+                  bg-white
+
+                  p-1.5
+
+                  shadow-[0_6px_18px_rgba(0,0,0,0.14)]
+
+                  transition
+
+                  hover:-translate-y-1
+                "
+              >
+
+                <img
+                  src={`/ods${odd.number}.png`}
+
+                  alt={`ODS ${odd.number} — ${odd.title}`}
+
+                  class="
+                    h-[62px]
+                    w-[62px]
+
+                    sm:h-[70px]
+                    sm:w-[70px]
+
+                    object-contain
+                  "
+                />
+
+              </a>
+
+            ))
+          }
+
+        </div>
+
+
+        <p
+          class="
+            mt-6
+
+            text-sm
+            font-semibold
+
+            text-[#D8E6EA]
+          "
+        >
+          ODS 6 · ODS 7 · ODS 9 · ODS 11 · ODS 12 · ODS 13 · ODS 17
+        </p>
+
+
+        <div
+          class="
+            mt-8
+
+            flex
+            flex-col
+            sm:flex-row
+
+            justify-center
+
+            gap-3
+          "
+        >
+
+          <a
+            href="#enfoque"
+
+            class="
+              inline-flex
+              min-h-[52px]
+
+              items-center
+              justify-center
+
+              rounded-xl
+
+              bg-[#D99B26]
+
+              px-7
+              py-3
+
+              text-sm
+              font-bold
+
+              text-[#0E3846]
+
+              transition
+
+              hover:bg-[#E7AA38]
+            "
+          >
+            DESCUBRE NUESTRO ENFOQUE
+          </a>
+
+
+          <a
+            href="/es/servicios"
+
+            class="
+              inline-flex
+              min-h-[52px]
+
+              items-center
+              justify-center
+
+              rounded-xl
+
+              border
+              border-white/25
+
+              px-7
+              py-3
+
+              text-sm
+              font-bold
+
+              text-white
+
+              transition
+
+              hover:bg-white/10
+            "
+          >
+            VER LOS PLANES
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       APPROACH
+  ====================================================== -->
+
+  <section
+    id="enfoque"
+
+    class="
+      scroll-mt-24
+
+      bg-white
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <!-- INTRO -->
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          CÓMO INTEGRAMOS LA SOSTENIBILIDAD
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+
+            font-bold
+
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          Dos líneas operativas. Dos dimensiones transversales.
+        </h2>
+
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          Nuestra actividad se centra en la gestión de los recursos y la
+          resiliencia de la propiedad. La digitalización y las alianzas locales
+          respaldan todo el proceso.
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           MAIN AXES
+      ================================================== -->
+
+      <div
+        class="
+          mx-auto
+          mt-12
+
+          grid
+          max-w-5xl
+
+          grid-cols-1
+          lg:grid-cols-2
+
+          gap-6
+        "
+      >
+
+        <!-- =================================================
+             RESOURCES
+        ================================================== -->
+
+        <article
+          class="
+            rounded-2xl
+
+            border
+            border-[#D2E1E5]
+
+            bg-[#F7FAFA]
+
+            p-6
+            sm:p-8
+          "
+        >
+
+          <!-- ICON -->
+
+          <div
+            class="
+              flex
+              h-16
+              w-16
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[#E5F2F5]
+
+              text-[#0E3846]
+            "
+          >
+
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+              stroke="currentColor"
+
+              class="
+                h-9
+                w-9
+              "
+
+              aria-hidden="true"
+            >
+
+              <!-- WATER -->
+
+              <path
+                d="M18 9S8 21 8 30a10 10 0 0020 0C28 21 18 9 18 9z"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <!-- ENERGY -->
+
+              <path
+                d="M43 8L31 34h11l-5 22 19-30H44l7-18z"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <!-- ODS ICONS -->
+
+          <div
+            class="
+              mt-6
+
+              flex
+              flex-wrap
+
+              gap-2
+            "
+          >
+
+            {
+              [6, 7].map((odd) => (
+
+                <img
+                  src={`/ods${odd}.png`}
+
+                  alt={`ODS ${odd}`}
+
+                  class="
+                    h-[58px]
+                    w-[58px]
+
+                    object-contain
+                  "
+                />
+
+              ))
+            }
+
+          </div>
+
+
+          <p
+            class="
+              mt-5
+
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.13em]
+
+              text-[#D99B26]
+            "
+          >
+            ODS 6 + ODS 7
+          </p>
+
+
+          <h3
+            class="
+              mt-2
+
+              text-2xl
+              font-bold
+
+              text-[#0E3846]
+            "
+          >
+            Recursos
+          </h3>
+
+
+          <p
+            class="
+              mt-4
+
+              text-[15px]
+              leading-7
+
+              text-[#526B74]
+            "
+          >
+            Monitorizamos los aspectos relevantes relacionados con el agua y la energía,
+            documentamos los consumos y seguimos los cambios que pueden indicar
+            pérdidas, consumos anómalos o un funcionamiento ineficiente.
+          </p>
+
+        </article>
+
+
+        <!-- =================================================
+             PROPERTY & RESILIENCE
+        ================================================== -->
+
+        <article
+          class="
+            rounded-2xl
+
+            border
+            border-[#D2E1E5]
+
+            bg-[#F7FAFA]
+
+            p-6
+            sm:p-8
+          "
+        >
+
+          <!-- ICON -->
+
+          <div
+            class="
+              flex
+              h-16
+              w-16
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[#E5F2F5]
+
+              text-[#0E3846]
+            "
+          >
+
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+              stroke="currentColor"
+
+              class="
+                h-9
+                w-9
+              "
+
+              aria-hidden="true"
+            >
+
+              <!-- HOUSE -->
+
+              <path
+                d="M7 30L26 14l19 16v22H7z"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <path
+                d="M20 52V38h12v14"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <!-- SHIELD -->
+
+              <path
+                d="M46 26l11 4v10c0 8-5 13-11 17-6-4-11-9-11-17V30l11-4z"
+                fill="#F7FAFA"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <path
+                d="M41.5 40l3.5 3.5 6-7"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <!-- ODS ICONS -->
+
+          <div
+            class="
+              mt-6
+
+              flex
+              flex-wrap
+
+              gap-2
+            "
+          >
+
+            {
+              [11, 12, 13].map((odd) => (
+
+                <img
+                  src={`/ods${odd}.png`}
+
+                  alt={`ODS ${odd}`}
+
+                  class="
+                    h-[58px]
+                    w-[58px]
+
+                    object-contain
+                  "
+                />
+
+              ))
+            }
+
+          </div>
+
+
+          <p
+            class="
+              mt-5
+
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.13em]
+
+              text-[#D99B26]
+            "
+          >
+            ODS 11 + ODS 12 + ODS 13
+          </p>
+
+
+          <h3
+            class="
+              mt-2
+
+              text-2xl
+              font-bold
+
+              text-[#0E3846]
+            "
+          >
+            Propiedad &amp; resiliencia
+          </h3>
+
+
+          <p
+            class="
+              mt-4
+
+              text-[15px]
+              leading-7
+
+              text-[#526B74]
+            "
+          >
+            Las revisiones preventivas, la observación de los cambios y una actuación
+            a tiempo contribuyen a reducir el deterioro y a prolongar
+            la vida útil de la propiedad y de sus equipos.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <!-- =================================================
+           TRANSVERSAL DIMENSIONS
+      ================================================== -->
+
+      <div
+        class="
+          mx-auto
+          mt-12
+          max-w-5xl
+        "
+      >
+
+        <div class="text-center">
+
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.17em]
+
+              text-[#D99B26]
+            "
+          >
+            DIMENSIONES TRANSVERSALES
+          </p>
+
+
+          <h3
+            class="
+              mt-2
+
+              text-2xl
+              sm:text-3xl
+
+              font-bold
+
+              text-[#0E3846]
+            "
+          >
+            Dos elementos respaldan todo nuestro proceso.
+          </h3>
+
+
+          <p
+            class="
+              mx-auto
+              mt-3
+              max-w-3xl
+
+              text-base
+              leading-7
+
+              text-[#526B74]
+            "
+          >
+            La digitalización y la colaboración local no pertenecen a una única
+            revisión. Son elementos transversales de todo el sistema de gestión.
+          </p>
+
+        </div>
+
+
+        <div
+          class="
+            mt-7
+
+            grid
+            grid-cols-1
+            lg:grid-cols-2
+
+            gap-5
+          "
+        >
+
+          <!-- =================================================
+               DIGITALISATION / ODS 9
+          ================================================== -->
+
+          <article
+            class="
+              flex
+              gap-5
+
+              rounded-2xl
+
+              border
+              border-[#BFD7DE]
+
+              bg-[#EEF7F9]
+
+              p-6
+            "
+          >
+
+            <div
+              class="
+                flex
+                h-12
+                w-12
+
+                shrink-0
+
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-white
+
+                text-[#0E3846]
+              "
+            >
+
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+
+                class="
+                  h-7
+                  w-7
+                "
+
+                aria-hidden="true"
+              >
+
+                <rect
+                  x="10"
+                  y="8"
+                  width="34"
+                  height="44"
+                  rx="4"
+                  stroke-width="3"
+                />
+
+                <path
+                  d="M18 19h18M18 27h12"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+
+                <path
+                  d="M18 42l7-8 6 5 11-13"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <circle
+                  cx="48"
+                  cy="44"
+                  r="9"
+                  fill="#EEF7F9"
+                  stroke-width="3"
+                />
+
+                <path
+                  d="M44 44l3 3 5-6"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+              </svg>
+
+            </div>
+
+
+            <div class="flex-1">
+
+              <div
+                class="
+                  flex
+                  items-start
+                  justify-between
+                  gap-4
+                "
+              >
+
+                <div>
+
+                  <p
+                    class="
+                      text-[10px]
+                      font-bold
+                      uppercase
+                      tracking-[0.12em]
+
+                      text-[#397C92]
+                    "
+                  >
+                    TRANSVERSAL EN TODOS LOS PLANES
+                  </p>
+
+
+                  <h4
+                    class="
+                      mt-1
+
+                      text-xl
+                      font-bold
+
+                      text-[#0E3846]
+                    "
+                  >
+                    Digitalización &amp; trazabilidad
+                  </h4>
+
+                </div>
+
+
+                <img
+                  src="/ods9.png"
+
+                  alt="ODS 9 — Industria, innovación e infraestructura"
+
+                  class="
+                    hidden
+                    sm:block
+
+                    h-[64px]
+                    w-[64px]
+
+                    shrink-0
+
+                    object-contain
+                  "
+                />
+
+              </div>
+
+
+              <p
+                class="
+                  mt-2
+
+                  text-sm
+                  leading-6
+
+                  text-[#526B74]
+                "
+              >
+                Las fotografías, los valores registrados, los informes y el historial
+                de visitas crean continuidad entre revisiones y permiten
+                comparar el estado de la propiedad a lo largo del tiempo.
+              </p>
+
+
+              <p
+                class="
+                  mt-3
+
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.1em]
+
+                  text-[#397C92]
+                "
+              >
+                ODS 9
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <!-- =================================================
+               PARTNERSHIPS / ODS 17
+          ================================================== -->
+
+          <article
+            class="
+              flex
+              gap-5
+
+              rounded-2xl
+
+              border
+              border-[#E2D3A9]
+
+              bg-[#FFF9ED]
+
+              p-6
+            "
+          >
+
+            <div
+              class="
+                flex
+                h-12
+                w-12
+
+                shrink-0
+
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-white
+
+                text-[#0E3846]
+              "
+            >
+
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+
+                class="
+                  h-8
+                  w-8
+                "
+
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M7 28l11-10 12 5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M57 28L46 18l-13 6"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M24 25l8-5c3-2 6-1 8 1l5 5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M17 34l14 13c2 2 5 2 7 0l11-11"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+              </svg>
+
+            </div>
+
+
+            <div class="flex-1">
+
+              <div
+                class="
+                  flex
+                  items-start
+                  justify-between
+                  gap-4
+                "
+              >
+
+                <div>
+
+                  <p
+                    class="
+                      text-[10px]
+                      font-bold
+                      uppercase
+                      tracking-[0.12em]
+
+                      text-[#D18D13]
+                    "
+                  >
+                    TRANSVERSAL EN LA GESTIÓN DE LA PROPIEDAD
+                  </p>
+
+
+                  <h4
+                    class="
+                      mt-1
+
+                      text-xl
+                      font-bold
+
+                      text-[#0E3846]
+                    "
+                  >
+                    Alianzas locales
+                  </h4>
+
+                </div>
+
+
+                <img
+                  src="/ods17.png"
+
+                  alt="ODS 17 — Alianzas para lograr los objetivos"
+
+                  class="
+                    hidden
+                    sm:block
+
+                    h-[64px]
+                    w-[64px]
+
+                    shrink-0
+
+                    object-contain
+                  "
+                />
+
+              </div>
+
+
+              <p
+                class="
+                  mt-2
+
+                  text-sm
+                  leading-6
+
+                  text-[#526B74]
+                "
+              >
+                La colaboración con técnicos, proveedores y profesionales locales
+                nos permite convertir un problema identificado en una
+                actuación coordinada cuando sea necesario.
+              </p>
+
+
+              <p
+                class="
+                  mt-3
+
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.1em]
+
+                  text-[#D99B26]
+                "
+              >
+                ODS 17
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       SIX DIRECTLY RELATED ODS
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F1F7F8]
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          OBJETIVOS DE DESARROLLO SOSTENIBLE
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+
+            font-bold
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          Seis objetivos directamente relacionados con la gestión de propiedades.
+        </h2>
+
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          No vinculamos artificialmente nuestra actividad con los 17 objetivos.
+          Nos centramos en aquellos que tienen una relación práctica y directa
+          con la gestión de propiedades. El ODS 9 complementa transversalmente
+          este enfoque mediante la digitalización, la documentación y la
+          trazabilidad.
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-12
+
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          xl:grid-cols-3
+
+          gap-5
+        "
+      >
+
+        {
+          oddItems.map((odd) => (
+
+            <article
+              id={`sdg${odd.number}`}
+
+              class="
+                scroll-mt-28
+
+                rounded-2xl
+
+                border
+                border-[#D0E0E4]
+
+                bg-white
+
+                p-6
+
+                shadow-[0_6px_18px_rgba(14,56,70,0.05)]
+              "
+            >
+
+              <div
+                class="
+                  flex
+                  items-start
+                  gap-5
+                "
+              >
+
+                <img
+                  src={`/ods${odd.number}.png`}
+
+                  alt={`ODS ${odd.number} — ${odd.title}`}
+
+                  class="
+                    h-[88px]
+                    w-[88px]
+
+                    shrink-0
+
+                    object-contain
+                  "
+
+                  loading="lazy"
+                />
+
+
+                <div>
+
+                  <p
+                    class="
+                      text-xs
+                      font-bold
+                      uppercase
+                      tracking-[0.11em]
+
+                      text-[#D99B26]
+                    "
+                  >
+                    {odd.short}
+                  </p>
+
+
+                  <h3
+                    class="
+                      mt-2
+
+                      text-[18px]
+                      font-bold
+                      leading-snug
+
+                      text-[#0E3846]
+                    "
+                  >
+                    ODS {odd.number}
+                  </h3>
+
+                </div>
+
+              </div>
+
+
+              <h4
+                class="
+                  mt-5
+
+                  text-lg
+                  font-bold
+                  leading-snug
+
+                  text-[#0E3846]
+                "
+              >
+                {odd.title}
+              </h4>
+
+
+              <p
+                class="
+                  mt-3
+
+                  text-sm
+                  leading-6
+
+                  text-[#526B74]
+                "
+              >
+                {odd.text}
+              </p>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       DIGITALISATION / ODS 9
+  ====================================================== -->
+
+  <section
+    id="sdg9"
+
+    class="
+      scroll-mt-24
+
+      bg-[#0E3846]
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[0.9fr_1.1fr]
+
+          gap-10
+          lg:gap-14
+
+          items-center
+        "
+      >
+
+        <!-- LEFT -->
+
+        <div>
+
+          <!-- ODS 9 -->
+
+          <div
+            class="
+              flex
+              items-center
+              gap-4
+            "
+          >
+
+            <img
+              src="/ods9.png"
+
+              alt="ODS 9 — Industria, innovación e infraestructura"
+
+              class="
+                h-[88px]
+                w-[88px]
+
+                sm:h-[96px]
+                sm:w-[96px]
+
+                shrink-0
+
+                object-contain
+
+                rounded-lg
+              "
+            />
+
+
+            <div>
+
+              <p
+                class="
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.14em]
+
+                  text-[#F3C76B]
+                "
+              >
+                ODS 9 · DIMENSIÓN TRANSVERSAL
+              </p>
+
+
+              <p
+                class="
+                  mt-1
+
+                  text-sm
+                  leading-6
+
+                  text-[#C9DDE2]
+                "
+              >
+                Infraestructura digital, documentación y trazabilidad
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <p
+            class="
+              mt-7
+
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.17em]
+
+              text-[#F3C76B]
+            "
+          >
+            DIGITALIZACIÓN &amp; TRAZABILIDAD
+          </p>
+
+
+          <h2
+            class="
+              mt-3
+
+              text-[30px]
+              sm:text-4xl
+
+              font-bold
+              tracking-tight
+
+              text-white
+            "
+          >
+            La sostenibilidad también necesita datos.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+
+              text-base
+              sm:text-lg
+
+              leading-8
+
+              text-[#C9DDE2]
+            "
+          >
+            Una revisión aislada muestra lo que ocurre en un momento concreto.
+            Una serie de visitas documentadas nos permite comparar, detectar
+            cambios y mantener un historial de la propiedad.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+
+              text-sm
+              leading-7
+
+              text-[#AFC9D0]
+            "
+          >
+            La digitalización no es un servicio independiente, sino la infraestructura
+            de información que respalda todo nuestro proceso de
+            monitorización e informes.
+          </p>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+          <div
+            class="
+              grid
+              grid-cols-1
+              sm:grid-cols-2
+
+              gap-3
+            "
+          >
+
+            {
+              [
+                'Fotografías y observaciones después de cada visita',
+                'Historial de revisiones de la propiedad',
+                'Fotografías comparativas de los contadores',
+                'Monitorización de valores relevantes, según el plan',
+                'Identificación de tendencias y cambios',
+                'Documentación de incidencias y recomendaciones',
+              ].map((item) => (
+
+                <div
+                  class="
+                    flex
+                    items-start
+                    gap-3
+
+                    rounded-xl
+
+                    border
+                    border-white/10
+
+                    bg-white/5
+
+                    px-4
+                    py-4
+
+                    text-sm
+                    leading-6
+
+                    text-[#D7E5E9]
+                  "
+                >
+
+                  <span
+                    class="
+                      mt-0.5
+
+                      flex
+                      h-5
+                      w-5
+
+                      shrink-0
+
+                      items-center
+                      justify-center
+
+                      rounded-full
+
+                      bg-[#D99B26]
+
+                      text-[11px]
+                      font-bold
+
+                      text-[#0E3846]
+                    "
+                  >
+                    ✓
+                  </span>
+
+                  {item}
+
+                </div>
+
+              ))
+            }
+
+          </div>
+
+
+          <div
+            class="
+              mt-5
+
+              rounded-xl
+
+              border
+              border-[#D99B26]/40
+
+              bg-[#D99B26]/10
+
+              px-5
+              py-4
+
+              text-center
+
+              text-sm
+              sm:text-base
+
+              font-bold
+
+              text-[#F3C76B]
+            "
+          >
+            Medimos → Comparamos → Documentamos → Detectamos → Actuamos
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PARTNERSHIPS / ODS 17
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+
+          grid
+          max-w-5xl
+
+          grid-cols-1
+          lg:grid-cols-[220px_1fr]
+
+          gap-8
+          lg:gap-12
+
+          items-center
+
+          rounded-3xl
+
+          border
+          border-[#E1D5B5]
+
+          bg-[#FFF9ED]
+
+          p-7
+          sm:p-10
+        "
+      >
+
+        <!-- ICON -->
+
+        <div
+          class="
+            flex
+            justify-center
+          "
+        >
+
+          <img
+            src="/ods17.png"
+
+            alt="ODS 17 — Alianzas para lograr los objetivos"
+
+            class="
+              h-[150px]
+              w-[150px]
+
+              sm:h-[170px]
+              sm:w-[170px]
+
+              object-contain
+            "
+          />
+
+        </div>
+
+
+        <!-- TEXT -->
+
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.17em]
+
+              text-[#D99B26]
+            "
+          >
+            ODS 17 · ALIANZAS
+          </p>
+
+
+          <h2
+            class="
+              mt-3
+
+              text-[28px]
+              sm:text-4xl
+
+              font-bold
+              tracking-tight
+
+              text-[#0E3846]
+            "
+          >
+            Un problema identificado debe poder convertirse en una actuación.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+
+              text-base
+              sm:text-lg
+
+              leading-8
+
+              text-[#526B74]
+            "
+          >
+            Cuando las revisiones indican que es necesaria una intervención,
+            la colaboración con técnicos, proveedores y profesionales locales
+            nos permite coordinar el acceso y mantener informado al propietario,
+            de acuerdo con el servicio contratado.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+
+              text-sm
+              leading-6
+
+              text-[#6A7477]
+            "
+          >
+            Los proveedores y técnicos siguen siendo profesionales independientes,
+            y los trabajos, materiales y servicios de terceros se facturan
+            por separado.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PACKAGE LEVELS
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          TRES NIVELES
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+
+            font-bold
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          El enfoque se hace más completo a medida que aumenta el nivel de monitorización.
+        </h2>
+
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          Todos los planes incluyen prevención, documentación y trazabilidad.
+          Los niveles superiores añaden monitorización comparativa, análisis y
+          una coordinación más amplia.
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-12
+
+          grid
+          grid-cols-1
+          lg:grid-cols-3
+
+          gap-6
+
+          items-stretch
+        "
+      >
+
+        {
+          packageLevels.map((pkg) => (
+
+            <article
+              class:list={[
+                'rounded-2xl',
+                'border',
+                'p-6',
+                'sm:p-7',
+
+                pkg.featured
+                  ? 'border-[#5B9EB5] bg-[#F1F8FA] shadow-[0_14px_32px_rgba(14,56,70,0.11)]'
+                  : 'border-[#D2E1E5] bg-white',
+              ]}
+            >
+
+              <p
+                class="
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.13em]
+
+                  text-[#D99B26]
+                "
+              >
+                {pkg.subtitle}
+              </p>
+
+
+              <h3
+                class="
+                  mt-2
+
+                  text-xl
+                  sm:text-2xl
+
+                  font-bold
+
+                  text-[#0E3846]
+                "
+              >
+                {pkg.name} — {pkg.level}
+              </h3>
+
+
+              <!-- ODS ICONS -->
+
+              <div
+                class="
+                  mt-5
+
+                  flex
+                  flex-wrap
+
+                  gap-2
+                "
+              >
+
+                {
+                  pkg.odds.map((odd) => (
+
+                    <img
+                      src={`/ods${odd}.png`}
+
+                      alt={`ODS ${odd}`}
+
+                      class="
+                        h-[46px]
+                        w-[46px]
+
+                        object-contain
+                      "
+
+                      loading="lazy"
+                    />
+
+                  ))
+                }
+
+              </div>
+
+
+              <!-- FEATURES -->
+
+              <ul
+                class="
+                  mt-6
+                  space-y-3
+                "
+              >
+
+                {
+                  pkg.items.map((item) => (
+
+                    <li
+                      class="
+                        flex
+                        items-start
+                        gap-3
+
+                        text-sm
+                        leading-6
+
+                        text-[#526B74]
+                      "
+                    >
+
+                      <span
+                        class="
+                          mt-0.5
+
+                          text-[#D99B26]
+
+                          font-bold
+                        "
+                      >
+                        ✓
+                      </span>
+
+                      {item}
+
+                    </li>
+
+                  ))
+                }
+
+              </ul>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+
+      <div
+        class="
+          mt-8
+          text-center
+        "
+      >
+
+        <a
+          href="/es/servicios"
+
+          class="
+            inline-flex
+            min-h-[52px]
+
+            items-center
+            justify-center
+
+            rounded-xl
+
+            bg-[#0E3846]
+
+            px-7
+            py-3
+
+            text-sm
+            font-bold
+
+            text-white
+
+            transition
+
+            hover:bg-[#164D5D]
+          "
+        >
+          COMPARAR PLANES
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PRACTICAL EXAMPLES
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          QUÉ SIGNIFICA EN LA PRÁCTICA
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+
+            font-bold
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          Pequeñas acciones pueden prevenir problemas mayores.
+        </h2>
+
+      </div>
+
+
+      <div
+        class="
+          mt-10
+
+          grid
+          grid-cols-1
+          md:grid-cols-2
+
+          gap-5
+        "
+      >
+
+        {
+          practicalItems.map((item) => (
+
+            <article
+              class="
+                flex
+                gap-5
+
+                rounded-2xl
+
+                border
+                border-[#D2E1E5]
+
+                bg-[#F7FAFA]
+
+                p-6
+              "
+            >
+
+              <span
+                class="
+                  flex
+                  h-11
+                  w-11
+
+                  shrink-0
+
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  bg-[#E7F2F5]
+
+                  text-sm
+                  font-bold
+
+                  text-[#0E3846]
+                "
+              >
+                {item.number}
+              </span>
+
+
+              <div>
+
+                <h3
+                  class="
+                    text-lg
+                    font-bold
+
+                    text-[#0E3846]
+                  "
+                >
+                  {item.title}
+                </h3>
+
+
+                <p
+                  class="
+                    mt-2
+
+                    text-sm
+                    leading-6
+
+                    text-[#526B74]
+                  "
+                >
+                  {item.text}
+                </p>
+
+              </div>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       DISCLAIMER
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+
+      py-12
+      sm:py-14
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+
+          rounded-2xl
+
+          border
+          border-[#E7D6AA]
+
+          bg-[#FFF9ED]
+
+          p-6
+          sm:p-8
+        "
+      >
+
+        <div
+          class="
+            flex
+            flex-col
+            sm:flex-row
+
+            gap-5
+
+            items-start
+          "
+        >
+
+          <div
+            class="
+              flex
+              h-11
+              w-11
+
+              shrink-0
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[#D99B26]
+
+              text-[#0E3846]
+
+              font-bold
+            "
+          >
+            i
+          </div>
+
+
+          <div>
+
+            <h2
+              class="
+                text-lg
+                font-bold
+
+                text-[#0E3846]
+              "
+            >
+              Una aclaración importante
+            </h2>
+
+
+            <p
+              class="
+                mt-2
+
+                text-sm
+                sm:text-base
+
+                leading-7
+
+                text-[#526B74]
+              "
+            >
+              La referencia a los Objetivos de Desarrollo Sostenible describe cómo
+              determinadas actividades de Stay in Costa Blanca se alinean
+              de forma práctica con sus principios. No representa una certificación,
+              acreditación, aprobación ni afiliación con la Organización de las
+              Naciones Unidas.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       CTA
+  ====================================================== -->
+
+  <CTA />
+
+
+  <Footer slot="footer" />
+
+</BaseLayout>
