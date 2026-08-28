@@ -1,56 +1,274 @@
 ---
 // src/components/SustainabilityIntro.astro
 
-const mainAreas = [
-  {
-    title: "APĂ",
-    description:
-      "Monitorizarea consumului și identificarea variațiilor neobișnuite pot ajuta la detectarea timpurie a situațiilor care necesită atenție.",
-    icons: [
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const routes = {
+  ro: {
+    sustainability: '/sustenabilitate',
+  },
+  en: {
+    sustainability: '/en/sustainability',
+  },
+  es: {
+    sustainability: '/es/sostenibilidad',
+  },
+};
+
+const r = routes[lang];
+
+const translations = {
+  ro: {
+    topper: 'SUSTENABILITATE',
+    heading: 'Administrare responsabilă, nu doar monitorizare',
+    intro:
+      'Folosim principiile dezvoltării durabile pentru a urmări consumul de resurse, a preveni risipa și a contribui la menținerea proprietății într-o stare bună pe termen lung.',
+
+    transversal: 'DIMENSIUNE TRANSVERSALĂ',
+
+    digitalTitle: 'Digitalizare',
+    digitalText:
+      'Documentăm vizitele, datele și observațiile pentru a crea un istoric digital comparabil al proprietății.',
+
+    partnershipsTitle: 'Parteneriate',
+    partnershipsText:
+      'Colaborarea cu proprietari, tehnicieni, furnizori și alți actori locali transformă monitorizarea într-o acțiune coordonată.',
+
+    note:
+      'Obiectivele de Dezvoltare Durabilă indică domeniile în care activitatea noastră poate contribui la o administrare mai responsabilă a proprietății.',
+
+    ctaText:
+      'Vrei să afli cum pot contribui aceste principii la administrarea proprietății tale?',
+    ctaButton: 'DESCOPERĂ ABORDAREA NOASTRĂ',
+
+    areas: [
       {
-        src: "/odd-6-ro.png",
-        alt: "ODD 6 — Apă curată și sanitație",
-        href: "/sustenabilitate#sdg6",
+        title: 'APĂ',
+        description:
+          'Monitorizarea consumului și identificarea variațiilor neobișnuite pot ajuta la detectarea timpurie a situațiilor care necesită atenție.',
+        icons: [
+          {
+            src: '/odd-6-ro.png',
+            alt: 'ODD 6 — Apă curată și sanitație',
+            anchor: 'sdg6',
+          },
+        ],
+      },
+      {
+        title: 'ENERGIE',
+        description:
+          'Urmărirea consumului și verificările funcționale ne ajută să observăm evoluția utilizării energiei în proprietate.',
+        icons: [
+          {
+            src: '/odd-7-ro.png',
+            alt: 'ODD 7 — Energie curată și la prețuri accesibile',
+            anchor: 'sdg7',
+          },
+        ],
+      },
+      {
+        title: 'PROPRIETATE & REZILIENȚĂ',
+        description:
+          'Prevenția, întreținerea responsabilă și verificările după vreme severă contribuie la protejarea proprietății și a resurselor sale.',
+        icons: [
+          {
+            src: '/odd-11-ro.png',
+            alt: 'ODD 11 — Orașe și comunități durabile',
+            anchor: 'sdg11',
+          },
+          {
+            src: '/odd-12-ro.png',
+            alt: 'ODD 12 — Consum și producție responsabile',
+            anchor: 'sdg12',
+          },
+          {
+            src: '/odd-13-ro.png',
+            alt: 'ODD 13 — Acțiune climatică',
+            anchor: 'sdg13',
+          },
+        ],
       },
     ],
+
+    sdg17: {
+      src: '/odd-17-ro.png',
+      alt: 'ODD 17 — Parteneriate pentru realizarea obiectivelor',
+    },
   },
 
-  {
-    title: "ENERGIE",
-    description:
-      "Urmărirea consumului și verificările funcționale ne ajută să observăm evoluția utilizării energiei în proprietate.",
-    icons: [
+  en: {
+    topper: 'SUSTAINABILITY',
+    heading: 'Responsible property management, not just monitoring',
+    intro:
+      'We apply sustainable development principles to track resource consumption, help prevent waste and support the long-term condition of the property.',
+
+    transversal: 'CROSS-CUTTING DIMENSION',
+
+    digitalTitle: 'Digitalisation',
+    digitalText:
+      'We document visits, data and observations to build a comparable digital history of the property.',
+
+    partnershipsTitle: 'Partnerships',
+    partnershipsText:
+      'Collaboration with owners, technicians, suppliers and other local partners turns monitoring into coordinated action.',
+
+    note:
+      'The Sustainable Development Goals indicate the areas in which our activity can contribute to more responsible property management.',
+
+    ctaText:
+      'Would you like to see how these principles can contribute to the management of your property?',
+    ctaButton: 'DISCOVER OUR APPROACH',
+
+    areas: [
       {
-        src: "/odd-7-ro.png",
-        alt: "ODD 7 — Energie curată și la prețuri accesibile",
-        href: "/sustenabilitate#sdg7",
+        title: 'WATER',
+        description:
+          'Monitoring consumption and identifying unusual variations can help detect situations that require attention at an early stage.',
+        icons: [
+          {
+            src: '/sdg6.png',
+            alt: 'SDG 6 — Clean Water and Sanitation',
+            anchor: 'sdg6',
+          },
+        ],
+      },
+      {
+        title: 'ENERGY',
+        description:
+          'Tracking consumption and carrying out functional checks helps us observe how energy use evolves within the property.',
+        icons: [
+          {
+            src: '/sdg7.png',
+            alt: 'SDG 7 — Affordable and Clean Energy',
+            anchor: 'sdg7',
+          },
+        ],
+      },
+      {
+        title: 'PROPERTY & RESILIENCE',
+        description:
+          'Prevention, responsible maintenance and checks after severe weather help protect the property and its resources.',
+        icons: [
+          {
+            src: '/sdg11.png',
+            alt: 'SDG 11 — Sustainable Cities and Communities',
+            anchor: 'sdg11',
+          },
+          {
+            src: '/sdg12.png',
+            alt: 'SDG 12 — Responsible Consumption and Production',
+            anchor: 'sdg12',
+          },
+          {
+            src: '/sdg13.png',
+            alt: 'SDG 13 — Climate Action',
+            anchor: 'sdg13',
+          },
+        ],
       },
     ],
+
+    sdg17: {
+      src: '/sdg17.png',
+      alt: 'SDG 17 — Partnerships for the Goals',
+    },
   },
 
-  {
-    title: "PROPRIETATE & REZILIENȚĂ",
-    description:
-      "Prevenția, întreținerea responsabilă și verificările după vreme severă contribuie la protejarea proprietății și a resurselor sale.",
-    icons: [
+  es: {
+    topper: 'SOSTENIBILIDAD',
+    heading: 'Gestión responsable, no solo monitorización',
+    intro:
+      'Aplicamos los principios del desarrollo sostenible para controlar el consumo de recursos, ayudar a prevenir el desperdicio y contribuir al buen estado de la propiedad a largo plazo.',
+
+    transversal: 'DIMENSIÓN TRANSVERSAL',
+
+    digitalTitle: 'Digitalización',
+    digitalText:
+      'Documentamos las visitas, los datos y las observaciones para crear un historial digital comparable de la propiedad.',
+
+    partnershipsTitle: 'Alianzas',
+    partnershipsText:
+      'La colaboración con propietarios, técnicos, proveedores y otros actores locales convierte la monitorización en una actuación coordinada.',
+
+    note:
+      'Los Objetivos de Desarrollo Sostenible indican los ámbitos en los que nuestra actividad puede contribuir a una gestión más responsable de la propiedad.',
+
+    ctaText:
+      '¿Quieres descubrir cómo pueden contribuir estos principios a la gestión de tu propiedad?',
+    ctaButton: 'DESCUBRE NUESTRO ENFOQUE',
+
+    areas: [
       {
-        src: "/odd-11-ro.png",
-        alt: "ODD 11 — Orașe și comunități durabile",
-        href: "/sustenabilitate#sdg11",
+        title: 'AGUA',
+        description:
+          'Monitorizar el consumo e identificar variaciones inusuales puede ayudar a detectar con antelación situaciones que requieren atención.',
+        icons: [
+          {
+            src: '/ods6.png',
+            alt: 'ODS 6 — Agua limpia y saneamiento',
+            anchor: 'sdg6',
+          },
+        ],
       },
       {
-        src: "/odd-12-ro.png",
-        alt: "ODD 12 — Consum și producție responsabile",
-        href: "/sustenabilitate#sdg12",
+        title: 'ENERGÍA',
+        description:
+          'El seguimiento del consumo y las revisiones funcionales nos ayudan a observar la evolución del uso de la energía en la propiedad.',
+        icons: [
+          {
+            src: '/ods7.png',
+            alt: 'ODS 7 — Energía asequible y no contaminante',
+            anchor: 'sdg7',
+          },
+        ],
       },
       {
-        src: "/odd-13-ro.png",
-        alt: "ODD 13 — Acțiune climatică",
-        href: "/sustenabilitate#sdg13",
+        title: 'PROPIEDAD Y RESILIENCIA',
+        description:
+          'La prevención, el mantenimiento responsable y las revisiones después de episodios meteorológicos severos ayudan a proteger la propiedad y sus recursos.',
+        icons: [
+          {
+            src: '/ods11.png',
+            alt: 'ODS 11 — Ciudades y comunidades sostenibles',
+            anchor: 'sdg11',
+          },
+          {
+            src: '/ods12.png',
+            alt: 'ODS 12 — Producción y consumo responsables',
+            anchor: 'sdg12',
+          },
+          {
+            src: '/ods13.png',
+            alt: 'ODS 13 — Acción por el clima',
+            anchor: 'sdg13',
+          },
+        ],
       },
     ],
+
+    sdg17: {
+      src: '/ods17.png',
+      alt: 'ODS 17 — Alianzas para lograr los objetivos',
+    },
   },
-];
+};
+
+const t = translations[lang];
+
+const mainAreas = t.areas.map((area) => ({
+  ...area,
+  icons: area.icons.map((icon) => ({
+    ...icon,
+    href: `${r.sustainability}#${icon.anchor}`,
+  })),
+}));
+
+const partnershipHref = `${r.sustainability}#sdg17`;
 ---
 
 <section
@@ -59,7 +277,7 @@ const mainAreas = [
 >
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- TITLU -->
+    <!-- TITLE -->
     <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
       <p
         class="
@@ -71,7 +289,7 @@ const mainAreas = [
           mb-3
         "
       >
-        SUSTENABILITATE
+        {t.topper}
       </p>
 
       <h2
@@ -85,7 +303,7 @@ const mainAreas = [
           leading-tight
         "
       >
-        Administrare responsabilă, nu doar monitorizare
+        {t.heading}
       </h2>
 
       <p
@@ -100,13 +318,11 @@ const mainAreas = [
           mx-auto
         "
       >
-        Folosim principiile dezvoltării durabile pentru a urmări consumul de
-        resurse, a preveni risipa și a contribui la menținerea proprietății
-        într-o stare bună pe termen lung.
+        {t.intro}
       </p>
     </div>
 
-    <!-- CELE 3 DIRECȚII PRINCIPALE -->
+    <!-- THREE MAIN DIRECTIONS -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
 
       {mainAreas.map((area) => (
@@ -126,13 +342,12 @@ const mainAreas = [
             hover:shadow-[0_12px_30px_rgba(14,56,70,0.10)]
           "
         >
-          <!-- ZONA ICONIȚE CU ÎNĂLȚIME FIXĂ -->
           <div
             class:list={[
-              "mb-6 min-h-[88px] flex items-start",
+              'mb-6 min-h-[88px] flex items-start',
               area.icons.length === 1
-                ? "justify-start"
-                : "justify-start gap-3 flex-wrap"
+                ? 'justify-start'
+                : 'justify-start gap-3 flex-wrap'
             ]}
           >
             {area.icons.map((icon) => (
@@ -169,7 +384,6 @@ const mainAreas = [
             ))}
           </div>
 
-          <!-- TITLU CU ÎNĂLȚIME CONTROLATĂ -->
           <h3
             class="
               text-xl
@@ -183,7 +397,6 @@ const mainAreas = [
             {area.title}
           </h3>
 
-          <!-- DESCRIERE -->
           <p
             class="
               mt-3
@@ -200,10 +413,10 @@ const mainAreas = [
 
     </div>
 
-    <!-- DIMENSIUNI TRANSVERSALE -->
+    <!-- CROSS-CUTTING DIMENSIONS -->
     <div class="mt-7 grid grid-cols-1 md:grid-cols-2 gap-5">
 
-      <!-- DIGITALIZARE -->
+      <!-- DIGITALISATION -->
       <div
         class="
           rounded-2xl
@@ -272,7 +485,7 @@ const mainAreas = [
                 text-[#A9D1DD]
               "
             >
-              DIMENSIUNE TRANSVERSALĂ
+              {t.transversal}
             </p>
 
             <h3
@@ -284,7 +497,7 @@ const mainAreas = [
                 text-white
               "
             >
-              Digitalizare
+              {t.digitalTitle}
             </h3>
 
             <p
@@ -296,14 +509,13 @@ const mainAreas = [
                 leading-7
               "
             >
-              Documentăm vizitele, datele și observațiile pentru a crea
-              un istoric digital comparabil al proprietății.
+              {t.digitalText}
             </p>
           </div>
         </div>
       </div>
 
-      <!-- PARTENERIATE -->
+      <!-- PARTNERSHIPS -->
       <div
         class="
           rounded-2xl
@@ -317,9 +529,9 @@ const mainAreas = [
       >
         <div class="flex items-start gap-5">
           <a
-            href="/sustenabilitate#sdg17"
-            title="ODD 17 — Parteneriate pentru realizarea obiectivelor"
-            aria-label="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+            href={partnershipHref}
+            title={t.sdg17.alt}
+            aria-label={t.sdg17.alt}
             class="
               shrink-0
               block
@@ -337,8 +549,8 @@ const mainAreas = [
             "
           >
             <img
-              src="/odd-17-ro.png"
-              alt="ODD 17 — Parteneriate pentru realizarea obiectivelor"
+              src={t.sdg17.src}
+              alt={t.sdg17.alt}
               loading="lazy"
               class="
                 block
@@ -360,7 +572,7 @@ const mainAreas = [
                 text-[#A9D1DD]
               "
             >
-              DIMENSIUNE TRANSVERSALĂ
+              {t.transversal}
             </p>
 
             <h3
@@ -372,7 +584,7 @@ const mainAreas = [
                 text-white
               "
             >
-              Parteneriate
+              {t.partnershipsTitle}
             </h3>
 
             <p
@@ -384,8 +596,7 @@ const mainAreas = [
                 leading-7
               "
             >
-              Colaborarea cu proprietari, tehnicieni, furnizori și alți actori
-              locali transformă monitorizarea într-o acțiune coordonată.
+              {t.partnershipsText}
             </p>
           </div>
         </div>
@@ -393,7 +604,7 @@ const mainAreas = [
 
     </div>
 
-    <!-- NOTĂ SCURTĂ -->
+    <!-- SHORT NOTE -->
     <div class="mt-8 max-w-4xl mx-auto text-center">
       <p
         class="
@@ -403,9 +614,7 @@ const mainAreas = [
           leading-7
         "
       >
-        Obiectivele de Dezvoltare Durabilă indică domeniile în care activitatea
-        noastră poate contribui la o administrare mai responsabilă a
-        proprietății.
+        {t.note}
       </p>
     </div>
 
@@ -419,12 +628,11 @@ const mainAreas = [
           leading-7
         "
       >
-        Vrei să afli cum pot contribui aceste principii la administrarea
-        proprietății tale?
+        {t.ctaText}
       </p>
 
       <a
-        href="/sustenabilitate"
+        href={r.sustainability}
         class="
           inline-flex
           items-center
@@ -447,7 +655,7 @@ const mainAreas = [
           tracking-wide
         "
       >
-        DESCOPERĂ ABORDAREA NOASTRĂ
+        {t.ctaButton}
         <span aria-hidden="true">→</span>
       </a>
     </div>
