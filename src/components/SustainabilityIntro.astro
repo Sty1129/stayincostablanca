@@ -95,6 +95,11 @@ const translations = {
       },
     ],
 
+    sdg9: {
+      src: '/odd-9-ro.png',
+      alt: 'ODD 9 — Industrie, inovație și infrastructură',
+    },
+
     sdg17: {
       src: '/odd-17-ro.png',
       alt: 'ODD 17 — Parteneriate pentru realizarea obiectivelor',
@@ -172,6 +177,11 @@ const translations = {
         ],
       },
     ],
+
+    sdg9: {
+      src: '/sdg9.png',
+      alt: 'SDG 9 — Industry, Innovation and Infrastructure',
+    },
 
     sdg17: {
       src: '/sdg17.png',
@@ -251,6 +261,11 @@ const translations = {
       },
     ],
 
+    sdg9: {
+      src: '/ods9.png',
+      alt: 'ODS 9 — Industria, innovación e infraestructura',
+    },
+
     sdg17: {
       src: '/ods17.png',
       alt: 'ODS 17 — Alianzas para lograr los objetivos',
@@ -268,6 +283,7 @@ const mainAreas = t.areas.map((area) => ({
   })),
 }));
 
+const digitalisationHref = `${r.sustainability}#sdg9`;
 const partnershipHref = `${r.sustainability}#sdg17`;
 ---
 
@@ -429,50 +445,38 @@ const partnershipHref = `${r.sustainability}#sdg17`;
         "
       >
         <div class="flex items-start gap-5">
-          <div
+          <a
+            href={digitalisationHref}
+            title={t.sdg9.alt}
+            aria-label={t.sdg9.alt}
             class="
               shrink-0
-              w-16
-              h-16
-              rounded-xl
-              bg-[#174B5B]
-              border
-              border-[#347082]
-              flex
-              items-center
-              justify-center
-              text-[#DCECEF]
+              block
+              rounded-lg
+              overflow-hidden
+              transition
+              duration-200
+              hover:-translate-y-1
+              hover:shadow-lg
+              focus:outline-none
+              focus:ring-2
+              focus:ring-[#F3C76B]
+              focus:ring-offset-2
+              focus:ring-offset-[#0E3846]
             "
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              class="w-8 h-8"
-              aria-hidden="true"
-            >
-              <rect
-                x="4"
-                y="3"
-                width="16"
-                height="18"
-                rx="2"
-                stroke-width="1.6"
-              />
-              <path
-                d="M8 8h8M8 12h8M8 16h5"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <circle
-                cx="17"
-                cy="16"
-                r="1.5"
-                fill="currentColor"
-                stroke="none"
-              />
-            </svg>
-          </div>
+            <img
+              src={t.sdg9.src}
+              alt={t.sdg9.alt}
+              loading="lazy"
+              class="
+                block
+                w-[88px]
+                h-[88px]
+                object-contain
+              "
+            />
+          </a>
 
           <div>
             <p
