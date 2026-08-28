@@ -1,1 +1,2688 @@
 
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import { brand } from '../../config/brand';
+
+
+/* =========================================================
+   ODD / SDG DATA
+========================================================= */
+
+const oddItems = [
+  {
+    number: 6,
+    title: 'Clean Water and Sanitation',
+    short: 'Water monitoring',
+    text:
+      'Meter photographs, sanitary-installation checks and observation of possible leaks help us identify situations that may lead to unnecessary water loss sooner.',
+  },
+
+  {
+    number: 7,
+    title: 'Affordable and Clean Energy',
+    short: 'Energy monitoring',
+    text:
+      'Tracking consumption and checking the basic operation of equipment can reveal changes worth investigating before they result in unnecessary energy use.',
+  },
+
+  {
+    number: 11,
+    title: 'Sustainable Cities and Communities',
+    short: 'More resilient properties',
+    text:
+      'Preventive care and regular monitoring help keep properties in better condition during periods when they remain unoccupied.',
+  },
+
+  {
+    number: 12,
+    title: 'Responsible Consumption and Production',
+    short: 'Prevention before replacement',
+    text:
+      'Early identification of a problem may allow a minor intervention before deterioration requires more extensive repairs, additional materials or equipment replacement.',
+  },
+
+  {
+    number: 13,
+    title: 'Climate Action',
+    short: 'Preparedness & resilience',
+    text:
+      'Checks after severe-weather events and monitoring of exterior elements help identify the effects of extreme conditions more quickly.',
+  },
+
+  {
+    number: 17,
+    title: 'Partnerships for the Goals',
+    short: 'Local collaboration',
+    text:
+      'Property management sometimes requires collaboration with local technicians, suppliers and professionals. Responsible coordination is part of our process.',
+  },
+];
+
+
+/* =========================================================
+   HERO ODD
+========================================================= */
+
+const heroOdds = [
+  {
+    number: 6,
+    title: 'Clean Water and Sanitation',
+  },
+
+  {
+    number: 7,
+    title: 'Affordable and Clean Energy',
+  },
+
+  {
+    number: 9,
+    title: 'Industry, Innovation and Infrastructure',
+  },
+
+  {
+    number: 11,
+    title: 'Sustainable Cities and Communities',
+  },
+
+  {
+    number: 12,
+    title: 'Responsible Consumption and Production',
+  },
+
+  {
+    number: 13,
+    title: 'Climate Action',
+  },
+
+  {
+    number: 17,
+    title: 'Partnerships for the Goals',
+  },
+];
+
+
+/* =========================================================
+   PACKAGE LEVELS
+========================================================= */
+
+const packageLevels = [
+  {
+    name: 'ECO-BASIC',
+    level: 'WATCH',
+    subtitle: 'Awareness & Monitoring',
+
+    featured: false,
+
+    odds: [6, 7, 9, 11],
+
+    items: [
+      'Meter photographs',
+      'Periodic water and sanitary-installation checks',
+      'Visual observation of damp and infiltration',
+      'Basic functional air-conditioning check',
+      'Digital report after every visit',
+    ],
+  },
+
+  {
+    name: 'ECO-SMART',
+    level: 'PREVENT',
+    subtitle: 'Optimization & Efficiency',
+
+    featured: true,
+
+    odds: [6, 7, 9, 11, 12, 13],
+
+    items: [
+      'Everything included in ECO-BASIC',
+      'Temperature and relative humidity',
+      'Assisted ventilation',
+      'Comparative moisture readings',
+      'Quarterly water & energy review',
+      'Preventive air-conditioning screening',
+    ],
+  },
+
+  {
+    name: 'ECO-PREMIUM',
+    level: 'MANAGE',
+    subtitle: 'Resilience & Impact',
+
+    featured: false,
+
+    odds: [6, 7, 9, 11, 12, 13, 17],
+
+    items: [
+      'Everything included in ECO-SMART',
+      'Monthly water & energy review',
+      'Extended Property Reviews',
+      'Additional severe-weather checks',
+      'Annual Property Health Report',
+      'Extended local coordination',
+    ],
+  },
+];
+
+
+/* =========================================================
+   PRACTICAL EXAMPLES
+========================================================= */
+
+const practicalItems = [
+  {
+    number: '01',
+
+    title:
+      'An unexpected change in water consumption',
+
+    text:
+      'It may indicate a leak or another issue worth checking before the next bill.',
+  },
+
+  {
+    number: '02',
+
+    title:
+      'Increasing humidity',
+
+    text:
+      'Comparing readings between visits can highlight a change before deterioration becomes visually obvious.',
+  },
+
+  {
+    number: '03',
+
+    title:
+      'Blocked terrace drainage',
+
+    text:
+      'Identifying it before heavy rain can help prevent water accumulation and possible infiltration.',
+  },
+
+  {
+    number: '04',
+
+    title:
+      'Equipment operating differently',
+
+    text:
+      'A change noticed during a check can be investigated before a more serious fault develops.',
+  },
+];
+---
+
+<BaseLayout
+  title={`Sustainability | ${brand.name}`}
+  description="Preventive and sustainable property management in Costa Blanca: water, energy, resilience, digitalisation, traceability and local partnerships."
+>
+
+  <Header slot="header" />
+
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section
+    class="
+      relative
+      overflow-hidden
+
+      bg-[#0E3846]
+
+      py-16
+      sm:py-20
+      lg:py-24
+
+      font-heading
+    "
+  >
+
+    <!-- BACKGROUND -->
+
+    <div
+      class="
+        pointer-events-none
+
+        absolute
+        -right-24
+        -top-24
+
+        h-96
+        w-96
+
+        rounded-full
+
+        bg-[#5B9EB5]/20
+
+        blur-3xl
+      "
+    ></div>
+
+
+    <div
+      class="
+        pointer-events-none
+
+        absolute
+        -bottom-32
+        -left-24
+
+        h-80
+        w-80
+
+        rounded-full
+
+        bg-[#D99B26]/10
+
+        blur-3xl
+      "
+    ></div>
+
+
+    <div
+      class="
+        relative
+
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-5xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.18em]
+
+            text-[#F3C76B]
+          "
+        >
+          APPLIED SUSTAINABILITY
+        </p>
+
+
+        <h1
+          class="
+            mt-4
+
+            text-[36px]
+            sm:text-5xl
+            lg:text-[58px]
+
+            font-bold
+
+            leading-[1.08]
+            tracking-tight
+
+            text-white
+          "
+        >
+          Applied sustainability in property management.
+        </h1>
+
+
+        <p
+          class="
+            mx-auto
+            mt-6
+            max-w-4xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#C9DDE2]
+          "
+        >
+          For us, sustainability means prevention, responsible use of resources,
+          documentation and management that helps a property retain its value
+          and functionality over time.
+        </p>
+
+
+        <!-- ODD ICONS -->
+
+        <div
+          class="
+            mt-9
+
+            flex
+            flex-wrap
+
+            justify-center
+
+            gap-3
+          "
+        >
+
+          {
+            heroOdds.map((odd) => (
+
+              <a
+                href={
+                  odd.number === 9
+                    ? '#digitalisation'
+                    : `#odd-${odd.number}`
+                }
+
+                class="
+                  rounded-xl
+
+                  bg-white
+
+                  p-1.5
+
+                  shadow-[0_6px_18px_rgba(0,0,0,0.14)]
+
+                  transition
+
+                  hover:-translate-y-1
+                "
+              >
+
+                <img
+                  src={`/odd-${odd.number}-ro.png`}
+
+                  alt={`SDG ${odd.number} — ${odd.title}`}
+
+                  class="
+                    h-[62px]
+                    w-[62px]
+
+                    sm:h-[70px]
+                    sm:w-[70px]
+
+                    object-contain
+                  "
+                />
+
+              </a>
+
+            ))
+          }
+
+        </div>
+
+
+        <p
+          class="
+            mt-6
+
+            text-sm
+            font-semibold
+
+            text-[#D8E6EA]
+          "
+        >
+          SDG 6 · SDG 7 · SDG 9 · SDG 11 · SDG 12 · SDG 13 · SDG 17
+        </p>
+
+
+        <div
+          class="
+            mt-8
+
+            flex
+            flex-col
+            sm:flex-row
+
+            justify-center
+
+            gap-3
+          "
+        >
+
+          <a
+            href="#approach"
+
+            class="
+              inline-flex
+              min-h-[52px]
+
+              items-center
+              justify-center
+
+              rounded-xl
+
+              bg-[#D99B26]
+
+              px-7
+              py-3
+
+              text-sm
+              font-bold
+
+              text-[#0E3846]
+
+              transition
+
+              hover:bg-[#E7AA38]
+            "
+          >
+            EXPLORE OUR APPROACH
+          </a>
+
+
+          <a
+            href="/en/services"
+
+            class="
+              inline-flex
+              min-h-[52px]
+
+              items-center
+              justify-center
+
+              rounded-xl
+
+              border
+              border-white/25
+
+              px-7
+              py-3
+
+              text-sm
+              font-bold
+
+              text-white
+
+              transition
+
+              hover:bg-white/10
+            "
+          >
+            VIEW PLANS
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       APPROACH
+  ====================================================== -->
+
+  <section
+    id="approach"
+
+    class="
+      scroll-mt-24
+
+      bg-white
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <!-- INTRO -->
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          HOW WE INTEGRATE SUSTAINABILITY
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+
+            font-bold
+
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          Two operational directions. Two transversal dimensions.
+        </h2>
+
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          Our work focuses on resource management and property resilience.
+          Digitalisation and local partnerships support the entire process.
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           MAIN AXES
+      ================================================== -->
+
+      <div
+        class="
+          mx-auto
+          mt-12
+
+          grid
+          max-w-5xl
+
+          grid-cols-1
+          lg:grid-cols-2
+
+          gap-6
+        "
+      >
+
+        <!-- =================================================
+             RESOURCES
+        ================================================== -->
+
+        <article
+          class="
+            rounded-2xl
+
+            border
+            border-[#D2E1E5]
+
+            bg-[#F7FAFA]
+
+            p-6
+            sm:p-8
+          "
+        >
+
+          <!-- ICON -->
+
+          <div
+            class="
+              flex
+              h-16
+              w-16
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[#E5F2F5]
+
+              text-[#0E3846]
+            "
+          >
+
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+              stroke="currentColor"
+
+              class="
+                h-9
+                w-9
+              "
+
+              aria-hidden="true"
+            >
+
+              <!-- WATER -->
+
+              <path
+                d="M18 9S8 21 8 30a10 10 0 0020 0C28 21 18 9 18 9z"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <!-- ENERGY -->
+
+              <path
+                d="M43 8L31 34h11l-5 22 19-30H44l7-18z"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <!-- ODD ICONS -->
+
+          <div
+            class="
+              mt-6
+
+              flex
+              flex-wrap
+
+              gap-2
+            "
+          >
+
+            {
+              [6, 7].map((odd) => (
+
+                <img
+                  src={`/odd-${odd}-ro.png`}
+
+                  alt={`SDG ${odd}`}
+
+                  class="
+                    h-[58px]
+                    w-[58px]
+
+                    object-contain
+                  "
+                />
+
+              ))
+            }
+
+          </div>
+
+
+          <p
+            class="
+              mt-5
+
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.13em]
+
+              text-[#D99B26]
+            "
+          >
+            SDG 6 + SDG 7
+          </p>
+
+
+          <h3
+            class="
+              mt-2
+
+              text-2xl
+              font-bold
+
+              text-[#0E3846]
+            "
+          >
+            Resources
+          </h3>
+
+
+          <p
+            class="
+              mt-4
+
+              text-[15px]
+              leading-7
+
+              text-[#526B74]
+            "
+          >
+            We monitor relevant water and energy elements, document consumption
+            and track changes that may indicate leaks, abnormal use or
+            inefficient operation.
+          </p>
+
+        </article>
+
+
+        <!-- =================================================
+             PROPERTY & RESILIENCE
+        ================================================== -->
+
+        <article
+          class="
+            rounded-2xl
+
+            border
+            border-[#D2E1E5]
+
+            bg-[#F7FAFA]
+
+            p-6
+            sm:p-8
+          "
+        >
+
+          <!-- ICON -->
+
+          <div
+            class="
+              flex
+              h-16
+              w-16
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[#E5F2F5]
+
+              text-[#0E3846]
+            "
+          >
+
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+              stroke="currentColor"
+
+              class="
+                h-9
+                w-9
+              "
+
+              aria-hidden="true"
+            >
+
+              <!-- HOUSE -->
+
+              <path
+                d="M7 30L26 14l19 16v22H7z"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <path
+                d="M20 52V38h12v14"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <!-- SHIELD -->
+
+              <path
+                d="M46 26l11 4v10c0 8-5 13-11 17-6-4-11-9-11-17V30l11-4z"
+                fill="#F7FAFA"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+
+
+              <path
+                d="M41.5 40l3.5 3.5 6-7"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+          </div>
+
+
+          <!-- ODD ICONS -->
+
+          <div
+            class="
+              mt-6
+
+              flex
+              flex-wrap
+
+              gap-2
+            "
+          >
+
+            {
+              [11, 12, 13].map((odd) => (
+
+                <img
+                  src={`/odd-${odd}-ro.png`}
+
+                  alt={`SDG ${odd}`}
+
+                  class="
+                    h-[58px]
+                    w-[58px]
+
+                    object-contain
+                  "
+                />
+
+              ))
+            }
+
+          </div>
+
+
+          <p
+            class="
+              mt-5
+
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.13em]
+
+              text-[#D99B26]
+            "
+          >
+            SDG 11 + SDG 12 + SDG 13
+          </p>
+
+
+          <h3
+            class="
+              mt-2
+
+              text-2xl
+              font-bold
+
+              text-[#0E3846]
+            "
+          >
+            Property &amp; resilience
+          </h3>
+
+
+          <p
+            class="
+              mt-4
+
+              text-[15px]
+              leading-7
+
+              text-[#526B74]
+            "
+          >
+            Preventive checks, observation of changes and timely action help
+            reduce deterioration and extend the useful life of the property
+            and its equipment.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <!-- =================================================
+           TRANSVERSAL DIMENSIONS
+      ================================================== -->
+
+      <div
+        class="
+          mx-auto
+          mt-12
+          max-w-5xl
+        "
+      >
+
+        <div class="text-center">
+
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.17em]
+
+              text-[#D99B26]
+            "
+          >
+            TRANSVERSAL DIMENSIONS
+          </p>
+
+
+          <h3
+            class="
+              mt-2
+
+              text-2xl
+              sm:text-3xl
+
+              font-bold
+
+              text-[#0E3846]
+            "
+          >
+            Two elements support our entire process.
+          </h3>
+
+
+          <p
+            class="
+              mx-auto
+              mt-3
+              max-w-3xl
+
+              text-base
+              leading-7
+
+              text-[#526B74]
+            "
+          >
+            Digitalisation and local collaboration do not belong to a single
+            inspection. They run across the entire management system.
+          </p>
+
+        </div>
+
+
+        <div
+          class="
+            mt-7
+
+            grid
+            grid-cols-1
+            lg:grid-cols-2
+
+            gap-5
+          "
+        >
+
+          <!-- =================================================
+               DIGITALISATION / SDG 9
+          ================================================== -->
+
+          <article
+            class="
+              flex
+              gap-5
+
+              rounded-2xl
+
+              border
+              border-[#BFD7DE]
+
+              bg-[#EEF7F9]
+
+              p-6
+            "
+          >
+
+            <div
+              class="
+                flex
+                h-12
+                w-12
+
+                shrink-0
+
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-white
+
+                text-[#0E3846]
+              "
+            >
+
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+
+                class="
+                  h-7
+                  w-7
+                "
+
+                aria-hidden="true"
+              >
+
+                <rect
+                  x="10"
+                  y="8"
+                  width="34"
+                  height="44"
+                  rx="4"
+                  stroke-width="3"
+                />
+
+                <path
+                  d="M18 19h18M18 27h12"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+
+                <path
+                  d="M18 42l7-8 6 5 11-13"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <circle
+                  cx="48"
+                  cy="44"
+                  r="9"
+                  fill="#EEF7F9"
+                  stroke-width="3"
+                />
+
+                <path
+                  d="M44 44l3 3 5-6"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+              </svg>
+
+            </div>
+
+
+            <div class="flex-1">
+
+              <div
+                class="
+                  flex
+                  items-start
+                  justify-between
+                  gap-4
+                "
+              >
+
+                <div>
+
+                  <p
+                    class="
+                      text-[10px]
+                      font-bold
+                      uppercase
+                      tracking-[0.12em]
+
+                      text-[#397C92]
+                    "
+                  >
+                    TRANSVERSAL ACROSS ALL PLANS
+                  </p>
+
+
+                  <h4
+                    class="
+                      mt-1
+
+                      text-xl
+                      font-bold
+
+                      text-[#0E3846]
+                    "
+                  >
+                    Digitalisation &amp; traceability
+                  </h4>
+
+                </div>
+
+
+                <img
+                  src="/odd-9-ro.png"
+
+                  alt="SDG 9 — Industry, Innovation and Infrastructure"
+
+                  class="
+                    hidden
+                    sm:block
+
+                    h-[64px]
+                    w-[64px]
+
+                    shrink-0
+
+                    object-contain
+                  "
+                />
+
+              </div>
+
+
+              <p
+                class="
+                  mt-2
+
+                  text-sm
+                  leading-6
+
+                  text-[#526B74]
+                "
+              >
+                Photographs, measured values, reports and visit history create
+                continuity between checks and allow the property condition
+                to be compared over time.
+              </p>
+
+
+              <p
+                class="
+                  mt-3
+
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.1em]
+
+                  text-[#397C92]
+                "
+              >
+                SDG 9
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <!-- =================================================
+               PARTNERSHIPS / SDG 17
+          ================================================== -->
+
+          <article
+            class="
+              flex
+              gap-5
+
+              rounded-2xl
+
+              border
+              border-[#E2D3A9]
+
+              bg-[#FFF9ED]
+
+              p-6
+            "
+          >
+
+            <div
+              class="
+                flex
+                h-12
+                w-12
+
+                shrink-0
+
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-white
+
+                text-[#0E3846]
+              "
+            >
+
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+
+                class="
+                  h-8
+                  w-8
+                "
+
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M7 28l11-10 12 5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M57 28L46 18l-13 6"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M24 25l8-5c3-2 6-1 8 1l5 5"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M17 34l14 13c2 2 5 2 7 0l11-11"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+              </svg>
+
+            </div>
+
+
+            <div class="flex-1">
+
+              <div
+                class="
+                  flex
+                  items-start
+                  justify-between
+                  gap-4
+                "
+              >
+
+                <div>
+
+                  <p
+                    class="
+                      text-[10px]
+                      font-bold
+                      uppercase
+                      tracking-[0.12em]
+
+                      text-[#D18D13]
+                    "
+                  >
+                    TRANSVERSAL IN PROPERTY MANAGEMENT
+                  </p>
+
+
+                  <h4
+                    class="
+                      mt-1
+
+                      text-xl
+                      font-bold
+
+                      text-[#0E3846]
+                    "
+                  >
+                    Local partnerships
+                  </h4>
+
+                </div>
+
+
+                <img
+                  src="/odd-17-ro.png"
+
+                  alt="SDG 17 — Partnerships for the Goals"
+
+                  class="
+                    hidden
+                    sm:block
+
+                    h-[64px]
+                    w-[64px]
+
+                    shrink-0
+
+                    object-contain
+                  "
+                />
+
+              </div>
+
+
+              <p
+                class="
+                  mt-2
+
+                  text-sm
+                  leading-6
+
+                  text-[#526B74]
+                "
+              >
+                Collaboration with local technicians, suppliers and professionals
+                allows us to turn an identified issue into coordinated action
+                when necessary.
+              </p>
+
+
+              <p
+                class="
+                  mt-3
+
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.1em]
+
+                  text-[#D99B26]
+                "
+              >
+                SDG 17
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       SIX DIRECTLY RELATED ODD
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F1F7F8]
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          SUSTAINABLE DEVELOPMENT GOALS
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+
+            font-bold
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          Six goals directly related to property management.
+        </h2>
+
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          We do not artificially associate our work with all 17 goals. We focus
+          on those with a practical and direct connection to property
+          management. SDG 9 complements this approach transversally through
+          digitalisation, documentation and traceability.
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-12
+
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          xl:grid-cols-3
+
+          gap-5
+        "
+      >
+
+        {
+          oddItems.map((odd) => (
+
+            <article
+              id={`odd-${odd.number}`}
+
+              class="
+                scroll-mt-28
+
+                rounded-2xl
+
+                border
+                border-[#D0E0E4]
+
+                bg-white
+
+                p-6
+
+                shadow-[0_6px_18px_rgba(14,56,70,0.05)]
+              "
+            >
+
+              <div
+                class="
+                  flex
+                  items-start
+                  gap-5
+                "
+              >
+
+                <img
+                  src={`/odd-${odd.number}-ro.png`}
+
+                  alt={`SDG ${odd.number} — ${odd.title}`}
+
+                  class="
+                    h-[88px]
+                    w-[88px]
+
+                    shrink-0
+
+                    object-contain
+                  "
+
+                  loading="lazy"
+                />
+
+
+                <div>
+
+                  <p
+                    class="
+                      text-xs
+                      font-bold
+                      uppercase
+                      tracking-[0.11em]
+
+                      text-[#D99B26]
+                    "
+                  >
+                    {odd.short}
+                  </p>
+
+
+                  <h3
+                    class="
+                      mt-2
+
+                      text-[18px]
+                      font-bold
+                      leading-snug
+
+                      text-[#0E3846]
+                    "
+                  >
+                    SDG {odd.number}
+                  </h3>
+
+                </div>
+
+              </div>
+
+
+              <h4
+                class="
+                  mt-5
+
+                  text-lg
+                  font-bold
+                  leading-snug
+
+                  text-[#0E3846]
+                "
+              >
+                {odd.title}
+              </h4>
+
+
+              <p
+                class="
+                  mt-3
+
+                  text-sm
+                  leading-6
+
+                  text-[#526B74]
+                "
+              >
+                {odd.text}
+              </p>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       DIGITALISATION / SDG 9
+  ====================================================== -->
+
+  <section
+    id="digitalisation"
+
+    class="
+      scroll-mt-24
+
+      bg-[#0E3846]
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[0.9fr_1.1fr]
+
+          gap-10
+          lg:gap-14
+
+          items-center
+        "
+      >
+
+        <!-- LEFT -->
+
+        <div>
+
+          <!-- SDG 9 -->
+
+          <div
+            class="
+              flex
+              items-center
+              gap-4
+            "
+          >
+
+            <img
+              src="/odd-9-ro.png"
+
+              alt="SDG 9 — Industry, Innovation and Infrastructure"
+
+              class="
+                h-[88px]
+                w-[88px]
+
+                sm:h-[96px]
+                sm:w-[96px]
+
+                shrink-0
+
+                object-contain
+
+                rounded-lg
+              "
+            />
+
+
+            <div>
+
+              <p
+                class="
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.14em]
+
+                  text-[#F3C76B]
+                "
+              >
+                SDG 9 · TRANSVERSAL DIMENSION
+              </p>
+
+
+              <p
+                class="
+                  mt-1
+
+                  text-sm
+                  leading-6
+
+                  text-[#C9DDE2]
+                "
+              >
+                Digital infrastructure, documentation and traceability
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <p
+            class="
+              mt-7
+
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.17em]
+
+              text-[#F3C76B]
+            "
+          >
+            DIGITALISATION &amp; TRACEABILITY
+          </p>
+
+
+          <h2
+            class="
+              mt-3
+
+              text-[30px]
+              sm:text-4xl
+
+              font-bold
+              tracking-tight
+
+              text-white
+            "
+          >
+            Sustainability also needs data.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+
+              text-base
+              sm:text-lg
+
+              leading-8
+
+              text-[#C9DDE2]
+            "
+          >
+            A single inspection shows what is happening at one particular moment.
+            A series of documented visits allows us to compare, detect changes
+            and maintain a history of the property.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+
+              text-sm
+              leading-7
+
+              text-[#AFC9D0]
+            "
+          >
+            Digitalisation is not a separate service; it is the information
+            infrastructure that supports our entire monitoring and reporting
+            process.
+          </p>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+          <div
+            class="
+              grid
+              grid-cols-1
+              sm:grid-cols-2
+
+              gap-3
+            "
+          >
+
+            {
+              [
+                'Photographs and observations after every visit',
+                'Property inspection history',
+                'Comparative meter photographs',
+                'Monitoring relevant values, depending on the plan',
+                'Identification of trends and changes',
+                'Documentation of incidents and recommendations',
+              ].map((item) => (
+
+                <div
+                  class="
+                    flex
+                    items-start
+                    gap-3
+
+                    rounded-xl
+
+                    border
+                    border-white/10
+
+                    bg-white/5
+
+                    px-4
+                    py-4
+
+                    text-sm
+                    leading-6
+
+                    text-[#D7E5E9]
+                  "
+                >
+
+                  <span
+                    class="
+                      mt-0.5
+
+                      flex
+                      h-5
+                      w-5
+
+                      shrink-0
+
+                      items-center
+                      justify-center
+
+                      rounded-full
+
+                      bg-[#D99B26]
+
+                      text-[11px]
+                      font-bold
+
+                      text-[#0E3846]
+                    "
+                  >
+                    ✓
+                  </span>
+
+                  {item}
+
+                </div>
+
+              ))
+            }
+
+          </div>
+
+
+          <div
+            class="
+              mt-5
+
+              rounded-xl
+
+              border
+              border-[#D99B26]/40
+
+              bg-[#D99B26]/10
+
+              px-5
+              py-4
+
+              text-center
+
+              text-sm
+              sm:text-base
+
+              font-bold
+
+              text-[#F3C76B]
+            "
+          >
+            Measure → Compare → Document → Detect → Act
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PARTNERSHIPS / SDG 17
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+
+          grid
+          max-w-5xl
+
+          grid-cols-1
+          lg:grid-cols-[220px_1fr]
+
+          gap-8
+          lg:gap-12
+
+          items-center
+
+          rounded-3xl
+
+          border
+          border-[#E1D5B5]
+
+          bg-[#FFF9ED]
+
+          p-7
+          sm:p-10
+        "
+      >
+
+        <!-- ICON -->
+
+        <div
+          class="
+            flex
+            justify-center
+          "
+        >
+
+          <img
+            src="/odd-17-ro.png"
+
+            alt="SDG 17 — Partnerships for the Goals"
+
+            class="
+              h-[150px]
+              w-[150px]
+
+              sm:h-[170px]
+              sm:w-[170px]
+
+              object-contain
+            "
+          />
+
+        </div>
+
+
+        <!-- TEXT -->
+
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.17em]
+
+              text-[#D99B26]
+            "
+          >
+            SDG 17 · PARTENERIATE
+          </p>
+
+
+          <h2
+            class="
+              mt-3
+
+              text-[28px]
+              sm:text-4xl
+
+              font-bold
+              tracking-tight
+
+              text-[#0E3846]
+            "
+          >
+            An identified issue must be able to become an action.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+
+              text-base
+              sm:text-lg
+
+              leading-8
+
+              text-[#526B74]
+            "
+          >
+            When inspections indicate that an intervention is needed,
+            collaboration with local technicians, suppliers and professionals
+            allows us to coordinate access and keep the owner informed,
+            according to the contracted service.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+
+              text-sm
+              leading-6
+
+              text-[#6A7477]
+            "
+          >
+            Suppliers and technicians remain independent professionals, and
+            third-party work, materials and services are charged separately.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PACKAGE LEVELS
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          THREE LEVELS
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+            lg:text-[44px]
+
+            font-bold
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          The approach becomes more comprehensive as the monitoring level increases.
+        </h2>
+
+
+        <p
+          class="
+            mx-auto
+            mt-5
+            max-w-3xl
+
+            text-base
+            sm:text-lg
+
+            leading-8
+
+            text-[#526B74]
+          "
+        >
+          All plans include prevention, documentation and traceability. Higher
+          levels add comparative monitoring, analysis and broader coordination.
+        </p>
+
+      </div>
+
+
+      <div
+        class="
+          mt-12
+
+          grid
+          grid-cols-1
+          lg:grid-cols-3
+
+          gap-6
+
+          items-stretch
+        "
+      >
+
+        {
+          packageLevels.map((pkg) => (
+
+            <article
+              class:list={[
+                'rounded-2xl',
+                'border',
+                'p-6',
+                'sm:p-7',
+
+                pkg.featured
+                  ? 'border-[#5B9EB5] bg-[#F1F8FA] shadow-[0_14px_32px_rgba(14,56,70,0.11)]'
+                  : 'border-[#D2E1E5] bg-white',
+              ]}
+            >
+
+              <p
+                class="
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.13em]
+
+                  text-[#D99B26]
+                "
+              >
+                {pkg.subtitle}
+              </p>
+
+
+              <h3
+                class="
+                  mt-2
+
+                  text-xl
+                  sm:text-2xl
+
+                  font-bold
+
+                  text-[#0E3846]
+                "
+              >
+                {pkg.name} — {pkg.level}
+              </h3>
+
+
+              <!-- ODD ICONS -->
+
+              <div
+                class="
+                  mt-5
+
+                  flex
+                  flex-wrap
+
+                  gap-2
+                "
+              >
+
+                {
+                  pkg.odds.map((odd) => (
+
+                    <img
+                      src={`/odd-${odd}-ro.png`}
+
+                      alt={`SDG ${odd}`}
+
+                      class="
+                        h-[46px]
+                        w-[46px]
+
+                        object-contain
+                      "
+
+                      loading="lazy"
+                    />
+
+                  ))
+                }
+
+              </div>
+
+
+              <!-- FEATURES -->
+
+              <ul
+                class="
+                  mt-6
+                  space-y-3
+                "
+              >
+
+                {
+                  pkg.items.map((item) => (
+
+                    <li
+                      class="
+                        flex
+                        items-start
+                        gap-3
+
+                        text-sm
+                        leading-6
+
+                        text-[#526B74]
+                      "
+                    >
+
+                      <span
+                        class="
+                          mt-0.5
+
+                          text-[#D99B26]
+
+                          font-bold
+                        "
+                      >
+                        ✓
+                      </span>
+
+                      {item}
+
+                    </li>
+
+                  ))
+                }
+
+              </ul>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+
+      <div
+        class="
+          mt-8
+          text-center
+        "
+      >
+
+        <a
+          href="/en/services"
+
+          class="
+            inline-flex
+            min-h-[52px]
+
+            items-center
+            justify-center
+
+            rounded-xl
+
+            bg-[#0E3846]
+
+            px-7
+            py-3
+
+            text-sm
+            font-bold
+
+            text-white
+
+            transition
+
+            hover:bg-[#164D5D]
+          "
+        >
+          COMPARE PLANS
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PRACTICAL EXAMPLES
+  ====================================================== -->
+
+  <section
+    class="
+      bg-white
+
+      py-16
+      sm:py-20
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.17em]
+
+            text-[#D99B26]
+          "
+        >
+          WHAT THIS MEANS IN PRACTICE
+        </p>
+
+
+        <h2
+          class="
+            mt-3
+
+            text-[30px]
+            sm:text-4xl
+
+            font-bold
+            tracking-tight
+
+            text-[#0E3846]
+          "
+        >
+          Small actions can help prevent larger problems.
+        </h2>
+
+      </div>
+
+
+      <div
+        class="
+          mt-10
+
+          grid
+          grid-cols-1
+          md:grid-cols-2
+
+          gap-5
+        "
+      >
+
+        {
+          practicalItems.map((item) => (
+
+            <article
+              class="
+                flex
+                gap-5
+
+                rounded-2xl
+
+                border
+                border-[#D2E1E5]
+
+                bg-[#F7FAFA]
+
+                p-6
+              "
+            >
+
+              <span
+                class="
+                  flex
+                  h-11
+                  w-11
+
+                  shrink-0
+
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  bg-[#E7F2F5]
+
+                  text-sm
+                  font-bold
+
+                  text-[#0E3846]
+                "
+              >
+                {item.number}
+              </span>
+
+
+              <div>
+
+                <h3
+                  class="
+                    text-lg
+                    font-bold
+
+                    text-[#0E3846]
+                  "
+                >
+                  {item.title}
+                </h3>
+
+
+                <p
+                  class="
+                    mt-2
+
+                    text-sm
+                    leading-6
+
+                    text-[#526B74]
+                  "
+                >
+                  {item.text}
+                </p>
+
+              </div>
+
+            </article>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       DISCLAIMER
+  ====================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+
+      py-12
+      sm:py-14
+
+      font-heading
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        max-w-site
+
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          max-w-4xl
+
+          rounded-2xl
+
+          border
+          border-[#E7D6AA]
+
+          bg-[#FFF9ED]
+
+          p-6
+          sm:p-8
+        "
+      >
+
+        <div
+          class="
+            flex
+            flex-col
+            sm:flex-row
+
+            gap-5
+
+            items-start
+          "
+        >
+
+          <div
+            class="
+              flex
+              h-11
+              w-11
+
+              shrink-0
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-[#D99B26]
+
+              text-[#0E3846]
+
+              font-bold
+            "
+          >
+            i
+          </div>
+
+
+          <div>
+
+            <h2
+              class="
+                text-lg
+                font-bold
+
+                text-[#0E3846]
+              "
+            >
+              An important clarification
+            </h2>
+
+
+            <p
+              class="
+                mt-2
+
+                text-sm
+                sm:text-base
+
+                leading-7
+
+                text-[#526B74]
+              "
+            >
+              References to the Sustainable Development Goals describe how certain
+              Stay in Costa Blanca activities align in practice with their
+              principles. They do not represent certification, accreditation,
+              approval or affiliation with the United Nations.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       CTA
+  ====================================================== -->
+
+  <CTA />
+
+
+  <Footer slot="footer" />
+
+</BaseLayout>
