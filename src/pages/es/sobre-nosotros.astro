@@ -1,1 +1,927 @@
 
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { brand } from '../../config/brand';
+---
+
+<BaseLayout
+  title={`Sobre nosotros | ${brand.name}`}
+  description="Conoce la filosofía de Stay in Costa Blanca y nuestro enfoque basado en presencia local, rigor, prevención y gestión responsable de propiedades."
+>
+  <Header slot="header" />
+
+
+  <!-- =========================================================
+       1. INTRO / HISTORIA
+  ========================================================== -->
+
+  <section
+    class="
+      bg-[#F7FAFA]
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+      border-b
+      border-[#D8E1E5]
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          gap-10
+          lg:gap-16
+          items-center
+        "
+      >
+
+        <!-- TEXT -->
+        <div class="order-1">
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+              mb-3
+            "
+          >
+            SOBRE STAY IN COSTA BLANCA
+          </p>
+
+
+          <h1
+            class="
+              text-[34px]
+              sm:text-[42px]
+              lg:text-[50px]
+              font-bold
+              text-[#0E3846]
+              tracking-tight
+              leading-[1.1]
+            "
+          >
+            La gestión de una propiedad empieza con la confianza.
+          </h1>
+
+
+          <p
+            class="
+              mt-6
+              text-[18px]
+              sm:text-xl
+              font-semibold
+              text-[#294A55]
+              leading-8
+            "
+          >
+            Stay in Costa Blanca nació de una realidad sencilla:
+            cuando no vives de forma permanente cerca de tu propiedad,
+            necesitas a alguien local en quien puedas confiar.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            No solo para custodiar una llave o abrir una puerta,
+            sino para observar qué cambia, documentar el estado
+            de la propiedad y poder actuar cuando aparece una situación
+            que requiere atención.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            De ahí surgió la idea de una gestión local basada en
+            prevención, documentación y continuidad — no en visitas aisladas
+            ni en simples confirmaciones de que «todo parece estar bien».
+          </p>
+
+
+          <!-- BRAND LINE -->
+          <div
+            class="
+              mt-7
+              pt-5
+              border-t
+              border-[#D4E1E5]
+            "
+          >
+            <p
+              class="
+                text-sm
+                sm:text-base
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              More time for you.
+              <span class="text-[#D99B26]">
+                We take care of the rest.
+              </span>
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- FOTO DE LA PROPIEDAD -->
+        <div class="order-2">
+
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+              border
+              border-[#D1E0E5]
+              shadow-[0_18px_40px_rgba(14,56,70,0.14)]
+            "
+          >
+            <img
+              src="/palmhouse.jpg"
+              alt="Propiedad mediterránea en Costa Blanca"
+              loading="eager"
+              class="
+                block
+                w-full
+                aspect-[4/3]
+                object-cover
+              "
+            />
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================
+       2. QUIÉN ES STELIAN
+  ========================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+      border-b
+      border-[#D8E1E5]
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-[0.9fr_1.1fr]
+          gap-10
+          lg:gap-16
+          items-start
+        "
+      >
+
+        <!-- FOTO -->
+        <div>
+
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+              border
+              border-[#D1E0E5]
+              shadow-[0_18px_40px_rgba(14,56,70,0.14)]
+            "
+          >
+            <img
+              src="/aboutme.png"
+              alt="Stelian Matei"
+              loading="lazy"
+              class="
+                block
+                w-full
+                aspect-[4/3]
+                object-cover
+                object-center
+              "
+            />
+          </div>
+
+
+          <!-- IDENTIFICACIÓN -->
+          <div
+            class="
+              relative
+              -mt-5
+              mx-4
+              bg-white
+              rounded-xl
+              border
+              border-[#D4E1E5]
+              shadow-[0_8px_24px_rgba(14,56,70,0.10)]
+              px-5
+              py-4
+            "
+          >
+
+            <p
+              class="
+                text-xl
+                font-bold
+                text-[#0E3846]
+              "
+            >
+              Stelian Matei
+            </p>
+
+            <p
+              class="
+                mt-1
+                text-sm
+                font-semibold
+                text-[#526B74]
+              "
+            >
+              Director General y Especialista en Gestión de Propiedades
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- TEXT -->
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#D99B26]
+              mb-3
+            "
+          >
+            QUIÉN ESTÁ DETRÁS DE LA MARCA
+          </p>
+
+
+          <h2
+            class="
+              text-[30px]
+              sm:text-4xl
+              lg:text-[42px]
+              font-bold
+              text-[#0E3846]
+              tracking-tight
+              leading-[1.15]
+            "
+          >
+            Experiencias diferentes, reunidas en una misma forma de trabajar.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+              text-base
+              sm:text-[18px]
+              text-[#294A55]
+              leading-8
+              font-medium
+            "
+          >
+            Soy Stelian Matei, fundador de Stay in Costa Blanca.
+            Mi trayectoria profesional no comenzó en la gestión de propiedades,
+            y precisamente eso define la forma en la que trabajo hoy.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Mi experiencia reúne más de 15 años en el ámbito jurídico y
+            la administración pública, trabajo de investigación en
+            protección del medio ambiente y experiencia en desarrollo sostenible.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#526B74]
+              leading-7
+              sm:leading-8
+            "
+          >
+            Estos ámbitos me enseñaron a trabajar con procedimientos, documentos,
+            responsabilidades claras, observaciones verificables y decisiones basadas
+            en información — principios que ahora aplico a la gestión
+            de propiedades.
+          </p>
+
+
+          <!-- CREDENTIAL CARDS -->
+          <div
+            class="
+              mt-7
+              grid
+              grid-cols-1
+              sm:grid-cols-3
+              gap-3
+            "
+          >
+
+            <!-- JURÍDICO -->
+            <div
+              class="
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                p-4
+              "
+            >
+              <div
+                class="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-[#E4F1F4]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#0E3846]
+                  mb-3
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h4"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="font-bold text-[#0E3846]">
+                Jurídico
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-[#607983]
+                  leading-6
+                "
+              >
+                Rigor, documentación y responsabilidad.
+              </p>
+            </div>
+
+
+            <!-- INVESTIGACIÓN -->
+            <div
+              class="
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                p-4
+              "
+            >
+              <div
+                class="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-[#E4F1F4]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#0E3846]
+                  mb-3
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 3h6M10 3v6l-5 9a2 2 0 001.8 3h10.4a2 2 0 001.8-3l-5-9V3"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 15h8"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="font-bold text-[#0E3846]">
+                Investigación
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-[#607983]
+                  leading-6
+                "
+              >
+                Observación, comparación y análisis.
+              </p>
+            </div>
+
+
+            <!-- SOSTENIBILIDAD -->
+            <div
+              class="
+                rounded-xl
+                border
+                border-[#D7E3E6]
+                bg-[#F7FAFA]
+                p-4
+              "
+            >
+              <div
+                class="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-[#FFF2D8]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#A86C00]
+                  mb-3
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 4C12 4 6 7 5 14c4 1 8 0 11-3M5 20c1-6 5-10 11-13"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h3 class="font-bold text-[#0E3846]">
+                Desarrollo sostenible
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-[#607983]
+                  leading-6
+                "
+              >
+                Recursos, prevención y visión a largo plazo.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================
+       3. FILOSOFÍA / SEGUNDA FOTOGRAFÍA
+  ========================================================== -->
+
+  <section
+    class="
+      bg-[#0E3846]
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-site
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          lg:grid-cols-2
+          gap-10
+          lg:gap-16
+          items-center
+        "
+      >
+
+        <!-- TEXT -->
+        <div>
+
+          <p
+            class="
+              text-sm
+              font-bold
+              uppercase
+              tracking-[0.16em]
+              text-[#F3C76B]
+              mb-3
+            "
+          >
+            NUESTRA FORMA DE TRABAJAR
+          </p>
+
+
+          <h2
+            class="
+              text-[30px]
+              sm:text-4xl
+              lg:text-[42px]
+              font-bold
+              text-white
+              tracking-tight
+              leading-[1.15]
+            "
+          >
+            Una propiedad no es una lista de casillas por marcar.
+          </h2>
+
+
+          <p
+            class="
+              mt-5
+              text-[18px]
+              sm:text-xl
+              font-semibold
+              text-[#E4EFF1]
+              leading-8
+            "
+          >
+            Es un sistema que cambia con el tiempo.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#C6DBDF]
+              leading-7
+              sm:leading-8
+            "
+          >
+            La humedad, el consumo de agua y energía, el acceso, las instalaciones,
+            la climatización o el estado de las zonas exteriores no deben analizarse
+            únicamente en el momento de una visita.
+          </p>
+
+
+          <p
+            class="
+              mt-4
+              text-base
+              sm:text-[17px]
+              text-[#C6DBDF]
+              leading-7
+              sm:leading-8
+            "
+          >
+            El verdadero valor aparece cuando las observaciones pueden compararse a lo largo del tiempo.
+            Por eso documentamos, conservamos el historial y seguimos los cambios
+            relevantes de la propiedad.
+          </p>
+
+
+          <!-- PROCES -->
+          <div
+            class="
+              mt-7
+              grid
+              grid-cols-5
+              gap-2
+              w-full
+            "
+          >
+            {[
+              'MEDIMOS',
+              'COMPARAMOS',
+              'DOCUMENTAMOS',
+              'DETECTAMOS',
+              'ACTUAMOS'
+            ].map((item, index) => (
+              <span
+                class:list={[
+                  "rounded-lg",
+                  "px-1.5",
+                  "sm:px-2.5",
+                  "py-2",
+                  "text-[9px]",
+                  "sm:text-[11px]",
+                  "lg:text-xs",
+                  "font-bold",
+                  "tracking-[0.02em]",
+                  "whitespace-nowrap",
+                  "text-center",
+                  "min-w-0",
+                  index === 4
+                    ? "bg-[#D99B26] text-[#0E3846]"
+                    : "bg-[#174C5C] text-white border border-[#316878]"
+                ]}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SEGUNDA FOTO
+        ================================================== -->
+
+        <div>
+
+          <div
+            class="
+              overflow-hidden
+              rounded-2xl
+              border
+              border-white/10
+              shadow-[0_20px_45px_rgba(0,0,0,0.25)]
+              bg-[#174C5C]
+            "
+          >
+
+            <!--
+              AICI PUI A DOUA FOTOGRAFIE CU TINE.
+
+              Recomandare:
+              public/check-wall.webp
+
+              Imagen utilizada:
+              public/check-wall.webp
+
+              Escena:
+              - técnico visto de espaldas
+              - medición de la humedad de la pared
+              - contexto de inspección de la propiedad
+            -->
+
+            <img
+              src="/check-wall.webp"
+              alt="Técnico midiendo la humedad de una pared durante una inspección de la propiedad"
+              loading="lazy"
+              class="
+                block
+                w-full
+                aspect-[4/3]
+                object-cover
+                object-center
+              "
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================
+       4. QUÉ SIGNIFICA PARA EL CLIENTE
+  ========================================================== -->
+
+  <section
+    class="
+      bg-white
+      py-14
+      sm:py-16
+      md:py-20
+      font-heading
+      border-b
+      border-[#D8E1E5]
+    "
+  >
+    <div
+      class="
+        mx-auto
+        max-w-4xl
+        px-4
+        sm:px-6
+        text-center
+      "
+    >
+
+      <p
+        class="
+          text-sm
+          font-bold
+          uppercase
+          tracking-[0.16em]
+          text-[#D99B26]
+          mb-3
+        "
+      >
+        QUÉ SIGNIFICA ESTO PARA TI
+      </p>
+
+
+      <h2
+        class="
+          text-[30px]
+          sm:text-4xl
+          lg:text-[42px]
+          font-bold
+          text-[#0E3846]
+          tracking-tight
+          leading-[1.15]
+        "
+      >
+        Saber qué ocurre con tu propiedad, incluso cuando no estás aquí.
+      </h2>
+
+
+      <p
+        class="
+          mt-5
+          max-w-3xl
+          mx-auto
+          text-base
+          sm:text-lg
+          text-[#526B74]
+          leading-7
+          sm:leading-8
+        "
+      >
+        Nuestro papel es estar presentes localmente, documentar lo que
+        observamos y ofrecerte la información necesaria para que las decisiones
+        sobre tu propiedad no se tomen a ciegas.
+      </p>
+
+
+      <div
+        class="
+          mt-9
+          flex
+          flex-col
+          sm:flex-row
+          justify-center
+          gap-3
+        "
+      >
+
+        <a
+          href="/es/contacto"
+          class="
+            inline-flex
+            min-h-[52px]
+            items-center
+            justify-center
+            rounded-xl
+            bg-[#0E3846]
+            px-7
+            py-3.5
+            text-sm
+            sm:text-[15px]
+            font-bold
+            text-white
+            uppercase
+            tracking-[0.05em]
+            transition-all
+            hover:bg-[#164D5D]
+            hover:-translate-y-0.5
+          "
+        >
+          SOLICITA LA EVALUACIÓN DE TU PROPIEDAD
+        </a>
+
+
+        <a
+          href="/es/servicios"
+          class="
+            inline-flex
+            min-h-[52px]
+            items-center
+            justify-center
+            rounded-xl
+            border-2
+            border-[#0E3846]
+            bg-white
+            px-7
+            py-3.5
+            text-sm
+            sm:text-[15px]
+            font-bold
+            text-[#0E3846]
+            uppercase
+            tracking-[0.05em]
+            transition-all
+            hover:bg-[#EAF4F6]
+          "
+        >
+          VER SERVICIOS Y PRECIOS
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <Footer slot="footer" />
+
+</BaseLayout>
