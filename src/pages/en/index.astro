@@ -1,1 +1,84 @@
 
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+import Hero from '../../components/Hero.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import Risks from '../../components/Risks.astro';
+
+import Method from '../../components/Method.astro';
+import ReportMockup from '../../components/ReportMockup.astro';
+import SustainabilityIntro from '../../components/SustainabilityIntro.astro';
+
+import Services from '../../components/Services.astro';
+import About from '../../components/About.astro';
+import Gallery from '../../components/Gallery.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+
+import { brand } from '../../config/brand';
+import { client } from '../../data/client';
+---
+
+<BaseLayout
+  title={brand.name}
+  description={brand.description}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: client.name,
+    telephone: client.phoneForTel,
+    email: client.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: client.address.lineOne,
+      addressLocality: client.address.city,
+      addressRegion: client.address.state,
+      postalCode: client.address.zip,
+      addressCountry: client.address.country,
+    },
+    url: client.domain,
+  }}
+>
+  <!-- HEADER -->
+  <Header slot="header" />
+
+  <!-- 1. HERO -->
+  <Hero />
+
+  <!-- 2. TRUST / CREDIBILITY -->
+  <TrustBar />
+
+  <!-- 3. RISKS OF AN UNOCCUPIED PROPERTY -->
+  <Risks />
+
+  <!-- 4. HOW WE WORK -->
+  <Method />
+
+  <!-- 5. DIGITAL REPORT EXAMPLE -->
+  <ReportMockup />
+
+  <!-- 6. SUSTAINABILITY -->
+  <SustainabilityIntro />
+
+  <!-- 7. PACKAGES + ONBOARDING OFFER -->
+  <Services />
+
+  <!-- 8. YOUR LOCAL PROPERTY PARTNER / ABOUT -->
+  <About />
+
+  <!-- 9. GALLERY -->
+  <Gallery />
+
+  <!-- 10. FAQ -->
+  <FAQ />
+
+  <!-- 11. FINAL CTA -->
+  <CTA />
+
+  <!-- FOOTER -->
+  <Footer slot="footer" />
+</BaseLayout>
