@@ -32,11 +32,11 @@ const routes = {
 
   es: {
     home: "/es/",
-    services: "/es/services",
-    sustainability: "/es/sustainability",
-    about: "/es/about",
+    services: "/es/servicios",
+    sustainability: "/es/sostenibilidad",
+    about: "/es/sobre-nosotros",
     blog: "/es/blog",
-    contact: "/es/contact",
+    contact: "/es/contacto",
   },
 };
 
@@ -168,18 +168,25 @@ function getCurrentPageKey() {
     return "home";
   }
 
-  if (cleanPath.includes("/services")) {
+  if (
+    cleanPath.includes("/services") ||
+    cleanPath.includes("/servicios")
+  ) {
     return "services";
   }
 
   if (
     cleanPath.includes("/sustenabilitate") ||
-    cleanPath.includes("/sustainability")
+    cleanPath.includes("/sustainability") ||
+    cleanPath.includes("/sostenibilidad")
   ) {
     return "sustainability";
   }
 
-  if (cleanPath.includes("/about")) {
+  if (
+    cleanPath.includes("/about") ||
+    cleanPath.includes("/sobre-nosotros")
+  ) {
     return "about";
   }
 
@@ -187,7 +194,10 @@ function getCurrentPageKey() {
     return "blog";
   }
 
-  if (cleanPath.includes("/contact")) {
+  if (
+    cleanPath.includes("/contact") ||
+    cleanPath.includes("/contacto")
+  ) {
     return "contact";
   }
 
