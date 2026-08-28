@@ -1,18 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+
 import Hero from '../../components/Hero.astro';
 import TrustBar from '../../components/TrustBar.astro';
+import Risks from '../../components/Risks.astro';
+
+import Method from '../../components/Method.astro';
+import ReportMockup from '../../components/ReportMockup.astro';
+import SustainabilityIntro from '../../components/SustainabilityIntro.astro';
+
 import Services from '../../components/Services.astro';
 import About from '../../components/About.astro';
-import Reviews from '../../components/Reviews.astro';
 import Gallery from '../../components/Gallery.astro';
+import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+
 import { brand } from '../../config/brand';
 import { client } from '../../data/client';
-
-// Deocamdată folosim brand.name și brand.description până definitivăm textele
 ---
 
 <BaseLayout
@@ -35,15 +42,42 @@ import { client } from '../../data/client';
     url: client.domain,
   }}
 >
+  <!-- HEADER -->
   <Header slot="header" />
 
+  <!-- 1. HERO -->
   <Hero />
+
+  <!-- 2. CONFIANZA / CREDIBILIDAD -->
   <TrustBar />
+
+  <!-- 3. RIESGOS DE UNA PROPIEDAD DESOCUPADA -->
+  <Risks />
+
+  <!-- 4. CÓMO TRABAJAMOS -->
+  <Method />
+
+  <!-- 5. EJEMPLO DE INFORME DIGITAL -->
+  <ReportMockup />
+
+  <!-- 6. SOSTENIBILIDAD -->
+  <SustainabilityIntro />
+
+  <!-- 7. PLANES + OFERTA DE ONBOARDING -->
   <Services />
+
+  <!-- 8. TU SOCIO LOCAL / SOBRE NOSOTROS -->
   <About />
-  <Reviews />
+
+  <!-- 9. GALERÍA -->
   <Gallery />
+
+  <!-- 10. PREGUNTAS FRECUENTES -->
+  <FAQ />
+
+  <!-- 11. CTA FINAL -->
   <CTA />
 
+  <!-- FOOTER -->
   <Footer slot="footer" />
 </BaseLayout>
