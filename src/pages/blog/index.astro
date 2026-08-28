@@ -1,231 +1,39 @@
 ---
+import { getCollection } from 'astro:content';
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import CTA from '../../components/CTA.astro';
-import { getCollection } from 'astro:content';
-import { brand } from '../../config/brand';
 
 
 /* =========================================================
-   LANGUAGE
-========================================================= */
-
-const currentLang = Astro.currentLocale || 'ro';
-
-const lang =
-  currentLang === 'en' || currentLang === 'es'
-    ? currentLang
-    : 'ro';
-
-
-/* =========================================================
-   TRANSLATIONS
-========================================================= */
-
-const translations = {
-
-  /* =======================================================
-     ROMÂNĂ
-  ======================================================= */
-
-  ro: {
-    seoTitle:
-      `Blog | Ghiduri pentru proprietari | ${brand.name}`,
-
-    seoDescription:
-      'Ghiduri practice despre Key Holding, întreținerea proprietății, prevenție, umiditate, consum de apă și energie și administrarea proprietăților din Costa Blanca.',
-
-    topper:
-      'GHIDURI & RESURSE',
-
-    title:
-      'Informații utile pentru proprietarii din Costa Blanca.',
-
-    intro:
-      'Ghiduri practice despre protejarea unei proprietăți nelocuite, întreținere preventivă, Key Holding, umiditate, consumuri și administrare responsabilă.',
-
-    audience:
-      'Pentru proprietarii care nu locuiesc permanent în Costa Blanca.',
-
-    categories:
-      'SUBIECTE',
-
-    featured:
-      'ARTICOL RECOMANDAT',
-
-    latest:
-      'ULTIMELE ARTICOLE',
-
-    latestTitle:
-      'Ghiduri practice și informații utile.',
-
-    latestText:
-      'Publicăm articole bazate pe probleme reale pe care proprietarii le pot întâlni atunci când locuința rămâne neocupată perioade mai lungi.',
-
-    read:
-      'CITEȘTE ARTICOLUL',
-
-    allArticles:
-      'TOATE ARTICOLELE',
-
-    emptyTitle:
-      'Pregătim primele articole.',
-
-    emptyText:
-      'Vom publica în curând ghiduri practice pentru proprietarii din Costa Blanca.',
-
-    dateLocale:
-      'ro-RO',
-
-    blogBase:
-      '/blog/',
-  },
-
-
-  /* =======================================================
-     ENGLISH
-  ======================================================= */
-
-  en: {
-    seoTitle:
-      `Blog | Property Owner Guides | ${brand.name}`,
-
-    seoDescription:
-      'Practical guides about Key Holding, preventive property care, humidity, water and energy monitoring and property management in Costa Blanca.',
-
-    topper:
-      'GUIDES & RESOURCES',
-
-    title:
-      'Useful information for property owners in Costa Blanca.',
-
-    intro:
-      'Practical guides about protecting an unoccupied property, preventive care, Key Holding, humidity, consumption monitoring and responsible property management.',
-
-    audience:
-      'For owners who do not live permanently in Costa Blanca.',
-
-    categories:
-      'TOPICS',
-
-    featured:
-      'FEATURED ARTICLE',
-
-    latest:
-      'LATEST ARTICLES',
-
-    latestTitle:
-      'Practical guides and useful information.',
-
-    latestText:
-      'We publish articles based on real issues property owners may face when their home is left unoccupied for longer periods.',
-
-    read:
-      'READ ARTICLE',
-
-    allArticles:
-      'ALL ARTICLES',
-
-    emptyTitle:
-      'Our first articles are coming soon.',
-
-    emptyText:
-      'We will soon publish practical guides for property owners in Costa Blanca.',
-
-    dateLocale:
-      'en-GB',
-
-    blogBase:
-      '/en/blog/',
-  },
-
-
-  /* =======================================================
-     ESPAÑOL
-  ======================================================= */
-
-  es: {
-    seoTitle:
-      `Blog | Guías para propietarios | ${brand.name}`,
-
-    seoDescription:
-      'Guías prácticas sobre Key Holding, mantenimiento preventivo, humedad, consumo de agua y energía y gestión de propiedades en Costa Blanca.',
-
-    topper:
-      'GUÍAS & RECURSOS',
-
-    title:
-      'Información útil para propietarios en Costa Blanca.',
-
-    intro:
-      'Guías prácticas sobre cómo proteger una propiedad desocupada, mantenimiento preventivo, Key Holding, humedad, consumos y gestión responsable.',
-
-    audience:
-      'Para propietarios que no viven permanentemente en Costa Blanca.',
-
-    categories:
-      'TEMAS',
-
-    featured:
-      'ARTÍCULO DESTACADO',
-
-    latest:
-      'ÚLTIMOS ARTÍCULOS',
-
-    latestTitle:
-      'Guías prácticas e información útil.',
-
-    latestText:
-      'Publicamos artículos basados en problemas reales que pueden surgir cuando una propiedad permanece desocupada durante largos periodos.',
-
-    read:
-      'LEER ARTÍCULO',
-
-    allArticles:
-      'TODOS LOS ARTÍCULOS',
-
-    emptyTitle:
-      'Estamos preparando los primeros artículos.',
-
-    emptyText:
-      'Muy pronto publicaremos guías prácticas para propietarios en Costa Blanca.',
-
-    dateLocale:
-      'es-ES',
-
-    blogBase:
-      '/es/blog/',
-  },
-};
-
-const t = translations[lang];
-
-
-/* =========================================================
-   POSTS
+   POSTS — ROMÂNĂ ONLY
 ========================================================= */
 
 const posts = (
   await getCollection(
     'blog',
-    ({ data }) => !data.draft
+    ({ data }) =>
+      !data.draft &&
+      data.lang === 'ro'
   )
 ).sort(
   (a, b) =>
-    b.data.date.valueOf() -
-    a.data.date.valueOf()
+    b.data.date.getTime() -
+    a.data.date.getTime()
 );
 
 
 /* =========================================================
-   FEATURED + REST
+   FEATURED POST
 ========================================================= */
 
 const featuredPost =
   posts.find((post) => post.data.featured === true)
   ?? posts[0]
   ?? null;
+
 
 const remainingPosts =
   featuredPost
@@ -234,64 +42,69 @@ const remainingPosts =
 
 
 /* =========================================================
-   CATEGORIES
+   URL HELPERS
+
+   Internal:
+   ro/cum-protejezi-o-proprietate...
+
+   Public:
+   /blog/cum-protejezi-o-proprietate...
 ========================================================= */
 
-const categories =
-  Array.from(
-    new Set(
-      posts.flatMap(
-        (post) => post.data.tags || []
-      )
-    )
-  ).slice(0, 6);
+const articleSlug = (post: typeof posts[number]) =>
+  post.id.replace(/^ro\//, '');
+
+
+const articleUrl = (post: typeof posts[number]) =>
+  `/blog/${articleSlug(post)}`;
 
 
 /* =========================================================
-   HELPERS
+   DATE
 ========================================================= */
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString(
-    t.dateLocale,
-    {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }
-  );
+  date.toLocaleDateString('ro-RO', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
-const articleUrl = (id: string) =>
-  `${t.blogBase}${id}`;
+
+/* =========================================================
+   TAGS / CATEGORIES
+========================================================= */
+
+const categories = Array.from(
+  new Set(
+    posts.flatMap((post) => post.data.tags ?? [])
+  )
+);
 ---
 
 <BaseLayout
-  title={t.seoTitle}
-  description={t.seoDescription}
+  title="Blog | Ghiduri pentru proprietari | Stay in Costa Blanca"
+  description="Ghiduri și resurse practice pentru proprietarii de locuințe din Costa Blanca: prevenție, întreținere, administrarea proprietății și protejarea locuinței în perioadele în care este nelocuită."
 >
 
   <Header slot="header" />
 
 
   <!-- =====================================================
-       BLOG HERO
+       HERO
   ====================================================== -->
 
   <section
     class="
       relative
       overflow-hidden
-      border-b
-      border-[#D7E2E5]
-      bg-[#F7FAFA]
-      py-14
-      sm:py-16
-      lg:py-20
+      bg-[#0E3846]
+      py-16
+      sm:py-20
+      lg:py-24
       font-heading
     "
   >
-
-    <!-- DECORATIVE BACKGROUND -->
 
     <div
       class="
@@ -299,22 +112,23 @@ const articleUrl = (id: string) =>
         absolute
         -right-24
         -top-24
-        h-80
-        w-80
+        h-96
+        w-96
         rounded-full
-        bg-[#5B9EB5]/10
+        bg-[#5B9EB5]/20
         blur-3xl
       "
     ></div>
+
 
     <div
       class="
         pointer-events-none
         absolute
         -bottom-32
-        -left-20
-        h-72
-        w-72
+        -left-24
+        h-80
+        w-80
         rounded-full
         bg-[#D99B26]/10
         blur-3xl
@@ -347,10 +161,10 @@ const articleUrl = (id: string) =>
             font-bold
             uppercase
             tracking-[0.18em]
-            text-[#D99B26]
+            text-[#F3C76B]
           "
         >
-          {t.topper}
+          GHIDURI &amp; RESURSE
         </p>
 
 
@@ -358,15 +172,15 @@ const articleUrl = (id: string) =>
           class="
             mt-4
             text-[36px]
+            sm:text-5xl
+            lg:text-[56px]
             font-bold
             leading-[1.08]
             tracking-tight
-            text-[#0E3846]
-            sm:text-5xl
-            lg:text-[54px]
+            text-white
           "
         >
-          {t.title}
+          Informații practice pentru proprietarii din Costa Blanca.
         </h1>
 
 
@@ -376,12 +190,13 @@ const articleUrl = (id: string) =>
             mt-6
             max-w-3xl
             text-base
-            leading-8
-            text-[#526B74]
             sm:text-lg
+            leading-8
+            text-[#C9DDE2]
           "
         >
-          {t.intro}
+          Prevenție, administrarea proprietății, întreținere și recomandări
+          utile pentru locuințele care rămân nelocuite perioade mai lungi.
         </p>
 
 
@@ -389,113 +204,22 @@ const articleUrl = (id: string) =>
           class="
             mt-7
             inline-flex
-            items-center
-            gap-2
             rounded-full
             border
-            border-[#CFE0E4]
-            bg-white
+            border-white/15
+            bg-white/5
             px-5
             py-2.5
-            text-sm
+            text-xs
+            sm:text-sm
             font-semibold
-            text-[#0E3846]
-            shadow-sm
+            text-[#E0ECEF]
           "
         >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            class="h-4 w-4 text-[#D99B26]"
-            aria-hidden="true"
-          >
-            <path
-              d="M12 21s7-5.1 7-11a7 7 0 10-14 0c0 5.9 7 11 7 11z"
-              stroke-width="1.7"
-            />
-
-            <circle
-              cx="12"
-              cy="10"
-              r="2.3"
-              stroke-width="1.7"
-            />
-          </svg>
-
-          {t.audience}
-
+          Preventiv · Documentat · Practic
         </div>
 
       </div>
-
-
-      <!-- =================================================
-           CATEGORIES / TAGS
-      ================================================== -->
-
-      {
-        categories.length > 0 && (
-
-          <div
-            class="
-              mt-10
-              flex
-              flex-col
-              items-center
-              gap-4
-            "
-          >
-
-            <p
-              class="
-                text-[11px]
-                font-bold
-                uppercase
-                tracking-[0.16em]
-                text-[#82969D]
-              "
-            >
-              {t.categories}
-            </p>
-
-
-            <div
-              class="
-                flex
-                flex-wrap
-                justify-center
-                gap-2.5
-              "
-            >
-
-              {categories.map((category) => (
-
-                <span
-                  class="
-                    rounded-full
-                    border
-                    border-[#CBDDE1]
-                    bg-white
-                    px-4
-                    py-2
-                    text-xs
-                    font-semibold
-                    text-[#405963]
-                  "
-                >
-                  {category}
-                </span>
-
-              ))}
-
-            </div>
-
-          </div>
-
-        )
-      }
 
     </div>
 
@@ -503,21 +227,17 @@ const articleUrl = (id: string) =>
 
 
   <!-- =====================================================
-       CONTENT
+       FEATURED ARTICLE
   ====================================================== -->
 
   {
-    posts.length === 0 ? (
-
-      <!-- =================================================
-           EMPTY STATE
-      ================================================== -->
+    featuredPost && (
 
       <section
         class="
           bg-white
-          py-20
-          sm:py-24
+          py-16
+          sm:py-20
           font-heading
         "
       >
@@ -525,100 +245,480 @@ const articleUrl = (id: string) =>
         <div
           class="
             mx-auto
-            max-w-2xl
+            max-w-site
             px-4
-            text-center
             sm:px-6
+            lg:px-8
           "
         >
 
           <div
             class="
-              mx-auto
+              mb-8
               flex
-              h-16
-              w-16
-              items-center
-              justify-center
-              rounded-full
-              bg-[#E8F3F5]
-              text-[#0E3846]
+              flex-col
+              sm:flex-row
+              sm:items-end
+              sm:justify-between
+              gap-4
             "
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              class="h-8 w-8"
-              aria-hidden="true"
-            >
-              <path
-                d="M5 4h10l4 4v12H5z"
-                stroke-width="1.7"
-                stroke-linejoin="round"
-              />
 
-              <path
-                d="M15 4v5h5M8 13h8M8 16h6"
-                stroke-width="1.7"
-                stroke-linecap="round"
-              />
-            </svg>
+            <div>
+
+              <p
+                class="
+                  text-sm
+                  font-bold
+                  uppercase
+                  tracking-[0.17em]
+                  text-[#D99B26]
+                "
+              >
+                ARTICOL RECOMANDAT
+              </p>
+
+
+              <h2
+                class="
+                  mt-2
+                  text-[28px]
+                  sm:text-3xl
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                De citit acum
+              </h2>
+
+            </div>
+
           </div>
 
 
-          <h2
+          <a
+            href={articleUrl(featuredPost)}
             class="
-              mt-6
-              text-3xl
-              font-bold
-              text-[#0E3846]
+              group
+              block
+              overflow-hidden
+              rounded-3xl
+              border
+              border-[#D2E1E5]
+              bg-[#F7FAFA]
+              shadow-[0_10px_30px_rgba(14,56,70,0.07)]
+              transition
+              hover:-translate-y-1
+              hover:shadow-[0_18px_38px_rgba(14,56,70,0.12)]
             "
           >
-            {t.emptyTitle}
-          </h2>
+
+            <div
+              class="
+                grid
+                grid-cols-1
+                lg:grid-cols-[0.72fr_1.28fr]
+              "
+            >
+
+              <!-- LEFT VISUAL -->
+
+              <div
+                class="
+                  relative
+                  flex
+                  min-h-[250px]
+                  sm:min-h-[300px]
+                  items-center
+                  justify-center
+                  overflow-hidden
+                  bg-[#0E3846]
+                  p-8
+                "
+              >
+
+                <div
+                  class="
+                    absolute
+                    -right-16
+                    -top-16
+                    h-56
+                    w-56
+                    rounded-full
+                    bg-[#5B9EB5]/25
+                    blur-3xl
+                  "
+                ></div>
 
 
-          <p
-            class="
-              mt-4
-              text-base
-              leading-7
-              text-[#526B74]
-            "
-          >
-            {t.emptyText}
-          </p>
+                <div
+                  class="
+                    absolute
+                    -bottom-20
+                    -left-16
+                    h-52
+                    w-52
+                    rounded-full
+                    bg-[#D99B26]/15
+                    blur-3xl
+                  "
+                ></div>
+
+
+                <div
+                  class="
+                    relative
+                    text-center
+                  "
+                >
+
+                  <div
+                    class="
+                      mx-auto
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      bg-white/10
+                      text-[#F3C76B]
+                    "
+                  >
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      class="h-8 w-8"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 5.5A2.5 2.5 0 016.5 3H11v16H6.5A2.5 2.5 0 004 21.5v-16z"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+
+                      <path
+                        d="M20 5.5A2.5 2.5 0 0017.5 3H13v16h4.5a2.5 2.5 0 012.5 2.5v-16z"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                  </div>
+
+
+                  <p
+                    class="
+                      mt-5
+                      text-xs
+                      font-bold
+                      uppercase
+                      tracking-[0.15em]
+                      text-[#F3C76B]
+                    "
+                  >
+                    {
+                      featuredPost.data.tags?.[0]
+                      ?? 'Property Care'
+                    }
+                  </p>
+
+
+                  <p
+                    class="
+                      mt-2
+                      text-sm
+                      text-[#C9DDE2]
+                    "
+                  >
+                    Ghid practic pentru proprietari
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <!-- CONTENT -->
+
+              <div
+                class="
+                  flex
+                  flex-col
+                  justify-center
+                  p-7
+                  sm:p-9
+                  lg:p-11
+                "
+              >
+
+                <div
+                  class="
+                    flex
+                    flex-wrap
+                    items-center
+                    gap-x-4
+                    gap-y-2
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-[0.08em]
+                    text-[#758991]
+                  "
+                >
+
+                  <span>
+                    {formatDate(featuredPost.data.date)}
+                  </span>
+
+                  <span
+                    class="
+                      h-1
+                      w-1
+                      rounded-full
+                      bg-[#D99B26]
+                    "
+                  ></span>
+
+                  <span>
+                    {featuredPost.data.author}
+                  </span>
+
+                </div>
+
+
+                <h3
+                  class="
+                    mt-5
+                    text-[28px]
+                    sm:text-3xl
+                    lg:text-[38px]
+                    font-bold
+                    leading-[1.15]
+                    tracking-tight
+                    text-[#0E3846]
+                    transition
+                    group-hover:text-[#397C92]
+                  "
+                >
+                  {featuredPost.data.title}
+                </h3>
+
+
+                <p
+                  class="
+                    mt-5
+                    text-base
+                    sm:text-lg
+                    leading-8
+                    text-[#526B74]
+                  "
+                >
+                  {featuredPost.data.description}
+                </p>
+
+
+                <div
+                  class="
+                    mt-7
+                    flex
+                    flex-wrap
+                    gap-2
+                  "
+                >
+
+                  {
+                    featuredPost.data.tags?.map((tag) => (
+
+                      <span
+                        class="
+                          rounded-full
+                          border
+                          border-[#D1E0E4]
+                          bg-white
+                          px-3
+                          py-1.5
+                          text-xs
+                          font-semibold
+                          text-[#526B74]
+                        "
+                      >
+                        {tag}
+                      </span>
+
+                    ))
+                  }
+
+                </div>
+
+
+                <div
+                  class="
+                    mt-8
+                    inline-flex
+                    items-center
+                    gap-2
+                    text-sm
+                    font-bold
+                    uppercase
+                    tracking-[0.06em]
+                    text-[#D99B26]
+                  "
+                >
+                  Citește articolul
+
+                  <span
+                    class="
+                      text-xl
+                      transition
+                      group-hover:translate-x-1
+                    "
+                  >
+                    →
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </a>
 
         </div>
 
       </section>
 
-    ) : (
+    )
+  }
 
-      <>
 
+  <!-- =====================================================
+       CATEGORIES
+  ====================================================== -->
 
-        <!-- =================================================
-             FEATURED ARTICLE
-        ================================================== -->
+  {
+    categories.length > 0 && (
 
-        <section
+      <section
+        class="
+          border-y
+          border-[#D8E4E7]
+          bg-[#F7FAFA]
+          py-8
+          font-heading
+        "
+      >
+
+        <div
           class="
-            bg-white
-            py-16
-            sm:py-20
-            font-heading
+            mx-auto
+            max-w-site
+            px-4
+            sm:px-6
+            lg:px-8
+          "
+        >
+
+          <div
+            class="
+              flex
+              flex-col
+              md:flex-row
+              md:items-center
+              gap-4
+            "
+          >
+
+            <p
+              class="
+                shrink-0
+                text-xs
+                font-bold
+                uppercase
+                tracking-[0.14em]
+                text-[#0E3846]
+              "
+            >
+              Subiecte
+            </p>
+
+
+            <div
+              class="
+                flex
+                flex-wrap
+                gap-2
+              "
+            >
+
+              {
+                categories.map((category) => (
+
+                  <span
+                    class="
+                      rounded-full
+                      border
+                      border-[#C9DADF]
+                      bg-white
+                      px-4
+                      py-2
+                      text-xs
+                      font-semibold
+                      text-[#526B74]
+                    "
+                  >
+                    {category}
+                  </span>
+
+                ))
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    )
+  }
+
+
+  <!-- =====================================================
+       ALL OTHER POSTS
+  ====================================================== -->
+
+  {
+    remainingPosts.length > 0 && (
+
+      <section
+        class="
+          bg-white
+          py-16
+          sm:py-20
+          font-heading
+        "
+      >
+
+        <div
+          class="
+            mx-auto
+            max-w-site
+            px-4
+            sm:px-6
+            lg:px-8
           "
         >
 
           <div
             class="
               mx-auto
-              max-w-site
-              px-4
-              sm:px-6
-              lg:px-8
+              mb-10
+              max-w-4xl
+              text-center
             "
           >
 
@@ -631,565 +731,281 @@ const articleUrl = (id: string) =>
                 text-[#D99B26]
               "
             >
-              {t.featured}
+              MAI MULTE GHIDURI
             </p>
 
 
-            {
-              featuredPost && (
+            <h2
+              class="
+                mt-3
+                text-[30px]
+                sm:text-4xl
+                font-bold
+                tracking-tight
+                text-[#0E3846]
+              "
+            >
+              Resurse pentru administrarea proprietății tale.
+            </h2>
 
-                <article
+          </div>
+
+
+          <div
+            class="
+              grid
+              grid-cols-1
+              md:grid-cols-2
+              xl:grid-cols-3
+              gap-6
+            "
+          >
+
+            {
+              remainingPosts.map((post) => (
+
+                <a
+                  href={articleUrl(post)}
                   class="
                     group
-                    relative
-                    mt-6
-                    grid
+                    flex
+                    h-full
+                    flex-col
                     overflow-hidden
-                    rounded-3xl
+                    rounded-2xl
                     border
-                    border-[#D1E0E4]
+                    border-[#D2E1E5]
                     bg-[#F7FAFA]
-                    shadow-[0_12px_36px_rgba(14,56,70,0.08)]
-                    lg:grid-cols-[0.82fr_1.18fr]
+                    transition
+                    hover:-translate-y-1
+                    hover:shadow-[0_12px_28px_rgba(14,56,70,0.10)]
                   "
                 >
 
-                  <!-- VISUAL -->
-
                   <div
                     class="
-                      relative
-                      flex
-                      min-h-[280px]
-                      items-center
-                      justify-center
-                      overflow-hidden
-                      bg-[#0E3846]
-                      p-8
-                      sm:min-h-[320px]
-                      lg:min-h-[420px]
+                      border-b
+                      border-[#D8E4E7]
+                      bg-[#EEF6F8]
+                      p-6
                     "
                   >
 
                     <div
                       class="
-                        absolute
-                        -right-16
-                        -top-16
-                        h-64
-                        w-64
-                        rounded-full
-                        bg-[#5B9EB5]/25
-                        blur-3xl
-                      "
-                    ></div>
-
-                    <div
-                      class="
-                        absolute
-                        -bottom-16
-                        -left-16
-                        h-56
-                        w-56
-                        rounded-full
-                        bg-[#D99B26]/20
-                        blur-3xl
-                      "
-                    ></div>
-
-
-                    <!-- DOCUMENT / HOUSE ICON -->
-
-                    <div
-                      class="
-                        relative
                         flex
-                        h-32
-                        w-32
                         items-center
-                        justify-center
-                        rounded-3xl
-                        border
-                        border-white/15
-                        bg-white/10
-                        text-[#F3C76B]
-                        shadow-2xl
-                        backdrop-blur
+                        justify-between
+                        gap-4
                       "
                     >
 
-                      <svg
-                        viewBox="0 0 64 64"
-                        fill="none"
-                        stroke="currentColor"
-                        class="h-20 w-20"
-                        aria-hidden="true"
+                      <div
+                        class="
+                          flex
+                          h-11
+                          w-11
+                          items-center
+                          justify-center
+                          rounded-xl
+                          bg-white
+                          text-[#0E3846]
+                        "
                       >
-                        <path
-                          d="M12 29L32 13l20 16v23H12z"
-                          stroke-width="2.3"
-                          stroke-linejoin="round"
-                        />
 
-                        <path
-                          d="M25 52V37h14v15"
-                          stroke-width="2.3"
-                          stroke-linejoin="round"
-                        />
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          class="h-5 w-5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 4h10l4 4v12H5z"
+                            stroke-width="1.7"
+                            stroke-linejoin="round"
+                          />
 
-                        <path
-                          d="M20 24v-8h8"
-                          stroke-width="2.3"
-                          stroke-linejoin="round"
-                        />
+                          <path
+                            d="M15 4v5h5M8 13h8M8 16h5"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                          />
+                        </svg>
 
-                        <circle
-                          cx="46"
-                          cy="18"
-                          r="8"
-                          fill="#0E3846"
-                          stroke-width="2.3"
-                        />
+                      </div>
 
-                        <path
-                          d="M42.5 18l2.3 2.3 4-4.5"
-                          stroke-width="2.3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+
+                      <span
+                        class="
+                          text-xs
+                          font-bold
+                          uppercase
+                          tracking-[0.1em]
+                          text-[#D99B26]
+                        "
+                      >
+                        {
+                          post.data.tags?.[0]
+                          ?? 'Ghid'
+                        }
+                      </span>
 
                     </div>
 
                   </div>
 
 
-                  <!-- CONTENT -->
-
                   <div
                     class="
                       flex
+                      flex-1
                       flex-col
-                      justify-center
-                      p-7
-                      sm:p-9
-                      lg:p-12
+                      p-6
                     "
                   >
 
-                    <div
+                    <p
                       class="
-                        flex
-                        flex-wrap
-                        items-center
-                        gap-2.5
                         text-xs
                         font-semibold
-                        text-[#6F858D]
+                        text-[#7B8D94]
                       "
                     >
-
-                      <time
-                        datetime={featuredPost.data.date.toISOString()}
-                      >
-                        {formatDate(featuredPost.data.date)}
-                      </time>
+                      {formatDate(post.data.date)}
+                    </p>
 
 
-                      {
-                        featuredPost.data.tags.length > 0 && (
-                          <>
-                            <span
-                              class="
-                                h-1
-                                w-1
-                                rounded-full
-                                bg-[#D99B26]
-                              "
-                            ></span>
-
-                            <span
-                              class="
-                                rounded-full
-                                bg-[#E7F2F5]
-                                px-3
-                                py-1
-                                text-[#0E3846]
-                              "
-                            >
-                              {featuredPost.data.tags[0]}
-                            </span>
-                          </>
-                        )
-                      }
-
-                    </div>
-
-
-                    <h2
+                    <h3
                       class="
-                        mt-5
-                        text-[28px]
+                        mt-3
+                        text-xl
                         font-bold
-                        leading-[1.18]
-                        tracking-tight
+                        leading-snug
                         text-[#0E3846]
-                        transition-colors
+                        transition
                         group-hover:text-[#397C92]
-                        sm:text-4xl
                       "
                     >
-                      {featuredPost.data.title}
-                    </h2>
+                      {post.data.title}
+                    </h3>
 
 
                     <p
                       class="
-                        mt-5
-                        text-base
-                        leading-8
+                        mt-3
+                        flex-1
+                        text-sm
+                        leading-6
                         text-[#526B74]
-                        sm:text-lg
                       "
                     >
-                      {featuredPost.data.description}
+                      {post.data.description}
                     </p>
 
 
-                    <a
-                      href={articleUrl(featuredPost.id)}
+                    <div
                       class="
-                        mt-7
-                        inline-flex
-                        w-fit
+                        mt-6
+                        flex
                         items-center
-                        gap-2.5
-                        rounded-xl
-                        bg-[#0E3846]
-                        px-6
-                        py-3.5
-                        text-sm
-                        font-bold
-                        text-white
-                        transition-all
-                        duration-200
-                        hover:-translate-y-0.5
-                        hover:bg-[#164D5D]
+                        justify-between
+                        gap-4
                       "
                     >
 
-                      {t.read}
-
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
+                      <span
                         class="
-                          h-4
-                          w-4
-                          transition-transform
+                          text-xs
+                          font-semibold
+                          text-[#758991]
+                        "
+                      >
+                        {post.data.author}
+                      </span>
+
+
+                      <span
+                        class="
+                          text-lg
+                          font-bold
+                          text-[#D99B26]
+                          transition
                           group-hover:translate-x-1
                         "
-                        aria-hidden="true"
                       >
-                        <path
-                          d="M5 12h14m-5-5l5 5-5 5"
-                          stroke-width="1.8"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                        →
+                      </span>
 
-                    </a>
+                    </div>
 
                   </div>
 
-                </article>
+                </a>
 
-              )
+              ))
             }
 
           </div>
 
-        </section>
+        </div>
+
+      </section>
+
+    )
+  }
 
 
-        <!-- =================================================
-             LATEST ARTICLES
-        ================================================== -->
+  <!-- =====================================================
+       EMPTY STATE
+  ====================================================== -->
 
-        {
-          remainingPosts.length > 0 && (
+  {
+    posts.length === 0 && (
 
-            <section
-              class="
-                bg-[#F7FAFA]
-                py-16
-                sm:py-20
-                font-heading
-              "
-            >
+      <section
+        class="
+          bg-white
+          py-20
+          font-heading
+        "
+      >
 
-              <div
-                class="
-                  mx-auto
-                  max-w-site
-                  px-4
-                  sm:px-6
-                  lg:px-8
-                "
-              >
+        <div
+          class="
+            mx-auto
+            max-w-2xl
+            px-4
+            text-center
+          "
+        >
 
-                <!-- SECTION HEADING -->
-
-                <div
-                  class="
-                    mx-auto
-                    max-w-4xl
-                    text-center
-                  "
-                >
-
-                  <p
-                    class="
-                      text-sm
-                      font-bold
-                      uppercase
-                      tracking-[0.17em]
-                      text-[#D99B26]
-                    "
-                  >
-                    {t.latest}
-                  </p>
+          <h2
+            class="
+              text-3xl
+              font-bold
+              text-[#0E3846]
+            "
+          >
+            Pregătim primele ghiduri.
+          </h2>
 
 
-                  <h2
-                    class="
-                      mt-3
-                      text-[30px]
-                      font-bold
-                      tracking-tight
-                      text-[#0E3846]
-                      sm:text-4xl
-                    "
-                  >
-                    {t.latestTitle}
-                  </h2>
+          <p
+            class="
+              mt-4
+              text-base
+              leading-7
+              text-[#526B74]
+            "
+          >
+            În curând vei găsi aici informații practice despre administrarea
+            și protejarea proprietăților din Costa Blanca.
+          </p>
 
+        </div>
 
-                  <p
-                    class="
-                      mx-auto
-                      mt-4
-                      max-w-3xl
-                      text-base
-                      leading-7
-                      text-[#526B74]
-                      sm:text-lg
-                    "
-                  >
-                    {t.latestText}
-                  </p>
-
-                </div>
-
-
-                <!-- GRID -->
-
-                <div
-                  class="
-                    mt-10
-                    grid
-                    grid-cols-1
-                    gap-6
-                    md:grid-cols-2
-                    lg:grid-cols-3
-                  "
-                >
-
-                  {
-                    remainingPosts.map((post) => (
-
-                      <article
-                        class="
-                          group
-                          relative
-                          flex
-                          min-h-full
-                          flex-col
-                          overflow-hidden
-                          rounded-2xl
-                          border
-                          border-[#D2E1E5]
-                          bg-white
-                          shadow-[0_6px_20px_rgba(14,56,70,0.06)]
-                          transition-all
-                          duration-200
-                          hover:-translate-y-1
-                          hover:shadow-[0_14px_32px_rgba(14,56,70,0.10)]
-                        "
-                      >
-
-                        <!-- CARD TOP -->
-
-                        <div
-                          class="
-                            h-2
-                            w-full
-                            bg-gradient-to-r
-                            from-[#D99B26]
-                            via-[#5B9EB5]
-                            to-[#0E3846]
-                          "
-                        ></div>
-
-
-                        <div
-                          class="
-                            flex
-                            flex-1
-                            flex-col
-                            p-6
-                            sm:p-7
-                          "
-                        >
-
-                          <!-- META -->
-
-                          <div
-                            class="
-                              flex
-                              flex-wrap
-                              items-center
-                              gap-2
-                              text-xs
-                              font-semibold
-                              text-[#82969D]
-                            "
-                          >
-
-                            <time
-                              datetime={post.data.date.toISOString()}
-                            >
-                              {formatDate(post.data.date)}
-                            </time>
-
-
-                            {
-                              post.data.tags.length > 0 && (
-                                <>
-                                  <span
-                                    class="
-                                      h-1
-                                      w-1
-                                      rounded-full
-                                      bg-[#D99B26]
-                                    "
-                                  ></span>
-
-                                  <span
-                                    class="
-                                      text-[#397C92]
-                                    "
-                                  >
-                                    {post.data.tags[0]}
-                                  </span>
-                                </>
-                              )
-                            }
-
-                          </div>
-
-
-                          <!-- TITLE -->
-
-                          <h3
-                            class="
-                              mt-4
-                              text-xl
-                              font-bold
-                              leading-snug
-                              text-[#0E3846]
-                              transition-colors
-                              group-hover:text-[#397C92]
-                              sm:text-[22px]
-                            "
-                          >
-                            {post.data.title}
-                          </h3>
-
-
-                          <!-- DESCRIPTION -->
-
-                          <p
-                            class="
-                              mt-3
-                              flex-1
-                              text-[15px]
-                              leading-7
-                              text-[#526B74]
-                            "
-                          >
-                            {post.data.description}
-                          </p>
-
-
-                          <!-- READ MORE -->
-
-                          <a
-                            href={articleUrl(post.id)}
-                            class="
-                              mt-6
-                              inline-flex
-                              items-center
-                              gap-2
-                              text-sm
-                              font-bold
-                              text-[#0E3846]
-                            "
-                          >
-
-                            {t.read}
-
-                            <svg
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              class="
-                                h-4
-                                w-4
-                                transition-transform
-                                group-hover:translate-x-1
-                              "
-                              aria-hidden="true"
-                            >
-                              <path
-                                d="M5 12h14m-5-5l5 5-5 5"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                            </svg>
-
-                          </a>
-
-                        </div>
-
-                      </article>
-
-                    ))
-                  }
-
-                </div>
-
-              </div>
-
-            </section>
-
-          )
-        }
-
-      </>
+      </section>
 
     )
   }
