@@ -684,12 +684,10 @@ import { brand } from '../config/brand';
           <div
             class="
               mt-7
-              flex
-              flex-nowrap
-              justify-start
+              grid
+              grid-cols-5
               gap-2
-              overflow-x-auto
-              pb-1
+              w-full
             "
           >
             {[
@@ -702,14 +700,17 @@ import { brand } from '../config/brand';
               <span
                 class:list={[
                   "rounded-lg",
-                  "px-3",
+                  "px-1.5",
+                  "sm:px-2.5",
                   "py-2",
-                  "text-xs",
-                  "sm:text-[13px]",
+                  "text-[9px]",
+                  "sm:text-[11px]",
+                  "lg:text-xs",
                   "font-bold",
-                  "tracking-[0.06em]",
+                  "tracking-[0.02em]",
                   "whitespace-nowrap",
-                  "shrink-0",
+                  "text-center",
+                  "min-w-0",
                   index === 4
                     ? "bg-[#D99B26] text-[#0E3846]"
                     : "bg-[#174C5C] text-white border border-[#316878]"
