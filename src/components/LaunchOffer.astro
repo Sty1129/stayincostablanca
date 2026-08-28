@@ -1,13 +1,159 @@
-
 ---
 // src/components/LaunchOffer.astro
 
-// IMPORTANT:
-// Înlocuiește data de mai jos cu data REALĂ a promoției.
-// După expirare, secțiunea trebuie eliminată sau transformată
-// în prezentarea standard a onboarding-ului de 99 €.
+const currentLang = Astro.currentLocale || 'ro';
 
-const offerDeadline = "31 octombrie 2026";
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const routes = {
+  ro: {
+    contact: '/contact',
+  },
+  en: {
+    contact: '/en/contact',
+  },
+  es: {
+    contact: '/es/contacto',
+  },
+};
+
+const r = routes[lang];
+
+const translations = {
+  ro: {
+    deadline: '31 octombrie 2026',
+
+    eyebrow: 'OFERTĂ DE LANSARE',
+    heading: 'Începem prin a cunoaște proprietatea ta.',
+
+    introBefore:
+      'Fiecare colaborare începe cu un',
+    introStrong:
+      'Property Onboarding & Baseline Assessment',
+    introAfter:
+      'Documentăm accesul, elementele tehnice esențiale și starea inițială a proprietății, astfel încât monitorizarea ulterioară să pornească de la o bază clară și documentată.',
+
+    includesTitle: 'Evaluarea inițială include:',
+
+    includes: [
+      'Înregistrarea proprietății și a accesului',
+      'Fotografii inițiale de referință',
+      'Citiri inițiale ale contoarelor',
+      'Identificarea punctelor tehnice esențiale',
+      'Access Route Mapping',
+      'Configurarea informațiilor de urgență',
+      'Temperatură și umiditate inițială',
+      'Registrul securizat al cheilor și accesului',
+    ],
+
+    cta: 'SOLICITĂ EVALUAREA PROPRIETĂȚII',
+
+    onboarding: 'ALTA DE LA PROPIEDAD',
+    baseline: '& Evaluación de referencia',
+
+    standardValue: 'Valoare standard',
+    vatIncluded: 'TVA inclus',
+
+    included: 'INCLUS',
+    includedSub: 'fără cost suplimentar',
+
+    contractsBefore: 'Pentru contractele încheiate până la',
+
+    afterDeadline:
+      'După această dată se aplică tariful standard de 99 € TVA inclus.',
+  },
+
+  en: {
+    deadline: '31 October 2026',
+
+    eyebrow: 'LAUNCH OFFER',
+    heading: 'We begin by getting to know your property.',
+
+    introBefore:
+      'Every new service relationship begins with a',
+    introStrong:
+      'Property Onboarding & Baseline Assessment',
+    introAfter:
+      'We document access, essential technical elements and the initial condition of the property so that future monitoring starts from a clear, documented baseline.',
+
+    includesTitle: 'The initial assessment includes:',
+
+    includes: [
+      'Property and access registration',
+      'Initial reference photographs',
+      'Initial meter readings',
+      'Identification of essential technical points',
+      'Access Route Mapping',
+      'Emergency information setup',
+      'Initial temperature and humidity readings',
+      'Secure key and access register',
+    ],
+
+    cta: 'REQUEST A PROPERTY ASSESSMENT',
+
+    onboarding: 'ALTA DE LA PROPIEDAD',
+    baseline: '& Evaluación de referencia',
+
+    standardValue: 'Standard price',
+    vatIncluded: 'VAT included',
+
+    included: 'INCLUDED',
+    includedSub: 'at no additional cost',
+
+    contractsBefore: 'For contracts signed by',
+
+    afterDeadline:
+      'After this date, the standard fee of €99 VAT included will apply.',
+  },
+
+  es: {
+    deadline: '31 de octubre de 2026',
+
+    eyebrow: 'OFERTA DE LANZAMIENTO',
+    heading: 'Empezamos por conocer tu propiedad.',
+
+    introBefore:
+      'Cada nueva colaboración comienza con un proceso de',
+    introStrong:
+      'alta de la propiedad y evaluación de referencia',
+    introAfter:
+      'Documentamos el acceso, los elementos técnicos esenciales y el estado inicial de la propiedad para que la monitorización posterior parta de una base clara y documentada.',
+
+    includesTitle: 'La evaluación inicial incluye:',
+
+    includes: [
+      'Registro de la propiedad y de los accesos',
+      'Fotografías iniciales de referencia',
+      'Lecturas iniciales de los contadores',
+      'Identificación de los puntos técnicos esenciales',
+      'Mapeo de las rutas de acceso',
+      'Configuración de la información de emergencia',
+      'Temperatura y humedad iniciales',
+      'Registro seguro de llaves y accesos',
+    ],
+
+    cta: 'SOLICITA LA EVALUACIÓN DE TU PROPIEDAD',
+
+    onboarding: 'ALTA DE LA PROPIEDAD',
+    baseline: '& Evaluación de referencia',
+
+    standardValue: 'Precio estándar',
+    vatIncluded: 'IVA incluido',
+
+    included: 'INCLUIDO',
+    includedSub: 'sin coste adicional',
+
+    contractsBefore: 'Para contratos formalizados hasta el',
+
+    afterDeadline:
+      'Después de esta fecha se aplicará la tarifa estándar de 99 € IVA incluido.',
+  },
+};
+
+const t = translations[lang];
 ---
 
 <section
@@ -28,7 +174,7 @@ const offerDeadline = "31 octombrie 2026";
       "
     >
 
-      <!-- Accent superior -->
+      <!-- TOP ACCENT -->
       <div class="h-1.5 w-full bg-[#D99B26]"></div>
 
       <div
@@ -41,11 +187,10 @@ const offerDeadline = "31 octombrie 2026";
       >
 
         <!-- =====================================================
-             LEFT: EXPLICAȚIE
+             LEFT: EXPLANATION
         ====================================================== -->
         <div class="p-7 sm:p-9 lg:p-11">
 
-          <!-- Eyebrow -->
           <p
             class="
               text-sm
@@ -56,10 +201,9 @@ const offerDeadline = "31 octombrie 2026";
               mb-3
             "
           >
-            OFERTĂ DE LANSARE
+            {t.eyebrow}
           </p>
 
-          <!-- Titlu -->
           <h2
             class="
               text-[28px]
@@ -71,10 +215,9 @@ const offerDeadline = "31 octombrie 2026";
               tracking-tight
             "
           >
-            Începem prin a cunoaște proprietatea ta.
+            {t.heading}
           </h2>
 
-          <!-- Intro -->
           <p
             class="
               mt-5
@@ -86,17 +229,13 @@ const offerDeadline = "31 octombrie 2026";
               max-w-2xl
             "
           >
-            Fiecare colaborare începe cu un
+            {t.introBefore}{' '}
             <strong class="text-[#0E3846]">
-              Property Onboarding &amp; Baseline Assessment
+              {t.introStrong}
             </strong>.
-            Documentăm accesul, elementele tehnice esențiale și starea inițială
-            a proprietății, astfel încât monitorizarea ulterioară să pornească
-            de la o bază clară și documentată.
+            {' '}{t.introAfter}
           </p>
 
-
-          <!-- Ce include -->
           <div class="mt-7">
 
             <p
@@ -108,7 +247,7 @@ const offerDeadline = "31 octombrie 2026";
                 mb-4
               "
             >
-              Evaluarea inițială include:
+              {t.includesTitle}
             </p>
 
             <div
@@ -122,55 +261,18 @@ const offerDeadline = "31 octombrie 2026";
                 text-[#294650]
               "
             >
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Înregistrarea proprietății și a accesului</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Fotografii inițiale de referință</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Citiri inițiale ale contoarelor</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Identificarea punctelor tehnice esențiale</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Access Route Mapping</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Configurarea informațiilor de urgență</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Temperatură și umiditate inițială</span>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
-                <span>Registrul securizat al cheilor și accesului</span>
-              </div>
-
+              {t.includes.map((item) => (
+                <div class="flex items-start gap-3">
+                  <span class="text-[#5B9EB5] font-bold text-lg">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-
-          <!-- CTA -->
           <div class="mt-8">
             <a
-              href="/contact"
+              href={r.contact}
               class="
                 inline-block
                 w-full
@@ -191,16 +293,14 @@ const offerDeadline = "31 octombrie 2026";
                 shadow-sm
               "
             >
-              SOLICITĂ EVALUAREA PROPRIETĂȚII
+              {t.cta}
             </a>
           </div>
 
         </div>
 
-
-
         <!-- =====================================================
-             RIGHT: OFERTA
+             RIGHT: OFFER
         ====================================================== -->
         <div
           class="
@@ -226,7 +326,7 @@ const offerDeadline = "31 octombrie 2026";
               text-[#A9D1DD]
             "
           >
-            PROPERTY ONBOARDING
+            {t.onboarding}
           </p>
 
           <p
@@ -238,11 +338,9 @@ const offerDeadline = "31 octombrie 2026";
               leading-6
             "
           >
-            &amp; Baseline Assessment
+            {t.baseline}
           </p>
 
-
-          <!-- Preț normal -->
           <div class="mt-7">
             <p
               class="
@@ -252,11 +350,10 @@ const offerDeadline = "31 octombrie 2026";
                 text-[#BCD7DE]
               "
             >
-              Valoare standard
+              {t.standardValue}
             </p>
 
             <div class="mt-1 flex justify-center items-baseline gap-2">
-
               <span
                 class="
                   text-3xl
@@ -270,16 +367,13 @@ const offerDeadline = "31 octombrie 2026";
               >
                 99 €
               </span>
-
             </div>
 
             <p class="text-sm text-[#BCD7DE] mt-1">
-              TVA inclus
+              {t.vatIncluded}
             </p>
           </div>
 
-
-          <!-- Inclus -->
           <div
             class="
               mt-7
@@ -301,7 +395,7 @@ const offerDeadline = "31 octombrie 2026";
                 leading-tight
               "
             >
-              INCLUS
+              {t.included}
             </p>
 
             <p
@@ -313,14 +407,11 @@ const offerDeadline = "31 octombrie 2026";
                 text-[#DCECEF]
               "
             >
-              fără cost suplimentar
+              {t.includedSub}
             </p>
           </div>
 
-
-          <!-- Deadline -->
           <div class="mt-7">
-
             <p
               class="
                 text-sm
@@ -329,7 +420,7 @@ const offerDeadline = "31 octombrie 2026";
                 leading-6
               "
             >
-              Pentru contractele încheiate până la
+              {t.contractsBefore}
             </p>
 
             <p
@@ -341,13 +432,10 @@ const offerDeadline = "31 octombrie 2026";
                 text-[#F3C76B]
               "
             >
-              {offerDeadline}
+              {t.deadline}
             </p>
-
           </div>
 
-
-          <!-- Fără fake urgency -->
           <p
             class="
               mt-6
@@ -358,7 +446,7 @@ const offerDeadline = "31 octombrie 2026";
               max-w-xs
             "
           >
-            După această dată se aplică tariful standard de 99 € TVA inclus.
+            {t.afterDeadline}
           </p>
 
         </div>
