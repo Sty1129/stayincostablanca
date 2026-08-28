@@ -1,28 +1,116 @@
 ---
 // src/components/Method.astro
 
-const steps = [
-  {
-    label: "MĂSURĂM",
-    desc: "Colectăm datele și parametrii relevanți ai proprietății."
+const currentLang = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLang === 'en' || currentLang === 'es'
+    ? currentLang
+    : 'ro';
+
+const translations = {
+  ro: {
+    topper: 'CUM LUCRĂM',
+    heading: 'Nu doar vizităm. Monitorizăm și documentăm.',
+    intro:
+      'Fiecare proprietate dezvoltă în timp un istoric. Fotografii, observații, valori relevante și verificări periodice ne ajută să identificăm schimbările, nu doar să spunem că „totul pare în regulă”.',
+    stepLabel: 'Pasul',
+    finalBefore: 'Rezultatul este un proces',
+    finalStrong: 'măsurabil, documentat și preventiv',
+    finalAfter: 'construit pentru a urmări proprietatea în timp.',
+    steps: [
+      {
+        label: 'MĂSURĂM',
+        desc: 'Colectăm datele și parametrii relevanți ai proprietății.',
+      },
+      {
+        label: 'COMPARĂM',
+        desc: 'Urmărim evoluția față de vizitele și valorile anterioare.',
+      },
+      {
+        label: 'DOCUMENTĂM',
+        desc: 'Înregistrăm fotografii, valori și observații clare.',
+      },
+      {
+        label: 'DETECTĂM',
+        desc: 'Identificăm din timp schimbările care necesită atenție.',
+      },
+      {
+        label: 'ACȚIONĂM',
+        desc: 'Informăm proprietarul și coordonăm următorii pași.',
+      },
+    ],
   },
-  {
-    label: "COMPARĂM",
-    desc: "Urmărim evoluția față de vizitele și valorile anterioare."
+
+  en: {
+    topper: 'HOW WE WORK',
+    heading: 'We do more than visit. We monitor and document.',
+    intro:
+      'Every property develops a history over time. Photographs, observations, relevant readings and scheduled checks help us identify changes rather than simply saying that “everything looks fine”.',
+    stepLabel: 'Step',
+    finalBefore: 'The result is a',
+    finalStrong: 'measurable, documented and preventive',
+    finalAfter: 'process designed to track the property over time.',
+    steps: [
+      {
+        label: 'MEASURE',
+        desc: 'We collect relevant data and property parameters.',
+      },
+      {
+        label: 'COMPARE',
+        desc: 'We track changes against previous visits and recorded values.',
+      },
+      {
+        label: 'DOCUMENT',
+        desc: 'We record photographs, readings and clear observations.',
+      },
+      {
+        label: 'DETECT',
+        desc: 'We identify changes that require attention at an early stage.',
+      },
+      {
+        label: 'ACT',
+        desc: 'We inform the owner and coordinate the next steps.',
+      },
+    ],
   },
-  {
-    label: "DOCUMENTĂM",
-    desc: "Înregistrăm fotografii, valori și observații clare."
+
+  es: {
+    topper: 'CÓMO TRABAJAMOS',
+    heading: 'No solo visitamos. Monitorizamos y documentamos.',
+    intro:
+      'Cada propiedad desarrolla un historial con el tiempo. Fotografías, observaciones, valores relevantes y revisiones periódicas nos ayudan a identificar cambios, no simplemente a decir que “todo parece estar bien”.',
+    stepLabel: 'Paso',
+    finalBefore: 'El resultado es un proceso',
+    finalStrong: 'medible, documentado y preventivo',
+    finalAfter: 'diseñado para hacer un seguimiento de la propiedad a lo largo del tiempo.',
+    steps: [
+      {
+        label: 'MEDIMOS',
+        desc: 'Recopilamos los datos y parámetros relevantes de la propiedad.',
+      },
+      {
+        label: 'COMPARAMOS',
+        desc: 'Seguimos la evolución respecto a visitas y valores anteriores.',
+      },
+      {
+        label: 'DOCUMENTAMOS',
+        desc: 'Registramos fotografías, valores y observaciones claras.',
+      },
+      {
+        label: 'DETECTAMOS',
+        desc: 'Identificamos con antelación los cambios que requieren atención.',
+      },
+      {
+        label: 'ACTUAMOS',
+        desc: 'Informamos al propietario y coordinamos los siguientes pasos.',
+      },
+    ],
   },
-  {
-    label: "DETECTĂM",
-    desc: "Identificăm din timp schimbările care necesită atenție."
-  },
-  {
-    label: "ACȚIONĂM",
-    desc: "Informăm proprietarul și coordonăm următorii pași."
-  }
-];
+};
+
+const t = translations[lang];
+const steps = t.steps;
 ---
 
 <section
@@ -41,7 +129,7 @@ const steps = [
   <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
 
     <!-- =====================================================
-         TITLU & INTRO
+         TITLE & INTRO
     ====================================================== -->
     <div class="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
 
@@ -55,7 +143,7 @@ const steps = [
           mb-3
         "
       >
-        CUM LUCRĂM
+        {t.topper}
       </p>
 
       <h2
@@ -69,7 +157,7 @@ const steps = [
           leading-[1.15]
         "
       >
-        Nu doar vizităm. Monitorizăm și documentăm.
+        {t.heading}
       </h2>
 
       <p
@@ -85,16 +173,14 @@ const steps = [
           mx-auto
         "
       >
-        Fiecare proprietate dezvoltă în timp un istoric. Fotografii,
-        observații, valori relevante și verificări periodice ne ajută să
-        identificăm schimbările, nu doar să spunem că „totul pare în regulă”.
+        {t.intro}
       </p>
 
     </div>
 
 
     <!-- =====================================================
-         FLUXUL PROCESULUI
+         PROCESS FLOW
     ====================================================== -->
     <div
       class="
@@ -133,7 +219,7 @@ const steps = [
           "
         >
 
-          <!-- Numărul pasului -->
+          <!-- Step number -->
           <div
             class={`
               w-12
@@ -156,7 +242,7 @@ const steps = [
           </div>
 
 
-          <!-- Pas -->
+          <!-- Step -->
           <p
             class="
               text-xs
@@ -168,11 +254,11 @@ const steps = [
               mb-2
             "
           >
-            Pasul 0{index + 1}
+            {t.stepLabel} 0{index + 1}
           </p>
 
 
-          <!-- Titlu -->
+          <!-- Title -->
           <h3
             class={`
               text-xl
@@ -191,7 +277,7 @@ const steps = [
           </h3>
 
 
-          <!-- Descriere -->
+          <!-- Description -->
           <p
             class="
               text-base
@@ -204,7 +290,7 @@ const steps = [
           </p>
 
 
-          <!-- Săgeată între pași - doar desktop -->
+          <!-- Arrow between steps - desktop only -->
           {index < steps.length - 1 && (
             <div
               class="
@@ -240,7 +326,7 @@ const steps = [
 
 
     <!-- =====================================================
-         MESAJ FINAL
+         FINAL MESSAGE
     ====================================================== -->
     <div class="text-center max-w-3xl mx-auto mt-10 sm:mt-12">
 
@@ -253,9 +339,9 @@ const steps = [
           sm:leading-8
         "
       >
-        Rezultatul este un proces
-        <strong class="text-white">măsurabil, documentat și preventiv</strong>,
-        construit pentru a urmări proprietatea în timp.
+        {t.finalBefore}{' '}
+        <strong class="text-white">{t.finalStrong}</strong>,
+        {' '}{t.finalAfter}
       </p>
 
     </div>
