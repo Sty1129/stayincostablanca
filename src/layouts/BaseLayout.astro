@@ -10,7 +10,6 @@ import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { brand } from '../config/brand';
-import { client } from '../data/client';
 
 interface Props {
   title?: string;
@@ -26,9 +25,91 @@ const {
   schema,
 } = Astro.props;
 
-const pageTitle = title === brand.name ? title : `${title} — ${brand.name}`;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const currentLocale = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLocale === 'en' || currentLocale === 'es'
+    ? currentLocale
+    : 'ro';
+
+const localeMeta = {
+  ro: {
+    htmlLang: 'ro',
+    ogLocale: 'ro_RO',
+    skipText: 'Sari la conținutul principal',
+  },
+  en: {
+    htmlLang: 'en',
+    ogLocale: 'en_GB',
+    skipText: 'Skip to main content',
+  },
+  es: {
+    htmlLang: 'es',
+    ogLocale: 'es_ES',
+    skipText: 'Ir al contenido principal',
+  },
+} as const;
+
+const locale = localeMeta[lang];
+
+/* =========================================================
+   SEO
+========================================================= */
+
+/**
+ * Some route pages already include the brand name in their title.
+ * Do not append it a second time.
+ */
+const pageTitle =
+  title === brand.name || title.includes(brand.name)
+    ? title
+    : `${title} — ${brand.name}`;
+
+const siteBase = Astro.site ?? brand.url;
+
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  siteBase
+).toString();
+
+const socialImageURL = new URL(
+  image,
+  siteBase
+).toString();
+
+/**
+ * Article routes use the same layout, so give them the correct
+ * Open Graph content type automatically.
+ */
+const cleanPath =
+  Astro.url.pathname.length > 1 &&
+  Astro.url.pathname.endsWith('/')
+    ? Astro.url.pathname.slice(0, -1)
+    : Astro.url.pathname;
+
+const isBlogArticle =
+  (
+    cleanPath.startsWith('/blog/') &&
+    cleanPath !== '/blog'
+  ) ||
+  (
+    cleanPath.startsWith('/en/blog/') &&
+    cleanPath !== '/en/blog'
+  ) ||
+  (
+    cleanPath.startsWith('/es/blog/') &&
+    cleanPath !== '/es/blog'
+  );
+
+const ogType = isBlogArticle
+  ? 'article'
+  : 'website';
 ---
+
 <style is:global>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
@@ -37,73 +118,225 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
     --font-body: 'Montserrat', sans-serif;
   }
 
-  body, h1, h2, h3, h4, h5, h6, .font-heading, span, p, a {
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-heading,
+  span,
+  p,
+  a {
     font-family: 'Montserrat', sans-serif !important;
   }
 </style>
-<html lang={brand.locale.split('_')[0]} class="scroll-smooth">
+
+<html
+  lang={locale.htmlLang}
+  class="scroll-smooth"
+>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
 
-    <link rel="canonical" href={canonicalURL} />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
 
-    <!-- Open Graph -->
-    <meta property="og:type"        content="website" />
-    <meta property="og:url"         content={canonicalURL} />
-    <meta property="og:title"       content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image"       content={image} />
-    <meta property="og:locale"      content={brand.locale} />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={pageTitle} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={image} />
+    <!-- =====================================================
+         CORE SEO
+    ====================================================== -->
 
-    <!-- Favicon -->
-   <link rel="icon" type="image/png" href="/favicon.png" />
+    <link
+      rel="canonical"
+      href={canonicalURL}
+    />
 
-    <!-- Fonts -->
-    <Font cssVariable="--font-display" preload />
-    <Font cssVariable="--font-body"    preload />
+    <title>
+      {pageTitle}
+    </title>
 
-    <!-- JSON-LD Structured Data -->
-    {schema && (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    )}
+    <meta
+      name="description"
+      content={description}
+    />
 
-    <!-- FOUC prevention for dark mode -->
+
+    <!-- =====================================================
+         OPEN GRAPH
+    ====================================================== -->
+
+    <meta
+      property="og:type"
+      content={ogType}
+    />
+
+    <meta
+      property="og:url"
+      content={canonicalURL}
+    />
+
+    <meta
+      property="og:title"
+      content={pageTitle}
+    />
+
+    <meta
+      property="og:description"
+      content={description}
+    />
+
+    <meta
+      property="og:image"
+      content={socialImageURL}
+    />
+
+    <meta
+      property="og:locale"
+      content={locale.ogLocale}
+    />
+
+
+    <!-- =====================================================
+         TWITTER CARD
+    ====================================================== -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content={pageTitle}
+    />
+
+    <meta
+      name="twitter:description"
+      content={description}
+    />
+
+    <meta
+      name="twitter:image"
+      content={socialImageURL}
+    />
+
+
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon.png"
+    />
+
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
+    <Font
+      cssVariable="--font-display"
+      preload
+    />
+
+    <Font
+      cssVariable="--font-body"
+      preload
+    />
+
+
+    <!-- =====================================================
+         JSON-LD STRUCTURED DATA
+    ====================================================== -->
+
+    {
+      schema && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(schema)}
+        />
+      )
+    }
+
+
+    <!-- =====================================================
+         FOUC PREVENTION FOR DARK MODE
+    ====================================================== -->
+
     <script is:inline>
-      (function(){
+      (function () {
         var t = localStorage.getItem('theme');
-        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark-mode');
+
+        if (
+          t === 'dark' ||
+          (
+            !t &&
+            window.matchMedia(
+              '(prefers-color-scheme: dark)'
+            ).matches
+          )
+        ) {
+          document.documentElement.classList.add(
+            'dark-mode'
+          );
         }
       })();
     </script>
 
+
     <slot name="head" />
+
     <ClientRouter />
   </head>
 
-  <body class="bg-background text-text font-body antialiased">
+
+  <body
+    class="
+      bg-background
+      text-text
+      font-body
+      antialiased
+    "
+  >
+    <!-- =====================================================
+         ACCESSIBILITY
+    ====================================================== -->
+
     <a
-      class="sr-only focus:not-sr-only focus:absolute focus:z-[99999] focus:bg-primary focus:text-primary-fg focus:px-4 focus:py-2 focus:rounded-md"
+      class="
+        sr-only
+        focus:not-sr-only
+        focus:absolute
+        focus:z-[99999]
+        focus:bg-primary
+        focus:text-primary-fg
+        focus:px-4
+        focus:py-2
+        focus:rounded-md
+      "
       href="#main"
     >
-      Skip to main content
+      {locale.skipText}
     </a>
 
+
     <slot name="header" />
+
 
     <main id="main">
       <slot />
     </main>
+
 
     <slot name="footer" />
   </body>
