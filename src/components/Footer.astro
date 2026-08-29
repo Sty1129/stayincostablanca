@@ -65,7 +65,7 @@ const translations = {
       { label: "ECO-BASIC — WATCH", href: "/en/services#eco-basic" },
       { label: "ECO-SMART — PREVENT", href: "/en/services#eco-smart" },
       { label: "ECO-PREMIUM — MANAGE", href: "/en/services#eco-premium" },
-      { label: "Compare packages", href: "/en/services#comparatie" },
+      { label: "Compare packages", href: "/en/services#comparison" },
     ],
 
     area: "Orihuela Costa & Torrevieja",
@@ -92,18 +92,18 @@ const translations = {
 
     navigation: [
       { label: "Inicio", href: "/es/" },
-      { label: "Servicios y precios", href: "/es/services" },
-      { label: "Sostenibilidad", href: "/es/sustainability" },
+      { label: "Servicios y precios", href: "/es/servicios" },
+      { label: "Sostenibilidad", href: "/es/sostenibilidad" },
       { label: "Blog", href: "/es/blog" },
-      { label: "Sobre nosotros", href: "/es/about" },
-      { label: "Contacto", href: "/es/contact" },
+      { label: "Sobre nosotros", href: "/es/sobre-nosotros" },
+      { label: "Contacto", href: "/es/contacto" },
     ],
 
     services: [
-      { label: "ECO-BASIC — WATCH", href: "/es/services#eco-basic" },
-      { label: "ECO-SMART — PREVENT", href: "/es/services#eco-smart" },
-      { label: "ECO-PREMIUM — MANAGE", href: "/es/services#eco-premium" },
-      { label: "Comparar planes", href: "/es/services#comparatie" },
+      { label: "ECO-BASIC — WATCH", href: "/es/servicios#eco-basic" },
+      { label: "ECO-SMART — PREVENT", href: "/es/servicios#eco-smart" },
+      { label: "ECO-PREMIUM — MANAGE", href: "/es/servicios#eco-premium" },
+      { label: "Comparar planes", href: "/es/servicios#comparacion" },
     ],
 
     area: "Orihuela Costa & Torrevieja",
@@ -498,7 +498,7 @@ const year = new Date().getFullYear();
           <!-- EMAIL -->
 
           <a
-            href="mailto:stelian@stayincostablanca.com"
+            href="mailto:info@stayincostablanca.com"
             class="
               group
               flex
@@ -549,7 +549,7 @@ const year = new Date().getFullYear();
                 group-hover:text-white
               "
             >
-              stelian@stayincostablanca.com
+              info@stayincostablanca.com
             </span>
 
           </a>
@@ -558,7 +558,7 @@ const year = new Date().getFullYear();
           <!-- WEBSITE -->
 
           <a
-            href="https://www.stayincostablanca.com"
+            href={t.homeHref}
             class="
               group
               flex
