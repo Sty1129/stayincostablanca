@@ -45,6 +45,7 @@ const translations = {
   ro: {
     home: 'Acasă',
     blog: 'Blog',
+    breadcrumbLabel: 'Navigare articol',
 
     category:
       'GHIDURI & RESURSE',
@@ -75,6 +76,7 @@ const translations = {
   en: {
     home: 'Home',
     blog: 'Blog',
+    breadcrumbLabel: 'Article navigation',
 
     category:
       'GUIDES & RESOURCES',
@@ -105,6 +107,7 @@ const translations = {
   es: {
     home: 'Inicio',
     blog: 'Blog',
+    breadcrumbLabel: 'Navegación del artículo',
 
     category:
       'GUÍAS & RECURSOS',
@@ -230,7 +233,7 @@ const formattedDate =
           ================================================== -->
 
           <nav
-            aria-label="Breadcrumb"
+            aria-label={t.breadcrumbLabel}
             class="mb-7"
           >
 
