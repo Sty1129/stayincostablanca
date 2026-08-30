@@ -1,1 +1,81 @@
 
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Aviz legal"
+  description="Aviz legal Stay in Costa Blanca: date de identificare, condiții de utilizare, proprietate intelectuală, responsabilitate și legislație aplicabilă."
+>
+  <Header slot="header" />
+
+  <section class="border-b border-[#D8E1E5] bg-[#0E3846] py-14 sm:py-16 lg:py-20 font-heading">
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#F3C76B]">INFORMAȚII LEGALE</p>
+        <h1 class="mt-3 text-[38px] sm:text-5xl lg:text-[58px] font-bold leading-[1.08] tracking-tight text-white">Aviz legal</h1>
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-8 text-[#C9DDE2]">Acest aviz identifică titularul site-ului și stabilește condițiile generale de acces și utilizare a stayincostablanca.com.</p>
+        <p class="mt-5 text-sm font-semibold text-[#B8D1D8]">Ultima actualizare: 30 august 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 sm:py-16 lg:py-20 font-heading">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <article class="legal-copy space-y-10">
+        <section>
+          <h2>1. Date de identificare</h2>
+          <p>În conformitate cu obligațiile de informare aplicabile serviciilor societății informaționale, datele titularului acestui site sunt:</p>
+          <ul>
+            <li><strong>Denumire comercială:</strong> Stay in Costa Blanca</li>
+            <li><strong>Titular / prestator:</strong> Matei Stelian, profesionist autónomo în Spania</li>
+            <li><strong>NIF/NIE:</strong> Z1580822Z</li>
+            <li><strong>Adresă profesională:</strong> Calle Manuel de Falla 23, Villamartín, Orihuela, Alicante, CP 03189, Spania</li>
+            <li><strong>Telefon:</strong> <a href="tel:+34624110656">+34 624 110 656</a></li>
+            <li><strong>Email general:</strong> <a href="mailto:info@stayincostablanca.com">info@stayincostablanca.com</a></li>
+            <li><strong>Email pentru protecția datelor:</strong> <a href="mailto:privacy@stayincostablanca.com">privacy@stayincostablanca.com</a></li>
+            <li><strong>Website:</strong> stayincostablanca.com</li>
+          </ul>
+          <div class="notice-box"><strong>Important:</strong> adresa de mai sus este o adresă profesională și nu funcționează ca punct de lucru cu acces liber pentru public. Întâlnirile se desfășoară <strong>numai cu programare prealabilă confirmată</strong>. Nu se acceptă vizite fără programare („walk-ins”).</div>
+        </section>
+
+        <section><h2>2. Obiectul site-ului</h2><p>Site-ul prezintă serviciile Stay in Costa Blanca, inclusiv servicii de key holding, verificare preventivă, monitorizare și administrare a proprietăților în zonele deservite din Costa Blanca.</p><p>Informațiile publicate au caracter general și comercial. Ele nu constituie, prin simpla publicare, o ofertă contractuală obligatorie și nu înlocuiesc condițiile stabilite într-o ofertă, confirmare de serviciu sau contract individual.</p></section>
+
+        <section><h2>3. Condiții de utilizare</h2><p>Utilizatorul se obligă să folosească site-ul în mod legal, cu bună-credință și fără a produce prejudicii titularului, altor utilizatori sau terților.</p><p>Este interzisă introducerea de cod malițios, tentativa de acces neautorizat, colectarea automată abuzivă de informații sau orice activitate care poate afecta securitatea, disponibilitatea ori integritatea site-ului.</p></section>
+
+        <section><h2>4. Conținut și actualizări</h2><p>Depunem eforturi rezonabile pentru ca informațiile publicate să fie corecte și actualizate. Totuși, conținutul poate fi modificat, actualizat sau retras fără notificare prealabilă atunci când este necesar.</p><p>Prețurile, pachetele, aria de servicii, disponibilitatea și condițiile comerciale aplicabile sunt cele confirmate individual la momentul solicitării și, după caz, în documentele contractuale.</p></section>
+
+        <section><h2>5. Proprietate intelectuală</h2><p>Textele, structura, elementele grafice, logo-urile, identitatea vizuală, fotografiile, materialele și celelalte elemente originale ale site-ului aparțin titularului sau sunt utilizate în baza unor drepturi ori licențe corespunzătoare.</p><p>Reproducerea, distribuirea, transformarea, reutilizarea comercială sau publicarea acestora fără autorizare este interzisă, cu excepția situațiilor permise de lege.</p></section>
+
+        <section><h2>6. Linkuri către servicii și site-uri terțe</h2><p>Site-ul poate conține linkuri către servicii sau platforme terțe, inclusiv servicii de comunicare, analiză, publicitate, formulare sau rețele sociale.</p><p>Stay in Costa Blanca nu controlează conținutul, disponibilitatea sau politicile externe ale acestor terți și nu își asumă responsabilitatea pentru modificările, întreruperile sau practicile proprii ale acestora. Accesarea serviciilor terțe este supusă condițiilor și politicilor furnizorului respectiv.</p></section>
+
+        <section><h2>7. Limitarea răspunderii privind site-ul</h2><p>Nu putem garanta că site-ul va fi disponibil permanent sau fără întreruperi, erori ori incidente tehnice. Pot exista perioade de mentenanță, actualizări, indisponibilități ale furnizorilor sau situații independente de controlul nostru rezonabil.</p><p>Nicio prevedere din acest Aviz legal nu limitează sau exclude o răspundere care nu poate fi limitată sau exclusă potrivit legislației aplicabile.</p></section>
+
+        <section><h2>8. Comunicări comerciale și newsletter</h2><p>Newsletterul și alte comunicări comerciale prin email sunt trimise numai în condițiile prevăzute de legislația aplicabilă și, atunci când este necesar, pe baza consimțământului utilizatorului.</p><p>Abonarea la newsletter este voluntară, separată de solicitările de informații sau ofertă și poate fi retrasă în orice moment prin mecanismul de dezabonare sau prin contactarea noastră.</p></section>
+
+        <section><h2>9. Protecția datelor și cookies</h2><p>Prelucrarea datelor personale este descrisă în <a href="/politica-de-confidentialitate">Politica de confidențialitate</a>, iar utilizarea cookie-urilor și tehnologiilor similare este descrisă în <a href="/politica-de-cookies">Politica de cookies</a>.</p><p>Preferințele privind cookie-urile opționale pot fi modificate prin controlul permanent „Setări cookie” disponibil pe site.</p></section>
+
+        <section><h2>10. Legea aplicabilă și jurisdicția</h2><p>Acest site și prezentul Aviz legal sunt guvernate de legislația spaniolă, inclusiv, în măsura aplicabilă, de Legea 34/2002 privind serviciile societății informaționale și comerțul electronic.</p><p>Orice litigiu va fi soluționat potrivit normelor de competență aplicabile. Dacă utilizatorul are calitatea de consumator sau utilizator, nu se aduce atingere drepturilor și regulilor imperative de competență jurisdicțională care îi sunt recunoscute de lege.</p></section>
+
+        <section><h2>11. Modificarea Avizului legal</h2><p>Putem modifica acest Aviz legal atunci când este necesar pentru a reflecta schimbări legislative, tehnice sau operaționale. Versiunea publicată pe această pagină este cea aplicabilă la data indicată în partea de sus.</p></section>
+      </article>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style is:global>
+  .legal-copy { color:#405963; font-size:16px; line-height:1.8; }
+  .legal-copy section { border-top:1px solid #D9E4E7; padding-top:2.25rem; }
+  .legal-copy section:first-child { border-top:0; padding-top:0; }
+  .legal-copy h2 { color:#0E3846; font-size:1.75rem; line-height:1.25; font-weight:700; }
+  .legal-copy p { margin-top:1rem; }
+  .legal-copy ul { margin-top:1rem; padding-left:1.25rem; list-style:disc; }
+  .legal-copy li { margin-top:.45rem; }
+  .legal-copy strong { color:#173F4C; font-weight:700; }
+  .legal-copy a { color:#397C92; font-weight:700; text-decoration:underline; text-underline-offset:3px; }
+  .notice-box { margin-top:1.25rem; border-left:4px solid #D99B26; border-radius:0 12px 12px 0; background:#FFF9ED; padding:1rem 1.2rem; }
+</style>
