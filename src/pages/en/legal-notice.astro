@@ -1,1 +1,57 @@
 
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Legal Notice"
+  description="Stay in Costa Blanca Legal Notice: operator identification, website terms of use, intellectual property, liability and applicable law."
+>
+  <Header slot="header" />
+
+  <section class="border-b border-[#D8E1E5] bg-[#0E3846] py-14 sm:py-16 lg:py-20 font-heading">
+    <div class="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#F3C76B]">LEGAL INFORMATION</p>
+        <h1 class="mt-3 text-[38px] sm:text-5xl lg:text-[58px] font-bold leading-[1.08] tracking-tight text-white">Legal Notice</h1>
+        <p class="mt-6 max-w-3xl text-base sm:text-lg leading-8 text-[#C9DDE2]">This notice identifies the website operator and sets out the general conditions for accessing and using stayincostablanca.com.</p>
+        <p class="mt-5 text-sm font-semibold text-[#B8D1D8]">Last updated: 30 August 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 sm:py-16 lg:py-20 font-heading">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <article class="legal-copy space-y-10">
+        <section><h2>1. Identification details</h2><p>In accordance with the information requirements applicable to information-society services, the website operator details are:</p><ul><li><strong>Trading name:</strong> Stay in Costa Blanca</li><li><strong>Owner / service provider:</strong> Matei Stelian, self-employed professional (autónomo) in Spain</li><li><strong>NIF/NIE:</strong> Z1580822Z</li><li><strong>Professional address:</strong> Calle Manuel de Falla 23, Villamartín, Orihuela, Alicante, 03189, Spain</li><li><strong>Phone:</strong> <a href="tel:+34624110656">+34 624 110 656</a></li><li><strong>General email:</strong> <a href="mailto:info@stayincostablanca.com">info@stayincostablanca.com</a></li><li><strong>Privacy email:</strong> <a href="mailto:privacy@stayincostablanca.com">privacy@stayincostablanca.com</a></li><li><strong>Website:</strong> stayincostablanca.com</li></ul><div class="notice-box"><strong>Important:</strong> the address above is a professional address and is not operated as a walk-in public office. Meetings are available <strong>by prior confirmed appointment only</strong>. Unscheduled visits or walk-ins are not accepted.</div></section>
+        <section><h2>2. Purpose of the website</h2><p>The website presents Stay in Costa Blanca services, including key holding, preventive property checks, monitoring and property management in the areas served in Costa Blanca.</p><p>Information published on the website is general and commercial in nature. Publication alone does not constitute a binding contractual offer and does not replace the specific terms stated in an individual quotation, service confirmation or contract.</p></section>
+        <section><h2>3. Conditions of use</h2><p>Users must use the website lawfully, in good faith and without causing harm to the operator, other users or third parties.</p><p>Introducing malicious code, attempting unauthorised access, abusive automated collection of information or any activity that may affect the security, availability or integrity of the website is prohibited.</p></section>
+        <section><h2>4. Content and updates</h2><p>We take reasonable steps to keep published information accurate and current. However, content may be modified, updated or withdrawn without prior notice where necessary.</p><p>Prices, service packages, service areas, availability and commercial terms are those individually confirmed at the time of the enquiry and, where applicable, in contractual documentation.</p></section>
+        <section><h2>5. Intellectual property</h2><p>Original texts, structure, graphic elements, logos, visual identity, photographs, materials and other original website elements belong to the operator or are used under appropriate rights or licences.</p><p>Reproduction, distribution, transformation, commercial reuse or republication without permission is prohibited except where permitted by law.</p></section>
+        <section><h2>6. Links to third-party services and websites</h2><p>The website may contain links to third-party services or platforms, including communication, analytics, advertising, forms or social-media services.</p><p>Stay in Costa Blanca does not control the external content, availability or policies of those third parties and is not responsible for their own changes, interruptions or practices. Use of third-party services is subject to the relevant provider's terms and policies.</p></section>
+        <section><h2>7. Website liability</h2><p>We cannot guarantee that the website will be continuously available or free from interruptions, errors or technical incidents. Maintenance, updates, provider outages or circumstances beyond our reasonable control may occur.</p><p>Nothing in this Legal Notice limits or excludes liability that cannot lawfully be limited or excluded under applicable law.</p></section>
+        <section><h2>8. Commercial communications and newsletter</h2><p>Newsletters and other commercial email communications are sent only in accordance with applicable law and, where required, on the basis of the user's consent.</p><p>Newsletter subscription is voluntary, separate from an enquiry or quotation request and can be withdrawn at any time through the unsubscribe mechanism or by contacting us.</p></section>
+        <section><h2>9. Data protection and cookies</h2><p>Processing of personal data is explained in the <a href="/en/privacy-policy">Privacy Policy</a>. Cookies and similar technologies are explained in the <a href="/en/cookie-policy">Cookie Policy</a>.</p><p>Users can change optional-cookie preferences using the permanent “Cookie settings” control available on the website.</p></section>
+        <section><h2>10. Applicable law and jurisdiction</h2><p>This website and this Legal Notice are governed by Spanish law, including, where applicable, Law 34/2002 on information-society services and electronic commerce.</p><p>Any dispute will be dealt with under the applicable jurisdiction rules. Where the user is a consumer, nothing in this notice affects mandatory consumer rights or jurisdiction rules granted by law.</p></section>
+        <section><h2>11. Changes to this Legal Notice</h2><p>We may amend this Legal Notice where necessary to reflect legal, technical or operational changes. The version published on this page is the version applicable as of the date stated above.</p></section>
+      </article>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style is:global>
+  .legal-copy { color:#405963; font-size:16px; line-height:1.8; }
+  .legal-copy section { border-top:1px solid #D9E4E7; padding-top:2.25rem; }
+  .legal-copy section:first-child { border-top:0; padding-top:0; }
+  .legal-copy h2 { color:#0E3846; font-size:1.75rem; line-height:1.25; font-weight:700; }
+  .legal-copy p { margin-top:1rem; }
+  .legal-copy ul { margin-top:1rem; padding-left:1.25rem; list-style:disc; }
+  .legal-copy li { margin-top:.45rem; }
+  .legal-copy strong { color:#173F4C; font-weight:700; }
+  .legal-copy a { color:#397C92; font-weight:700; text-decoration:underline; text-underline-offset:3px; }
+  .notice-box { margin-top:1.25rem; border-left:4px solid #D99B26; border-radius:0 12px 12px 0; background:#FFF9ED; padding:1rem 1.2rem; }
+</style>
