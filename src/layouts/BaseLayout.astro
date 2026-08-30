@@ -10,6 +10,7 @@ import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { brand } from '../config/brand';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title?: string;
@@ -138,18 +139,143 @@ const ogType = isBlogArticle
   class="scroll-smooth"
 >
   <head>
+    <!-- =====================================================
+         GOOGLE CONSENT MODE V2 — DEFAULT BEFORE GTM
+    ====================================================== -->
+
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+
+      (function () {
+        var analyticsGranted = false;
+        var marketingGranted = false;
+
+        try {
+          var stored =
+            localStorage.getItem(
+              'sicb_cookie_consent_v1'
+            );
+
+          if (stored) {
+            var consent = JSON.parse(stored);
+
+            var updatedAt =
+              typeof consent.updatedAt === 'string'
+                ? Date.parse(consent.updatedAt)
+                : NaN;
+
+            var maxAge =
+              730 * 24 * 60 * 60 * 1000;
+
+            if (
+              !Number.isFinite(updatedAt) ||
+              Date.now() - updatedAt > maxAge
+            ) {
+              localStorage.removeItem(
+                'sicb_cookie_consent_v1'
+              );
+            } else {
+              analyticsGranted =
+                consent.analytics === true;
+
+              marketingGranted =
+                consent.marketing === true;
+            }
+          }
+        } catch (error) {
+          analyticsGranted = false;
+          marketingGranted = false;
+        }
+
+        window.gtag(
+          'consent',
+          'default',
+          {
+            analytics_storage:
+              analyticsGranted
+                ? 'granted'
+                : 'denied',
+
+            ad_storage:
+              marketingGranted
+                ? 'granted'
+                : 'denied',
+
+            ad_user_data:
+              marketingGranted
+                ? 'granted'
+                : 'denied',
+
+            ad_personalization:
+              marketingGranted
+                ? 'granted'
+                : 'denied',
+
+            functionality_storage:
+              'granted',
+
+            security_storage:
+              'granted',
+
+            wait_for_update:
+              500,
+          }
+        );
+
+        window.dataLayer.push({
+          event: 'sicb_consent_default',
+
+          sicb_analytics_consent:
+            analyticsGranted
+              ? 'granted'
+              : 'denied',
+
+          sicb_marketing_consent:
+            marketingGranted
+              ? 'granted'
+              : 'denied',
+        });
+      })();
+    </script>
+
+
+    <!-- =====================================================
+         GOOGLE TAG MANAGER
+    ====================================================== -->
+
     <!-- Google Tag Manager -->
     <script is:inline>
       (function(w,d,s,l,i){
         w[l]=w[l]||[];
-        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event:'gtm.js'
+        });
+
         var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),
-            dl=l!='dataLayer'?'&l='+l:'';
+            dl=l!='dataLayer'
+              ? '&l='+l
+              : '';
+
         j.async=true;
-        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+
+        j.src=
+          'https://www.googletagmanager.com/gtm.js?id='
+          +i+dl;
+
         f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-5WLXMMWM');
+      })(
+        window,
+        document,
+        'script',
+        'dataLayer',
+        'GTM-5WLXMMWM'
+      );
     </script>
     <!-- End Google Tag Manager -->
 
@@ -333,6 +459,9 @@ const ogType = isBlogArticle
       ></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+
+    <CookieConsent />
 
     <!-- =====================================================
          ACCESSIBILITY
