@@ -1,1 +1,1026 @@
+---
+/**
+ * CookieConsent.astro
+ *
+ * Custom consent banner for:
+ * - Necessary storage
+ * - Analytics
+ * - Marketing / remarketing
+ *
+ * Integrates with Google Consent Mode v2 through window.gtag()
+ * and exposes the current state to GTM through dataLayer events.
+ */
+
+const currentLocale = Astro.currentLocale || 'ro';
+
+const lang =
+  currentLocale === 'en' || currentLocale === 'es'
+    ? currentLocale
+    : 'ro';
+
+const translations = {
+  ro: {
+    title: 'Preferințe cookie',
+    intro:
+      'Folosim stocare tehnică necesară pentru funcționarea site-ului. Cu acordul tău, putem folosi și instrumente de analiză și marketing pentru a măsura performanța și pentru remarketing.',
+    acceptAll: 'ACCEPTĂ TOATE',
+    rejectAll: 'RESPINGE TOATE',
+    manage: 'ALEGE PREFERINȚELE',
+    save: 'SALVEAZĂ PREFERINȚELE',
+    settings: 'Setări cookie',
+    close: 'Închide',
+    necessaryTitle: 'Necesare',
+    necessaryText:
+      'Necesare pentru funcționarea site-ului și pentru memorarea opțiunii tale privind consimțământul. Nu pot fi dezactivate.',
+    analyticsTitle: 'Analiză',
+    analyticsText:
+      'Ne ajută să înțelegem cum este utilizat site-ul și ce pagini sunt utile. Aceste instrumente vor fi activate numai dacă le accepți.',
+    marketingTitle: 'Marketing & remarketing',
+    marketingText:
+      'Permite măsurarea campaniilor și crearea audiențelor de remarketing prin servicii precum Google, Meta/Facebook & Instagram și TikTok, atunci când sunt configurate.',
+    detail:
+      'Poți modifica sau retrage consimțământul oricând folosind butonul „Setări cookie”.',
+    alwaysOn: 'Mereu activ',
+  },
+
+  en: {
+    title: 'Cookie preferences',
+    intro:
+      'We use necessary technical storage for the website to function. With your consent, we may also use analytics and marketing tools to measure performance and for remarketing.',
+    acceptAll: 'ACCEPT ALL',
+    rejectAll: 'REJECT ALL',
+    manage: 'MANAGE PREFERENCES',
+    save: 'SAVE PREFERENCES',
+    settings: 'Cookie settings',
+    close: 'Close',
+    necessaryTitle: 'Necessary',
+    necessaryText:
+      'Required for the website to function and to remember your consent choice. These cannot be disabled.',
+    analyticsTitle: 'Analytics',
+    analyticsText:
+      'Helps us understand how the website is used and which pages are useful. These tools will only be activated if you accept them.',
+    marketingTitle: 'Marketing & remarketing',
+    marketingText:
+      'Allows campaign measurement and remarketing audiences through services such as Google, Meta/Facebook & Instagram and TikTok when configured.',
+    detail:
+      'You can change or withdraw your consent at any time using the “Cookie settings” button.',
+    alwaysOn: 'Always active',
+  },
+
+  es: {
+    title: 'Preferencias de cookies',
+    intro:
+      'Utilizamos almacenamiento técnico necesario para el funcionamiento del sitio web. Con tu consentimiento, también podemos utilizar herramientas de analítica y marketing para medir el rendimiento y realizar remarketing.',
+    acceptAll: 'ACEPTAR TODO',
+    rejectAll: 'RECHAZAR TODO',
+    manage: 'GESTIONAR PREFERENCIAS',
+    save: 'GUARDAR PREFERENCIAS',
+    settings: 'Configuración de cookies',
+    close: 'Cerrar',
+    necessaryTitle: 'Necesarias',
+    necessaryText:
+      'Necesarias para el funcionamiento del sitio web y para recordar tu elección de consentimiento. No se pueden desactivar.',
+    analyticsTitle: 'Analítica',
+    analyticsText:
+      'Nos ayuda a entender cómo se utiliza el sitio y qué páginas resultan útiles. Estas herramientas solo se activarán si las aceptas.',
+    marketingTitle: 'Marketing y remarketing',
+    marketingText:
+      'Permite medir campañas y crear audiencias de remarketing mediante servicios como Google, Meta/Facebook e Instagram y TikTok cuando estén configurados.',
+    detail:
+      'Puedes modificar o retirar tu consentimiento en cualquier momento mediante el botón “Configuración de cookies”.',
+    alwaysOn: 'Siempre activo',
+  },
+} as const;
+
+const t = translations[lang];
+---
+
+<div
+  id="sicb-cookie-consent"
+  class="font-heading"
+  data-consent-root
+  hidden
+>
+  <!-- =======================================================
+       FIRST-LAYER BANNER
+  ======================================================== -->
+
+  <section
+    data-consent-banner
+    class="
+      fixed
+      inset-x-0
+      bottom-0
+      z-[99990]
+      border-t
+      border-[#C9DDE2]
+      bg-white
+      shadow-[0_-12px_40px_rgba(14,56,70,0.16)]
+    "
+    aria-labelledby="cookie-banner-title"
+    role="dialog"
+    aria-modal="false"
+  >
+    <div
+      class="
+        mx-auto
+        grid
+        max-w-site
+        grid-cols-1
+        gap-5
+        px-4
+        py-5
+        sm:px-6
+        lg:grid-cols-[minmax(0,1fr)_auto]
+        lg:items-center
+        lg:px-8
+      "
+    >
+      <div class="max-w-3xl">
+        <h2
+          id="cookie-banner-title"
+          class="
+            text-lg
+            font-bold
+            text-[#0E3846]
+          "
+        >
+          {t.title}
+        </h2>
+
+        <p
+          class="
+            mt-2
+            text-sm
+            leading-6
+            text-[#526B74]
+          "
+        >
+          {t.intro}
+        </p>
+
+        <p
+          class="
+            mt-2
+            text-xs
+            leading-5
+            text-[#71868D]
+          "
+        >
+          {t.detail}
+        </p>
+      </div>
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          gap-2
+          sm:grid-cols-3
+          lg:min-w-[570px]
+        "
+      >
+        <!-- Accept and Reject intentionally have the same visual weight -->
+        <button
+          type="button"
+          data-consent-accept
+          class="
+            min-h-[48px]
+            rounded-xl
+            border-2
+            border-[#0E3846]
+            bg-[#0E3846]
+            px-4
+            py-3
+            text-xs
+            font-extrabold
+            uppercase
+            tracking-[0.04em]
+            text-white
+            transition-colors
+            hover:bg-[#174D5E]
+          "
+        >
+          {t.acceptAll}
+        </button>
+
+        <button
+          type="button"
+          data-consent-reject
+          class="
+            min-h-[48px]
+            rounded-xl
+            border-2
+            border-[#0E3846]
+            bg-[#0E3846]
+            px-4
+            py-3
+            text-xs
+            font-extrabold
+            uppercase
+            tracking-[0.04em]
+            text-white
+            transition-colors
+            hover:bg-[#174D5E]
+          "
+        >
+          {t.rejectAll}
+        </button>
+
+        <button
+          type="button"
+          data-consent-manage
+          class="
+            min-h-[48px]
+            rounded-xl
+            border-2
+            border-[#D99B26]
+            bg-white
+            px-4
+            py-3
+            text-xs
+            font-extrabold
+            uppercase
+            tracking-[0.04em]
+            text-[#0E3846]
+            transition-colors
+            hover:bg-[#FFF9ED]
+          "
+        >
+          {t.manage}
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =======================================================
+       PREFERENCES MODAL
+  ======================================================== -->
+
+  <div
+    data-consent-modal
+    class="
+      fixed
+      inset-0
+      z-[99999]
+      hidden
+      items-center
+      justify-center
+      bg-[#071F27]/65
+      px-4
+      py-6
+      backdrop-blur-sm
+    "
+  >
+    <section
+      class="
+        max-h-[90vh]
+        w-full
+        max-w-2xl
+        overflow-y-auto
+        rounded-2xl
+        bg-white
+        shadow-[0_24px_70px_rgba(0,0,0,0.28)]
+      "
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-modal-title"
+    >
+      <div
+        class="
+          flex
+          items-start
+          justify-between
+          gap-4
+          border-b
+          border-[#D9E5E8]
+          px-5
+          py-5
+          sm:px-6
+        "
+      >
+        <div>
+          <p
+            class="
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.15em]
+              text-[#D99B26]
+            "
+          >
+            Stay in Costa Blanca
+          </p>
+
+          <h2
+            id="cookie-modal-title"
+            class="
+              mt-1
+              text-2xl
+              font-bold
+              text-[#0E3846]
+            "
+          >
+            {t.title}
+          </h2>
+        </div>
+
+        <button
+          type="button"
+          data-consent-close
+          class="
+            flex
+            h-10
+            w-10
+            shrink-0
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#D5E2E5]
+            text-[#0E3846]
+            transition-colors
+            hover:bg-[#F1F6F7]
+          "
+          aria-label={t.close}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 6l12 12M18 6L6 18"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+
+      <div class="space-y-4 px-5 py-5 sm:px-6">
+        <!-- Necessary -->
+        <article
+          class="
+            rounded-xl
+            border
+            border-[#D7E4E7]
+            bg-[#F7FAFA]
+            p-4
+          "
+        >
+          <div
+            class="
+              flex
+              items-start
+              justify-between
+              gap-4
+            "
+          >
+            <div>
+              <h3
+                class="
+                  text-base
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {t.necessaryTitle}
+              </h3>
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                {t.necessaryText}
+              </p>
+            </div>
+
+            <span
+              class="
+                shrink-0
+                rounded-full
+                bg-[#E6F2F5]
+                px-3
+                py-1.5
+                text-[11px]
+                font-bold
+                uppercase
+                tracking-[0.05em]
+                text-[#0E3846]
+              "
+            >
+              {t.alwaysOn}
+            </span>
+          </div>
+        </article>
+
+
+        <!-- Analytics -->
+        <article
+          class="
+            rounded-xl
+            border
+            border-[#D7E4E7]
+            bg-white
+            p-4
+          "
+        >
+          <label
+            class="
+              flex
+              cursor-pointer
+              items-start
+              justify-between
+              gap-5
+            "
+          >
+            <span>
+              <span
+                class="
+                  block
+                  text-base
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {t.analyticsTitle}
+              </span>
+
+              <span
+                class="
+                  mt-1
+                  block
+                  text-sm
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                {t.analyticsText}
+              </span>
+            </span>
+
+            <span class="relative mt-1 shrink-0">
+              <input
+                data-consent-analytics
+                type="checkbox"
+                class="peer sr-only"
+              />
+
+              <span
+                class="
+                  block
+                  h-7
+                  w-12
+                  rounded-full
+                  bg-[#C9D8DC]
+                  transition-colors
+                  peer-checked:bg-[#0E3846]
+                "
+              ></span>
+
+              <span
+                class="
+                  absolute
+                  left-1
+                  top-1
+                  h-5
+                  w-5
+                  rounded-full
+                  bg-white
+                  shadow-sm
+                  transition-transform
+                  peer-checked:translate-x-5
+                "
+              ></span>
+            </span>
+          </label>
+        </article>
+
+
+        <!-- Marketing -->
+        <article
+          class="
+            rounded-xl
+            border
+            border-[#D7E4E7]
+            bg-white
+            p-4
+          "
+        >
+          <label
+            class="
+              flex
+              cursor-pointer
+              items-start
+              justify-between
+              gap-5
+            "
+          >
+            <span>
+              <span
+                class="
+                  block
+                  text-base
+                  font-bold
+                  text-[#0E3846]
+                "
+              >
+                {t.marketingTitle}
+              </span>
+
+              <span
+                class="
+                  mt-1
+                  block
+                  text-sm
+                  leading-6
+                  text-[#526B74]
+                "
+              >
+                {t.marketingText}
+              </span>
+            </span>
+
+            <span class="relative mt-1 shrink-0">
+              <input
+                data-consent-marketing
+                type="checkbox"
+                class="peer sr-only"
+              />
+
+              <span
+                class="
+                  block
+                  h-7
+                  w-12
+                  rounded-full
+                  bg-[#C9D8DC]
+                  transition-colors
+                  peer-checked:bg-[#0E3846]
+                "
+              ></span>
+
+              <span
+                class="
+                  absolute
+                  left-1
+                  top-1
+                  h-5
+                  w-5
+                  rounded-full
+                  bg-white
+                  shadow-sm
+                  transition-transform
+                  peer-checked:translate-x-5
+                "
+              ></span>
+            </span>
+          </label>
+        </article>
+      </div>
+
+
+      <div
+        class="
+          grid
+          grid-cols-1
+          gap-2
+          border-t
+          border-[#D9E5E8]
+          px-5
+          py-5
+          sm:grid-cols-3
+          sm:px-6
+        "
+      >
+        <button
+          type="button"
+          data-modal-accept
+          class="
+            min-h-[48px]
+            rounded-xl
+            border-2
+            border-[#0E3846]
+            bg-[#0E3846]
+            px-4
+            py-3
+            text-xs
+            font-extrabold
+            uppercase
+            text-white
+          "
+        >
+          {t.acceptAll}
+        </button>
+
+        <button
+          type="button"
+          data-modal-reject
+          class="
+            min-h-[48px]
+            rounded-xl
+            border-2
+            border-[#0E3846]
+            bg-[#0E3846]
+            px-4
+            py-3
+            text-xs
+            font-extrabold
+            uppercase
+            text-white
+          "
+        >
+          {t.rejectAll}
+        </button>
+
+        <button
+          type="button"
+          data-consent-save
+          class="
+            min-h-[48px]
+            rounded-xl
+            border-2
+            border-[#D99B26]
+            bg-[#D99B26]
+            px-4
+            py-3
+            text-xs
+            font-extrabold
+            uppercase
+            text-[#0E3846]
+          "
+        >
+          {t.save}
+        </button>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- =======================================================
+       REOPEN SETTINGS
+  ======================================================== -->
+
+  <button
+    type="button"
+    data-consent-reopen
+    class="
+      fixed
+      bottom-4
+      left-4
+      z-[99980]
+      hidden
+      min-h-[42px]
+      items-center
+      gap-2
+      rounded-full
+      border
+      border-[#C9DDE2]
+      bg-white
+      px-4
+      py-2
+      text-xs
+      font-bold
+      text-[#0E3846]
+      shadow-[0_6px_20px_rgba(14,56,70,0.14)]
+      transition-colors
+      hover:bg-[#F4F8F9]
+    "
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      class="h-4 w-4 text-[#D99B26]"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="8"
+        stroke-width="1.8"
+      />
+      <circle
+        cx="9"
+        cy="10"
+        r="1"
+        fill="currentColor"
+        stroke="none"
+      />
+      <circle
+        cx="14.5"
+        cy="8"
+        r="1"
+        fill="currentColor"
+        stroke="none"
+      />
+      <circle
+        cx="15"
+        cy="14"
+        r="1"
+        fill="currentColor"
+        stroke="none"
+      />
+    </svg>
+
+    {t.settings}
+  </button>
+</div>
+
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'sicb_cookie_consent_v1';
+    const CONSENT_MAX_AGE_MS = 730 * 24 * 60 * 60 * 1000;
+
+    function getStoredConsent() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+
+        if (!raw) {
+          return null;
+        }
+
+        const parsed = JSON.parse(raw);
+
+        const updatedAt =
+          typeof parsed.updatedAt === 'string'
+            ? Date.parse(parsed.updatedAt)
+            : NaN;
+
+        if (
+          !Number.isFinite(updatedAt) ||
+          Date.now() - updatedAt > CONSENT_MAX_AGE_MS
+        ) {
+          localStorage.removeItem(STORAGE_KEY);
+          return null;
+        }
+
+        return {
+          analytics: parsed.analytics === true,
+          marketing: parsed.marketing === true,
+        };
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function updateGoogleConsent(state) {
+      window.dataLayer = window.dataLayer || [];
+
+      if (typeof window.gtag !== 'function') {
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+      }
+
+      window.gtag('consent', 'update', {
+        analytics_storage:
+          state.analytics ? 'granted' : 'denied',
+
+        ad_storage:
+          state.marketing ? 'granted' : 'denied',
+
+        ad_user_data:
+          state.marketing ? 'granted' : 'denied',
+
+        ad_personalization:
+          state.marketing ? 'granted' : 'denied',
+      });
+
+      window.dataLayer.push({
+        event: 'sicb_consent_update',
+
+        sicb_analytics_consent:
+          state.analytics ? 'granted' : 'denied',
+
+        sicb_marketing_consent:
+          state.marketing ? 'granted' : 'denied',
+      });
+    }
+
+    function storeConsent(state) {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({
+            analytics: state.analytics === true,
+            marketing: state.marketing === true,
+            updatedAt: new Date().toISOString(),
+            version: 1,
+          })
+        );
+      } catch (error) {
+        // Consent still applies to the current page even if
+        // localStorage is unavailable.
+      }
+
+      updateGoogleConsent(state);
+    }
+
+    function initCookieConsent() {
+      const root =
+        document.querySelector('[data-consent-root]');
+
+      if (!root) {
+        return;
+      }
+
+      root.hidden = false;
+
+      const banner =
+        root.querySelector('[data-consent-banner]');
+
+      const modal =
+        root.querySelector('[data-consent-modal]');
+
+      const reopen =
+        root.querySelector('[data-consent-reopen]');
+
+      const analyticsInput =
+        root.querySelector('[data-consent-analytics]');
+
+      const marketingInput =
+        root.querySelector('[data-consent-marketing]');
+
+      if (
+        !banner ||
+        !modal ||
+        !reopen ||
+        !analyticsInput ||
+        !marketingInput
+      ) {
+        return;
+      }
+
+      function showBanner() {
+        banner.classList.remove('hidden');
+        reopen.classList.add('hidden');
+        reopen.classList.remove('flex');
+      }
+
+      function hideBanner() {
+        banner.classList.add('hidden');
+        reopen.classList.remove('hidden');
+        reopen.classList.add('flex');
+      }
+
+      function openModal() {
+        const saved = getStoredConsent();
+
+        analyticsInput.checked =
+          saved?.analytics === true;
+
+        marketingInput.checked =
+          saved?.marketing === true;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+
+        document.body.style.overflow = '';
+      }
+
+      function apply(state) {
+        analyticsInput.checked =
+          state.analytics === true;
+
+        marketingInput.checked =
+          state.marketing === true;
+
+        storeConsent(state);
+
+        closeModal();
+        hideBanner();
+      }
+
+      root
+        .querySelector('[data-consent-accept]')
+        ?.addEventListener(
+          'click',
+          () => apply({
+            analytics: true,
+            marketing: true,
+          })
+        );
+
+      root
+        .querySelector('[data-consent-reject]')
+        ?.addEventListener(
+          'click',
+          () => apply({
+            analytics: false,
+            marketing: false,
+          })
+        );
+
+      root
+        .querySelector('[data-consent-manage]')
+        ?.addEventListener(
+          'click',
+          openModal
+        );
+
+      root
+        .querySelector('[data-consent-close]')
+        ?.addEventListener(
+          'click',
+          closeModal
+        );
+
+      root
+        .querySelector('[data-consent-save]')
+        ?.addEventListener(
+          'click',
+          () => apply({
+            analytics: analyticsInput.checked,
+            marketing: marketingInput.checked,
+          })
+        );
+
+      root
+        .querySelector('[data-modal-accept]')
+        ?.addEventListener(
+          'click',
+          () => apply({
+            analytics: true,
+            marketing: true,
+          })
+        );
+
+      root
+        .querySelector('[data-modal-reject]')
+        ?.addEventListener(
+          'click',
+          () => apply({
+            analytics: false,
+            marketing: false,
+          })
+        );
+
+      reopen.addEventListener(
+        'click',
+        openModal
+      );
+
+      modal.addEventListener(
+        'click',
+        (event) => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        }
+      );
+
+      document.addEventListener(
+        'keydown',
+        (event) => {
+          if (
+            event.key === 'Escape' &&
+            modal.classList.contains('flex')
+          ) {
+            closeModal();
+          }
+        },
+        { once: false }
+      );
+
+      const saved = getStoredConsent();
+
+      if (saved) {
+        analyticsInput.checked =
+          saved.analytics;
+
+        marketingInput.checked =
+          saved.marketing;
+
+        hideBanner();
+      } else {
+        showBanner();
+      }
+    }
+
+    initCookieConsent();
+
+    document.addEventListener(
+      'astro:page-load',
+      initCookieConsent
+    );
+  })();
+</script>
 
