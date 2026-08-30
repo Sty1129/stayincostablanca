@@ -40,6 +40,11 @@ const translations = {
 
     slogan:
       "Mai mult timp pentru tine. Noi avem grijă de restul.",
+
+    legalLinks: [
+      { label: "Politica de confidențialitate", href: "/politica-de-confidentialitate" },
+      { label: "Politica de cookies", href: "/politica-de-cookies" },
+    ],
   },
 
   en: {
@@ -78,6 +83,11 @@ const translations = {
 
     slogan:
       "More time for you. We take care of the rest.",
+
+    legalLinks: [
+      { label: "Privacy Policy", href: "/en/privacy-policy" },
+      { label: "Cookie Policy", href: "/en/cookie-policy" },
+    ],
   },
 
   es: {
@@ -116,6 +126,11 @@ const translations = {
 
     slogan:
       "Más tiempo para ti. Nosotros nos ocupamos del resto.",
+
+    legalLinks: [
+      { label: "Política de privacidad", href: "/es/politica-de-privacidad" },
+      { label: "Política de cookies", href: "/es/politica-de-cookies" },
+    ],
   },
 };
 
@@ -650,30 +665,64 @@ const year = new Date().getFullYear();
         class="
           flex
           flex-col
-          sm:flex-row
-          sm:items-center
-          sm:justify-between
           gap-3
           text-xs
           sm:text-sm
           text-[#91ABB3]
         "
       >
-
-        <p>
-          © {year} Stay in Costa Blanca. {t.rights}
-        </p>
-
-
-        <p
+        <div
           class="
-            font-semibold
-            text-[#ABC0C6]
+            flex
+            flex-col
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+            gap-3
           "
         >
-          {t.slogan}
-        </p>
+          <p>
+            © {year} Stay in Costa Blanca. {t.rights}
+          </p>
 
+          <p
+            class="
+              font-semibold
+              text-[#ABC0C6]
+            "
+          >
+            {t.slogan}
+          </p>
+        </div>
+
+        <nav
+          class="
+            flex
+            flex-wrap
+            gap-x-5
+            gap-y-2
+          "
+          aria-label="Legal"
+        >
+          {
+            t.legalLinks.map((item) => (
+              <a
+                href={item.href}
+                class="
+                  font-semibold
+                  text-[#ABC0C6]
+                  underline
+                  decoration-white/20
+                  underline-offset-4
+                  transition-colors
+                  hover:text-white
+                "
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
       </div>
 
     </div>
