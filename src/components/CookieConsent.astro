@@ -951,6 +951,15 @@ const t = translations[lang];
         return;
       }
 
+      // Prevent duplicate event listeners on the initial Astro page load.
+      // With ClientRouter, initCookieConsent() can run once immediately and
+      // once again on astro:page-load for the same DOM instance.
+      if (root.dataset.consentInitialized === 'true') {
+        return;
+      }
+
+      root.dataset.consentInitialized = 'true';
+
       function showBanner() {
         banner.classList.remove('hidden');
         reopen.classList.add('hidden');
@@ -1076,18 +1085,38 @@ const t = translations[lang];
         }
       );
 
-      document.addEventListener(
-        'keydown',
-        (event) => {
-          if (
-            event.key === 'Escape' &&
-            modal.classList.contains('flex')
-          ) {
-            closeModal();
+      // Bind the Escape handler only once at document level. The handler
+      // always resolves the current modal after Astro client-side navigation.
+      if (
+        document.documentElement.dataset
+          .sicbConsentEscapeBound !== 'true'
+      ) {
+        document.addEventListener(
+          'keydown',
+          (event) => {
+            if (event.key !== 'Escape') {
+              return;
+            }
+
+            const currentModal =
+              document.querySelector(
+                '[data-consent-modal]'
+              );
+
+            if (
+              currentModal &&
+              currentModal.classList.contains('flex')
+            ) {
+              currentModal.classList.add('hidden');
+              currentModal.classList.remove('flex');
+              document.body.style.overflow = '';
+            }
           }
-        },
-        { once: false }
-      );
+        );
+
+        document.documentElement.dataset
+          .sicbConsentEscapeBound = 'true';
+      }
 
       const saved = getStoredConsent();
 
