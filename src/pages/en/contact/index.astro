@@ -1,4 +1,3 @@
-
 ---
 /* src/pages/en/contact/index.astro */
 
@@ -1468,6 +1467,34 @@ const whatsappUrl =
 <script is:inline>
   const FORMSPREE_URL = "https://formspree.io/f/xjgjyjdk";
 
+
+
+  function redirectAfterLead(successUrl) {
+    let redirected = false;
+
+    const goToSuccessPage = () => {
+      if (redirected) {
+        return;
+      }
+
+      redirected = true;
+      window.location.replace(successUrl);
+    };
+
+    window.dataLayer = window.dataLayer || [];
+
+    window.dataLayer.push({
+      event: 'sicb_form_success',
+      form_id: 'contact-form',
+      form_language:
+        document.documentElement.lang || 'unknown',
+      eventCallback: goToSuccessPage,
+      eventTimeout: 1000,
+    });
+
+    window.setTimeout(goToSuccessPage, 1100);
+  }
+
   function initForm() {
 
     const form = document.getElementById('contact-form');
@@ -1528,7 +1555,7 @@ const whatsappUrl =
 
         if (response.ok) {
 
-          window.location.replace(successUrl);
+          redirectAfterLead(successUrl);
 
         } else {
 
