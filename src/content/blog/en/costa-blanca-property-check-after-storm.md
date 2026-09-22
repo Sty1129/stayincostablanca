@@ -22,7 +22,7 @@ A property that appears perfectly watertight during normal rainfall may reveal i
 
 And if your Spanish home is empty, finding those problems quickly can make a significant difference.
 
-![Flooding after severe rainfall on the Costa Blanca](/images/blog/storm1.jpeg)
+![Flooding after severe rainfall on the Costa Blanca](/storm1.jpeg)
 
 ## When a few hours of rain change everything
 
