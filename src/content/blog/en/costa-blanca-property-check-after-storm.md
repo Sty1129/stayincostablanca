@@ -34,7 +34,7 @@ The consequences were immediately visible: localised flash flooding, roads cover
 
 During particularly intense rainfall, streets can temporarily turn into streams carrying branches, bins and other debris. In more severe situations, floodwater and strong winds can damage vehicles, trees and outdoor structures.
 
-![Severe weather affecting the Costa Blanca coastline](/images/blog/storm2.jpeg)
+<img src="/storm2.jpeg" alt="Severe weather and rough sea on the Costa Blanca" loading="lazy" />
 
 For property owners, however, there is another risk that may be much less obvious.
 
@@ -50,7 +50,7 @@ The risk can increase as a property ages, particularly when waterproofing, seala
 
 Basements and underground garages deserve particular attention as well. Water may enter directly from street level, through access ramps and doors, or through defects in the building envelope.
 
-![Storm damage caused by strong winds on the Costa Blanca](/images/blog/storm3.jpeg)
+<img src="/storm3.jpeg" alt="Tree damaged by strong winds during a storm on the Costa Blanca" loading="lazy" />
 
 This is why an **unoccupied holiday home or second property should be checked as soon as reasonably possible after a severe weather event**.
 
@@ -108,7 +108,7 @@ For properties with basements or garages, check access doors and ramps as well.
 
 Even a relatively small amount of water entering beneath a door can spread over a surprisingly large area once inside.
 
-![Floodwater reaching a street-level property after heavy rainfall](/images/blog/storm4.jpeg)
+<img src="/storm4.jpeg" alt="Floodwater reaching a street-level terrace after torrential rain" loading="lazy" />
 
 ## 7. Look underneath furniture
 
@@ -152,8 +152,7 @@ A branch damaged during a storm may remain suspended and fall later, potentially
 
 Also check terraces and exterior areas for displaced furniture, damaged awnings, pergolas and other items that may have moved during strong winds.
 
-![Residential street flooding following severe weather on the Costa Blanca](/images/blog/storm5.jpeg)
-
+<img src="/storm5.jpeg" alt="Residential street flooding after severe rainfall on the Costa Blanca" loading="lazy" />
 ## The storm may be over. The problem may not be.
 
 This list is not exhaustive, but it provides a useful starting point immediately after a severe weather event.
